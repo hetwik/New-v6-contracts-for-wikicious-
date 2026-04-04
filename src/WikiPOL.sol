@@ -172,7 +172,7 @@ contract WikiPOL is Ownable2Step, ReentrancyGuard {
         if (currentLPBalance == 0) return;
 
         // Estimate earned fees: current value minus deployed cost
-        (uint256 resUSDC, uint256 resWIK) = amm.getReserves(address(USDC), address(WIK));
+        amm.getReserves(address(USDC), address(WIK));
         uint256 lpSupply = lpToken.totalSupply();
         if (lpSupply == 0) return;
 
