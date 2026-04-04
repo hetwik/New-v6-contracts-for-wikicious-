@@ -171,6 +171,7 @@ contract WikiCircuitBreaker is Ownable2Step, ReentrancyGuard {
      * @param newPrice  New mark price
      */
     function recordPriceUpdate(bytes32 marketId, uint256 prevPrice, uint256 newPrice) external onlyMonitor {
+        marketId;
         if (prevPrice == 0) return;
 
         uint256 deviation = prevPrice > newPrice

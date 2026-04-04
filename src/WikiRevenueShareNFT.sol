@@ -137,6 +137,7 @@ contract WikiRevenueShareNFT is ERC721, Ownable2Step, ReentrancyGuard {
 
     function pendingFeesAll(address holder) external view returns (uint256 total) {
         uint256 balance = balanceOf(holder);
+        if (balance == 0) return 0;
         // Note: ERC721 doesn't have enumerable by default — frontend enumerates
         // This is a placeholder — production uses ERC721Enumerable
         return total;
