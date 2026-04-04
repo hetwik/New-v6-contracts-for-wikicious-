@@ -43,7 +43,7 @@ contract WikiDynamicFeeHook is Ownable2Step {
     constructor(address owner) Ownable(owner) {}
 
     /** @notice Called by AMM before executing swap. Returns fee bps to use. */
-    function beforeSwap(bytes32 marketId, uint256 currentPrice, uint256 swapSize, bool isLong)
+    function beforeSwap(bytes32 marketId, uint256 currentPrice, uint256 /*swapSize*/, bool isLong)
         external returns (uint256 feeBps)
     {
         require(registeredAmms[msg.sender], "Hook: not registered");

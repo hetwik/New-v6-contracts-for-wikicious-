@@ -380,8 +380,6 @@ contract WikiLP is Ownable2Step, ReentrancyGuard {
         Pool       storage p   = pools[pid];
         LPPosition storage pos = positions[pid][msg.sender];
 
-        uint256 feeA = pos.feeDebtA;
-        uint256 feeB = pos.feeDebtB;
         // pendingFees are in feeDebt snapshot — recalculate properly
         uint256 earnedA = pos.lpBalance * p.feeGrowthA / PRECISION;
         uint256 earnedB = pos.lpBalance * p.feeGrowthB / PRECISION;

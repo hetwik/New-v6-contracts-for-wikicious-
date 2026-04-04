@@ -502,7 +502,6 @@ contract WikiHybridLiquidityManager is Ownable2Step, ReentrancyGuard, Pausable {
         uint256 insF = vault.insuranceFund();
         uint256 bsF  = address(backstop) != address(0) ? backstop.totalUSDC() : 0;
 
-        uint256 curInsPts = insF >= targetInsuranceFund ? 40 : insF * 40 / targetInsuranceFund;
         uint256 curBsPts  = bsF  >= targetBackstopTVL   ? 40 : bsF  * 40 / targetBackstopTVL;
 
         // For score 60: need curInsPts + curBsPts + oiPts = 60 (oiPts ≈ 10 avg)
@@ -561,7 +560,7 @@ contract WikiHybridLiquidityManager is Ownable2Step, ReentrancyGuard, Pausable {
         return tvl * BACKSTOP_WEIGHT / targetBackstopTVL;
     }
 
-    function _oiScore(bytes32 marketId, bool isLong) internal view returns (uint256) {
+    function _oiScore(bytes32 marketId, bool /*isLong*/) internal view returns (uint256) {
         if (marketId == bytes32(0) || address(vamm) == address(0)) return OI_BALANCE_WEIGHT / 2;
         try vamm.markets(marketId) returns (bytes32,string memory,uint256,uint256,uint256,uint256 oiLong,uint256 oiShort,uint256,uint256,uint256,uint256,bool) {
             if (oiLong == 0 && oiShort == 0) return OI_BALANCE_WEIGHT; // empty = balanced = max score
@@ -577,7 +576,7 @@ contract WikiHybridLiquidityManager is Ownable2Step, ReentrancyGuard, Pausable {
         }
     }
 
-    function _bestExternalVenue(bytes32 marketId, uint256 notional) internal view returns (Venue) {
+    function _bestExternalVenue(bytes32 marketId, uint256 /*notional*/) internal view returns (Venue) {
         // For perps: prefer GMX V5 (deepest liquidity on Arbitrum)
         if (address(gmxRouter) != address(0) && gmxMarkets[marketId] != address(0)) {
             return Venue.GMX_V5;
@@ -589,7 +588,7 @@ contract WikiHybridLiquidityManager is Ownable2Step, ReentrancyGuard, Pausable {
     }
 
     function _executeInternal(
-        address trader, bytes32 marketId, uint256 collateral, uint256 leverage,
+        address /*trader*/, bytes32 marketId, uint256 collateral, uint256 leverage,
         bool isLong, uint256 limitPrice, uint256 minPrice, uint256 maxPrice
     ) internal returns (uint256 posId) {
         if (address(vamm) == address(0)) return 0;
@@ -715,7 +714,6 @@ contract WikiHybridLiquidityManager is Ownable2Step, ReentrancyGuard, Pausable {
         // Internal cap = dynLev tier (fund-based)
         // We approximate it here — actual dynLev contract called by vAMM
         uint256 insF = vault.insuranceFund();
-        uint256 bsF  = address(backstop) != address(0) ? backstop.totalUSDC() : 0;
         // Rough internal cap from fund (mirrors DynamicLeverage tiers)
         if      (insF >= 50_000_000 * 1e6) internalCap = 1000;
         else if (insF >= 10_000_000 * 1e6) internalCap = 500;

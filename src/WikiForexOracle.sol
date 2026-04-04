@@ -202,7 +202,6 @@ contract WikiForexOracle is Ownable2Step, Pausable {
         if (category == CAT_CRYPTO) return true; // 24/7
 
         uint256 ts    = block.timestamp;
-        uint256 dow   = ((ts / 86400) + 4) % 7; // days since epoch, Thu=0 → +4 → Mon=0... let's use Sun=0
         // Correct: epoch day 0 = Thu Jan 1 1970
         // (ts / 86400 + 4) % 7 gives 0=Mon, 1=Tue, ..., 6=Sun
         uint256 dayOfWeek = (ts / 86400 + 4) % 7; // 0=Mon,1=Tue,2=Wed,3=Thu,4=Fri,5=Sat,6=Sun

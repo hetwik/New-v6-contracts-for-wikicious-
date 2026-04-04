@@ -367,7 +367,7 @@ contract WikiGMXBackstop is Ownable2Step, ReentrancyGuard, Pausable {
 
     /// @notice Close a GMX-backed position
     function closeGMXPosition(
-        bytes32 gmxKey,
+        bytes32 /*gmxKey*/,
         bytes32 marketId,
         bool    isLong,
         uint256 size

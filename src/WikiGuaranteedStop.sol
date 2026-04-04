@@ -187,7 +187,7 @@ contract WikiGuaranteedStop is Ownable2Step, ReentrancyGuard {
         require(positionToOrder[positionId] == 0, "GS: order exists");
         require(guaranteedPrice > 0, "GS: zero price");
 
-        (address trader, uint256 marketId, bool isLong,, uint256 notional, uint256 entryPrice) =
+        (address trader, uint256 marketId, bool isLong,, uint256 notional, ) =
             perp.getPosition(positionId);
         require(trader == msg.sender, "GS: not your position");
         require(notional > 0, "GS: position not found");
@@ -258,7 +258,7 @@ contract WikiGuaranteedStop is Ownable2Step, ReentrancyGuard {
         }
 
         // Execute close at guaranteed price
-        (int256 pnl, uint256 proceeds) = perp.closeAtGuaranteedPrice(o.positionId, o.guaranteedPrice);
+        (, uint256 proceeds) = perp.closeAtGuaranteedPrice(o.positionId, o.guaranteedPrice);
 
         // Calculate gap between guaranteed price and market price
         uint256 gap = 0;

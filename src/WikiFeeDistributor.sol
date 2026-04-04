@@ -437,12 +437,14 @@ contract WikiFeeDistributor is Ownable2Step, ReentrancyGuard {
     function executeBuyback(uint256 minWikOut) external onlyOwner nonReentrant {
         require(pendingBuyback > 0,           "Dist: no buyback pending");
         require(buybackTarget != address(0),  "Dist: no buyback target");
+        require(minWikOut == 0,               "Dist: buyback slippage unsupported");
 
         uint256 usdcToSpend = pendingBuyback;
         pendingBuyback      = 0;
 
         // In production: call Uniswap V3 exactInputSingle on buybackTarget pool
         // For now: record and emit 
+        emit BuybackExecuted(usdcToSpend, 0);
     }
 
     // ──────────────────────────────────────────────────────────────────────

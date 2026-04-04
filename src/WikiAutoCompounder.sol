@@ -563,7 +563,6 @@ contract WikiAutoCompounder is Ownable2Step, ReentrancyGuard {
         Config memory c    = configs[user];
         uint256 curWIK     = staking.getLock(user).amount;
         uint256 curVeWIK   = staking.getCurrentVeWIK(user);
-        uint256 maxLock    = staking.MAX_LOCK();
 
         // Year 0 = current state
         projectedVeWIK[0]           = curVeWIK;
@@ -609,7 +608,7 @@ contract WikiAutoCompounder is Ownable2Step, ReentrancyGuard {
         if (c.lastCompound > 0 && block.timestamp < c.lastCompound + c.intervalSeconds) return false;
         (uint256 claimable,,) = vesting.claimableNow(user);
         uint256 pendingUsdc = staking.pendingFeesView(user);
-        return claimable >= c.minCompoundWIK || (c.extendLock && c.lastCompound > 0);
+        return claimable >= c.minCompoundWIK || pendingUsdc > 0 || (c.extendLock && c.lastCompound > 0);
     }
 
     function _remainingLock(address user) internal view returns (uint256) {
@@ -618,7 +617,7 @@ contract WikiAutoCompounder is Ownable2Step, ReentrancyGuard {
         return l.unlockTime - block.timestamp;
     }
 
-    function _getMinWIKOut(uint256 usdcIn) internal view returns (uint256) {
+    function _getMinWIKOut(uint256 usdcIn) internal pure returns (uint256) {
         // Simple estimate: assume 1 USDC = some WIK. With slippage guard.
         // In production: use a TWAP oracle for proper slippage protection [A4]
         // For now: 97% of estimated output (3% slippage tolerance)
