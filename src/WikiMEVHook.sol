@@ -273,6 +273,7 @@ contract WikiMEVHook is Ownable2Step, ReentrancyGuard {
         bool    isLong
     ) external {
         require(hookCallers[msg.sender], "MEV: not hook caller");
+        isLong;
 
         // Only create opportunity for trades above threshold
         if (notional < BACKRUN_THRESHOLD) return;
@@ -411,7 +412,6 @@ contract WikiMEVHook is Ownable2Step, ReentrancyGuard {
         if (block.number != tradeBlock) return; // not JIT if different block
 
         uint256 penalty = amount * JIT_PENALTY_BPS / BPS;
-        uint256 jitId   = jitEvents.length;
         jitEvents.push(JITEvent({
             lp:             lp,
             blockNumber:    block.number,

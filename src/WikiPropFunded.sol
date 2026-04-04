@@ -375,6 +375,7 @@ contract WikiPropFunded is Ownable2Step, ReentrancyGuard, Pausable, IFlashLoanRe
     ) external override returns (bool) {
         require(msg.sender == AAVE_POOL,  "Funded: only Aave");
         require(initiator == address(this), "Funded: only self");
+        require(asset == address(USDC), "Funded: unsupported asset");
         require(_inFlashLoan,              "Funded: not in flash loan");
 
         (uint256 accountId, uint256 marketIndex, bool isLong,

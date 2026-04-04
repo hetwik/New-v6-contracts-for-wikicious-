@@ -212,6 +212,7 @@ contract WikiLiqProtection is Ownable2Step, ReentrancyGuard {
         // Add margin to position (calls WikiPerp.addMargin)
         USDC.forceApprove(perpContract, netAdd);
         (bool ok,) = perpContract.call(abi.encodeWithSignature("addMarginForProtection(address,uint256)", trader, netAdd));
+        require(ok, "LP: add margin failed");
 
         emit MarginAutoAdded(trader, netAdd, currentHealthBps, 0);
     }

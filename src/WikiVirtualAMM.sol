@@ -299,7 +299,7 @@ contract WikiVirtualAMM is Ownable2Step, ReentrancyGuard, Pausable {
         uint256 entryPrice = _getVirtualPrice(marketId, size, isLong);
 
         // Slippage check
-        (uint256 oraclePrice,) = oracle.getPrice(marketId);
+        oracle.getPrice(marketId); // ensure oracle feed is valid/fresh
         if (minPrice > 0) require(entryPrice >= minPrice, "vAMM: price too low");
         if (maxPrice > 0) require(entryPrice <= maxPrice, "vAMM: price too high");
 
