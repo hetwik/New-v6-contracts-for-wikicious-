@@ -6,7 +6,8 @@
 // Step 2: Treasury wallet calls acceptOwnership() on each contract (run accept-ownership.js)
 
 require('dotenv').config();
-const { ethers } = require('hardhat');
+const hre = require('hardhat');
+const { ethers } = hre;
 const fs = require('fs');
 const path = require('path');
 
@@ -14,6 +15,11 @@ const path = require('path');
 // 🔴 SET THIS before running — your new treasury/hardware wallet
 // ─────────────────────────────────────────────────────────────
 const TREASURY_ADDRESS = process.env.TREASURY_ADDRESS || '';
+
+function deploymentFileByNetwork(networkName) {
+  const alias = networkName === 'arbitrum_one' ? 'arbitrum' : networkName;
+  return `deployments.${alias}.json`;
+}
 
 async function main() {
   if (!TREASURY_ADDRESS || !ethers.isAddress(TREASURY_ADDRESS)) {
@@ -34,17 +40,18 @@ async function main() {
     process.exit(1);
   }
 
-  // Load deployed addresses from deployments.arbitrum.json
-  const deploymentsPath = path.join(__dirname, '../deployments.arbitrum.json');
+  // Load deployed addresses from network-specific file
+  const deploymentsFile = deploymentFileByNetwork(hre.network.name);
+  const deploymentsPath = path.join(__dirname, `../${deploymentsFile}`);
   if (!fs.existsSync(deploymentsPath)) {
-    console.error('❌ ERROR: deployments.arbitrum.json not found.');
+    console.error(`❌ ERROR: ${deploymentsFile} not found.`);
     console.error('   Run: npm run deploy  first\n');
     process.exit(1);
   }
 
   const deployments = JSON.parse(fs.readFileSync(deploymentsPath, 'utf8'));
   const contracts   = deployments.contracts;
-  console.log(`📄 Loaded ${Object.keys(contracts).length} contract addresses from deployments.arbitrum.json\n`);
+  console.log(`📄 Loaded ${Object.keys(contracts).length} contract addresses from ${deploymentsFile}\n`);
 
   // Minimal Ownable2Step ABI — only what we need
   const OWNABLE2STEP_ABI = [
@@ -53,25 +60,10 @@ async function main() {
     'function transferOwnership(address newOwner) external',
   ];
 
-  // All 16 contracts that have Ownable2Step
-  const contractList = [
-    { name: 'WIKToken',         address: contracts.WIKToken         },
-    { name: 'WikiOracle',       address: contracts.WikiOracle       },
-    { name: 'WikiVault',        address: contracts.WikiVault        },
-    { name: 'WikiPerp',         address: contracts.WikiPerp         },
-    { name: 'WikiGMXBackstop',  address: contracts.WikiGMXBackstop  },
-    { name: 'WikiSpotRouter',   address: contracts.WikiSpotRouter   },
-    { name: 'WikiMarketRegistry', address: contracts.WikiMarketRegistry },
-    { name: 'WikiForexOracle',  address: contracts.WikiForexOracle  },
-    { name: 'WikiSocial',       address: contracts.WikiSocial       },
-    { name: 'WikiSocialRewards',address: contracts.WikiSocialRewards },
-    { name: 'WikiPropPool',     address: contracts.WikiPropPool     },
-    { name: 'WikiPropEval',     address: contracts.WikiPropEval     },
-    { name: 'WikiPropFunded',   address: contracts.WikiPropFunded   },
-    { name: 'WikiBonus',        address: contracts.WikiBonus        },
-    { name: 'WikiAMM',          address: contracts.WikiAMM          },
-    { name: 'WikiSpot',         address: contracts.WikiSpot         },
-  ].filter(c => c.address); // skip any that weren't deployed
+  // Attempt ownership transfer on every deployed contract that supports Ownable2Step
+  const contractList = Object.entries(contracts)
+    .filter(([, address]) => address)
+    .map(([name, address]) => ({ name, address }));
 
   console.log(`⚙️  Initiating transferOwnership on ${contractList.length} contracts...\n`);
 
@@ -82,7 +74,12 @@ async function main() {
       const contract = new ethers.Contract(c.address, OWNABLE2STEP_ABI, deployer);
 
       // Verify deployer is currently the owner
-      const currentOwner = await contract.owner();
+      const currentOwner = await contract.owner().catch(() => ethers.ZeroAddress);
+      if (currentOwner === ethers.ZeroAddress) {
+        console.log(`   ⚠️  ${c.name.padEnd(20)} SKIPPED — no owner()/Ownable2Step ABI`);
+        results.push({ name: c.name, status: 'skipped', reason: 'not ownable2step' });
+        continue;
+      }
       if (currentOwner.toLowerCase() !== deployer.address.toLowerCase()) {
         console.log(`   ⚠️  ${c.name.padEnd(20)} SKIPPED — owner is ${currentOwner.slice(0,10)}… (not deployer)`);
         results.push({ name: c.name, status: 'skipped', reason: 'not owner' });
@@ -137,7 +134,7 @@ async function main() {
   console.log('\n─────────────────────────────────────────────────');
   console.log('🔜 NEXT STEP:');
   console.log(`   Treasury wallet (${TREASURY_ADDRESS.slice(0,10)}…) must now run:`);
-  console.log('   npx hardhat run scripts/accept-ownership.js --network arbitrum');
+  console.log(`   npx hardhat run scripts/accept-ownership.js --network ${hre.network.name}`);
   console.log('   (Fund treasury with ~0.02 ETH for gas first)');
   console.log('─────────────────────────────────────────────────\n');
 }
