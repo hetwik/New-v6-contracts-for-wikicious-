@@ -256,7 +256,7 @@ contract WikiCrossChainLending is Ownable2Step, ReentrancyGuard, Pausable {
         return b.principal * globalInterestIndex / b.interestIndex;
     }
 
-    function _thisEid() internal view returns (uint32) { return 30110; } // overridden per chain at deploy
+    function _thisEid() internal pure returns (uint32) { return 30110; } // overridden per chain at deploy
 
     function _options(uint256 gas) internal pure returns (bytes memory) { return abi.encodePacked(uint16(1), gas); }
 
