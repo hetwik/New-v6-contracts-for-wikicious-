@@ -416,6 +416,7 @@ contract WikiYieldSlice is Ownable2Step, ReentrancyGuard, Pausable {
 
         // Pull wTokens from caller
         IWikiLending.Market memory m = lendingProtocol.getMarket(s.lendingMarketId);
+        require(m.supplyEnabled, "YS: market supply disabled");
         // wToken address is not explicitly stored — we use underlying + exchange rate
         // The wToken is held by the slicer on behalf of the lending protocol
         // In production: WikiLending would expose a getWToken(marketId) function.
