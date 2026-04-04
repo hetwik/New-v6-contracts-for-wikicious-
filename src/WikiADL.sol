@@ -267,7 +267,7 @@ contract WikiADL is Ownable2Step, ReentrancyGuard, Pausable {
             IWikiVAMM.Position memory pos = vamm.positions(entry.posId);
             if (pos.size == 0) continue; // already closed
 
-            uint256 markPrice = vamm.getMarkPrice(marketId);
+            vamm.getMarkPrice(marketId);
 
             // Calculate how much of this position to close [A2]
             // Close minimum needed to cover remaining shortfall

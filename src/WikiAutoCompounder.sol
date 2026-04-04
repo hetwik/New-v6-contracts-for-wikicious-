@@ -563,7 +563,6 @@ contract WikiAutoCompounder is Ownable2Step, ReentrancyGuard {
         Config memory c    = configs[user];
         uint256 curWIK     = staking.getLock(user).amount;
         uint256 curVeWIK   = staking.getCurrentVeWIK(user);
-        uint256 maxLock    = staking.MAX_LOCK();
 
         // Year 0 = current state
         projectedVeWIK[0]           = curVeWIK;

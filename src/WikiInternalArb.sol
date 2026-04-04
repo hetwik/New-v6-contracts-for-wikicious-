@@ -451,7 +451,7 @@ contract WikiInternalArb is Ownable2Step, ReentrancyGuard, Pausable {
         if (p.buyOnSpot) {
             // Buy token cheaply on WikiSpot
             USDC.forceApprove(address(spot), amount / 2);
-            uint256 tokenReceived = spot.swapExactIn(
+            spot.swapExactIn(
                 p.poolId,
                 address(USDC),
                 amount / 2,
@@ -481,14 +481,14 @@ contract WikiInternalArb is Ownable2Step, ReentrancyGuard, Pausable {
         // Pool A = cheap pool (poolId), Pool B = expensive pool (poolId + 1)
         // In a full deployment, keeper specifies both pool IDs in ArbParams
         uint256 cheapPoolId      = p.poolId;
-        uint256 expensivePoolId  = p.poolId + 1; // convention: keeper provides cheap pool
+        // uint256 expensivePoolId  = p.poolId + 1; // convention: keeper provides cheap pool
 
         // Leg 1: buy token on cheaper pool
         (uint256 expectedTokenOut,) = spot.getAmountOut(cheapPoolId, address(USDC), amount);
         require(expectedTokenOut > 0, "InternalArb: no liquidity in cheap pool");
 
         USDC.forceApprove(address(spot), amount);
-        uint256 tokenBought = spot.swapExactIn(
+        spot.swapExactIn(
             cheapPoolId,
             address(USDC),
             amount,

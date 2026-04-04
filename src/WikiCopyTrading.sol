@@ -404,7 +404,7 @@ contract WikiCopyTrading is Ownable2Step, ReentrancyGuard {
         uint256 vaultId,
         bool    isLong,
         uint256 notional,
-        uint256 leverage
+        uint256 /*leverage*/
     ) external {
         SocialVault storage sv = socialVaults[vaultId];
         require(msg.sender == sv.leadTrader, "Copy: not lead trader");

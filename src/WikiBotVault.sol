@@ -186,7 +186,6 @@ contract WikiBotVault is ERC20, Ownable2Step, ReentrancyGuard, Pausable {
         require(strategyId < NUM_STRATEGIES,          "BV: invalid strategy");
         require(strategies[strategyId].active,         "BV: strategy inactive");
         require(amount >= MIN_DEPOSIT,                 "BV: below minimum $10");
-        StrategyConfig storage cfg = strategies[strategyId];
         require(!vaultStates[strategyId].circuitBreakerTripped, unicode"BV: circuit breaker tripped — deposits paused");
 
         _accrueManagementFee(strategyId);

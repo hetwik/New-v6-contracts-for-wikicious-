@@ -448,7 +448,6 @@ contract WikiLending is Ownable2Step, ReentrancyGuard, Pausable {
 
         // Update exchange rate (suppliers earn interest minus reserves)
         if (m.totalSupply > 0) {
-            uint256 supplyIncrease = interest - reserves;
             m.exchangeRate = (cashBalance + m.totalBorrows - m.totalReserves) * PRECISION / m.totalSupply;
         }
 
@@ -563,7 +562,7 @@ contract WikiLending is Ownable2Step, ReentrancyGuard, Pausable {
         return um.borrowBalance * currentIndex / (um.borrowIndex > 0 ? um.borrowIndex : PRECISION);
     }
 
-    function _principal(uint256 amount, uint256 currentIndex, uint256 userIndex) internal pure returns (uint256) {
+    function _principal(uint256 amount, uint256 currentIndex, uint256 /*userIndex*/) internal pure returns (uint256) {
         return amount * PRECISION / (currentIndex > 0 ? currentIndex : PRECISION);
     }
 

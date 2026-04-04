@@ -226,14 +226,14 @@ contract WikiCrossChainLending is Ownable2Step, ReentrancyGuard, Pausable {
 
         uint8 msgType = uint8(bytes1(payload[31])); // first byte of first ABI word
         if (msgType == MSG_SUPPLY) {
-            (, address user, address asset, uint256 amount, uint256 remoteSupplyId) = abi.decode(payload, (uint8, address, address, uint256, uint256));
+            (, address user, address asset, uint256 amount, ) = abi.decode(payload, (uint8, address, address, uint256, uint256));
             // Record cross-chain supply credit on this chain
             uint256 supplyId = supplies.length;
             supplies.push(CrossChainSupply({ user: user, srcEid: origin.srcEid, asset: asset, amount: amount, borrowedUSD: 0, lastAccrue: block.timestamp, active: true }));
             userSupplies[user].push(supplyId);
             totalSuppliedUSD += amount;
         } else if (msgType == MSG_LIQUIDATE) {
-            (, uint256 remoteSupplyId,, ) = abi.decode(payload, (uint8, uint256, uint256, address));
+            abi.decode(payload, (uint8, uint256, uint256, address));
             // Mark remote supply as liquidated if we track it
             for (uint i; i < supplies.length; i++) {
                 if (supplies[i].srcEid == origin.srcEid && supplies[i].active) {

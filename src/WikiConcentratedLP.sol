@@ -207,7 +207,6 @@ contract WikiConcentratedLP is Ownable2Step, ReentrancyGuard {
     // ── Update price when oracle updates ─────────────────────────────────
     function updatePrice(uint256 marketId, uint256 newSqrtPriceX96) external onlyOwner {
         PoolState storage pool = pools[marketId];
-        uint256 oldTick = pool.currentTick;
         uint256 newTick = _sqrtPriceToTick(newSqrtPriceX96);
         pool.sqrtPriceX96 = newSqrtPriceX96;
         pool.currentTick  = newTick;
@@ -242,7 +241,7 @@ contract WikiConcentratedLP is Ownable2Step, ReentrancyGuard {
     }
 
     // ── Internal math (simplified — production uses full Uni V3 library) ─
-    function _calculateLiquidity(uint256 tL, uint256 tU, uint256 amount, uint256 sqrtPrice)
+    function _calculateLiquidity(uint256 tL, uint256 tU, uint256 amount, uint256 /*sqrtPrice*/)
         internal pure returns (uint256)
     {
         // Simplified: L = amount / (sqrtPriceUpper - sqrtPriceLower) × scale
@@ -251,7 +250,7 @@ contract WikiConcentratedLP is Ownable2Step, ReentrancyGuard {
         return amount * 1000 / spread; // simplified ratio
     }
 
-    function _calculateAmount0(uint256 tL, uint256 tU, uint256 liquidity, uint256 sqrtPrice)
+    function _calculateAmount0(uint256 tL, uint256 tU, uint256 liquidity, uint256 /*sqrtPrice*/)
         internal pure returns (uint256)
     {
         return liquidity * (tU - tL) / 1000;
