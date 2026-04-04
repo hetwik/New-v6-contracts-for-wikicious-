@@ -330,6 +330,8 @@ contract WikiSpotRouter is Ownable2Step, ReentrancyGuard {
     function _executeSwapExactOut(
         address tokenIn, address tokenOut, uint256 amountOut, uint256 maxIn, PoolConfig memory cfg
     ) internal returns (uint256 amountIn) {
+        uint256 estOut = _estimateOutput(tokenIn, tokenOut, maxIn, cfg);
+        require(estOut >= amountOut, "Spot: insufficient maxIn");
         // Simplified: use exactInput with a buffer
         amountIn = _executeSwap(tokenIn, tokenOut, maxIn, cfg);
     }
