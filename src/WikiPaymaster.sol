@@ -108,7 +108,7 @@ contract WikiPaymaster is Ownable2Step, ReentrancyGuard {
         PackedUserOperation calldata userOp,
         bytes32 /*userOpHash*/,
         uint256 maxCost          // max ETH the op could cost
-    ) external returns (bytes memory context, uint256 validationData) {
+    ) external view returns (bytes memory context, uint256 validationData) {
         require(msg.sender == address(entryPoint), "Paymaster: not EntryPoint");
 
         // Decode token from paymasterAndData (bytes 20..40 = token address)

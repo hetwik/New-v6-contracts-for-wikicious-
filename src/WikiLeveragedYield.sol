@@ -223,7 +223,7 @@ contract WikiLeveragedYield is Ownable2Step, ReentrancyGuard, Pausable {
         emit Looped(vaultId, user, cfg.targetLoops, borrowed);
     }
 
-    function _unwindLoop(uint256 vaultId, address user, uint256 repayAmount) internal {
+    function _unwindLoop(uint256 vaultId, address /*user*/, uint256 repayAmount) internal {
         VaultConfig storage cfg = vaults[vaultId];
         if (repayAmount == 0) return;
         try lending.repay(cfg.lendingMarketId, repayAmount) {} catch {}

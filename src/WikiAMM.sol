@@ -50,7 +50,7 @@ contract WikiAMM is ERC20, Ownable2Step, ReentrancyGuard, Pausable {
     }
 
     // Called before swaps — reverts if price moved >10% in one block
-    function _assertNotManipulated(uint256 spotPrice0, uint256 res0, uint256 res1) internal view {
+    function _assertNotManipulated(uint256 spotPrice0, uint256 res0, uint256 /*res1*/) internal view {
         if (res0 == 0 || _blockTimestampLast == 0) return;
         uint256 twap = price0CumulativeLast / (uint32(block.timestamp % 2**32) - _blockTimestampLast + 1);
         if (twap == 0) return;

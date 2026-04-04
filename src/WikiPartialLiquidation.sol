@@ -195,7 +195,7 @@ contract WikiPartialLiquidation is Ownable2Step, ReentrancyGuard {
         }
 
         // Execute partial close
-        (int256 pnl, uint256 returnedCollateral) = perp.partialClose(positionId, fractionClosedBps);
+        (int256 pnl, ) = perp.partialClose(positionId, fractionClosedBps);
 
         uint256 notionalClosed = pos.notional * fractionClosedBps / 10000;
         uint256 liquidatorFee  = _distributeFee(notionalClosed, msg.sender);
@@ -258,7 +258,7 @@ contract WikiPartialLiquidation is Ownable2Step, ReentrancyGuard {
 
     function _calcFractionToClose(
         uint256 collateral,
-        uint256 notional,
+        uint256 /*notional*/,
         uint256 requiredMargin
     ) internal view returns (uint256 fractionBps) {
         if (collateral >= requiredMargin) return 0;
@@ -276,7 +276,6 @@ contract WikiPartialLiquidation is Ownable2Step, ReentrancyGuard {
     }
 
     function _distributeFee(uint256 notional, address liquidator) internal returns (uint256 liquidatorFee) {
-        uint256 totalFee    = notional * partialLiqFeeBps   / 10000;
         liquidatorFee       = notional * liquidatorShareBps / 10000;
         uint256 insuranceFee= notional * insuranceShareBps  / 10000;
         if (liquidatorFee > 0 && USDC.balanceOf(address(this)) >= liquidatorFee) {
