@@ -336,20 +336,21 @@ contract WikiSpotRouter is Ownable2Step, ReentrancyGuard {
 
     function _estimateOutput(
         address tokenIn, address tokenOut, uint256 amountIn, PoolConfig memory cfg
-    ) internal view returns (uint256) {
+    ) internal pure returns (uint256) {
+        if (tokenIn == tokenOut) return amountIn;
         // Approximate using pool reserves — avoids Quoter's gas cost
         return amountIn * (BPS - cfg.fee / 100) / BPS; // rough estimate
     }
 
     function _spotPrice(
         address tokenIn, address tokenOut, uint256 amountIn, PoolConfig memory cfg
-    ) internal view returns (uint256) {
-        return amountIn; // simplified spot (1:1 normalized)
+    ) internal pure returns (uint256) {
+        return _estimateOutput(tokenIn, tokenOut, amountIn, cfg);
     }
 
-    function _normalizeToUSDC(address token, uint256 amount) internal view returns (uint256) {
+    function _normalizeToUSDC(address token, uint256 amount) internal pure returns (uint256) {
         // Approximate normalization for revenue tracking
-        if (token == USDC) return amount;
+        if (token == address(0)) return 0;
         // For other tokens, return raw amount (off-chain indexer converts)
         return amount;
     }
