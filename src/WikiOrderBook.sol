@@ -414,6 +414,7 @@ contract WikiOrderBook is Ownable2Step, ReentrancyGuard {
         uint256 makerRebate,
         Pair storage pair
     ) internal {
+        pairId;
         if (takerIsBid) {
             // Taker bought: pays quoteToken, receives baseToken
             // Maker sold:   pays baseToken, receives quoteToken

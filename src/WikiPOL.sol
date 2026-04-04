@@ -176,9 +176,6 @@ contract WikiPOL is Ownable2Step, ReentrancyGuard {
         uint256 lpSupply = lpToken.totalSupply();
         if (lpSupply == 0) return;
 
-        uint256 myUSDC = resUSDC * currentLPBalance / lpSupply;
-        uint256 myWIK  = resWIK  * currentLPBalance / lpSupply;
-
         // Add any pending USDC from fee distributor
         uint256 addUSDC = pendingUSDC;
         pendingUSDC = 0;

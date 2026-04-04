@@ -464,7 +464,7 @@ contract WikiPerp is Ownable2Step, ReentrancyGuard, Pausable {
         Market storage mkt = markets[marketIdx];
         require(block.timestamp >= mkt.lastFundingTime + FUNDING_INTERVAL, "Perp: too early");
 
-        (uint256 price,) = oracle.getPrice(mkt.marketId);
+        oracle.getPrice(mkt.marketId);
 
         int256 netOI   = int256(mkt.openInterestLong) - int256(mkt.openInterestShort);
         uint256 totalOI = mkt.openInterestLong + mkt.openInterestShort;

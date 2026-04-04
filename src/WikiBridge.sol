@@ -264,7 +264,7 @@ contract WikiBridge is Ownable2Step, ReentrancyGuard {
 
         usedIds[guid] = true;
 
-        (address sender, address token, uint256 amount, address recipient, /*nonce*/) = _decodeTransfer(payload);
+        (, address token, uint256 amount, address recipient, /*nonce*/) = _decodeTransfer(payload);
 
         require(tokens[token].enabled, "Bridge: token disabled on dest");
         require(IERC20(token).balanceOf(address(this)) >= amount, "Bridge: insufficient liquidity");

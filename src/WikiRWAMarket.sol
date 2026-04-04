@@ -279,7 +279,7 @@ contract WikiRWAMarket is Ownable2Step, ReentrancyGuard, Pausable {
     function getPool(uint256 id) external view returns (RWAPool memory) { return pools[id]; }
     function poolCount() external view returns (uint256) { return pools.length; }
 
-    function projectedAPY(uint256 poolId) external pure returns (uint256) {
+    function projectedAPY(uint256 /*poolId*/) external pure returns (uint256) {
         // Returns depositor target APY (conservative 4% estimate)
         return DEPOSITOR_APY_BPS;
     }
