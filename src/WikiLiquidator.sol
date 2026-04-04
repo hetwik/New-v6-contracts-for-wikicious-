@@ -408,7 +408,7 @@ contract WikiLiquidator is Ownable2Step, ReentrancyGuard {
         return mult > MAX_URGENCY_MULT ? MAX_URGENCY_MULT : mult;
     }
 
-    function _calcBonus(uint256 urgencyMult, uint256 keeperMult) internal view returns (uint256) {
+    function _calcBonus(uint256 urgencyMult, uint256 keeperMult) internal pure returns (uint256) {
         uint256 bonus = BASE_BONUS_USDC
             * urgencyMult / BPS
             * keeperMult  / BPS;
