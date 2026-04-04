@@ -134,6 +134,7 @@ contract WikiLiquidityMining is Ownable2Step, ReentrancyGuard {
             (bool ok,) = lpBoost.call(
                 abi.encodeWithSignature("recordDeposit(uint256,address,uint256)", programId, msg.sender, amount)
             );
+            if (!ok) {}
         }
         emit Staked(programId, msg.sender, amount);
     }
@@ -156,9 +157,10 @@ contract WikiLiquidityMining is Ownable2Step, ReentrancyGuard {
         IERC20(prog.lpToken).safeTransfer(msg.sender, amount);
 
         if (lpBoost != address(0)) {
-            lpBoost.call(
+            (bool ok,) = lpBoost.call(
                 abi.encodeWithSignature("recordWithdraw(uint256,address,uint256)", programId, msg.sender, amount)
             );
+            if (!ok) {}
         }
         emit Unstaked(programId, msg.sender, amount);
     }

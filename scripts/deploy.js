@@ -100,7 +100,7 @@ async function main() {
   [C.liquidator, A.WikiLiquidator]  = await d("WikiLiquidator",     A.WikiPerp, A.WikiVault, A.WikiKeeperRegistry, EXT.USDC, deployer.address);
   [C.adl,     A.WikiADL]            = await d("WikiADL",            deployer.address, A.WikiVirtualAMM, A.WikiVault, EXT.USDC);
   [C.liqAuction, A.WikiLiqAuctionUI] = await d("WikiLiqAuctionUI",  EXT.USDC, A.WikiLiquidator, deployer.address);
-  [C.liqProt, A.WikiLiqProtection]   = await d("WikiLiqProtection", EXT.USDC, A.WikiPerp, deployer.address);
+  [C.liqProt, A.WikiLiqProtection]   = await d("WikiLiqProtection", deployer.address, EXT.USDC, deployer.address);
 
   // ─────────────────────────────────────────────────────────────
   // PHASE 5: STAKING & GOVERNANCE
@@ -185,7 +185,7 @@ async function main() {
   console.log("\n── PHASE 10: Prop Trading ──");
   [C.propPool, A.WikiPropPool]   = await d("WikiPropPool",        EXT.USDC, deployer.address);
   [C.propEval, A.WikiPropEval]   = await d("WikiPropEval",        EXT.USDC, A.WikiPropPool, deployer.address);
-  [C.propFunded, A.WikiPropFunded] = await d("WikiPropFunded",    EXT.USDC, A.WikiPropPool, deployer.address);
+  [C.propFunded, A.WikiPropFunded] = await d("WikiPropFunded",    EXT.USDC, deployer.address);
   [C.propPoolYield, A.WikiPropPoolYield] = await d("WikiPropPoolYield", EXT.USDC, "0x794a61358D6845594F94dc1DB02A252b5b4814aD", A.WikiLending, A.WikiPropPool, deployer.address);
     [C.propChallenge, A.WikiPropChallenge] = await d("WikiPropChallenge", EXT.USDC, A.WikiPropEval, A.WikiPropFunded, deployer.address, A.WikiPropPool, deployer.address);
 
@@ -229,7 +229,7 @@ async function main() {
   [C.season,    A.WikiSeasonPoints]      = await d("WikiSeasonPoints",    A.WIKToken, deployer.address);
   [C.leaderboard, A.WikiLeaderboard]     = await d("WikiLeaderboard",     deployer.address);
   [C.refLeader, A.WikiReferralLeaderboard] = await d("WikiReferralLeaderboard", EXT.USDC, deployer.address);
-  [C.revNFT,    A.WikiRevenueShareNFT]   = await d("WikiRevenueShareNFT", EXT.USDC, deployer.address);
+  [C.revNFT,    A.WikiRevenueShareNFT]   = await d("WikiRevenueShareNFT", deployer.address, EXT.USDC, "ipfs://wikicious/");
   [C.refNFT,    A.WikiReferralNFT]       = await d("WikiReferralNFT",     deployer.address);
   [C.vestMkt,   A.WikiVestingMarket]     = await d("WikiVestingMarket",   EXT.USDC, deployer.address);
   [C.traderPass, A.WikiTraderPass]       = await d("WikiTraderPass",      EXT.USDC, deployer.address, deployer.address);

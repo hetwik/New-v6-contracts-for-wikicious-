@@ -416,7 +416,6 @@ contract WikiOpsVault is Ownable2Step, ReentrancyGuard, Pausable {
         uint256[13] memory cumulativeYield
     ) {
         uint256 balance    = totalValue();
-        uint256 monthlyAPY = blendedAPYBps * balance / BPS / 12;
         uint256 totalYield = 0;
 
         for (uint256 m = 0; m <= 12; m++) {

@@ -114,7 +114,7 @@ contract WikiRateLimiter is Ownable2Step {
         }
     }
 
-    function _checkLargeOpCooldown(address user, bytes32 action, uint256 amount) internal view {
+    function _checkLargeOpCooldown(address user, bytes32 /*action*/, uint256 /*amount*/) internal view {
         UserLimit storage ul = userLimits[user];
         if (ul.lastLargeOpTime > 0 &&
             block.timestamp - ul.lastLargeOpTime < largeOpCooldownSeconds) {
@@ -144,7 +144,7 @@ contract WikiRateLimiter is Ownable2Step {
         }
     }
 
-    function _checkUserHourlyVolume(address user, bytes32 action, uint256 amount) internal view {
+    function _checkUserHourlyVolume(address user, bytes32 /*action*/, uint256 amount) internal view {
         UserLimit storage ul = userLimits[user];
         uint256 windowStart  = block.timestamp - 3600;
         uint256 vol = ul.hourWindowStart >= windowStart ? ul.volumeThisHour : 0;
