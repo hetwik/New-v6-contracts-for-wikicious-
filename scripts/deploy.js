@@ -8,6 +8,7 @@
  */
 const hre = require("hardhat");
 const { ethers } = hre;
+require('dotenv').config({ override: true });
 const fs = require("fs");
 const path = require("path");
 
@@ -29,6 +30,77 @@ const EXT_MAINNET = {
   GMX_ROUTER:  "0x7C68C7866A64FA2160F78EEaE12217FFbf871fa8",
 };
 
+
+function describeAddressIssue(raw) {
+  const trimmed = raw.trim();
+  const noPrefix = trimmed.startsWith("0x") ? trimmed.slice(2) : trimmed;
+  const badChars = [...new Set(noPrefix.match(/[^0-9a-fA-F]/g) || [])];
+
+  const hints = [];
+  if (!trimmed.startsWith("0x")) hints.push("missing 0x prefix");
+  if (noPrefix.length !== 40) hints.push(`expected 40 hex chars, got ${noPrefix.length}`);
+  if (badChars.length > 0) hints.push(`contains non-hex chars: ${badChars.join("")}`);
+
+  return hints.length > 0 ? ` (${hints.join("; ")})` : "";
+}
+
+function normalizeAddress(value, label, { allowZero = true } = {}) {
+  if (value === undefined || value === null) {
+    throw new Error(`${label} is missing`);
+  }
+
+  let raw = String(value).trim();
+  if (!raw) {
+    throw new Error(`${label} is empty`);
+  }
+
+  if (!raw.startsWith("0x") && /^[0-9a-fA-F]{40}$/.test(raw)) {
+    raw = `0x${raw}`;
+  }
+
+  const noPrefix = raw.startsWith("0x") ? raw.slice(2) : raw;
+  if (raw.startsWith("0x") && noPrefix.length === 39 && /^[0-9a-fA-F]{39}$/.test(noPrefix)) {
+    raw = `0x0${noPrefix}`;
+    console.warn(`⚠️  ${label} had 39 hex chars; auto-padded leading 0 -> ${raw}`);
+  }
+
+  if (!ethers.isAddress(raw)) {
+    const details = describeAddressIssue(raw);
+    throw new Error(
+      `${label} is not a valid hex address: "${raw}"${details}. ` +
+      `Use a 0x-prefixed 20-byte address, not an ENS/domain name.`
+    );
+  }
+
+  const normalized = ethers.getAddress(raw);
+  if (!allowZero && normalized === ethers.ZeroAddress) {
+    throw new Error(`${label} cannot be the zero address`);
+  }
+
+  return normalized;
+}
+
+function resolveAddress(value, label) {
+  return normalizeAddress(value, label);
+}
+
+function envOrDefaultAddress(envValue, fallbackValue, label) {
+  if (envValue === undefined || envValue === null || String(envValue).trim() === "") {
+    return resolveAddress(fallbackValue, label);
+  }
+
+  try {
+    return resolveAddress(envValue, label);
+  } catch (error) {
+    if (fallbackValue !== undefined && fallbackValue !== null) {
+      const fallback = resolveAddress(fallbackValue, label);
+      console.warn(`⚠️  ${label} is invalid in env; using default ${fallback} instead.`);
+      return fallback;
+    }
+    throw error;
+  }
+}
+
 function requireEnv(name) {
   const value = process.env[name];
   if (!value) {
@@ -40,41 +112,41 @@ function requireEnv(name) {
 function getExternalAddresses(networkName) {
   if (networkName === "arbitrum_one") {
     return {
-      ...EXT_MAINNET,
-      USDC:        process.env.EXT_USDC || EXT_MAINNET.USDC,
-      WETH:        process.env.EXT_WETH || EXT_MAINNET.WETH,
-      WBTC:        process.env.EXT_WBTC || EXT_MAINNET.WBTC,
-      ARB:         process.env.EXT_ARB || EXT_MAINNET.ARB,
-      USDT:        process.env.EXT_USDT || EXT_MAINNET.USDT,
-      wstETH:      process.env.EXT_WSTETH || EXT_MAINNET.wstETH,
-      rETH:        process.env.EXT_RETH || EXT_MAINNET.rETH,
-      SEQ_FEED:    process.env.EXT_SEQ_FEED || EXT_MAINNET.SEQ_FEED,
-      PYTH:        process.env.EXT_PYTH || EXT_MAINNET.PYTH,
-      LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || EXT_MAINNET.LZ_ENDPOINT,
-      ENTRYPOINT:  process.env.EXT_ENTRYPOINT || EXT_MAINNET.ENTRYPOINT,
-      AAVE_POOL:   process.env.EXT_AAVE_POOL || EXT_MAINNET.AAVE_POOL,
-      UNI_ROUTER:  process.env.EXT_UNI_ROUTER || EXT_MAINNET.UNI_ROUTER,
-      GMX_ROUTER:  process.env.EXT_GMX_ROUTER || EXT_MAINNET.GMX_ROUTER,
+      USDC:        envOrDefaultAddress(process.env.EXT_USDC, EXT_MAINNET.USDC, "EXT_USDC"),
+      WETH:        envOrDefaultAddress(process.env.EXT_WETH, EXT_MAINNET.WETH, "EXT_WETH"),
+      WBTC:        envOrDefaultAddress(process.env.EXT_WBTC, EXT_MAINNET.WBTC, "EXT_WBTC"),
+      ARB:         envOrDefaultAddress(process.env.EXT_ARB, EXT_MAINNET.ARB, "EXT_ARB"),
+      USDT:        envOrDefaultAddress(process.env.EXT_USDT, EXT_MAINNET.USDT, "EXT_USDT"),
+      wstETH:      envOrDefaultAddress(process.env.EXT_WSTETH, EXT_MAINNET.wstETH, "EXT_WSTETH"),
+      rETH:        envOrDefaultAddress(process.env.EXT_RETH, EXT_MAINNET.rETH, "EXT_RETH"),
+      SEQ_FEED:    envOrDefaultAddress(process.env.EXT_SEQ_FEED, EXT_MAINNET.SEQ_FEED, "EXT_SEQ_FEED"),
+      PYTH:        envOrDefaultAddress(process.env.EXT_PYTH, EXT_MAINNET.PYTH, "EXT_PYTH"),
+      LZ_ENDPOINT: envOrDefaultAddress(process.env.EXT_LZ_ENDPOINT, EXT_MAINNET.LZ_ENDPOINT, "EXT_LZ_ENDPOINT"),
+      ENTRYPOINT:  envOrDefaultAddress(process.env.EXT_ENTRYPOINT, EXT_MAINNET.ENTRYPOINT, "EXT_ENTRYPOINT"),
+      AAVE_POOL:   envOrDefaultAddress(process.env.EXT_AAVE_POOL, EXT_MAINNET.AAVE_POOL, "EXT_AAVE_POOL"),
+      UNI_ROUTER:  envOrDefaultAddress(process.env.EXT_UNI_ROUTER, EXT_MAINNET.UNI_ROUTER, "EXT_UNI_ROUTER"),
+      GMX_ROUTER:  envOrDefaultAddress(process.env.EXT_GMX_ROUTER, EXT_MAINNET.GMX_ROUTER, "EXT_GMX_ROUTER"),
     };
   }
 
   return {
-    USDC:        requireEnv("EXT_USDC"),
-    WETH:        requireEnv("EXT_WETH"),
-    WBTC:        requireEnv("EXT_WBTC"),
-    ARB:         requireEnv("EXT_ARB"),
-    USDT:        process.env.EXT_USDT || ethers.ZeroAddress,
-    wstETH:      requireEnv("EXT_WSTETH"),
-    rETH:        requireEnv("EXT_RETH"),
-    SEQ_FEED:    requireEnv("EXT_SEQ_FEED"),
-    PYTH:        process.env.EXT_PYTH || ethers.ZeroAddress,
-    LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || ethers.ZeroAddress,
-    ENTRYPOINT:  requireEnv("EXT_ENTRYPOINT"),
-    AAVE_POOL:   process.env.EXT_AAVE_POOL || ethers.ZeroAddress,
-    UNI_ROUTER:  requireEnv("EXT_UNI_ROUTER"),
-    GMX_ROUTER:  process.env.EXT_GMX_ROUTER || ethers.ZeroAddress,
+    USDC:        resolveAddress(requireEnv("EXT_USDC"), "EXT_USDC"),
+    WETH:        resolveAddress(requireEnv("EXT_WETH"), "EXT_WETH"),
+    WBTC:        resolveAddress(requireEnv("EXT_WBTC"), "EXT_WBTC"),
+    ARB:         resolveAddress(requireEnv("EXT_ARB"), "EXT_ARB"),
+    USDT:        envOrDefaultAddress(process.env.EXT_USDT, ethers.ZeroAddress, "EXT_USDT"),
+    wstETH:      resolveAddress(requireEnv("EXT_WSTETH"), "EXT_WSTETH"),
+    rETH:        resolveAddress(requireEnv("EXT_RETH"), "EXT_RETH"),
+    SEQ_FEED:    envOrDefaultAddress(process.env.EXT_SEQ_FEED, EXT_MAINNET.SEQ_FEED, "EXT_SEQ_FEED"),
+    PYTH:        envOrDefaultAddress(process.env.EXT_PYTH, ethers.ZeroAddress, "EXT_PYTH"),
+    LZ_ENDPOINT: envOrDefaultAddress(process.env.EXT_LZ_ENDPOINT, ethers.ZeroAddress, "EXT_LZ_ENDPOINT"),
+    ENTRYPOINT:  resolveAddress(requireEnv("EXT_ENTRYPOINT"), "EXT_ENTRYPOINT"),
+    AAVE_POOL:   envOrDefaultAddress(process.env.EXT_AAVE_POOL, ethers.ZeroAddress, "EXT_AAVE_POOL"),
+    UNI_ROUTER:  resolveAddress(requireEnv("EXT_UNI_ROUTER"), "EXT_UNI_ROUTER"),
+    GMX_ROUTER:  envOrDefaultAddress(process.env.EXT_GMX_ROUTER, ethers.ZeroAddress, "EXT_GMX_ROUTER"),
   };
 }
+
 
 function validateExternalAddresses(networkName, ext) {
   if (networkName === "arbitrum_one") return;
@@ -104,7 +176,8 @@ function validateExternalAddresses(networkName, ext) {
 async function d(name, ...args) {
   process.stdout.write(`  📦 ${name}... `);
   const F = await ethers.getContractFactory(name);
-  const expectedArgs = F.interface.deploy?.inputs?.length ?? 0;
+  const ctorInputs = F.interface.deploy?.inputs ?? [];
+  const expectedArgs = ctorInputs.length;
   let deployArgs = args;
   if (args.length > expectedArgs) {
     console.log(`⚠️  expected ${expectedArgs} constructor args, got ${args.length}; truncating extras`);
@@ -112,6 +185,33 @@ async function d(name, ...args) {
   } else if (args.length < expectedArgs) {
     throw new Error(`constructor expects ${expectedArgs} args, got ${args.length}`);
   }
+
+  deployArgs = deployArgs.map((value, idx) => {
+    const input = ctorInputs[idx];
+    const type = input?.type;
+
+    if (type === "address") {
+      if (value === undefined || value === null) {
+        console.log(`⚠️  ${name}.${input?.name || `arg${idx}`} missing; defaulting to zero address`);
+        return ethers.ZeroAddress;
+      }
+      return normalizeAddress(value, `${name}.${input?.name || `arg${idx}`}`);
+    }
+
+    if (type === "address[]") {
+      if (value === undefined || value === null) {
+        console.log(`⚠️  ${name}.${input?.name || `arg${idx}`} missing; defaulting to []`);
+        return [];
+      }
+      if (!Array.isArray(value)) {
+        throw new Error(`${name}.${input?.name || `arg${idx}`} must be an address array`);
+      }
+      return value.map((v, arrIdx) => normalizeAddress(v, `${name}.${input?.name || `arg${idx}`}[${arrIdx}]`));
+    }
+
+    return value;
+  });
+
   const c = await F.deploy(...deployArgs);
   await c.waitForDeployment();
   const addr = await c.getAddress();
@@ -131,9 +231,15 @@ async function main() {
   validateExternalAddresses(networkName, EXT);
 
   const [deployer] = await ethers.getSigners();
-  const SAFE           = process.env.GENESIS_SAFE_ADDRESS || "0xc01fAE37aE7a4051Eafea26e047f36394054779c";
-  const OPS_WALLET     = process.env.OPS_WALLET || deployer.address;
-  const RESERVE_WALLET = process.env.RESERVE_WALLET || deployer.address;
+  const SAFE = normalizeAddress(
+    process.env.GENESIS_SAFE_ADDRESS || "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
+    "GENESIS_SAFE_ADDRESS"
+  );
+  const OPS_WALLET = normalizeAddress(process.env.OPS_WALLET || deployer.address, "OPS_WALLET");
+  const RESERVE_WALLET = normalizeAddress(
+    process.env.RESERVE_WALLET || deployer.address,
+    "RESERVE_WALLET"
+  );
   const bal = await ethers.provider.getBalance(deployer.address);
   console.log("\n🚀 WIKICIOUS V6 — Full Deployment");
   console.log(`   Deployer : ${deployer.address}`);
