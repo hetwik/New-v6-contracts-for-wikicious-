@@ -104,7 +104,15 @@ function validateExternalAddresses(networkName, ext) {
 async function d(name, ...args) {
   process.stdout.write(`  📦 ${name}... `);
   const F = await ethers.getContractFactory(name);
-  const c = await F.deploy(...args);
+  const expectedArgs = F.interface.deploy?.inputs?.length ?? 0;
+  let deployArgs = args;
+  if (args.length > expectedArgs) {
+    console.log(`⚠️  expected ${expectedArgs} constructor args, got ${args.length}; truncating extras`);
+    deployArgs = args.slice(0, expectedArgs);
+  } else if (args.length < expectedArgs) {
+    throw new Error(`constructor expects ${expectedArgs} args, got ${args.length}`);
+  }
+  const c = await F.deploy(...deployArgs);
   await c.waitForDeployment();
   const addr = await c.getAddress();
   console.log(`✅ ${addr}`);
