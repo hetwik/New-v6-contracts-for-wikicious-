@@ -696,6 +696,12 @@ async function main() {
   console.log("\n✅ DEPLOYMENT COMPLETE!");
   console.log(`📄 Saved: ${outFile}`);
   console.log(`   Contracts deployed: ${Object.keys(A).length}`);
+  if (deployFailures.length > 0) {
+    console.log(`\n⚠️  Contracts that failed to deploy (${deployFailures.length}):`);
+    for (const f of deployFailures) {
+      console.log(`   - ${f.name}: ${f.reason}`);
+    }
+  }
   console.log("\n📋 Next steps:");
   console.log(`   1. cp ${outFile} frontend/.env (update VITE_* vars)`);
   console.log(`   2. cp ${outFile} backend/.env (update CONTRACT_* vars)`);
