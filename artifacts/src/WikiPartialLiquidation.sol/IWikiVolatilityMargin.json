@@ -1,0 +1,50 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IWikiVolatilityMargin",
+  "sourceName": "src/WikiPartialLiquidation.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "marketId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "collateral",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "notional",
+          "type": "uint256"
+        }
+      ],
+      "name": "isPositionHealthy",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "healthy",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "healthScoreBps",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "requiredMargin",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
