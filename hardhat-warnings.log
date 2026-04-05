@@ -1,0 +1,15 @@
+Warning: Unused local variable.
+   --> src/WikiPOL.sol:175:10:
+    |
+175 |         (uint256 resUSDC, uint256 resWIK) = amm.getReserves(address(USDC), address(WIK));
+    |          ^^^^^^^^^^^^^^^
+
+
+Warning: Unused local variable.
+   --> src/WikiPOL.sol:175:27:
+    |
+175 |         (uint256 resUSDC, uint256 resWIK) = amm.getReserves(address(USDC), address(WIK));
+    |                           ^^^^^^^^^^^^^^
+
+
+Compiled 181 Solidity files successfully (evm target: cancun).
