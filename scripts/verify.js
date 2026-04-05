@@ -1,62 +1,80 @@
 /**
- * Wikicious V6 — Contract Verification
- * Run after deploy to verify all contracts on Etherscan (Arbitrum)
- * npx hardhat run scripts/verify.js --network arbitrum_one
- * 
- * Note: Arbiscan merged into Etherscan. 
- * Use ETHERSCAN_API_KEY from https://etherscan.io/myapikey
+ * Verify deployed contracts on Etherscan/Arbiscan.
+ * Supports both deploy.js outputs and deploy-all.js outputs.
  */
-const { run } = require("hardhat");
+const hre = require("hardhat");
+const { run } = hre;
 const fs = require("fs");
 const path = require("path");
 
-async function main() {
-  const deployPath = path.join(__dirname, "../deployments.arbitrum.json");
-  if (!fs.existsSync(deployPath)) {
-    console.error("deployments.arbitrum.json not found. Run deploy.js first.");
-    process.exit(1);
+function findDeploymentFile(networkName) {
+  const candidates = [
+    `deployments.${networkName}.auto.json`,
+    `deployments.${networkName}.json`,
+    `deployments.${networkName === "arbitrum_one" ? "arbitrum" : networkName}.json`,
+  ];
+  for (const file of candidates) {
+    const p = path.join(__dirname, `../${file}`);
+    if (fs.existsSync(p)) return p;
+  }
+  throw new Error(`No deployment file found for ${networkName}. Tried: ${candidates.join(", ")}`);
+}
+
+function normalizeRecords(deployment) {
+  // deploy-all format
+  if (deployment.details && typeof deployment.details === "object") {
+    return Object.entries(deployment.details)
+      .filter(([, info]) => info && info.address)
+      .map(([name, info]) => ({ name, address: info.address, args: info.args || [] }));
   }
 
-  const deployment = JSON.parse(fs.readFileSync(deployPath));
-  const contracts   = deployment.contracts;
-  const ext         = deployment.external;
+  // legacy deploy.js format
+  const contracts = deployment.contracts || {};
+  return Object.entries(contracts)
+    .filter(([, address]) => !!address)
+    .map(([name, address]) => ({ name, address, args: [] }));
+}
 
-  console.log("\n🔍 Verifying contracts on Etherscan (Arbitrum One)...");
-  console.log("   Note: Arbiscan merged into Etherscan — using ETHERSCAN_API_KEY\n");
+async function main() {
+  const deploymentPath = findDeploymentFile(hre.network.name);
+  const deployment = JSON.parse(fs.readFileSync(deploymentPath, "utf8"));
+  const records = normalizeRecords(deployment);
 
-  let verified = 0;
-  const toVerify = [
-    ["WIKToken",         contracts.WIKToken,           [deployment.deployer]],
-    ["WikiOracle",       contracts.WikiOracle,          [deployment.deployer, ext.SEQ_FEED]],
-    ["WikiVault",        contracts.WikiVault,           [ext.USDC, deployment.deployer]],
-    ["WikiPerp",         contracts.WikiPerp,            [contracts.WikiVault, contracts.WikiOracle, deployment.deployer]],
-    ["WikiStaking",      contracts.WikiStaking,         [contracts.WIKToken, ext.USDC, deployment.deployer]],
-    ["WikiLending",      contracts.WikiLending,         [contracts.WikiOracle, contracts.WIKToken, ext.USDC, deployment.deployer]],
-    ["WikiPropPool",     contracts.WikiPropPool,        [ext.USDC, deployment.deployer]],
-    ["WikiPropEval",     contracts.WikiPropEval,        [ext.USDC, contracts.WikiPropPool, deployment.deployer]],
-    ["WikiUserBotFactory", contracts.WikiUserBotFactory, [ext.USDC, contracts.WikiPerp, contracts.WikiOracle, contracts.WikiRevenueSplitter, contracts.WikiKeeperRegistry, deployment.deployer]],
-    ["WikiPropPoolYield", contracts.WikiPropPoolYield,  [ext.USDC, "0x794a61358D6845594F94dc1DB02A252b5b4814aD", contracts.WikiLending, contracts.WikiPropPool, deployment.deployer]],
-    ["WikiIdleYieldRouter", contracts.WikiIdleYieldRouter, [ext.USDC, "0x794a61358D6845594F94dc1DB02A252b5b4814aD", contracts.WikiLending, contracts.WikiRevenueSplitter, deployment.deployer]],
-  ];
+  console.log(`\n🔍 Verifying contracts from ${path.basename(deploymentPath)} on ${hre.network.name}...\n`);
 
-  for (const [name, address, args] of toVerify) {
-    if (!address) { console.log(`  ⏭  ${name} — no address`); continue; }
+  let ok = 0;
+  let skipped = 0;
+
+  for (const rec of records) {
     try {
-      await run("verify:verify", { address, constructorArguments: args });
-      console.log(`  ✅ ${name}: ${address}`);
-      verified++;
+      await run("verify:verify", {
+        address: rec.address,
+        constructorArguments: rec.args,
+      });
+      console.log(`✅ ${rec.name}: ${rec.address}`);
+      ok++;
     } catch (e) {
-      if (e.message?.includes("Already Verified")) {
-        console.log(`  ✅ ${name}: already verified`);
-        verified++;
+      const msg = e?.message || String(e);
+      if (msg.includes("Already Verified") || msg.includes("already verified")) {
+        console.log(`✅ ${rec.name}: already verified`);
+        ok++;
+      } else if (msg.includes("bytecode") || msg.includes("does not have bytecode")) {
+        console.log(`⏭️  ${rec.name}: no bytecode at address / not deployable on explorer`);
+        skipped++;
       } else {
-        console.log(`  ⚠  ${name}: ${e.message?.slice(0, 60)}`);
+        console.log(`⚠️  ${rec.name}: ${msg.slice(0, 120)}`);
       }
     }
   }
 
-  console.log(`\n✅ Verified: ${verified}/${toVerify.length} contracts`);
-  console.log("   View at: https://arbiscan.io/address/<CONTRACT_ADDRESS>");
+  console.log("\n─────────────────────────────────────────────────");
+  console.log(`✅ Verified: ${ok}`);
+  console.log(`⏭️  Skipped : ${skipped}`);
+  console.log(`📦 Total   : ${records.length}`);
+  console.log("─────────────────────────────────────────────────\n");
 }
 
-main().catch(e => { console.error(e); process.exit(1); });
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});

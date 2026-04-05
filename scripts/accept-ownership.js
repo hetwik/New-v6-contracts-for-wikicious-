@@ -11,8 +11,16 @@ const fs = require('fs');
 const path = require('path');
 
 function deploymentFileByNetwork(networkName) {
-  const alias = networkName === 'arbitrum_one' ? 'arbitrum' : networkName;
-  return `deployments.${alias}.json`;
+  const candidates = [
+    `deployments.${networkName}.auto.json`,
+    `deployments.${networkName}.json`,
+    `deployments.${networkName === 'arbitrum_one' ? 'arbitrum' : networkName}.json`,
+  ];
+  for (const f of candidates) {
+    const p = path.join(__dirname, `../${f}`);
+    if (fs.existsSync(p)) return f;
+  }
+  return candidates[0];
 }
 
 async function main() {
@@ -38,7 +46,7 @@ async function main() {
   } else if (fs.existsSync(deploymentsPath)) {
     console.log(`⚠️  No ownership-transfer.json found — using ${deploymentsFile}`);
     const d = JSON.parse(fs.readFileSync(deploymentsPath, 'utf8'));
-    contractAddresses = d.contracts;
+    contractAddresses = d.contracts || d.deployed || {};
   } else {
     console.error('❌ No deployments found. Run transfer-ownership.js first.\n');
     process.exit(1);
