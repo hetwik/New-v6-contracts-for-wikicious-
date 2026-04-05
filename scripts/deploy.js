@@ -6,12 +6,13 @@
  *  Run: npx hardhat run scripts/deploy.js --network arbitrum_one
  * ═══════════════════════════════════════════════════════════════
  */
-const { ethers } = require("hardhat");
+const hre = require("hardhat");
+const { ethers } = hre;
 const fs = require("fs");
 const path = require("path");
 
 // ── Known Arbitrum mainnet addresses ────────────────────────────
-const EXT = {
+const EXT_MAINNET = {
   USDC:        "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
   WETH:        "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
   WBTC:        "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
@@ -27,6 +28,65 @@ const EXT = {
   UNI_ROUTER:  "0xE592427A0AEce92De3Edee1F18E0157C05861564",
   GMX_ROUTER:  "0x7C68C7866A64FA2160F78EEaE12217FFbf871fa8",
 };
+
+function requireEnv(name) {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(`${name} is required for this deployment target`);
+  }
+  return value;
+}
+
+const FALLBACK_EXTERNAL = "0x000000000000000000000000000000000000dEaD";
+
+function getExternalAddresses(networkName) {
+  if (networkName === "arbitrum_one") {
+    return {
+      ...EXT_MAINNET,
+      USDC:        process.env.EXT_USDC || EXT_MAINNET.USDC,
+      WETH:        process.env.EXT_WETH || EXT_MAINNET.WETH,
+      WBTC:        process.env.EXT_WBTC || EXT_MAINNET.WBTC,
+      ARB:         process.env.EXT_ARB || EXT_MAINNET.ARB,
+      USDT:        process.env.EXT_USDT || EXT_MAINNET.USDT,
+      wstETH:      process.env.EXT_WSTETH || EXT_MAINNET.wstETH,
+      rETH:        process.env.EXT_RETH || EXT_MAINNET.rETH,
+      SEQ_FEED:    process.env.EXT_SEQ_FEED || EXT_MAINNET.SEQ_FEED,
+      PYTH:        process.env.EXT_PYTH || EXT_MAINNET.PYTH,
+      LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || EXT_MAINNET.LZ_ENDPOINT,
+      ENTRYPOINT:  process.env.EXT_ENTRYPOINT || EXT_MAINNET.ENTRYPOINT,
+      AAVE_POOL:   process.env.EXT_AAVE_POOL || EXT_MAINNET.AAVE_POOL,
+      UNI_ROUTER:  process.env.EXT_UNI_ROUTER || EXT_MAINNET.UNI_ROUTER,
+      GMX_ROUTER:  process.env.EXT_GMX_ROUTER || EXT_MAINNET.GMX_ROUTER,
+    };
+  }
+
+  const getOrFallback = (key) => process.env[key] || FALLBACK_EXTERNAL;
+  const ext = {
+    USDC:        getOrFallback("EXT_USDC"),
+    WETH:        getOrFallback("EXT_WETH"),
+    WBTC:        getOrFallback("EXT_WBTC"),
+    ARB:         getOrFallback("EXT_ARB"),
+    USDT:        process.env.EXT_USDT || FALLBACK_EXTERNAL,
+    wstETH:      getOrFallback("EXT_WSTETH"),
+    rETH:        getOrFallback("EXT_RETH"),
+    SEQ_FEED:    getOrFallback("EXT_SEQ_FEED"),
+    PYTH:        process.env.EXT_PYTH || FALLBACK_EXTERNAL,
+    LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || FALLBACK_EXTERNAL,
+    ENTRYPOINT:  getOrFallback("EXT_ENTRYPOINT"),
+    AAVE_POOL:   process.env.EXT_AAVE_POOL || FALLBACK_EXTERNAL,
+    UNI_ROUTER:  getOrFallback("EXT_UNI_ROUTER"),
+    GMX_ROUTER:  process.env.EXT_GMX_ROUTER || FALLBACK_EXTERNAL,
+  };
+
+  const missing = Object.entries(ext)
+    .filter(([key, val]) => !process.env[`EXT_${key.toUpperCase()}`] && val === FALLBACK_EXTERNAL)
+    .map(([key]) => `EXT_${key.toUpperCase()}`);
+
+  if (missing.length > 0) {
+    console.log(`⚠  ${networkName}: using fallback address for unset externals: ${missing.join(", ")}`);
+  }
+  return ext;
+}
 
 // ── Deploy helper ────────────────────────────────────────────────
 async function d(name, ...args) {
@@ -46,7 +106,13 @@ async function safe(label, fn) {
 }
 
 async function main() {
+  const networkName = hre.network.name;
+  const EXT = getExternalAddresses(networkName);
+
   const [deployer] = await ethers.getSigners();
+  const SAFE           = process.env.GENESIS_SAFE_ADDRESS || "0xc01fAE37aE7a4051Eafea26e047f36394054779c";
+  const OPS_WALLET     = process.env.OPS_WALLET || deployer.address;
+  const RESERVE_WALLET = process.env.RESERVE_WALLET || deployer.address;
   const bal = await ethers.provider.getBalance(deployer.address);
   console.log("\n🚀 WIKICIOUS V6 — Full Deployment");
   console.log(`   Deployer : ${deployer.address}`);
@@ -165,9 +231,9 @@ async function main() {
   // ─────────────────────────────────────────────────────────────
   console.log("\n── PHASE 9: Revenue ──");
   // WikiIdleYieldRouter — unified idle capital optimizer for all 15 contracts
+  [C.revSplit, A.WikiRevenueSplitter] = await d("WikiRevenueSplitter", EXT.USDC, A.WikiStaking, A.WikiPOL, A.WikiInsuranceFundYield, deployer.address, deployer.address);
   [C.idleRouter, A.WikiIdleYieldRouter] = await d("WikiIdleYieldRouter",
     EXT.USDC, EXT.AAVE_POOL, A.WikiLending, A.WikiRevenueSplitter, deployer.address);
-    [C.revSplit, A.WikiRevenueSplitter] = await d("WikiRevenueSplitter", EXT.USDC, A.WikiStaking, A.WikiPOL, A.WikiInsuranceFundYield, deployer.address, deployer.address);
   [C.opsVault, A.WikiOpsVault]    = await d("WikiOpsVault",       EXT.USDC, A.WikiLending, A.WikiBackstopVault, deployer.address);
   [C.feeDist,  A.WikiFeeDistributor] = await d("WikiFeeDistributor", EXT.USDC, A.WikiStaking, A.WikiVault, deployer.address, deployer.address);
   [C.buyback,  A.WikiBuybackBurn]  = await d("WikiBuybackBurn",    EXT.USDC, A.WIKToken, EXT.UNI_ROUTER, deployer.address);
@@ -186,7 +252,7 @@ async function main() {
   [C.propPool, A.WikiPropPool]   = await d("WikiPropPool",        EXT.USDC, deployer.address);
   [C.propEval, A.WikiPropEval]   = await d("WikiPropEval",        EXT.USDC, A.WikiPropPool, deployer.address);
   [C.propFunded, A.WikiPropFunded] = await d("WikiPropFunded",    EXT.USDC, deployer.address);
-  [C.propPoolYield, A.WikiPropPoolYield] = await d("WikiPropPoolYield", EXT.USDC, "0x794a61358D6845594F94dc1DB02A252b5b4814aD", A.WikiLending, A.WikiPropPool, deployer.address);
+  [C.propPoolYield, A.WikiPropPoolYield] = await d("WikiPropPoolYield", EXT.USDC, EXT.AAVE_POOL, A.WikiLending, A.WikiPropPool, deployer.address);
     [C.propChallenge, A.WikiPropChallenge] = await d("WikiPropChallenge", EXT.USDC, A.WikiPropEval, A.WikiPropFunded, deployer.address, A.WikiPropPool, deployer.address);
 
   // ─────────────────────────────────────────────────────────────
@@ -424,7 +490,7 @@ async function main() {
   // ─────────────────────────────────────────────────────────────
   console.log("\n── Wiring Oracle Feeds ──");
 
-  const CHAINLINK_FEEDS = {
+  const CHAINLINK_FEEDS = networkName === "arbitrum_one" ? {
     "BTCUSDT": ["0x6ce185539ad4fdaeBc62adeD98E2AE0C68b4cFf", 86400, 8],
     "ETHUSDT": ["0x639Fe6ab55C921f74e7fac1ee960C0B6293ba612", 86400, 8],
     "ARBUSDT": ["0xb2A824043730FE05F3DA2efaFa1CBbe83fa548D6", 86400, 8],
@@ -434,12 +500,16 @@ async function main() {
     "USDJPY":  ["0x3607e46698d218B3a5Cae44bF381475C0a5e2ca7", 3600,  8],
     "XAUUSD":  ["0x1F954Dc24a49708C26E0C1777f16750B5C6d5a2c", 3600,  8],
     "XAGUSD":  ["0xC56765f04B248394CF1619D20dB8082Edbfa75b1", 86400, 8],
-  };
+  } : {};
   for (const [sym, [feed, hb, dec]] of Object.entries(CHAINLINK_FEEDS)) {
     const id = ethers.keccak256(ethers.toUtf8Bytes(sym));
     await safe(`Oracle CL: ${sym}`, () => C.oracle.setChainlinkFeed(id, feed, hb, dec, ethers.parseUnits("0", 18), ethers.parseUnits("10000000", 18)));
   }
-  console.log(`   ✅ ${Object.keys(CHAINLINK_FEEDS).length} Chainlink feeds wired`);
+  if (Object.keys(CHAINLINK_FEEDS).length === 0) {
+    console.log("   ⚠  No default Chainlink feed map for this network; skipping feed wiring");
+  } else {
+    console.log(`   ✅ ${Object.keys(CHAINLINK_FEEDS).length} Chainlink feeds wired`);
+  }
 
   // ─────────────────────────────────────────────────────────────
   // MARKET REGISTRATION — All 295 markets
@@ -559,9 +629,6 @@ async function main() {
   // ═══════════════════════════════════════════════════════════════
   // TRANSFER OWNERSHIP → GENESIS SAFE
   // ═══════════════════════════════════════════════════════════════
-  const SAFE          = process.env.GENESIS_SAFE_ADDRESS || '0xc01fAE37aE7a4051Eafea26e047f36394054779c';
-  const OPS_WALLET    = process.env.OPS_WALLET          || '0x34F192E2338CdbBcCD9AFBb06A3f7aC0BD18c128';
-  const RESERVE_WALLET = process.env.RESERVE_WALLET     || '0x34F192E2338CdbBcCD9AFBb06A3f7aC0BD18c128';
   if (SAFE !== deployer.address) {
     console.log(`\n── Transferring ownership to Genesis Safe: ${SAFE} ──`);
     const allContracts = Object.values(C);
@@ -581,10 +648,12 @@ async function main() {
   // ═══════════════════════════════════════════════════════════════
   // SAVE DEPLOYMENT ADDRESSES
   // ═══════════════════════════════════════════════════════════════
-  const outPath = path.join(__dirname, "../deployments.arbitrum.json");
+  const { chainId } = await ethers.provider.getNetwork();
+  const outFile = `deployments.${networkName}.json`;
+  const outPath = path.join(__dirname, `../${outFile}`);
   const deployment = {
-    network: "arbitrum_one",
-    chainId: 42161,
+    network: networkName,
+    chainId: Number(chainId),
     deployer: deployer.address,
     safe: SAFE,
     timestamp: new Date().toISOString(),
@@ -594,14 +663,14 @@ async function main() {
   fs.writeFileSync(outPath, JSON.stringify(deployment, null, 2));
 
   console.log("\n✅ DEPLOYMENT COMPLETE!");
-  console.log(`📄 Saved: contracts/deployments.arbitrum.json`);
+  console.log(`📄 Saved: ${outFile}`);
   console.log(`   Contracts deployed: ${Object.keys(A).length}`);
   console.log("\n📋 Next steps:");
-  console.log("   1. cp contracts/deployments.arbitrum.json frontend/.env (update VITE_* vars)");
-  console.log("   2. cp contracts/deployments.arbitrum.json backend/.env (update CONTRACT_* vars)");
+  console.log(`   1. cp ${outFile} frontend/.env (update VITE_* vars)`);
+  console.log(`   2. cp ${outFile} backend/.env (update CONTRACT_* vars)`);
   console.log("   3. cd backend && npm start");
   console.log("   4. pm2 start ecosystem.config.js");
-  console.log("   5. Verify contracts: npx hardhat run scripts/verify.js --network arbitrum_one");
+  console.log(`   5. Verify contracts: npx hardhat run scripts/verify.js --network ${networkName}`);
   console.log("   6. Open admin panel → advance TVL Guard to Stage 1 after 7 days");
 }
 
