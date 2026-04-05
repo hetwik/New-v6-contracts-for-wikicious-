@@ -53,17 +53,6 @@ function normalizeAddress(value, label) {
   return ethers.getAddress(raw);
 }
 
-function normalizeAddressOrFallback(value, label, fallback) {
-  const raw = String(value || "").trim();
-  if (!raw) return normalizeAddress(fallback, `${label}_FALLBACK`);
-  if (!ethers.isAddress(raw)) {
-    const fb = normalizeAddress(fallback, `${label}_FALLBACK`);
-    console.warn(`⚠️  ${label} invalid ("${raw}"), falling back to ${fb}`);
-    return fb;
-  }
-  return ethers.getAddress(raw);
-}
-
 function getExternalAddresses(networkName) {
   const ext = networkName === "arbitrum_one"
     ? {
@@ -100,19 +89,7 @@ function getExternalAddresses(networkName) {
         SEQ_FEED: process.env.EXT_SEQ_FEED || ethers.ZeroAddress,
       };
 
-  return Object.fromEntries(
-    Object.entries(ext).map(([k, v]) => {
-      const label = `EXT_${k}`;
-      // For arbitrum_one, invalid overrides should not hard-fail deployment:
-      // we safely fall back to known good mainnet constants.
-      if (networkName === "arbitrum_one") {
-        return [k, normalizeAddressOrFallback(v, label, EXT_MAINNET[k])];
-      }
-      // For non-mainnet, invalid values become zero-address instead of throwing,
-      // so missing/partial env files don't crash immediately.
-      return [k, normalizeAddressOrFallback(v, label, ethers.ZeroAddress)];
-    })
-  );
+  return Object.fromEntries(Object.entries(ext).map(([k, v]) => [k, normalizeAddress(v, `EXT_${k}`)]));
 }
 
 function getPreferredContractOrder() {
