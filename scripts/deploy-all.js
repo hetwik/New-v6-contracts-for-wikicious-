@@ -11,7 +11,7 @@ const EXT_MAINNET = {
   ARB: "0x912CE59144191C1204E64559FE8253a0e49E6548",
   USDT: "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
   WSTETH: "0x5979D7b546E38E414F7E9822514be443A4800529",
-  RETH: "0xEC70Dcb4A1EFa46b8F2D97C310C9c4790ba5ffA",
+  RETH: "0x0000000000000000000000000000000000000000", // rETH: update with correct Arbitrum address for mainnet
   PYTH: "0xff1a0f4744e8582DF1aE09D5611b887B6a12925C",
   LZ_ENDPOINT: "0x1a44076050125825900e736c501f859c50fE728c",
   ENTRYPOINT: "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789",
@@ -47,8 +47,10 @@ const CONTRACTS_TO_SKIP = new Set([
 
 function normalizeAddress(value, label) {
   const raw = String(value || "").trim();
-  if (!raw || !ethers.isAddress(raw)) {
-    throw new Error(`${label} must be a valid address (got: ${raw || "<empty>"})`);
+  // Accept zero address as a valid placeholder for optional external contracts
+  if (!raw) throw new Error(`${label} must be a valid address (got: <empty>)`);
+  if (!ethers.isAddress(raw)) {
+    throw new Error(`${label} must be a valid address (got: ${raw})\nAddress must be 42 chars: 0x + 40 hex characters.`);
   }
   return ethers.getAddress(raw);
 }

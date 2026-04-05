@@ -2,7 +2,7 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/workspaces/New-v6-contracts-for-wikicious-/src/AaveV3Adapter.sol": {
-      "lastModificationDate": 1775303498560,
+      "lastModificationDate": 1775388565716,
       "contentHash": "0f17e5434dd26efd7dc1c80af139394d",
       "sourceName": "src/AaveV3Adapter.sol",
       "solcConfig": {
@@ -46,47 +46,8 @@
         "IExternalLender"
       ]
     },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
-      "lastModificationDate": 1775304086068,
-      "contentHash": "6e5efb502dd6652d12ad15eea2c5bdf4",
-      "sourceName": "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./StorageSlot.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "ReentrancyGuard"
-      ]
-    },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/access/Ownable2Step.sol": {
-      "lastModificationDate": 1775304086010,
+      "lastModificationDate": 1775388565221,
       "contentHash": "4c23c95621f1bdfb8c47bcb3795c53e8",
       "sourceName": "@openzeppelin/contracts/access/Ownable2Step.sol",
       "solcConfig": {
@@ -124,8 +85,47 @@
         "Ownable2Step"
       ]
     },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
+      "lastModificationDate": 1775388565227,
+      "contentHash": "6e5efb502dd6652d12ad15eea2c5bdf4",
+      "sourceName": "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./StorageSlot.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ReentrancyGuard"
+      ]
+    },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-      "lastModificationDate": 1775304085477,
+      "lastModificationDate": 1775388565238,
       "contentHash": "9261adf6457863de3e9892f51317ec89",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
@@ -162,7 +162,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
-      "lastModificationDate": 1775304086122,
+      "lastModificationDate": 1775388565238,
       "contentHash": "bf8e9c3398d381dc66c5302267927386",
       "sourceName": "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
       "solcConfig": {
@@ -201,45 +201,8 @@
         "SafeERC20"
       ]
     },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/StorageSlot.sol": {
-      "lastModificationDate": 1775304086192,
-      "contentHash": "e656d64c4ce918f3d13030b91c935134",
-      "sourceName": "@openzeppelin/contracts/utils/StorageSlot.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "StorageSlot"
-      ]
-    },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
-      "lastModificationDate": 1775304085997,
+      "lastModificationDate": 1775388565221,
       "contentHash": "d3c790edc9ccf808a17c5a6cd13614fd",
       "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
       "solcConfig": {
@@ -278,7 +241,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/Context.sol": {
-      "lastModificationDate": 1775304083606,
+      "lastModificationDate": 1775388565228,
       "contentHash": "67bfbc07588eb8683b3fd8f6f909563e",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
@@ -314,8 +277,45 @@
         "Context"
       ]
     },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/StorageSlot.sol": {
+      "lastModificationDate": 1775388565227,
+      "contentHash": "e656d64c4ce918f3d13030b91c935134",
+      "sourceName": "@openzeppelin/contracts/utils/StorageSlot.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "StorageSlot"
+      ]
+    },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": {
-      "lastModificationDate": 1775304085317,
+      "lastModificationDate": 1775388565226,
       "contentHash": "a7fd0f05e36b0d0a21c75340c9c639ec",
       "sourceName": "@openzeppelin/contracts/interfaces/IERC1363.sol",
       "solcConfig": {
@@ -355,7 +355,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": {
-      "lastModificationDate": 1775304085446,
+      "lastModificationDate": 1775388565225,
       "contentHash": "68620db2da7583d9a4919096ac77f577",
       "sourceName": "@openzeppelin/contracts/interfaces/IERC20.sol",
       "solcConfig": {
@@ -392,7 +392,7 @@
       "artifacts": []
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": {
-      "lastModificationDate": 1775304085348,
+      "lastModificationDate": 1775388565225,
       "contentHash": "947853028399b7de34bcc3704ee06e99",
       "sourceName": "@openzeppelin/contracts/interfaces/IERC165.sol",
       "solcConfig": {
@@ -429,7 +429,7 @@
       "artifacts": []
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
-      "lastModificationDate": 1775304085356,
+      "lastModificationDate": 1775388565227,
       "contentHash": "7074c93b1ea0a122063f26ddd1db1032",
       "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
@@ -466,7 +466,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
-      "lastModificationDate": 1775304085712,
+      "lastModificationDate": 1775388565237,
       "contentHash": "f62e11dbd302e17a5621a1438f4e054c",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
       "solcConfig": {
@@ -505,7 +505,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
-      "lastModificationDate": 1775304085750,
+      "lastModificationDate": 1775388565237,
       "contentHash": "136c64eca25bcb8a68f43ac6605559f9",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
       "solcConfig": {
@@ -544,7 +544,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
-      "lastModificationDate": 1775304084635,
+      "lastModificationDate": 1775388565237,
       "contentHash": "ad5144b924800b6f617bc84e4f1fb556",
       "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
       "solcConfig": {
@@ -589,7 +589,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/Strings.sol": {
-      "lastModificationDate": 1775304086196,
+      "lastModificationDate": 1775388565227,
       "contentHash": "d2fa243e766a193585b7e9bf36898d80",
       "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
       "solcConfig": {
@@ -631,7 +631,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": {
-      "lastModificationDate": 1775304084035,
+      "lastModificationDate": 1775388565225,
       "contentHash": "bcc76f4747d56c28c40ae272ef3470a6",
       "sourceName": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
       "solcConfig": {
@@ -670,7 +670,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
-      "lastModificationDate": 1775304084367,
+      "lastModificationDate": 1775388565227,
       "contentHash": "0906d06dca25210d4696dcef6dad2909",
       "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
@@ -709,7 +709,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol": {
-      "lastModificationDate": 1775304084806,
+      "lastModificationDate": 1775388565237,
       "contentHash": "eaad77accc6e32b20dfbbbe9813e1dce",
       "sourceName": "@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol",
       "solcConfig": {
@@ -749,7 +749,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/Bytes.sol": {
-      "lastModificationDate": 1775304083507,
+      "lastModificationDate": 1775388565227,
       "contentHash": "3b32ea3a40a2d708f61e7161f081ca93",
       "sourceName": "@openzeppelin/contracts/utils/Bytes.sol",
       "solcConfig": {
@@ -787,84 +787,8 @@
         "Bytes"
       ]
     },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": {
-      "lastModificationDate": 1775304086110,
-      "contentHash": "f28a38cd37f4225d0a91fb5405dd850f",
-      "sourceName": "@openzeppelin/contracts/utils/math/SafeCast.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "SafeCast"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": {
-      "lastModificationDate": 1775304086141,
-      "contentHash": "ae3528afb8bdb0a7dcfba5b115ee8074",
-      "sourceName": "@openzeppelin/contracts/utils/math/SignedMath.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./SafeCast.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "SignedMath"
-      ]
-    },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
-      "lastModificationDate": 1775304085871,
+      "lastModificationDate": 1775388565226,
       "contentHash": "5b8c6935ac52b7494df19d6feb38f5cc",
       "sourceName": "@openzeppelin/contracts/utils/math/Math.sol",
       "solcConfig": {
@@ -903,8 +827,84 @@
         "Math"
       ]
     },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": {
+      "lastModificationDate": 1775388565226,
+      "contentHash": "f28a38cd37f4225d0a91fb5405dd850f",
+      "sourceName": "@openzeppelin/contracts/utils/math/SafeCast.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "SafeCast"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": {
+      "lastModificationDate": 1775388565226,
+      "contentHash": "ae3528afb8bdb0a7dcfba5b115ee8074",
+      "sourceName": "@openzeppelin/contracts/utils/math/SignedMath.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./SafeCast.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "SignedMath"
+      ]
+    },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/Panic.sol": {
-      "lastModificationDate": 1775304086044,
+      "lastModificationDate": 1775388565228,
       "contentHash": "2133dc13536b4a6a98131e431fac59e1",
       "sourceName": "@openzeppelin/contracts/utils/Panic.sol",
       "solcConfig": {
@@ -941,7 +941,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
-      "lastModificationDate": 1775304085779,
+      "lastModificationDate": 1775388565237,
       "contentHash": "d61660a41ce200e99816e4734f7fd202",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
       "solcConfig": {
@@ -978,7 +978,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
-      "lastModificationDate": 1775304084430,
+      "lastModificationDate": 1775388565238,
       "contentHash": "d15c4d05583536e080f1960ab282772d",
       "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
       "solcConfig": {
@@ -1020,7 +1020,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
-      "lastModificationDate": 1775304085545,
+      "lastModificationDate": 1775388565238,
       "contentHash": "513778b30d2750f5d2b9b19bbcf748a5",
       "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
       "solcConfig": {
@@ -1058,8 +1058,641 @@
         "IERC20Metadata"
       ]
     },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol": {
+      "lastModificationDate": 1775388565238,
+      "contentHash": "11cde93215dac94ff30844697450ac9b",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../ERC20.sol",
+        "../../../governance/utils/Votes.sol",
+        "../../../utils/structs/Checkpoints.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "ERC20Votes"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/governance/utils/Votes.sol": {
+      "lastModificationDate": 1775388565220,
+      "contentHash": "8bf096572b54ff5b0c4625694bb263bb",
+      "sourceName": "@openzeppelin/contracts/governance/utils/Votes.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../interfaces/IERC5805.sol",
+        "../../utils/Context.sol",
+        "../../utils/Nonces.sol",
+        "../../utils/cryptography/EIP712.sol",
+        "../../utils/structs/Checkpoints.sol",
+        "../../utils/math/SafeCast.sol",
+        "../../utils/cryptography/ECDSA.sol",
+        "../../utils/types/Time.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "Votes"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/structs/Checkpoints.sol": {
+      "lastModificationDate": 1775388565227,
+      "contentHash": "8cfed5423bee842475e95d90ac24c8df",
+      "sourceName": "@openzeppelin/contracts/utils/structs/Checkpoints.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../math/Math.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Checkpoints"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/Nonces.sol": {
+      "lastModificationDate": 1775388565227,
+      "contentHash": "c32d108058718efb9061b88e83a83f79",
+      "sourceName": "@openzeppelin/contracts/utils/Nonces.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Nonces"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol": {
+      "lastModificationDate": 1775388565228,
+      "contentHash": "1351802e3aa364e90aacf03f65b78176",
+      "sourceName": "@openzeppelin/contracts/utils/cryptography/EIP712.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./MessageHashUtils.sol",
+        "../ShortStrings.sol",
+        "../../interfaces/IERC5267.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "EIP712"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol": {
+      "lastModificationDate": 1775388565228,
+      "contentHash": "b038f3665d2262af34fe6009e3cd78dd",
+      "sourceName": "@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ECDSA"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/interfaces/IERC5805.sol": {
+      "lastModificationDate": 1775388565225,
+      "contentHash": "4ca519ef7ae252e5aaff422172d4e8a9",
+      "sourceName": "@openzeppelin/contracts/interfaces/IERC5805.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../governance/utils/IVotes.sol",
+        "./IERC6372.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.4"
+      ],
+      "artifacts": [
+        "IERC5805"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/types/Time.sol": {
+      "lastModificationDate": 1775388565226,
+      "contentHash": "86a3095ec3737d63c3da92111dc03630",
+      "sourceName": "@openzeppelin/contracts/utils/types/Time.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../math/Math.sol",
+        "../math/SafeCast.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Time"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol": {
+      "lastModificationDate": 1775388565228,
+      "contentHash": "fab97298382d4c32182a66ec35255b71",
+      "sourceName": "@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../Strings.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "MessageHashUtils"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/ShortStrings.sol": {
+      "lastModificationDate": 1775388565226,
+      "contentHash": "193937821a0ace7308133b4c68f6b9be",
+      "sourceName": "@openzeppelin/contracts/utils/ShortStrings.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./StorageSlot.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ShortStrings"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol": {
+      "lastModificationDate": 1775388565225,
+      "contentHash": "6e00d2fe4bc0d5f1add753824498bb35",
+      "sourceName": "@openzeppelin/contracts/interfaces/IERC5267.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.16"
+      ],
+      "artifacts": [
+        "IERC5267"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol": {
+      "lastModificationDate": 1775388565220,
+      "contentHash": "56e24e557bfbcd235c9e0792075a055e",
+      "sourceName": "@openzeppelin/contracts/governance/utils/IVotes.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.4"
+      ],
+      "artifacts": [
+        "IVotes"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/interfaces/IERC6372.sol": {
+      "lastModificationDate": 1775388565225,
+      "contentHash": "af8cb4a1b941a8230c36de0b4aacf653",
+      "sourceName": "@openzeppelin/contracts/interfaces/IERC6372.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.16"
+      ],
+      "artifacts": [
+        "IERC6372"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol": {
+      "lastModificationDate": 1775388565238,
+      "contentHash": "a5e78bb1708ef493e3f0a03c633d3911",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC20Permit.sol",
+        "../ERC20.sol",
+        "../../../utils/cryptography/ECDSA.sol",
+        "../../../utils/cryptography/EIP712.sol",
+        "../../../utils/Nonces.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "ERC20Permit"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol": {
+      "lastModificationDate": 1775388565238,
+      "contentHash": "274b0eacbd66ff78b8f749cd8105bab0",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.16"
+      ],
+      "artifacts": [
+        "IERC20Permit"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/src/WIKToken.sol": {
+      "lastModificationDate": 1775388565717,
+      "contentHash": "ff8fafd19a77d7659682d0d5d89f5503",
+      "sourceName": "src/WIKToken.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol",
+        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+        "@openzeppelin/contracts/access/Ownable2Step.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "WIKToken"
+      ]
+    },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol": {
-      "lastModificationDate": 1775304084453,
+      "lastModificationDate": 1775388565238,
       "contentHash": "273d8d24b06f67207dd5f35c3a0c1086",
       "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
       "solcConfig": {
@@ -1099,7 +1732,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiZap.sol": {
-      "lastModificationDate": 1775303498591,
+      "lastModificationDate": 1775388565716,
       "contentHash": "be0a878c904c893942ac95a4eae922ed",
       "sourceName": "src/WikiZap.sol",
       "solcConfig": {
@@ -1146,7 +1779,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/Pausable.sol": {
-      "lastModificationDate": 1775304086048,
+      "lastModificationDate": 1775388565227,
       "contentHash": "0d47b53e10b1985efbb396f937626279",
       "sourceName": "@openzeppelin/contracts/utils/Pausable.sol",
       "solcConfig": {
@@ -1185,7 +1818,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiYieldSlice.sol": {
-      "lastModificationDate": 1775305724088,
+      "lastModificationDate": 1775388565717,
       "contentHash": "884eb2e15f7184ce595f22eb331cb241",
       "sourceName": "src/WikiYieldSlice.sol",
       "solcConfig": {
@@ -1232,7 +1865,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiVirtualAMM.sol": {
-      "lastModificationDate": 1775305724087,
+      "lastModificationDate": 1775388565717,
       "contentHash": "b2bb1f4111ddc340e759ec9b1ae9fa23",
       "sourceName": "src/WikiVirtualAMM.sol",
       "solcConfig": {
@@ -1282,928 +1915,8 @@
         "WikiVirtualAMM"
       ]
     },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/ShortStrings.sol": {
-      "lastModificationDate": 1775304086131,
-      "contentHash": "193937821a0ace7308133b4c68f6b9be",
-      "sourceName": "@openzeppelin/contracts/utils/ShortStrings.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./StorageSlot.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "ShortStrings"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol": {
-      "lastModificationDate": 1775304084096,
-      "contentHash": "1351802e3aa364e90aacf03f65b78176",
-      "sourceName": "@openzeppelin/contracts/utils/cryptography/EIP712.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./MessageHashUtils.sol",
-        "../ShortStrings.sol",
-        "../../interfaces/IERC5267.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.24"
-      ],
-      "artifacts": [
-        "EIP712"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol": {
-      "lastModificationDate": 1775304085913,
-      "contentHash": "fab97298382d4c32182a66ec35255b71",
-      "sourceName": "@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../Strings.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.24"
-      ],
-      "artifacts": [
-        "MessageHashUtils"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol": {
-      "lastModificationDate": 1775304085671,
-      "contentHash": "6e00d2fe4bc0d5f1add753824498bb35",
-      "sourceName": "@openzeppelin/contracts/interfaces/IERC5267.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.4.16"
-      ],
-      "artifacts": [
-        "IERC5267"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/types/Time.sol": {
-      "lastModificationDate": 1775304086200,
-      "contentHash": "86a3095ec3737d63c3da92111dc03630",
-      "sourceName": "@openzeppelin/contracts/utils/types/Time.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../math/Math.sol",
-        "../math/SafeCast.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Time"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/governance/utils/Votes.sol": {
-      "lastModificationDate": 1775304086248,
-      "contentHash": "8bf096572b54ff5b0c4625694bb263bb",
-      "sourceName": "@openzeppelin/contracts/governance/utils/Votes.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../../interfaces/IERC5805.sol",
-        "../../utils/Context.sol",
-        "../../utils/Nonces.sol",
-        "../../utils/cryptography/EIP712.sol",
-        "../../utils/structs/Checkpoints.sol",
-        "../../utils/math/SafeCast.sol",
-        "../../utils/cryptography/ECDSA.sol",
-        "../../utils/types/Time.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.24"
-      ],
-      "artifacts": [
-        "Votes"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/Nonces.sol": {
-      "lastModificationDate": 1775304085979,
-      "contentHash": "c32d108058718efb9061b88e83a83f79",
-      "sourceName": "@openzeppelin/contracts/utils/Nonces.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Nonces"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol": {
-      "lastModificationDate": 1775304084085,
-      "contentHash": "b038f3665d2262af34fe6009e3cd78dd",
-      "sourceName": "@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "ECDSA"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/interfaces/IERC5805.sol": {
-      "lastModificationDate": 1775304085683,
-      "contentHash": "4ca519ef7ae252e5aaff422172d4e8a9",
-      "sourceName": "@openzeppelin/contracts/interfaces/IERC5805.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../governance/utils/IVotes.sol",
-        "./IERC6372.sol"
-      ],
-      "versionPragmas": [
-        ">=0.8.4"
-      ],
-      "artifacts": [
-        "IERC5805"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/structs/Checkpoints.sol": {
-      "lastModificationDate": 1775304083550,
-      "contentHash": "8cfed5423bee842475e95d90ac24c8df",
-      "sourceName": "@openzeppelin/contracts/utils/structs/Checkpoints.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../math/Math.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Checkpoints"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/interfaces/IERC6372.sol": {
-      "lastModificationDate": 1775304085688,
-      "contentHash": "af8cb4a1b941a8230c36de0b4aacf653",
-      "sourceName": "@openzeppelin/contracts/interfaces/IERC6372.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.4.16"
-      ],
-      "artifacts": [
-        "IERC6372"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/governance/utils/IVotes.sol": {
-      "lastModificationDate": 1775304085844,
-      "contentHash": "56e24e557bfbcd235c9e0792075a055e",
-      "sourceName": "@openzeppelin/contracts/governance/utils/IVotes.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.8.4"
-      ],
-      "artifacts": [
-        "IVotes"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol": {
-      "lastModificationDate": 1775304084530,
-      "contentHash": "11cde93215dac94ff30844697450ac9b",
-      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../ERC20.sol",
-        "../../../governance/utils/Votes.sol",
-        "../../../utils/structs/Checkpoints.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.24"
-      ],
-      "artifacts": [
-        "ERC20Votes"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/src/WIKToken.sol": {
-      "lastModificationDate": 1775303498562,
-      "contentHash": "ff8fafd19a77d7659682d0d5d89f5503",
-      "sourceName": "src/WIKToken.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
-        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol",
-        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-        "@openzeppelin/contracts/access/Ownable2Step.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.24"
-      ],
-      "artifacts": [
-        "WIKToken"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol": {
-      "lastModificationDate": 1775304084513,
-      "contentHash": "a5e78bb1708ef493e3f0a03c633d3911",
-      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IERC20Permit.sol",
-        "../ERC20.sol",
-        "../../../utils/cryptography/ECDSA.sol",
-        "../../../utils/cryptography/EIP712.sol",
-        "../../../utils/Nonces.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.24"
-      ],
-      "artifacts": [
-        "ERC20Permit"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol": {
-      "lastModificationDate": 1775304085557,
-      "contentHash": "274b0eacbd66ff78b8f749cd8105bab0",
-      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.4.16"
-      ],
-      "artifacts": [
-        "IERC20Permit"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/src/WikiSmartAccount.sol": {
-      "lastModificationDate": 1775303498586,
-      "contentHash": "02f239a9e698c385c4613af4bebb49bb",
-      "sourceName": "src/WikiSmartAccount.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
-        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
-        "@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
-        "@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.24"
-      ],
-      "artifacts": [
-        "IEntryPoint",
-        "WikiSmartAccount"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/src/WikiSmartAccountFactory.sol": {
-      "lastModificationDate": 1775303498586,
-      "contentHash": "382b9d40d5eb5974cfcbdb5a627f1bd5",
-      "sourceName": "src/WikiSmartAccountFactory.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/utils/Create2.sol",
-        "./WikiSmartAccount.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.24"
-      ],
-      "artifacts": [
-        "WikiSmartAccountFactory"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/Create2.sol": {
-      "lastModificationDate": 1775304083624,
-      "contentHash": "d49092ca25de2146da46306d739c8122",
-      "sourceName": "@openzeppelin/contracts/utils/Create2.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./Errors.sol",
-        "./LowLevelCall.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Create2"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/Errors.sol": {
-      "lastModificationDate": 1775304084885,
-      "contentHash": "6b5eac2b85500c3012977849cfd633d8",
-      "sourceName": "@openzeppelin/contracts/utils/Errors.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Errors"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/LowLevelCall.sol": {
-      "lastModificationDate": 1775304085852,
-      "contentHash": "0474caccabcd255a35c82fe878701271",
-      "sourceName": "@openzeppelin/contracts/utils/LowLevelCall.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "LowLevelCall"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/src/WikiMultisigGuard.sol": {
-      "lastModificationDate": 1775303498578,
-      "contentHash": "e5f1e9e0dbff40563867d547c014beec",
-      "sourceName": "src/WikiMultisigGuard.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
-        "@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol",
-        "@openzeppelin/contracts/utils/ReentrancyGuard.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.24"
-      ],
-      "artifacts": [
-        "WikiMultisigGuard"
-      ]
-    },
-    "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPropFunded.sol": {
-      "lastModificationDate": 1775308562669,
-      "contentHash": "cd64836143a80324b4164585105e1db9",
-      "sourceName": "src/WikiPropFunded.sol",
-      "solcConfig": {
-        "version": "0.8.26",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "evmVersion": "cancun",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
-        "@openzeppelin/contracts/access/Ownable2Step.sol",
-        "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
-        "@openzeppelin/contracts/utils/Pausable.sol",
-        "@openzeppelin/contracts/utils/Strings.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.24"
-      ],
-      "artifacts": [
-        "IAaveFlashLoan",
-        "IFlashLoanReceiver",
-        "IWikiPerpForFunded",
-        "IWikiPropPoolForFunded",
-        "WikiPropFunded"
-      ]
-    },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiYieldAggregator.sol": {
-      "lastModificationDate": 1775303498590,
+      "lastModificationDate": 1775388565717,
       "contentHash": "d8956dac45dfebc89d9ce6fa0eb5c331",
       "sourceName": "src/WikiYieldAggregator.sol",
       "solcConfig": {
@@ -2246,7 +1959,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiVolumeTiers.sol": {
-      "lastModificationDate": 1775303498590,
+      "lastModificationDate": 1775388565717,
       "contentHash": "7c1980404a1209ffe152611eafaac922",
       "sourceName": "src/WikiVolumeTiers.sol",
       "solcConfig": {
@@ -2286,7 +1999,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiVolatilityMargin.sol": {
-      "lastModificationDate": 1775303498590,
+      "lastModificationDate": 1775388565717,
       "contentHash": "f051a90e8dc42aa33b881b1b37ec8095",
       "sourceName": "src/WikiVolatilityMargin.sol",
       "solcConfig": {
@@ -2326,7 +2039,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiVestingMarket.sol": {
-      "lastModificationDate": 1775303498590,
+      "lastModificationDate": 1775388565716,
       "contentHash": "7dbd22dd2e958f757e766b3eddc88778",
       "sourceName": "src/WikiVestingMarket.sol",
       "solcConfig": {
@@ -2369,7 +2082,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiVaultMarketplace.sol": {
-      "lastModificationDate": 1775303498590,
+      "lastModificationDate": 1775388565717,
       "contentHash": "cc7bf04fcb415c974375672fd8d09b7a",
       "sourceName": "src/WikiVaultMarketplace.sol",
       "solcConfig": {
@@ -2411,7 +2124,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiVault.sol": {
-      "lastModificationDate": 1775303498590,
+      "lastModificationDate": 1775388565717,
       "contentHash": "be64a6d8a106d348be1a79942e1511b9",
       "sourceName": "src/WikiVault.sol",
       "solcConfig": {
@@ -2456,7 +2169,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPerp.sol": {
-      "lastModificationDate": 1775310332720,
+      "lastModificationDate": 1775388565717,
       "contentHash": "36298a624b6a545332b8a5e1b147657f",
       "sourceName": "src/WikiPerp.sol",
       "solcConfig": {
@@ -2502,7 +2215,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiOracle.sol": {
-      "lastModificationDate": 1775303498579,
+      "lastModificationDate": 1775388565717,
       "contentHash": "e15855098d95583e78c7280d41afd25b",
       "sourceName": "src/WikiOracle.sol",
       "solcConfig": {
@@ -2545,7 +2258,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol": {
-      "lastModificationDate": 1775304084617,
+      "lastModificationDate": 1775388565536,
       "contentHash": "64a3f906dc7696aa3c9fa8454b673be7",
       "sourceName": "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol",
       "solcConfig": {
@@ -2582,7 +2295,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiGMXBackstop.sol": {
-      "lastModificationDate": 1775310332700,
+      "lastModificationDate": 1775388565716,
       "contentHash": "6126c76d306e4349fe55dcc50b7c5cb1",
       "sourceName": "src/WikiGMXBackstop.sol",
       "solcConfig": {
@@ -2631,7 +2344,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiAMM.sol": {
-      "lastModificationDate": 1775310332677,
+      "lastModificationDate": 1775388565716,
       "contentHash": "b6177abf2d8be52996a016c7eaf69ee6",
       "sourceName": "src/WikiAMM.sol",
       "solcConfig": {
@@ -2675,7 +2388,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLiquidator.sol": {
-      "lastModificationDate": 1775305724086,
+      "lastModificationDate": 1775388565717,
       "contentHash": "6dd207030ba27d005b3028700606f41e",
       "sourceName": "src/WikiLiquidator.sol",
       "solcConfig": {
@@ -2720,7 +2433,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiKeeperRegistry.sol": {
-      "lastModificationDate": 1775303498571,
+      "lastModificationDate": 1775388565716,
       "contentHash": "7cf93026a329c4b7b35cbdd38f43d17a",
       "sourceName": "src/WikiKeeperRegistry.sol",
       "solcConfig": {
@@ -2762,7 +2475,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiUserBotFactory.sol": {
-      "lastModificationDate": 1775303498590,
+      "lastModificationDate": 1775388565717,
       "contentHash": "2264a57d4902277575ebc750997192c3",
       "sourceName": "src/WikiUserBotFactory.sol",
       "solcConfig": {
@@ -2808,7 +2521,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiTrailingStop.sol": {
-      "lastModificationDate": 1775303498590,
+      "lastModificationDate": 1775388565717,
       "contentHash": "81f0f22fa546d4e1dfb987339e4ebf91",
       "sourceName": "src/WikiTrailingStop.sol",
       "solcConfig": {
@@ -2852,7 +2565,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiTraderSubscription.sol": {
-      "lastModificationDate": 1775303498587,
+      "lastModificationDate": 1775388565717,
       "contentHash": "eb35518c2cdc1901f9c6e1cfb2ba9c52",
       "sourceName": "src/WikiTraderSubscription.sol",
       "solcConfig": {
@@ -2894,7 +2607,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiTraderPass.sol": {
-      "lastModificationDate": 1775303498587,
+      "lastModificationDate": 1775388565717,
       "contentHash": "dc408dfd6acad3d2e32dd5617a3bd50a",
       "sourceName": "src/WikiTraderPass.sol",
       "solcConfig": {
@@ -2937,7 +2650,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiTokenVesting.sol": {
-      "lastModificationDate": 1775303498587,
+      "lastModificationDate": 1775388565717,
       "contentHash": "0655cf2f7b8eed6ba56d7ca42ecc9041",
       "sourceName": "src/WikiTokenVesting.sol",
       "solcConfig": {
@@ -2979,7 +2692,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiTimelockController.sol": {
-      "lastModificationDate": 1775303498587,
+      "lastModificationDate": 1775388565717,
       "contentHash": "1d80f0eed18b5d626e448b86da1c4d9a",
       "sourceName": "src/WikiTimelockController.sol",
       "solcConfig": {
@@ -3019,7 +2732,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiTelegramGateway.sol": {
-      "lastModificationDate": 1775303498587,
+      "lastModificationDate": 1775388565717,
       "contentHash": "e86b8a5bc0a77c36e89fae80010efa4f",
       "sourceName": "src/WikiTelegramGateway.sol",
       "solcConfig": {
@@ -3059,7 +2772,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiTWAMM.sol": {
-      "lastModificationDate": 1775303498587,
+      "lastModificationDate": 1775388565716,
       "contentHash": "d278e27412b86995fb5d516d5348dd48",
       "sourceName": "src/WikiTWAMM.sol",
       "solcConfig": {
@@ -3102,7 +2815,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiSubAccount.sol": {
-      "lastModificationDate": 1775303498587,
+      "lastModificationDate": 1775388565717,
       "contentHash": "62876afc7374eaf4c4f1bd06b4cf9e86",
       "sourceName": "src/WikiSubAccount.sol",
       "solcConfig": {
@@ -3144,7 +2857,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiStructuredProduct.sol": {
-      "lastModificationDate": 1775303498587,
+      "lastModificationDate": 1775388565716,
       "contentHash": "0e63478db32e2864a1857cd77590f74f",
       "sourceName": "src/WikiStructuredProduct.sol",
       "solcConfig": {
@@ -3187,7 +2900,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiStrategyVault.sol": {
-      "lastModificationDate": 1775303498587,
+      "lastModificationDate": 1775388565717,
       "contentHash": "7d7e63568268cb4ec9621737b0a9cb71",
       "sourceName": "src/WikiStrategyVault.sol",
       "solcConfig": {
@@ -3231,7 +2944,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiStaking.sol": {
-      "lastModificationDate": 1775303498586,
+      "lastModificationDate": 1775388565717,
       "contentHash": "2c2efd1e25566fad34591e0913eaf50f",
       "sourceName": "src/WikiStaking.sol",
       "solcConfig": {
@@ -3273,7 +2986,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiSpotRouter.sol": {
-      "lastModificationDate": 1775306222545,
+      "lastModificationDate": 1775388565717,
       "contentHash": "c4ba27aa6fe67d64697a603c8c6d2d91",
       "sourceName": "src/WikiSpotRouter.sol",
       "solcConfig": {
@@ -3318,7 +3031,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiSpot.sol": {
-      "lastModificationDate": 1775303498586,
+      "lastModificationDate": 1775388565717,
       "contentHash": "63201fccc4d6fea75ee0db802a829d65",
       "sourceName": "src/WikiSpot.sol",
       "solcConfig": {
@@ -3360,7 +3073,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiSmartOrderRouter.sol": {
-      "lastModificationDate": 1775303498586,
+      "lastModificationDate": 1775388565717,
       "contentHash": "da5322d2fa08dacda1c699036bfc47a2",
       "sourceName": "src/WikiSmartOrderRouter.sol",
       "solcConfig": {
@@ -3406,8 +3119,206 @@
         "WikiSmartOrderRouter"
       ]
     },
+    "/workspaces/New-v6-contracts-for-wikicious-/src/WikiSmartAccount.sol": {
+      "lastModificationDate": 1775388565716,
+      "contentHash": "02f239a9e698c385c4613af4bebb49bb",
+      "sourceName": "src/WikiSmartAccount.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+        "@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
+        "@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "IEntryPoint",
+        "WikiSmartAccount"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/src/WikiSmartAccountFactory.sol": {
+      "lastModificationDate": 1775388565717,
+      "contentHash": "382b9d40d5eb5974cfcbdb5a627f1bd5",
+      "sourceName": "src/WikiSmartAccountFactory.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/utils/Create2.sol",
+        "./WikiSmartAccount.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "WikiSmartAccountFactory"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/Create2.sol": {
+      "lastModificationDate": 1775388565227,
+      "contentHash": "d49092ca25de2146da46306d739c8122",
+      "sourceName": "@openzeppelin/contracts/utils/Create2.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./Errors.sol",
+        "./LowLevelCall.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Create2"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/Errors.sol": {
+      "lastModificationDate": 1775388565227,
+      "contentHash": "6b5eac2b85500c3012977849cfd633d8",
+      "sourceName": "@openzeppelin/contracts/utils/Errors.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Errors"
+      ]
+    },
+    "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/LowLevelCall.sol": {
+      "lastModificationDate": 1775388565227,
+      "contentHash": "0474caccabcd255a35c82fe878701271",
+      "sourceName": "@openzeppelin/contracts/utils/LowLevelCall.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "LowLevelCall"
+      ]
+    },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiRevenueSplitter.sol": {
-      "lastModificationDate": 1775303498586,
+      "lastModificationDate": 1775388565717,
       "contentHash": "8473183479d42342fa95f5895a6373f1",
       "sourceName": "src/WikiRevenueSplitter.sol",
       "solcConfig": {
@@ -3453,7 +3364,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiRevenueShareNFT.sol": {
-      "lastModificationDate": 1775306636022,
+      "lastModificationDate": 1775388565716,
       "contentHash": "0a59cb6a5b884b93e3d55c0858fcf7c3",
       "sourceName": "src/WikiRevenueShareNFT.sol",
       "solcConfig": {
@@ -3496,7 +3407,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiReferralLeaderboard.sol": {
-      "lastModificationDate": 1775303498583,
+      "lastModificationDate": 1775388565717,
       "contentHash": "087dc0741883d7d36fa8775f6dc2a9f3",
       "sourceName": "src/WikiReferralLeaderboard.sol",
       "solcConfig": {
@@ -3538,7 +3449,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiRebalancer.sol": {
-      "lastModificationDate": 1775303498583,
+      "lastModificationDate": 1775388565717,
       "contentHash": "fe61427bb3181ecb171666fe0b41005d",
       "sourceName": "src/WikiRebalancer.sol",
       "solcConfig": {
@@ -3582,7 +3493,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiRealYieldLP.sol": {
-      "lastModificationDate": 1775303498583,
+      "lastModificationDate": 1775388565717,
       "contentHash": "89305ebc7bd74437b909e82758eec95b",
       "sourceName": "src/WikiRealYieldLP.sol",
       "solcConfig": {
@@ -3624,7 +3535,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiRWAMarket.sol": {
-      "lastModificationDate": 1775307962281,
+      "lastModificationDate": 1775388565717,
       "contentHash": "dbd674af622b48003032e116280238f7",
       "sourceName": "src/WikiRWAMarket.sol",
       "solcConfig": {
@@ -3668,7 +3579,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPropPoolYield.sol": {
-      "lastModificationDate": 1775303498583,
+      "lastModificationDate": 1775388565717,
       "contentHash": "ba51a84d492c95be301ccedda1f68306",
       "sourceName": "src/WikiPropPoolYield.sol",
       "solcConfig": {
@@ -3713,7 +3624,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPropPool.sol": {
-      "lastModificationDate": 1775303498583,
+      "lastModificationDate": 1775388565717,
       "contentHash": "8e6044e1e6cc1b8af0158d186cb4c38a",
       "sourceName": "src/WikiPropPool.sol",
       "solcConfig": {
@@ -3756,8 +3667,56 @@
         "WikiPropPool"
       ]
     },
+    "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPropFunded.sol": {
+      "lastModificationDate": 1775388565717,
+      "contentHash": "cd64836143a80324b4164585105e1db9",
+      "sourceName": "src/WikiPropFunded.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+        "@openzeppelin/contracts/access/Ownable2Step.sol",
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+        "@openzeppelin/contracts/utils/Pausable.sol",
+        "@openzeppelin/contracts/utils/Strings.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "IAaveFlashLoan",
+        "IFlashLoanReceiver",
+        "IWikiPerpForFunded",
+        "IWikiPropPoolForFunded",
+        "WikiPropFunded"
+      ]
+    },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPropEval.sol": {
-      "lastModificationDate": 1775303498582,
+      "lastModificationDate": 1775388565717,
       "contentHash": "563e98805b8ea09878c77ca56610b64f",
       "sourceName": "src/WikiPropEval.sol",
       "solcConfig": {
@@ -3803,7 +3762,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPropChallenge.sol": {
-      "lastModificationDate": 1775303498582,
+      "lastModificationDate": 1775388565716,
       "contentHash": "13e9a094051ddcc57a77e81320df7254",
       "sourceName": "src/WikiPropChallenge.sol",
       "solcConfig": {
@@ -3847,7 +3806,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPredictionMarket.sol": {
-      "lastModificationDate": 1775303498582,
+      "lastModificationDate": 1775388565716,
       "contentHash": "1f6acf2b2fc7420ef2f91e9ef4fe5ea0",
       "sourceName": "src/WikiPredictionMarket.sol",
       "solcConfig": {
@@ -3891,7 +3850,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPositionInsurance.sol": {
-      "lastModificationDate": 1775303498582,
+      "lastModificationDate": 1775388565717,
       "contentHash": "d90e0c5f5d1ffcdc547c527e3004c15f",
       "sourceName": "src/WikiPositionInsurance.sol",
       "solcConfig": {
@@ -3934,7 +3893,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPortfolioMargin.sol": {
-      "lastModificationDate": 1775303498582,
+      "lastModificationDate": 1775388565717,
       "contentHash": "515de743196790083f63723ce3a79e18",
       "sourceName": "src/WikiPortfolioMargin.sol",
       "solcConfig": {
@@ -3977,7 +3936,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPermissionlessMarkets.sol": {
-      "lastModificationDate": 1775303498579,
+      "lastModificationDate": 1775388565717,
       "contentHash": "c5d0ccdeef784494816772161a158b65",
       "sourceName": "src/WikiPermissionlessMarkets.sol",
       "solcConfig": {
@@ -4020,7 +3979,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPaymaster.sol": {
-      "lastModificationDate": 1775305724086,
+      "lastModificationDate": 1775388565716,
       "contentHash": "96a7cf287e7b51b3c923fea7b5ee6603",
       "sourceName": "src/WikiPaymaster.sol",
       "solcConfig": {
@@ -4065,7 +4024,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPartialLiquidation.sol": {
-      "lastModificationDate": 1775310332716,
+      "lastModificationDate": 1775388565717,
       "contentHash": "48cfc10cb09ec112d1db5154981e355c",
       "sourceName": "src/WikiPartialLiquidation.sol",
       "solcConfig": {
@@ -4110,7 +4069,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPOL.sol": {
-      "lastModificationDate": 1775312336529,
+      "lastModificationDate": 1775388565717,
       "contentHash": "5642eb8b1940c76a6f32b37d0c347622",
       "sourceName": "src/WikiPOL.sol",
       "solcConfig": {
@@ -4154,7 +4113,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiOrderBook.sol": {
-      "lastModificationDate": 1775310332715,
+      "lastModificationDate": 1775388565717,
       "contentHash": "77e11438c01bb5c3ed889ef861dff31f",
       "sourceName": "src/WikiOrderBook.sol",
       "solcConfig": {
@@ -4196,7 +4155,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiOptionsVault.sol": {
-      "lastModificationDate": 1775303498578,
+      "lastModificationDate": 1775388565717,
       "contentHash": "70bf33807c94deb2c1059128a8d52144",
       "sourceName": "src/WikiOptionsVault.sol",
       "solcConfig": {
@@ -4241,7 +4200,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiOpsVault.sol": {
-      "lastModificationDate": 1775310332711,
+      "lastModificationDate": 1775388565717,
       "contentHash": "ea724230a9280f6f51e7c8daea99700e",
       "sourceName": "src/WikiOpsVault.sol",
       "solcConfig": {
@@ -4287,7 +4246,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiOTCDesk.sol": {
-      "lastModificationDate": 1775303498578,
+      "lastModificationDate": 1775388565717,
       "contentHash": "0b2f0edc80c7c8da7c1c35f6501421d3",
       "sourceName": "src/WikiOTCDesk.sol",
       "solcConfig": {
@@ -4330,8 +4289,49 @@
         "WikiOTCDesk"
       ]
     },
+    "/workspaces/New-v6-contracts-for-wikicious-/src/WikiMultisigGuard.sol": {
+      "lastModificationDate": 1775388565717,
+      "contentHash": "e5f1e9e0dbff40563867d547c014beec",
+      "sourceName": "src/WikiMultisigGuard.sol",
+      "solcConfig": {
+        "version": "0.8.26",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "cancun",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
+        "@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol",
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "WikiMultisigGuard"
+      ]
+    },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiMultiCollateral.sol": {
-      "lastModificationDate": 1775303498578,
+      "lastModificationDate": 1775388565716,
       "contentHash": "4e3e4a0dd55f190e770b99464c15ed05",
       "sourceName": "src/WikiMultiCollateral.sol",
       "solcConfig": {
@@ -4375,7 +4375,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiMarketMakerAgreement.sol": {
-      "lastModificationDate": 1775303498578,
+      "lastModificationDate": 1775388565716,
       "contentHash": "f05194ec312c8bb32f708c3b5065dd7d",
       "sourceName": "src/WikiMarketMakerAgreement.sol",
       "solcConfig": {
@@ -4418,7 +4418,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiMarginLoan.sol": {
-      "lastModificationDate": 1775303498575,
+      "lastModificationDate": 1775388565716,
       "contentHash": "ce9a860162c7721988fd33efb58aa97f",
       "sourceName": "src/WikiMarginLoan.sol",
       "solcConfig": {
@@ -4462,7 +4462,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiManagedLiquidityVault.sol": {
-      "lastModificationDate": 1775303498575,
+      "lastModificationDate": 1775388565717,
       "contentHash": "ca94f447308e131d5510620244762f01",
       "sourceName": "src/WikiManagedLiquidityVault.sol",
       "solcConfig": {
@@ -4505,7 +4505,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiMakerRewards.sol": {
-      "lastModificationDate": 1775303498575,
+      "lastModificationDate": 1775388565717,
       "contentHash": "72e2d6ea03eaf3a087dda772f87861a1",
       "sourceName": "src/WikiMakerRewards.sol",
       "solcConfig": {
@@ -4547,7 +4547,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiMEVHook.sol": {
-      "lastModificationDate": 1775310332711,
+      "lastModificationDate": 1775388565717,
       "contentHash": "abd8b1261724e2f9ffcdf253230d2e2a",
       "sourceName": "src/WikiMEVHook.sol",
       "solcConfig": {
@@ -4593,7 +4593,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLiquidityMining.sol": {
-      "lastModificationDate": 1775310332709,
+      "lastModificationDate": 1775388565716,
       "contentHash": "c9e7f7abb2cf894202850817a9d5c261",
       "sourceName": "src/WikiLiquidityMining.sol",
       "solcConfig": {
@@ -4635,7 +4635,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLiquidationMarket.sol": {
-      "lastModificationDate": 1775303498575,
+      "lastModificationDate": 1775388565716,
       "contentHash": "a812af05f1477f00b621620c7aac482d",
       "sourceName": "src/WikiLiquidationMarket.sol",
       "solcConfig": {
@@ -4681,7 +4681,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLiquidationInsurance.sol": {
-      "lastModificationDate": 1775303498575,
+      "lastModificationDate": 1775388565716,
       "contentHash": "d563ba53ac208be7bb535ef0cac8f492",
       "sourceName": "src/WikiLiquidationInsurance.sol",
       "solcConfig": {
@@ -4726,7 +4726,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLiquidStaking.sol": {
-      "lastModificationDate": 1775303498574,
+      "lastModificationDate": 1775388565717,
       "contentHash": "7d8a93611ff96bf0a11ea35c0cda16e2",
       "sourceName": "src/WikiLiquidStaking.sol",
       "solcConfig": {
@@ -4771,7 +4771,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLiquidRestaking.sol": {
-      "lastModificationDate": 1775303498574,
+      "lastModificationDate": 1775388565717,
       "contentHash": "ad56b1e4c2cf2358e7231085cbdcfba0",
       "sourceName": "src/WikiLiquidRestaking.sol",
       "solcConfig": {
@@ -4815,7 +4815,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLiqProtection.sol": {
-      "lastModificationDate": 1775310332708,
+      "lastModificationDate": 1775388565716,
       "contentHash": "af652770ed9d6e0ee76138b856b454b3",
       "sourceName": "src/WikiLiqProtection.sol",
       "solcConfig": {
@@ -4858,7 +4858,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLeveragedYield.sol": {
-      "lastModificationDate": 1775310332707,
+      "lastModificationDate": 1775388565717,
       "contentHash": "1a2d949d264e378d097037480e9c06d2",
       "sourceName": "src/WikiLeveragedYield.sol",
       "solcConfig": {
@@ -4903,7 +4903,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLending.sol": {
-      "lastModificationDate": 1775310332707,
+      "lastModificationDate": 1775388565716,
       "contentHash": "2f3eb8d350f3c2c2e539c56e5ee378c2",
       "sourceName": "src/WikiLending.sol",
       "solcConfig": {
@@ -4947,7 +4947,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLaunchpad.sol": {
-      "lastModificationDate": 1775303498574,
+      "lastModificationDate": 1775388565717,
       "contentHash": "c6e94c941b3b9a21034cc489acf26035",
       "sourceName": "src/WikiLaunchpad.sol",
       "solcConfig": {
@@ -4991,7 +4991,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLaunchPool.sol": {
-      "lastModificationDate": 1775303498574,
+      "lastModificationDate": 1775388565717,
       "contentHash": "232d378bf5f9fdfd7738b29437a9d777",
       "sourceName": "src/WikiLaunchPool.sol",
       "solcConfig": {
@@ -5034,7 +5034,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLPCollateral.sol": {
-      "lastModificationDate": 1775303498571,
+      "lastModificationDate": 1775388565717,
       "contentHash": "83cffd5aebc5c115303fc81d237f3ca9",
       "sourceName": "src/WikiLPCollateral.sol",
       "solcConfig": {
@@ -5080,7 +5080,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLP.sol": {
-      "lastModificationDate": 1775310332707,
+      "lastModificationDate": 1775388565717,
       "contentHash": "895b8c003ddc2b52c929b160d6d1aa5f",
       "sourceName": "src/WikiLP.sol",
       "solcConfig": {
@@ -5123,7 +5123,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiKeeperService.sol": {
-      "lastModificationDate": 1775303498571,
+      "lastModificationDate": 1775388565716,
       "contentHash": "018ca8cb1955b7042e04e8473fc72470",
       "sourceName": "src/WikiKeeperService.sol",
       "solcConfig": {
@@ -5165,7 +5165,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiInternalArb.sol": {
-      "lastModificationDate": 1775310332706,
+      "lastModificationDate": 1775388565716,
       "contentHash": "40e58cbc5df95e4c836dd59aed0c8a74",
       "sourceName": "src/WikiInternalArb.sol",
       "solcConfig": {
@@ -5214,7 +5214,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiInsuranceFundYield.sol": {
-      "lastModificationDate": 1775303498571,
+      "lastModificationDate": 1775388565716,
       "contentHash": "5da195cd19d1cd569950132387869224",
       "sourceName": "src/WikiInsuranceFundYield.sol",
       "solcConfig": {
@@ -5258,7 +5258,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiInstitutionalPool.sol": {
-      "lastModificationDate": 1775303498570,
+      "lastModificationDate": 1775388565717,
       "contentHash": "3240b7610bae10bda9a3fa5f29ec802e",
       "sourceName": "src/WikiInstitutionalPool.sol",
       "solcConfig": {
@@ -5303,7 +5303,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiIndexPerp.sol": {
-      "lastModificationDate": 1775303498570,
+      "lastModificationDate": 1775388565717,
       "contentHash": "92cf262929d0f9426343d34e2ce41fe8",
       "sourceName": "src/WikiIndexPerp.sol",
       "solcConfig": {
@@ -5344,7 +5344,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiIndexBasket.sol": {
-      "lastModificationDate": 1775303498570,
+      "lastModificationDate": 1775388565717,
       "contentHash": "20ded3a2870b7401a9d35232ada01d26",
       "sourceName": "src/WikiIndexBasket.sol",
       "solcConfig": {
@@ -5391,7 +5391,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiIdleYieldRouter.sol": {
-      "lastModificationDate": 1775303498570,
+      "lastModificationDate": 1775388565716,
       "contentHash": "123162e882542ce95d70ee2b43ac66ea",
       "sourceName": "src/WikiIdleYieldRouter.sol",
       "solcConfig": {
@@ -5437,7 +5437,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiIEOPlatform.sol": {
-      "lastModificationDate": 1775303498570,
+      "lastModificationDate": 1775388565717,
       "contentHash": "fd620562932b814c12a8bf5de2a1e420",
       "sourceName": "src/WikiIEOPlatform.sol",
       "solcConfig": {
@@ -5480,7 +5480,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiHybridLiquidityManager.sol": {
-      "lastModificationDate": 1775310332701,
+      "lastModificationDate": 1775388565717,
       "contentHash": "2ea315e7fe4abd42289275a7027a010b",
       "sourceName": "src/WikiHybridLiquidityManager.sol",
       "solcConfig": {
@@ -5529,7 +5529,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiGuaranteedStop.sol": {
-      "lastModificationDate": 1775310332700,
+      "lastModificationDate": 1775388565716,
       "contentHash": "611ecd8826f978b21636ff3ed0e16839",
       "sourceName": "src/WikiGuaranteedStop.sol",
       "solcConfig": {
@@ -5576,7 +5576,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiGaugeVoting.sol": {
-      "lastModificationDate": 1775303498570,
+      "lastModificationDate": 1775388565716,
       "contentHash": "f72f01a794e6eae9babe38ae411db174",
       "sourceName": "src/WikiGaugeVoting.sol",
       "solcConfig": {
@@ -5620,7 +5620,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiGasRebate.sol": {
-      "lastModificationDate": 1775303498567,
+      "lastModificationDate": 1775388565717,
       "contentHash": "6769b8109f2d971689b48f0bb849e19f",
       "sourceName": "src/WikiGasRebate.sol",
       "solcConfig": {
@@ -5662,7 +5662,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiFundingArbVault.sol": {
-      "lastModificationDate": 1775303498567,
+      "lastModificationDate": 1775388565717,
       "contentHash": "89bf109de1d7775c27e21cc9ef3face9",
       "sourceName": "src/WikiFundingArbVault.sol",
       "solcConfig": {
@@ -5706,7 +5706,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiFlashLoan.sol": {
-      "lastModificationDate": 1775303498567,
+      "lastModificationDate": 1775388565717,
       "contentHash": "6ca4d609df0d3468ab7d7a7bc5e6658d",
       "sourceName": "src/WikiFlashLoan.sol",
       "solcConfig": {
@@ -5749,7 +5749,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiFiatOnRamp.sol": {
-      "lastModificationDate": 1775303498567,
+      "lastModificationDate": 1775388565717,
       "contentHash": "28921f2f40fccd12d12e1226a835a3a7",
       "sourceName": "src/WikiFiatOnRamp.sol",
       "solcConfig": {
@@ -5791,7 +5791,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiFeeDistributor.sol": {
-      "lastModificationDate": 1775310332697,
+      "lastModificationDate": 1775388565717,
       "contentHash": "0f6a9dfe9e20c9c37d4ef8d2d9e0c87a",
       "sourceName": "src/WikiFeeDistributor.sol",
       "solcConfig": {
@@ -5837,7 +5837,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiExternalInsurance.sol": {
-      "lastModificationDate": 1775303498566,
+      "lastModificationDate": 1775388565717,
       "contentHash": "3bdfad9560528b8e54db6396d861d9e2",
       "sourceName": "src/WikiExternalInsurance.sol",
       "solcConfig": {
@@ -5880,7 +5880,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiDeltaNeutralVault.sol": {
-      "lastModificationDate": 1775303498566,
+      "lastModificationDate": 1775388565717,
       "contentHash": "b071f0c5430a55ad0ec51d03888b0ff2",
       "sourceName": "src/WikiDeltaNeutralVault.sol",
       "solcConfig": {
@@ -5925,7 +5925,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiDarkPool.sol": {
-      "lastModificationDate": 1775303498566,
+      "lastModificationDate": 1775388565717,
       "contentHash": "7c5be68ea687f68916a8d172495de030",
       "sourceName": "src/WikiDarkPool.sol",
       "solcConfig": {
@@ -5967,7 +5967,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiDAOTreasury.sol": {
-      "lastModificationDate": 1775303498566,
+      "lastModificationDate": 1775388565717,
       "contentHash": "96023af617efedbdd99a9054d2334e37",
       "sourceName": "src/WikiDAOTreasury.sol",
       "solcConfig": {
@@ -6010,7 +6010,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiCrossChainRouter.sol": {
-      "lastModificationDate": 1775303498566,
+      "lastModificationDate": 1775388565717,
       "contentHash": "9c9c719b935c2043a469e0b2cffe7953",
       "sourceName": "src/WikiCrossChainRouter.sol",
       "solcConfig": {
@@ -6057,7 +6057,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiCrossChainLending.sol": {
-      "lastModificationDate": 1775310332692,
+      "lastModificationDate": 1775388565716,
       "contentHash": "90bcf58424d738d297c5443a43c5fe51",
       "sourceName": "src/WikiCrossChainLending.sol",
       "solcConfig": {
@@ -6102,7 +6102,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiCopyTrading.sol": {
-      "lastModificationDate": 1775310332692,
+      "lastModificationDate": 1775388565717,
       "contentHash": "2644083f753f527a3f957a208570d9bb",
       "sourceName": "src/WikiCopyTrading.sol",
       "solcConfig": {
@@ -6145,7 +6145,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiConditionalOrder.sol": {
-      "lastModificationDate": 1775303498565,
+      "lastModificationDate": 1775388565716,
       "contentHash": "9a0bc17d45695836e8a65a0752144865",
       "sourceName": "src/WikiConditionalOrder.sol",
       "solcConfig": {
@@ -6189,7 +6189,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiConcentratedLP.sol": {
-      "lastModificationDate": 1775310332690,
+      "lastModificationDate": 1775388565717,
       "contentHash": "3cec91c729e60183cce38960709bcbfd",
       "sourceName": "src/WikiConcentratedLP.sol",
       "solcConfig": {
@@ -6231,7 +6231,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiCircuitBreaker.sol": {
-      "lastModificationDate": 1775310332689,
+      "lastModificationDate": 1775388565716,
       "contentHash": "67c3f684a07dc81ebd79f334abbfd503",
       "sourceName": "src/WikiCircuitBreaker.sol",
       "solcConfig": {
@@ -6271,7 +6271,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiBuybackBurn.sol": {
-      "lastModificationDate": 1775303498563,
+      "lastModificationDate": 1775388565716,
       "contentHash": "b565f97208d4b47de7b6a27a815aea13",
       "sourceName": "src/WikiBuybackBurn.sol",
       "solcConfig": {
@@ -6316,7 +6316,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiBridge.sol": {
-      "lastModificationDate": 1775310332686,
+      "lastModificationDate": 1775388565717,
       "contentHash": "26298c143ddc847b0691bb68dd5aead4",
       "sourceName": "src/WikiBridge.sol",
       "solcConfig": {
@@ -6359,7 +6359,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiBotVault.sol": {
-      "lastModificationDate": 1775310332685,
+      "lastModificationDate": 1775388565716,
       "contentHash": "ea14b722b88b37a49f8909985d7f29f1",
       "sourceName": "src/WikiBotVault.sol",
       "solcConfig": {
@@ -6405,7 +6405,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiBondingPOL.sol": {
-      "lastModificationDate": 1775303498563,
+      "lastModificationDate": 1775388565717,
       "contentHash": "dae015a00099984d60cd45604c2c525c",
       "sourceName": "src/WikiBondingPOL.sol",
       "solcConfig": {
@@ -6449,7 +6449,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiBackstopVault.sol": {
-      "lastModificationDate": 1775303498563,
+      "lastModificationDate": 1775388565716,
       "contentHash": "a7aa8228162ce2757e2e39124dc0c279",
       "sourceName": "src/WikiBackstopVault.sol",
       "solcConfig": {
@@ -6493,7 +6493,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiAutoCompounder.sol": {
-      "lastModificationDate": 1775310332682,
+      "lastModificationDate": 1775388565717,
       "contentHash": "436d928788334c5e2b40d9bca91e7608",
       "sourceName": "src/WikiAutoCompounder.sol",
       "solcConfig": {
@@ -6539,7 +6539,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiAgenticDAO.sol": {
-      "lastModificationDate": 1775303498563,
+      "lastModificationDate": 1775388565717,
       "contentHash": "574ce6c4daf470697f3111d53e31f113",
       "sourceName": "src/WikiAgenticDAO.sol",
       "solcConfig": {
@@ -6582,7 +6582,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiAffiliate.sol": {
-      "lastModificationDate": 1775303498562,
+      "lastModificationDate": 1775388565717,
       "contentHash": "8e46a5642adb2476a75619cd4e6ced2e",
       "sourceName": "src/WikiAffiliate.sol",
       "solcConfig": {
@@ -6625,7 +6625,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiAPIGateway.sol": {
-      "lastModificationDate": 1775303498562,
+      "lastModificationDate": 1775388565716,
       "contentHash": "a52512c3c327b869b1f4185e99ad904a",
       "sourceName": "src/WikiAPIGateway.sol",
       "solcConfig": {
@@ -6667,7 +6667,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiAIGuardrails.sol": {
-      "lastModificationDate": 1775303498562,
+      "lastModificationDate": 1775388565716,
       "contentHash": "c293fb79c5dd3a8df344dac3fa4bb300",
       "sourceName": "src/WikiAIGuardrails.sol",
       "solcConfig": {
@@ -6709,7 +6709,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiADL.sol": {
-      "lastModificationDate": 1775310332677,
+      "lastModificationDate": 1775388565716,
       "contentHash": "d3e1d92b52ebefc0d51206e573630774",
       "sourceName": "src/WikiADL.sol",
       "solcConfig": {
@@ -6755,7 +6755,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/RadiantAdapter.sol": {
-      "lastModificationDate": 1775303498560,
+      "lastModificationDate": 1775388565717,
       "contentHash": "c739f3b8f532e0330e99163187199a17",
       "sourceName": "src/RadiantAdapter.sol",
       "solcConfig": {
@@ -6799,7 +6799,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiForexOracle.sol": {
-      "lastModificationDate": 1775310332700,
+      "lastModificationDate": 1775388565716,
       "contentHash": "f341729fd60cef7d0accc0668f091e4b",
       "sourceName": "src/WikiForexOracle.sol",
       "solcConfig": {
@@ -6842,7 +6842,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiDynamicLeverage.sol": {
-      "lastModificationDate": 1775303498566,
+      "lastModificationDate": 1775388565716,
       "contentHash": "05ce99a36e71d111224f496cdc5246f5",
       "sourceName": "src/WikiDynamicLeverage.sol",
       "solcConfig": {
@@ -6885,7 +6885,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiTVLGuard.sol": {
-      "lastModificationDate": 1775303498587,
+      "lastModificationDate": 1775388565717,
       "contentHash": "e779ff8380ce3dd02c4bb9130708ccff",
       "sourceName": "src/WikiTVLGuard.sol",
       "solcConfig": {
@@ -6925,7 +6925,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiStakingFeeDiscount.sol": {
-      "lastModificationDate": 1775303498586,
+      "lastModificationDate": 1775388565717,
       "contentHash": "3c94d2057ae39bbb5b56527d45e07ebe",
       "sourceName": "src/WikiStakingFeeDiscount.sol",
       "solcConfig": {
@@ -6965,7 +6965,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiSeasonPoints.sol": {
-      "lastModificationDate": 1775303498586,
+      "lastModificationDate": 1775388565716,
       "contentHash": "42273fdd52c7a63a299762dff7997603",
       "sourceName": "src/WikiSeasonPoints.sol",
       "solcConfig": {
@@ -7006,7 +7006,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiReferralNFT.sol": {
-      "lastModificationDate": 1775303498583,
+      "lastModificationDate": 1775388565717,
       "contentHash": "b85fef47c87a00515477591ed5d1bc26",
       "sourceName": "src/WikiReferralNFT.sol",
       "solcConfig": {
@@ -7048,7 +7048,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLPBoost.sol": {
-      "lastModificationDate": 1775303498571,
+      "lastModificationDate": 1775388565717,
       "contentHash": "145cdef93b5a1a91f196ba9be792c47b",
       "sourceName": "src/WikiLPBoost.sol",
       "solcConfig": {
@@ -7089,7 +7089,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiTradeHistory.sol": {
-      "lastModificationDate": 1775303498587,
+      "lastModificationDate": 1775388565717,
       "contentHash": "5add2d31461fad0bf61af77cff0e95d9",
       "sourceName": "src/WikiTradeHistory.sol",
       "solcConfig": {
@@ -7128,7 +7128,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiRevenueDashboard.sol": {
-      "lastModificationDate": 1775303498583,
+      "lastModificationDate": 1775388565717,
       "contentHash": "20ffab6bad4196ca65f96a30319c5ef8",
       "sourceName": "src/WikiRevenueDashboard.sol",
       "solcConfig": {
@@ -7171,7 +7171,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiRateLimiter.sol": {
-      "lastModificationDate": 1775307473545,
+      "lastModificationDate": 1775388565717,
       "contentHash": "31cf06a20282d464b62b295d885238f9",
       "sourceName": "src/WikiRateLimiter.sol",
       "solcConfig": {
@@ -7210,7 +7210,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPushNotification.sol": {
-      "lastModificationDate": 1775303498583,
+      "lastModificationDate": 1775388565717,
       "contentHash": "ade380404e309158483e4fdc95efcebe",
       "sourceName": "src/WikiPushNotification.sol",
       "solcConfig": {
@@ -7249,7 +7249,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiProofOfSolvency.sol": {
-      "lastModificationDate": 1775303498582,
+      "lastModificationDate": 1775388565717,
       "contentHash": "0aabf2720e3b1fdb925567dc9741d37d",
       "sourceName": "src/WikiProofOfSolvency.sol",
       "solcConfig": {
@@ -7293,7 +7293,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/cryptography/MerkleProof.sol": {
-      "lastModificationDate": 1775304085890,
+      "lastModificationDate": 1775388565228,
       "contentHash": "78e32aca3b084873cd053ef8a60d0e5d",
       "sourceName": "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol",
       "solcConfig": {
@@ -7332,7 +7332,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/node_modules/@openzeppelin/contracts/utils/cryptography/Hashes.sol": {
-      "lastModificationDate": 1775304085060,
+      "lastModificationDate": 1775388565228,
       "contentHash": "073b9c3ce7bc358a876ed2b3479db88c",
       "sourceName": "@openzeppelin/contracts/utils/cryptography/Hashes.sol",
       "solcConfig": {
@@ -7369,7 +7369,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiPortfolioTracker.sol": {
-      "lastModificationDate": 1775303498582,
+      "lastModificationDate": 1775388565717,
       "contentHash": "b0fb5517d6e9fdf440596735b4bd5019",
       "sourceName": "src/WikiPortfolioTracker.sol",
       "solcConfig": {
@@ -7417,7 +7417,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiOnChainAnalytics.sol": {
-      "lastModificationDate": 1775303498578,
+      "lastModificationDate": 1775388565716,
       "contentHash": "f92780f0c4c42618e6695aeb8079fb6a",
       "sourceName": "src/WikiOnChainAnalytics.sol",
       "solcConfig": {
@@ -7456,7 +7456,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiMarketRegistry.sol": {
-      "lastModificationDate": 1775303498578,
+      "lastModificationDate": 1775388565716,
       "contentHash": "35b940162d75a77cd5415f3ae0ed3993",
       "sourceName": "src/WikiMarketRegistry.sol",
       "solcConfig": {
@@ -7495,7 +7495,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLiqAuctionUI.sol": {
-      "lastModificationDate": 1775303498574,
+      "lastModificationDate": 1775388565717,
       "contentHash": "4cb2cc4ad5bb14d4f7e177540f09214d",
       "sourceName": "src/WikiLiqAuctionUI.sol",
       "solcConfig": {
@@ -7535,7 +7535,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLeverageScaler.sol": {
-      "lastModificationDate": 1775303498574,
+      "lastModificationDate": 1775388565716,
       "contentHash": "b7f0e9bcc15b1616a444c900bca96b0b",
       "sourceName": "src/WikiLeverageScaler.sol",
       "solcConfig": {
@@ -7574,7 +7574,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiLeaderboard.sol": {
-      "lastModificationDate": 1775303498574,
+      "lastModificationDate": 1775388565717,
       "contentHash": "c2a0240eb9c10dc882e22073c47346c9",
       "sourceName": "src/WikiLeaderboard.sol",
       "solcConfig": {
@@ -7613,7 +7613,7 @@
       ]
     },
     "/workspaces/New-v6-contracts-for-wikicious-/src/WikiDynamicFeeHook.sol": {
-      "lastModificationDate": 1775310332692,
+      "lastModificationDate": 1775388565717,
       "contentHash": "6acd58713a7fd6c6e9421b23c0bc819b",
       "sourceName": "src/WikiDynamicFeeHook.sol",
       "solcConfig": {
