@@ -8,6 +8,8 @@
     "deploy":         "hardhat run scripts/deploy.js --network arbitrum_one",
     "deploy:testnet": "hardhat run scripts/deploy-all.js --network arbitrum_sepolia",
     "deploy:all":     "hardhat run scripts/deploy-all.js --network arbitrum_one",
+    "deploy:mainnet:check": "node scripts/preflight-mainnet.js",
+    "deploy:mainnet": "npm run deploy:mainnet:check && hardhat run scripts/deploy-all.js --network arbitrum_one",
     "deploy:retry":   "hardhat run scripts/deploy-failed.js --network arbitrum_sepolia",
     "deploy:retry:index": "hardhat run scripts/deploy-indexbasket-only.js --network arbitrum_sepolia",
     "verify":         "hardhat run scripts/verify.js --network arbitrum_one",

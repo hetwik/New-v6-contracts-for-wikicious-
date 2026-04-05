@@ -20,3 +20,14 @@ Run deploy again after fixing the env value:
 ```bash
 npm run deploy:testnet
 ```
+## Mainnet Deployment (Arbitrum One)
+
+1. Fill `.env` with all required values (`DEPLOYER_PRIVATE_KEY`, `ALCHEMY_ARBITRUM_URL`, and all `EXT_*` addresses).
+2. Run preflight:
+   ```bash
+   npm run deploy:mainnet:check
+   ```
+3. If preflight passes, deploy:
+   ```bash
+   npm run deploy:mainnet
+   ```
