@@ -8,6 +8,7 @@
  */
 const hre = require("hardhat");
 const { ethers } = hre;
+require('dotenv').config({ override: true });
 const fs = require("fs");
 const path = require("path");
 

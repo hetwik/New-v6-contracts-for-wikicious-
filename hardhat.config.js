@@ -1,5 +1,5 @@
 require('@nomicfoundation/hardhat-toolbox');
-require('dotenv').config();
+require('dotenv').config({ override: true });
 
 if (process.env.HARDHAT_HTTPS_PROXY && !process.env.HTTPS_PROXY) {
   process.env.HTTPS_PROXY = process.env.HARDHAT_HTTPS_PROXY;
