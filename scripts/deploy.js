@@ -136,7 +136,8 @@ function validateExternalAddresses(networkName, ext) {
 async function d(name, ...args) {
   process.stdout.write(`  📦 ${name}... `);
   const F = await ethers.getContractFactory(name);
-  const expectedArgs = F.interface.deploy?.inputs?.length ?? 0;
+  const ctorInputs = F.interface.deploy?.inputs ?? [];
+  const expectedArgs = ctorInputs.length;
   let deployArgs = args;
   if (args.length > expectedArgs) {
     console.log(`⚠️  expected ${expectedArgs} constructor args, got ${args.length}; truncating extras`);
@@ -144,6 +145,33 @@ async function d(name, ...args) {
   } else if (args.length < expectedArgs) {
     throw new Error(`constructor expects ${expectedArgs} args, got ${args.length}`);
   }
+
+  deployArgs = deployArgs.map((value, idx) => {
+    const input = ctorInputs[idx];
+    const type = input?.type;
+
+    if (type === "address") {
+      if (value === undefined || value === null) {
+        console.log(`⚠️  ${name}.${input?.name || `arg${idx}`} missing; defaulting to zero address`);
+        return ethers.ZeroAddress;
+      }
+      return normalizeAddress(value, `${name}.${input?.name || `arg${idx}`}`);
+    }
+
+    if (type === "address[]") {
+      if (value === undefined || value === null) {
+        console.log(`⚠️  ${name}.${input?.name || `arg${idx}`} missing; defaulting to []`);
+        return [];
+      }
+      if (!Array.isArray(value)) {
+        throw new Error(`${name}.${input?.name || `arg${idx}`} must be an address array`);
+      }
+      return value.map((v, arrIdx) => normalizeAddress(v, `${name}.${input?.name || `arg${idx}`}[${arrIdx}]`));
+    }
+
+    return value;
+  });
+
   const c = await F.deploy(...deployArgs);
   await c.waitForDeployment();
   const addr = await c.getAddress();
