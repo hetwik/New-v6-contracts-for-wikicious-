@@ -37,78 +37,6 @@ function requireEnv(name) {
   return value;
 }
 
-const FALLBACK_EXTERNAL = "0x000000000000000000000000000000000000dEaD";
-let DEFAULT_DEPLOYER_FOR_ARGS = ethers.ZeroAddress;
-const deployFailures = [];
-const BEST_EFFORT_DEPLOY = process.env.DEPLOY_BEST_EFFORT === "1";
-
-function defaultValueForAbiInput(input) {
-  const type = input.type || "";
-  const fixedArrayMatch = type.match(/^(.*)\[(\d+)\]$/);
-  if (fixedArrayMatch) {
-    const baseType = fixedArrayMatch[1];
-    const size = Number(fixedArrayMatch[2]);
-    const baseInput = { ...input, type: baseType };
-    return Array.from({ length: size }, () => defaultValueForAbiInput(baseInput));
-  }
-  if (type.endsWith("[]")) return [];
-  if (type === "tuple") {
-    return (input.components || []).map((c) => defaultValueForAbiInput(c));
-  }
-  if (type === "address") return DEFAULT_DEPLOYER_FOR_ARGS;
-  if (type.startsWith("uint") || type.startsWith("int")) return 0n;
-  if (type === "bool") return false;
-  if (type === "string") return "";
-  if (type === "bytes") return "0x";
-  if (type.startsWith("bytes")) {
-    const n = Number(type.slice(5));
-    return `0x${"00".repeat(Number.isFinite(n) && n > 0 ? n : 32)}`;
-  }
-  return 0;
-}
-
-async function normalizeAbiArg(input, value) {
-  const type = input.type || "";
-  if (value === undefined || value === null) {
-    return defaultValueForAbiInput(input);
-  }
-
-  const fixedArrayMatch = type.match(/^(.*)\[(\d+)\]$/);
-  if (fixedArrayMatch) {
-    const baseType = fixedArrayMatch[1];
-    const size = Number(fixedArrayMatch[2]);
-    const baseInput = { ...input, type: baseType };
-    const arr = Array.isArray(value) ? value : [];
-    return Promise.all(Array.from({ length: size }, (_, i) => normalizeAbiArg(baseInput, arr[i])));
-  }
-  if (type.endsWith("[]")) {
-    const baseType = type.slice(0, -2);
-    const baseInput = { ...input, type: baseType };
-    const arr = Array.isArray(value) ? value : [];
-    return Promise.all(arr.map((v) => normalizeAbiArg(baseInput, v)));
-  }
-  if (type === "tuple") {
-    const comps = input.components || [];
-    const arr = Array.isArray(value) ? value : [];
-    return Promise.all(comps.map((c, i) => normalizeAbiArg(c, arr[i])));
-  }
-  if (type === "address") {
-    if (typeof value === "string" && ethers.isAddress(value)) return value;
-    if (typeof value === "object" && value && typeof value.getAddress === "function") {
-      return value.getAddress();
-    }
-    return DEFAULT_DEPLOYER_FOR_ARGS;
-  }
-  if (type.startsWith("uint") || type.startsWith("int")) return typeof value === "bigint" ? value : BigInt(value);
-  if (type === "bool") return Boolean(value);
-  if (type === "string") return String(value);
-  if (type.startsWith("bytes")) {
-    if (typeof value === "string" && value.startsWith("0x")) return value;
-    return defaultValueForAbiInput(input);
-  }
-  return value;
-}
-
 function getExternalAddresses(networkName) {
   if (networkName === "arbitrum_one") {
     return {
@@ -130,66 +58,65 @@ function getExternalAddresses(networkName) {
     };
   }
 
-  const getOrFallback = (key) => process.env[key] || FALLBACK_EXTERNAL;
-  const ext = {
-    USDC:        getOrFallback("EXT_USDC"),
-    WETH:        getOrFallback("EXT_WETH"),
-    WBTC:        getOrFallback("EXT_WBTC"),
-    ARB:         getOrFallback("EXT_ARB"),
-    USDT:        process.env.EXT_USDT || FALLBACK_EXTERNAL,
-    wstETH:      getOrFallback("EXT_WSTETH"),
-    rETH:        getOrFallback("EXT_RETH"),
-    SEQ_FEED:    getOrFallback("EXT_SEQ_FEED"),
-    PYTH:        process.env.EXT_PYTH || FALLBACK_EXTERNAL,
-    LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || FALLBACK_EXTERNAL,
-    ENTRYPOINT:  getOrFallback("EXT_ENTRYPOINT"),
-    AAVE_POOL:   process.env.EXT_AAVE_POOL || FALLBACK_EXTERNAL,
-    UNI_ROUTER:  getOrFallback("EXT_UNI_ROUTER"),
-    GMX_ROUTER:  process.env.EXT_GMX_ROUTER || FALLBACK_EXTERNAL,
+  return {
+    USDC:        requireEnv("EXT_USDC"),
+    WETH:        requireEnv("EXT_WETH"),
+    WBTC:        requireEnv("EXT_WBTC"),
+    ARB:         requireEnv("EXT_ARB"),
+    USDT:        process.env.EXT_USDT || ethers.ZeroAddress,
+    wstETH:      requireEnv("EXT_WSTETH"),
+    rETH:        requireEnv("EXT_RETH"),
+    SEQ_FEED:    requireEnv("EXT_SEQ_FEED"),
+    PYTH:        process.env.EXT_PYTH || ethers.ZeroAddress,
+    LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || ethers.ZeroAddress,
+    ENTRYPOINT:  requireEnv("EXT_ENTRYPOINT"),
+    AAVE_POOL:   process.env.EXT_AAVE_POOL || ethers.ZeroAddress,
+    UNI_ROUTER:  requireEnv("EXT_UNI_ROUTER"),
+    GMX_ROUTER:  process.env.EXT_GMX_ROUTER || ethers.ZeroAddress,
   };
+}
 
-  const missing = Object.entries(ext)
-    .filter(([key, val]) => !process.env[`EXT_${key.toUpperCase()}`] && val === FALLBACK_EXTERNAL)
-    .map(([key]) => `EXT_${key.toUpperCase()}`);
+function validateExternalAddresses(networkName, ext) {
+  if (networkName === "arbitrum_one") return;
 
+  const required = [
+    "USDC",
+    "WETH",
+    "WBTC",
+    "ARB",
+    "wstETH",
+    "rETH",
+    "SEQ_FEED",
+    "ENTRYPOINT",
+    "UNI_ROUTER",
+  ];
+
+  const missing = required.filter((k) => !ext[k] || ext[k] === ethers.ZeroAddress);
   if (missing.length > 0) {
-    console.log(`⚠  ${networkName}: using fallback address for unset externals: ${missing.join(", ")}`);
+    const keys = missing.map((k) => `EXT_${k.toUpperCase()}`);
+    throw new Error(
+      `Missing required env vars for ${networkName}: ${keys.join(", ")}`
+    );
   }
-  return ext;
 }
 
 // ── Deploy helper ────────────────────────────────────────────────
 async function d(name, ...args) {
   process.stdout.write(`  📦 ${name}... `);
-  try {
-    const F = await ethers.getContractFactory(name);
-    const deployInputs = F.interface.deploy?.inputs || [];
-    const expectedArgs = deployInputs.length;
-    let deployArgs = args;
-    if (args.length > expectedArgs) {
-      console.log(`⚠️  expected ${expectedArgs} constructor args, got ${args.length}; truncating extras`);
-      deployArgs = args.slice(0, expectedArgs);
-    } else if (args.length < expectedArgs) {
-      const missingInputs = deployInputs.slice(args.length);
-      const defaults = missingInputs.map((input) => defaultValueForAbiInput(input));
-      console.log(`⚠️  expected ${expectedArgs} constructor args, got ${args.length}; padding ${defaults.length} default args`);
-      deployArgs = [...args, ...defaults];
-    }
-    deployArgs = await Promise.all(deployArgs.map((arg, i) => normalizeAbiArg(deployInputs[i], arg)));
-    const c = await F.deploy(...deployArgs);
-    await c.waitForDeployment();
-    const addr = await c.getAddress();
-    console.log(`✅ ${addr}`);
-    return [c, addr];
-  } catch (e) {
-    const reason = (e && (e.shortMessage || e.message)) ? (e.shortMessage || e.message) : "unknown deploy error";
-    deployFailures.push({ name, reason });
-    console.log(`❌ failed (${reason.slice(0, 140)})`);
-    if (!BEST_EFFORT_DEPLOY) {
-      throw new Error(`${name} deployment failed: ${reason}`);
-    }
-    return [null, ethers.ZeroAddress];
+  const F = await ethers.getContractFactory(name);
+  const expectedArgs = F.interface.deploy?.inputs?.length ?? 0;
+  let deployArgs = args;
+  if (args.length > expectedArgs) {
+    console.log(`⚠️  expected ${expectedArgs} constructor args, got ${args.length}; truncating extras`);
+    deployArgs = args.slice(0, expectedArgs);
+  } else if (args.length < expectedArgs) {
+    throw new Error(`constructor expects ${expectedArgs} args, got ${args.length}`);
   }
+  const c = await F.deploy(...deployArgs);
+  await c.waitForDeployment();
+  const addr = await c.getAddress();
+  console.log(`✅ ${addr}`);
+  return [c, addr];
 }
 
 // ── Safe call (skip if contract doesn't have the function) ───────
@@ -201,9 +128,9 @@ async function safe(label, fn) {
 async function main() {
   const networkName = hre.network.name;
   const EXT = getExternalAddresses(networkName);
+  validateExternalAddresses(networkName, EXT);
 
   const [deployer] = await ethers.getSigners();
-  DEFAULT_DEPLOYER_FOR_ARGS = deployer.address;
   const SAFE           = process.env.GENESIS_SAFE_ADDRESS || "0xc01fAE37aE7a4051Eafea26e047f36394054779c";
   const OPS_WALLET     = process.env.OPS_WALLET || deployer.address;
   const RESERVE_WALLET = process.env.RESERVE_WALLET || deployer.address;
@@ -231,7 +158,7 @@ async function main() {
     deployer.address, // public sale
     deployer.address  // reserve
   );
-  [C.oracle, A.WikiOracle]       = await d("WikiOracle",         deployer.address, EXT.SEQ_FEED, EXT.PYTH);
+  [C.oracle, A.WikiOracle]       = await d("WikiOracle",         deployer.address, EXT.SEQ_FEED);
   [C.vault,  A.WikiVault]        = await d("WikiVault",          EXT.USDC, deployer.address);
   [C.mktReg, A.WikiMarketRegistry] = await d("WikiMarketRegistry", deployer.address);
   [C.tvlGuard, A.WikiTVLGuard]   = await d("WikiTVLGuard",       deployer.address);
