@@ -1,0 +1,136 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IGMXExchangeRouter",
+  "sourceName": "src/WikiHybridLiquidityManager.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "receiver",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "callbackContract",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "uiFeeReceiver",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "market",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "initialCollateralToken",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address[]",
+                  "name": "swapPath",
+                  "type": "address[]"
+                }
+              ],
+              "internalType": "struct IGMXExchangeRouter.CreateOrderParamsAddresses",
+              "name": "addresses",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "sizeDeltaUsd",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "initialCollateralDeltaAmount",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "triggerPrice",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "acceptablePrice",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "executionFee",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "callbackGasLimit",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "minOutputAmount",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct IGMXExchangeRouter.CreateOrderParamsNumbers",
+              "name": "numbers",
+              "type": "tuple"
+            },
+            {
+              "internalType": "uint8",
+              "name": "orderType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "decreaseSwapType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bool",
+              "name": "isLong",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "shouldUnwrapNativeToken",
+              "type": "bool"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "referralCode",
+              "type": "bytes32"
+            }
+          ],
+          "internalType": "struct IGMXExchangeRouter.CreateOrderParams",
+          "name": "params",
+          "type": "tuple"
+        }
+      ],
+      "name": "createOrder",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

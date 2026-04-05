@@ -1,0 +1,87 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IWikiDynamicLeverage",
+  "sourceName": "src/WikiPerp.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "currentCaps",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "maxLeverage",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxPositionUsdc",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxOIPerMarket",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "insuranceFund",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tierIdx",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "tierName",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "maxLeverageFor",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "maxPositionSizeFor",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
