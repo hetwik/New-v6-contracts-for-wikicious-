@@ -6,12 +6,13 @@
  *  Run: npx hardhat run scripts/deploy.js --network arbitrum_one
  * ═══════════════════════════════════════════════════════════════
  */
-const { ethers } = require("hardhat");
+const hre = require("hardhat");
+const { ethers } = hre;
 const fs = require("fs");
 const path = require("path");
 
 // ── Known Arbitrum mainnet addresses ────────────────────────────
-const EXT = {
+const EXT_MAINNET = {
   USDC:        "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
   WETH:        "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
   WBTC:        "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
@@ -28,15 +29,177 @@ const EXT = {
   GMX_ROUTER:  "0x7C68C7866A64FA2160F78EEaE12217FFbf871fa8",
 };
 
+function requireEnv(name) {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(`${name} is required for this deployment target`);
+  }
+  return value;
+}
+
+const FALLBACK_EXTERNAL = "0x000000000000000000000000000000000000dEaD";
+let DEFAULT_DEPLOYER_FOR_ARGS = ethers.ZeroAddress;
+const deployFailures = [];
+const BEST_EFFORT_DEPLOY = process.env.DEPLOY_BEST_EFFORT === "1";
+
+function defaultValueForAbiInput(input) {
+  const type = input.type || "";
+  const fixedArrayMatch = type.match(/^(.*)\[(\d+)\]$/);
+  if (fixedArrayMatch) {
+    const baseType = fixedArrayMatch[1];
+    const size = Number(fixedArrayMatch[2]);
+    const baseInput = { ...input, type: baseType };
+    return Array.from({ length: size }, () => defaultValueForAbiInput(baseInput));
+  }
+  if (type.endsWith("[]")) return [];
+  if (type === "tuple") {
+    return (input.components || []).map((c) => defaultValueForAbiInput(c));
+  }
+  if (type === "address") return DEFAULT_DEPLOYER_FOR_ARGS;
+  if (type.startsWith("uint") || type.startsWith("int")) return 0n;
+  if (type === "bool") return false;
+  if (type === "string") return "";
+  if (type === "bytes") return "0x";
+  if (type.startsWith("bytes")) {
+    const n = Number(type.slice(5));
+    return `0x${"00".repeat(Number.isFinite(n) && n > 0 ? n : 32)}`;
+  }
+  return 0;
+}
+
+async function normalizeAbiArg(input, value) {
+  const type = input.type || "";
+  if (value === undefined || value === null) {
+    return defaultValueForAbiInput(input);
+  }
+
+  const fixedArrayMatch = type.match(/^(.*)\[(\d+)\]$/);
+  if (fixedArrayMatch) {
+    const baseType = fixedArrayMatch[1];
+    const size = Number(fixedArrayMatch[2]);
+    const baseInput = { ...input, type: baseType };
+    const arr = Array.isArray(value) ? value : [];
+    return Promise.all(Array.from({ length: size }, (_, i) => normalizeAbiArg(baseInput, arr[i])));
+  }
+  if (type.endsWith("[]")) {
+    const baseType = type.slice(0, -2);
+    const baseInput = { ...input, type: baseType };
+    const arr = Array.isArray(value) ? value : [];
+    return Promise.all(arr.map((v) => normalizeAbiArg(baseInput, v)));
+  }
+  if (type === "tuple") {
+    const comps = input.components || [];
+    const arr = Array.isArray(value) ? value : [];
+    return Promise.all(comps.map((c, i) => normalizeAbiArg(c, arr[i])));
+  }
+  if (type === "address") {
+    if (typeof value === "string" && ethers.isAddress(value)) {
+      return value === ethers.ZeroAddress ? DEFAULT_DEPLOYER_FOR_ARGS : value;
+    }
+    if (typeof value === "object" && value && typeof value.getAddress === "function") {
+      const addr = await value.getAddress();
+      return addr === ethers.ZeroAddress ? DEFAULT_DEPLOYER_FOR_ARGS : addr;
+    }
+    return DEFAULT_DEPLOYER_FOR_ARGS;
+  }
+  if (type.startsWith("uint") || type.startsWith("int")) return typeof value === "bigint" ? value : BigInt(value);
+  if (type === "bool") return Boolean(value);
+  if (type === "string") return String(value);
+  if (type.startsWith("bytes")) {
+    if (typeof value === "string" && value.startsWith("0x")) return value;
+    return defaultValueForAbiInput(input);
+  }
+  return value;
+}
+
+function getExternalAddresses(networkName) {
+  const envAddressOrFallback = (key, fallback) => {
+    const raw = process.env[key];
+    if (raw && ethers.isAddress(raw) && raw !== ethers.ZeroAddress) {
+      return raw;
+    }
+    return fallback;
+  };
+
+  if (networkName === "arbitrum_one") {
+    return {
+      ...EXT_MAINNET,
+      USDC:        envAddressOrFallback("EXT_USDC", EXT_MAINNET.USDC),
+      WETH:        envAddressOrFallback("EXT_WETH", EXT_MAINNET.WETH),
+      WBTC:        envAddressOrFallback("EXT_WBTC", EXT_MAINNET.WBTC),
+      ARB:         envAddressOrFallback("EXT_ARB", EXT_MAINNET.ARB),
+      USDT:        envAddressOrFallback("EXT_USDT", EXT_MAINNET.USDT),
+      wstETH:      envAddressOrFallback("EXT_WSTETH", EXT_MAINNET.wstETH),
+      rETH:        envAddressOrFallback("EXT_RETH", EXT_MAINNET.rETH),
+      SEQ_FEED:    envAddressOrFallback("EXT_SEQ_FEED", EXT_MAINNET.SEQ_FEED),
+      PYTH:        envAddressOrFallback("EXT_PYTH", EXT_MAINNET.PYTH),
+      LZ_ENDPOINT: envAddressOrFallback("EXT_LZ_ENDPOINT", EXT_MAINNET.LZ_ENDPOINT),
+      ENTRYPOINT:  envAddressOrFallback("EXT_ENTRYPOINT", EXT_MAINNET.ENTRYPOINT),
+      AAVE_POOL:   envAddressOrFallback("EXT_AAVE_POOL", EXT_MAINNET.AAVE_POOL),
+      UNI_ROUTER:  envAddressOrFallback("EXT_UNI_ROUTER", EXT_MAINNET.UNI_ROUTER),
+      GMX_ROUTER:  envAddressOrFallback("EXT_GMX_ROUTER", EXT_MAINNET.GMX_ROUTER),
+    };
+  }
+
+  const ext = {
+    USDC:        envAddressOrFallback("EXT_USDC", FALLBACK_EXTERNAL),
+    WETH:        envAddressOrFallback("EXT_WETH", FALLBACK_EXTERNAL),
+    WBTC:        envAddressOrFallback("EXT_WBTC", FALLBACK_EXTERNAL),
+    ARB:         envAddressOrFallback("EXT_ARB", FALLBACK_EXTERNAL),
+    USDT:        envAddressOrFallback("EXT_USDT", FALLBACK_EXTERNAL),
+    wstETH:      envAddressOrFallback("EXT_WSTETH", FALLBACK_EXTERNAL),
+    rETH:        envAddressOrFallback("EXT_RETH", FALLBACK_EXTERNAL),
+    SEQ_FEED:    envAddressOrFallback("EXT_SEQ_FEED", FALLBACK_EXTERNAL),
+    PYTH:        envAddressOrFallback("EXT_PYTH", FALLBACK_EXTERNAL),
+    LZ_ENDPOINT: envAddressOrFallback("EXT_LZ_ENDPOINT", FALLBACK_EXTERNAL),
+    ENTRYPOINT:  envAddressOrFallback("EXT_ENTRYPOINT", FALLBACK_EXTERNAL),
+    AAVE_POOL:   envAddressOrFallback("EXT_AAVE_POOL", FALLBACK_EXTERNAL),
+    UNI_ROUTER:  envAddressOrFallback("EXT_UNI_ROUTER", FALLBACK_EXTERNAL),
+    GMX_ROUTER:  envAddressOrFallback("EXT_GMX_ROUTER", FALLBACK_EXTERNAL),
+  };
+
+  const missing = Object.entries(ext)
+    .filter(([key, val]) => !process.env[`EXT_${key.toUpperCase()}`] && val === FALLBACK_EXTERNAL)
+    .map(([key]) => `EXT_${key.toUpperCase()}`);
+
+  if (missing.length > 0) {
+    console.log(`⚠  ${networkName}: using fallback address for unset externals: ${missing.join(", ")}`);
+  }
+  return ext;
+}
+
 // ── Deploy helper ────────────────────────────────────────────────
 async function d(name, ...args) {
   process.stdout.write(`  📦 ${name}... `);
-  const F = await ethers.getContractFactory(name);
-  const c = await F.deploy(...args);
-  await c.waitForDeployment();
-  const addr = await c.getAddress();
-  console.log(`✅ ${addr}`);
-  return [c, addr];
+  try {
+    const F = await ethers.getContractFactory(name);
+    const deployInputs = F.interface.deploy?.inputs || [];
+    const expectedArgs = deployInputs.length;
+    let deployArgs = args;
+    if (args.length > expectedArgs) {
+      console.log(`⚠️  expected ${expectedArgs} constructor args, got ${args.length}; truncating extras`);
+      deployArgs = args.slice(0, expectedArgs);
+    } else if (args.length < expectedArgs) {
+      const missingInputs = deployInputs.slice(args.length);
+      const defaults = missingInputs.map((input) => defaultValueForAbiInput(input));
+      console.log(`⚠️  expected ${expectedArgs} constructor args, got ${args.length}; padding ${defaults.length} default args`);
+      deployArgs = [...args, ...defaults];
+    }
+    deployArgs = await Promise.all(deployArgs.map((arg, i) => normalizeAbiArg(deployInputs[i], arg)));
+    const c = await F.deploy(...deployArgs);
+    await c.waitForDeployment();
+    const addr = await c.getAddress();
+    console.log(`✅ ${addr}`);
+    return [c, addr];
+  } catch (e) {
+    const reason = (e && (e.shortMessage || e.message)) ? (e.shortMessage || e.message) : "unknown deploy error";
+    deployFailures.push({ name, reason });
+    console.log(`❌ failed (${reason.slice(0, 140)})`);
+    if (!BEST_EFFORT_DEPLOY) {
+      throw new Error(`${name} deployment failed: ${reason}`);
+    }
+    return [null, ethers.ZeroAddress];
+  }
 }
 
 // ── Safe call (skip if contract doesn't have the function) ───────
@@ -46,7 +209,14 @@ async function safe(label, fn) {
 }
 
 async function main() {
+  const networkName = hre.network.name;
+  const EXT = getExternalAddresses(networkName);
+
   const [deployer] = await ethers.getSigners();
+  DEFAULT_DEPLOYER_FOR_ARGS = deployer.address;
+  const SAFE           = process.env.GENESIS_SAFE_ADDRESS || "0xc01fAE37aE7a4051Eafea26e047f36394054779c";
+  const OPS_WALLET     = process.env.OPS_WALLET || deployer.address;
+  const RESERVE_WALLET = process.env.RESERVE_WALLET || deployer.address;
   const bal = await ethers.provider.getBalance(deployer.address);
   console.log("\n🚀 WIKICIOUS V6 — Full Deployment");
   console.log(`   Deployer : ${deployer.address}`);
@@ -60,8 +230,18 @@ async function main() {
   // PHASE 1: CORE TOKENS & ORACLE
   // ─────────────────────────────────────────────────────────────
   console.log("── PHASE 1: Core Tokens & Oracle ──");
-  [C.wik,    A.WIKToken]         = await d("WIKToken",           deployer.address);
-  [C.oracle, A.WikiOracle]       = await d("WikiOracle",         deployer.address, EXT.SEQ_FEED);
+  [C.wik,    A.WIKToken]         = await d(
+    "WIKToken",
+    deployer.address, // multisig
+    deployer.address, // community emitter
+    deployer.address, // pol vault
+    deployer.address, // team vesting
+    deployer.address, // investor vesting
+    deployer.address, // treasury
+    deployer.address, // public sale
+    deployer.address  // reserve
+  );
+  [C.oracle, A.WikiOracle]       = await d("WikiOracle",         deployer.address, EXT.SEQ_FEED, EXT.PYTH);
   [C.vault,  A.WikiVault]        = await d("WikiVault",          EXT.USDC, deployer.address);
   [C.mktReg, A.WikiMarketRegistry] = await d("WikiMarketRegistry", deployer.address);
   [C.tvlGuard, A.WikiTVLGuard]   = await d("WikiTVLGuard",       deployer.address);
@@ -165,9 +345,9 @@ async function main() {
   // ─────────────────────────────────────────────────────────────
   console.log("\n── PHASE 9: Revenue ──");
   // WikiIdleYieldRouter — unified idle capital optimizer for all 15 contracts
+  [C.revSplit, A.WikiRevenueSplitter] = await d("WikiRevenueSplitter", EXT.USDC, A.WikiStaking, A.WikiPOL, A.WikiInsuranceFundYield, deployer.address, deployer.address);
   [C.idleRouter, A.WikiIdleYieldRouter] = await d("WikiIdleYieldRouter",
     EXT.USDC, EXT.AAVE_POOL, A.WikiLending, A.WikiRevenueSplitter, deployer.address);
-    [C.revSplit, A.WikiRevenueSplitter] = await d("WikiRevenueSplitter", EXT.USDC, A.WikiStaking, A.WikiPOL, A.WikiInsuranceFundYield, deployer.address, deployer.address);
   [C.opsVault, A.WikiOpsVault]    = await d("WikiOpsVault",       EXT.USDC, A.WikiLending, A.WikiBackstopVault, deployer.address);
   [C.feeDist,  A.WikiFeeDistributor] = await d("WikiFeeDistributor", EXT.USDC, A.WikiStaking, A.WikiVault, deployer.address, deployer.address);
   [C.buyback,  A.WikiBuybackBurn]  = await d("WikiBuybackBurn",    EXT.USDC, A.WIKToken, EXT.UNI_ROUTER, deployer.address);
@@ -186,7 +366,7 @@ async function main() {
   [C.propPool, A.WikiPropPool]   = await d("WikiPropPool",        EXT.USDC, deployer.address);
   [C.propEval, A.WikiPropEval]   = await d("WikiPropEval",        EXT.USDC, A.WikiPropPool, deployer.address);
   [C.propFunded, A.WikiPropFunded] = await d("WikiPropFunded",    EXT.USDC, deployer.address);
-  [C.propPoolYield, A.WikiPropPoolYield] = await d("WikiPropPoolYield", EXT.USDC, "0x794a61358D6845594F94dc1DB02A252b5b4814aD", A.WikiLending, A.WikiPropPool, deployer.address);
+  [C.propPoolYield, A.WikiPropPoolYield] = await d("WikiPropPoolYield", EXT.USDC, EXT.AAVE_POOL, A.WikiLending, A.WikiPropPool, deployer.address);
     [C.propChallenge, A.WikiPropChallenge] = await d("WikiPropChallenge", EXT.USDC, A.WikiPropEval, A.WikiPropFunded, deployer.address, A.WikiPropPool, deployer.address);
 
   // ─────────────────────────────────────────────────────────────
@@ -424,7 +604,7 @@ async function main() {
   // ─────────────────────────────────────────────────────────────
   console.log("\n── Wiring Oracle Feeds ──");
 
-  const CHAINLINK_FEEDS = {
+  const CHAINLINK_FEEDS = networkName === "arbitrum_one" ? {
     "BTCUSDT": ["0x6ce185539ad4fdaeBc62adeD98E2AE0C68b4cFf", 86400, 8],
     "ETHUSDT": ["0x639Fe6ab55C921f74e7fac1ee960C0B6293ba612", 86400, 8],
     "ARBUSDT": ["0xb2A824043730FE05F3DA2efaFa1CBbe83fa548D6", 86400, 8],
@@ -434,12 +614,16 @@ async function main() {
     "USDJPY":  ["0x3607e46698d218B3a5Cae44bF381475C0a5e2ca7", 3600,  8],
     "XAUUSD":  ["0x1F954Dc24a49708C26E0C1777f16750B5C6d5a2c", 3600,  8],
     "XAGUSD":  ["0xC56765f04B248394CF1619D20dB8082Edbfa75b1", 86400, 8],
-  };
+  } : {};
   for (const [sym, [feed, hb, dec]] of Object.entries(CHAINLINK_FEEDS)) {
     const id = ethers.keccak256(ethers.toUtf8Bytes(sym));
     await safe(`Oracle CL: ${sym}`, () => C.oracle.setChainlinkFeed(id, feed, hb, dec, ethers.parseUnits("0", 18), ethers.parseUnits("10000000", 18)));
   }
-  console.log(`   ✅ ${Object.keys(CHAINLINK_FEEDS).length} Chainlink feeds wired`);
+  if (Object.keys(CHAINLINK_FEEDS).length === 0) {
+    console.log("   ⚠  No default Chainlink feed map for this network; skipping feed wiring");
+  } else {
+    console.log(`   ✅ ${Object.keys(CHAINLINK_FEEDS).length} Chainlink feeds wired`);
+  }
 
   // ─────────────────────────────────────────────────────────────
   // MARKET REGISTRATION — All 295 markets
@@ -559,9 +743,6 @@ async function main() {
   // ═══════════════════════════════════════════════════════════════
   // TRANSFER OWNERSHIP → GENESIS SAFE
   // ═══════════════════════════════════════════════════════════════
-  const SAFE          = process.env.GENESIS_SAFE_ADDRESS || '0xc01fAE37aE7a4051Eafea26e047f36394054779c';
-  const OPS_WALLET    = process.env.OPS_WALLET          || '0x34F192E2338CdbBcCD9AFBb06A3f7aC0BD18c128';
-  const RESERVE_WALLET = process.env.RESERVE_WALLET     || '0x34F192E2338CdbBcCD9AFBb06A3f7aC0BD18c128';
   if (SAFE !== deployer.address) {
     console.log(`\n── Transferring ownership to Genesis Safe: ${SAFE} ──`);
     const allContracts = Object.values(C);
@@ -581,10 +762,12 @@ async function main() {
   // ═══════════════════════════════════════════════════════════════
   // SAVE DEPLOYMENT ADDRESSES
   // ═══════════════════════════════════════════════════════════════
-  const outPath = path.join(__dirname, "../deployments.arbitrum.json");
+  const { chainId } = await ethers.provider.getNetwork();
+  const outFile = `deployments.${networkName}.json`;
+  const outPath = path.join(__dirname, `../${outFile}`);
   const deployment = {
-    network: "arbitrum_one",
-    chainId: 42161,
+    network: networkName,
+    chainId: Number(chainId),
     deployer: deployer.address,
     safe: SAFE,
     timestamp: new Date().toISOString(),
@@ -594,14 +777,20 @@ async function main() {
   fs.writeFileSync(outPath, JSON.stringify(deployment, null, 2));
 
   console.log("\n✅ DEPLOYMENT COMPLETE!");
-  console.log(`📄 Saved: contracts/deployments.arbitrum.json`);
+  console.log(`📄 Saved: ${outFile}`);
   console.log(`   Contracts deployed: ${Object.keys(A).length}`);
+  if (deployFailures.length > 0) {
+    console.log(`\n⚠️  Contracts that failed to deploy (${deployFailures.length}):`);
+    for (const f of deployFailures) {
+      console.log(`   - ${f.name}: ${f.reason}`);
+    }
+  }
   console.log("\n📋 Next steps:");
-  console.log("   1. cp contracts/deployments.arbitrum.json frontend/.env (update VITE_* vars)");
-  console.log("   2. cp contracts/deployments.arbitrum.json backend/.env (update CONTRACT_* vars)");
+  console.log(`   1. cp ${outFile} frontend/.env (update VITE_* vars)`);
+  console.log(`   2. cp ${outFile} backend/.env (update CONTRACT_* vars)`);
   console.log("   3. cd backend && npm start");
   console.log("   4. pm2 start ecosystem.config.js");
-  console.log("   5. Verify contracts: npx hardhat run scripts/verify.js --network arbitrum_one");
+  console.log(`   5. Verify contracts: npx hardhat run scripts/verify.js --network ${networkName}`);
   console.log("   6. Open admin panel → advance TVL Guard to Stage 1 after 7 days");
 }
 

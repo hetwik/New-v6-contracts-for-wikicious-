@@ -11,7 +11,16 @@ if (process.env.HARDHAT_NO_PROXY && !process.env.NO_PROXY) {
   process.env.NO_PROXY = process.env.HARDHAT_NO_PROXY;
 }
 
-const DEPLOYER_KEY     = process.env.DEPLOYER_PRIVATE_KEY || '0'.repeat(64);
+function normalizePrivateKey(value) {
+  if (!value) return `0x${'0'.repeat(64)}`;
+  const v = value.trim();
+  if (/^0x[0-9a-fA-F]{64}$/.test(v)) return v;
+  if (/^[0-9a-fA-F]{64}$/.test(v)) return `0x${v}`;
+  console.warn('⚠️ Invalid DEPLOYER_PRIVATE_KEY format; using zero key fallback for local compile.');
+  return `0x${'0'.repeat(64)}`;
+}
+
+const DEPLOYER_KEY     = normalizePrivateKey(process.env.DEPLOYER_PRIVATE_KEY);
 const ALCHEMY_ARBITRUM = process.env.ALCHEMY_ARBITRUM_URL;
 const ALCHEMY_SEPOLIA  = process.env.ALCHEMY_SEPOLIA_URL;
 const TENDERLY_RPC     = process.env.TENDERLY_RPC_URL;
