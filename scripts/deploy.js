@@ -29,6 +29,46 @@ const EXT_MAINNET = {
   GMX_ROUTER:  "0x7C68C7866A64FA2160F78EEaE12217FFbf871fa8",
 };
 
+
+function describeAddressIssue(raw) {
+  const trimmed = raw.trim();
+  const noPrefix = trimmed.startsWith("0x") ? trimmed.slice(2) : trimmed;
+  const badChars = [...new Set(noPrefix.match(/[^0-9a-fA-F]/g) || [])];
+
+  const hints = [];
+  if (!trimmed.startsWith("0x")) hints.push("missing 0x prefix");
+  if (noPrefix.length !== 40) hints.push(`expected 40 hex chars, got ${noPrefix.length}`);
+  if (badChars.length > 0) hints.push(`contains non-hex chars: ${badChars.join("")}`);
+
+  return hints.length > 0 ? ` (${hints.join("; ")})` : "";
+}
+
+function normalizeAddress(value, label, { allowZero = true } = {}) {
+  if (value === undefined || value === null) {
+    throw new Error(`${label} is missing`);
+  }
+
+  const raw = String(value).trim();
+  if (!raw) {
+    throw new Error(`${label} is empty`);
+  }
+
+  if (!ethers.isAddress(raw)) {
+    const details = describeAddressIssue(raw);
+    throw new Error(
+      `${label} is not a valid hex address: "${raw}"${details}. ` +
+      `Use a 0x-prefixed 20-byte address, not an ENS/domain name.`
+    );
+  }
+
+  const normalized = ethers.getAddress(raw);
+  if (!allowZero && normalized === ethers.ZeroAddress) {
+    throw new Error(`${label} cannot be the zero address`);
+  }
+
+  return normalized;
+}
+
 function requireEnv(name) {
   const value = process.env[name];
   if (!value) {
@@ -38,43 +78,49 @@ function requireEnv(name) {
 }
 
 function getExternalAddresses(networkName) {
-  if (networkName === "arbitrum_one") {
-    return {
-      ...EXT_MAINNET,
-      USDC:        process.env.EXT_USDC || EXT_MAINNET.USDC,
-      WETH:        process.env.EXT_WETH || EXT_MAINNET.WETH,
-      WBTC:        process.env.EXT_WBTC || EXT_MAINNET.WBTC,
-      ARB:         process.env.EXT_ARB || EXT_MAINNET.ARB,
-      USDT:        process.env.EXT_USDT || EXT_MAINNET.USDT,
-      wstETH:      process.env.EXT_WSTETH || EXT_MAINNET.wstETH,
-      rETH:        process.env.EXT_RETH || EXT_MAINNET.rETH,
-      SEQ_FEED:    process.env.EXT_SEQ_FEED || EXT_MAINNET.SEQ_FEED,
-      PYTH:        process.env.EXT_PYTH || EXT_MAINNET.PYTH,
-      LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || EXT_MAINNET.LZ_ENDPOINT,
-      ENTRYPOINT:  process.env.EXT_ENTRYPOINT || EXT_MAINNET.ENTRYPOINT,
-      AAVE_POOL:   process.env.EXT_AAVE_POOL || EXT_MAINNET.AAVE_POOL,
-      UNI_ROUTER:  process.env.EXT_UNI_ROUTER || EXT_MAINNET.UNI_ROUTER,
-      GMX_ROUTER:  process.env.EXT_GMX_ROUTER || EXT_MAINNET.GMX_ROUTER,
-    };
-  }
+  const ext = networkName === "arbitrum_one"
+    ? {
+        ...EXT_MAINNET,
+        USDC:        process.env.EXT_USDC || EXT_MAINNET.USDC,
+        WETH:        process.env.EXT_WETH || EXT_MAINNET.WETH,
+        WBTC:        process.env.EXT_WBTC || EXT_MAINNET.WBTC,
+        ARB:         process.env.EXT_ARB || EXT_MAINNET.ARB,
+        USDT:        process.env.EXT_USDT || EXT_MAINNET.USDT,
+        wstETH:      process.env.EXT_WSTETH || EXT_MAINNET.wstETH,
+        rETH:        process.env.EXT_RETH || EXT_MAINNET.rETH,
+        SEQ_FEED:    process.env.EXT_SEQ_FEED || EXT_MAINNET.SEQ_FEED,
+        PYTH:        process.env.EXT_PYTH || EXT_MAINNET.PYTH,
+        LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || EXT_MAINNET.LZ_ENDPOINT,
+        ENTRYPOINT:  process.env.EXT_ENTRYPOINT || EXT_MAINNET.ENTRYPOINT,
+        AAVE_POOL:   process.env.EXT_AAVE_POOL || EXT_MAINNET.AAVE_POOL,
+        UNI_ROUTER:  process.env.EXT_UNI_ROUTER || EXT_MAINNET.UNI_ROUTER,
+        GMX_ROUTER:  process.env.EXT_GMX_ROUTER || EXT_MAINNET.GMX_ROUTER,
+      }
+    : {
+        USDC:        requireEnv("EXT_USDC"),
+        WETH:        requireEnv("EXT_WETH"),
+        WBTC:        requireEnv("EXT_WBTC"),
+        ARB:         requireEnv("EXT_ARB"),
+        USDT:        process.env.EXT_USDT || ethers.ZeroAddress,
+        wstETH:      requireEnv("EXT_WSTETH"),
+        rETH:        requireEnv("EXT_RETH"),
+        SEQ_FEED:    requireEnv("EXT_SEQ_FEED"),
+        PYTH:        process.env.EXT_PYTH || ethers.ZeroAddress,
+        LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || ethers.ZeroAddress,
+        ENTRYPOINT:  requireEnv("EXT_ENTRYPOINT"),
+        AAVE_POOL:   process.env.EXT_AAVE_POOL || ethers.ZeroAddress,
+        UNI_ROUTER:  requireEnv("EXT_UNI_ROUTER"),
+        GMX_ROUTER:  process.env.EXT_GMX_ROUTER || ethers.ZeroAddress,
+      };
 
-  return {
-    USDC:        requireEnv("EXT_USDC"),
-    WETH:        requireEnv("EXT_WETH"),
-    WBTC:        requireEnv("EXT_WBTC"),
-    ARB:         requireEnv("EXT_ARB"),
-    USDT:        process.env.EXT_USDT || ethers.ZeroAddress,
-    wstETH:      requireEnv("EXT_WSTETH"),
-    rETH:        requireEnv("EXT_RETH"),
-    SEQ_FEED:    requireEnv("EXT_SEQ_FEED"),
-    PYTH:        process.env.EXT_PYTH || ethers.ZeroAddress,
-    LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || ethers.ZeroAddress,
-    ENTRYPOINT:  requireEnv("EXT_ENTRYPOINT"),
-    AAVE_POOL:   process.env.EXT_AAVE_POOL || ethers.ZeroAddress,
-    UNI_ROUTER:  requireEnv("EXT_UNI_ROUTER"),
-    GMX_ROUTER:  process.env.EXT_GMX_ROUTER || ethers.ZeroAddress,
-  };
+  return Object.fromEntries(
+    Object.entries(ext).map(([key, value]) => [
+      key,
+      normalizeAddress(value, `EXT_${key.toUpperCase()}`),
+    ])
+  );
 }
+
 
 function validateExternalAddresses(networkName, ext) {
   if (networkName === "arbitrum_one") return;
@@ -104,7 +150,8 @@ function validateExternalAddresses(networkName, ext) {
 async function d(name, ...args) {
   process.stdout.write(`  📦 ${name}... `);
   const F = await ethers.getContractFactory(name);
-  const expectedArgs = F.interface.deploy?.inputs?.length ?? 0;
+  const ctorInputs = F.interface.deploy?.inputs ?? [];
+  const expectedArgs = ctorInputs.length;
   let deployArgs = args;
   if (args.length > expectedArgs) {
     console.log(`⚠️  expected ${expectedArgs} constructor args, got ${args.length}; truncating extras`);
@@ -112,6 +159,33 @@ async function d(name, ...args) {
   } else if (args.length < expectedArgs) {
     throw new Error(`constructor expects ${expectedArgs} args, got ${args.length}`);
   }
+
+  deployArgs = deployArgs.map((value, idx) => {
+    const input = ctorInputs[idx];
+    const type = input?.type;
+
+    if (type === "address") {
+      if (value === undefined || value === null) {
+        console.log(`⚠️  ${name}.${input?.name || `arg${idx}`} missing; defaulting to zero address`);
+        return ethers.ZeroAddress;
+      }
+      return normalizeAddress(value, `${name}.${input?.name || `arg${idx}`}`);
+    }
+
+    if (type === "address[]") {
+      if (value === undefined || value === null) {
+        console.log(`⚠️  ${name}.${input?.name || `arg${idx}`} missing; defaulting to []`);
+        return [];
+      }
+      if (!Array.isArray(value)) {
+        throw new Error(`${name}.${input?.name || `arg${idx}`} must be an address array`);
+      }
+      return value.map((v, arrIdx) => normalizeAddress(v, `${name}.${input?.name || `arg${idx}`}[${arrIdx}]`));
+    }
+
+    return value;
+  });
+
   const c = await F.deploy(...deployArgs);
   await c.waitForDeployment();
   const addr = await c.getAddress();
@@ -131,9 +205,15 @@ async function main() {
   validateExternalAddresses(networkName, EXT);
 
   const [deployer] = await ethers.getSigners();
-  const SAFE           = process.env.GENESIS_SAFE_ADDRESS || "0xc01fAE37aE7a4051Eafea26e047f36394054779c";
-  const OPS_WALLET     = process.env.OPS_WALLET || deployer.address;
-  const RESERVE_WALLET = process.env.RESERVE_WALLET || deployer.address;
+  const SAFE = normalizeAddress(
+    process.env.GENESIS_SAFE_ADDRESS || "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
+    "GENESIS_SAFE_ADDRESS"
+  );
+  const OPS_WALLET = normalizeAddress(process.env.OPS_WALLET || deployer.address, "OPS_WALLET");
+  const RESERVE_WALLET = normalizeAddress(
+    process.env.RESERVE_WALLET || deployer.address,
+    "RESERVE_WALLET"
+  );
   const bal = await ethers.provider.getBalance(deployer.address);
   console.log("\n🚀 WIKICIOUS V6 — Full Deployment");
   console.log(`   Deployer : ${deployer.address}`);
