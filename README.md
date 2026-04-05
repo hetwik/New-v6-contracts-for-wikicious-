@@ -31,3 +31,15 @@ npm run deploy:testnet
    ```bash
    npm run deploy:mainnet
    ```
+   This runs `scripts/deploy.js` (full phase-by-phase parity: deploy + full wiring + setup).
+
+If you want heuristic auto-deploy mode instead (faster iteration):
+```bash
+npm run deploy:all
+```
+
+Optional post-deploy env vars used by `deploy-all.js` wiring:
+- `ENABLE_POST_DEPLOY_WIRING` (`true` by default, set `false` to skip)
+- `OPS_WALLET` (defaults to deployer)
+- `RESERVE_WALLET` (defaults to deployer)
+- `GENESIS_SAFE_ADDRESS` (if set, ownership transfer is attempted)

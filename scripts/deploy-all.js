@@ -290,6 +290,59 @@ async function deployContract(name, deployed, deployer, ext, signerPool) {
   return { contract, address, args: args.map((a) => (typeof a === "bigint" ? a.toString() : a)) };
 }
 
+async function safeWire(label, fn) {
+  try {
+    await fn();
+    console.log(`   ✅ ${label}`);
+  } catch (e) {
+    console.log(`   ⚠️  ${label} skipped: ${String(e.message || e).slice(0, 120)}`);
+  }
+}
+
+async function runPostDeploymentWiring(instances, deployed, deployer, env) {
+  console.log("\n🔧 Post-deployment wiring...");
+  const opsWallet = process.env.OPS_WALLET || deployer;
+  const reserveWallet = process.env.RESERVE_WALLET || deployer;
+
+  if (instances.WikiVault) {
+    for (const op of [deployed.WikiPerp, deployed.WikiGMXBackstop, deployed.WikiFlashLoan, deployed.WikiMarginLoan, deployed.WikiLPCollateral, deployed.WikiLiquidator].filter(Boolean)) {
+      await safeWire(`WikiVault.setOperator(${op.slice(0, 10)}…)`, () => instances.WikiVault.setOperator(op, true));
+    }
+  }
+
+  if (instances.WIKToken) {
+    for (const minter of [deployed.WikiStaking, deployed.WikiLaunchPool, deployed.WikiLiquidStaking, deployed.WikiLiquidityMining].filter(Boolean)) {
+      await safeWire(`WIKToken.setMinter(${minter.slice(0, 10)}…)`, () => instances.WIKToken.setMinter(minter, true));
+    }
+  }
+
+  if (instances.WikiPerp && deployed.WikiGMXBackstop) {
+    await safeWire("WikiPerp.setGMXBackstop", () => instances.WikiPerp.setGMXBackstop(deployed.WikiGMXBackstop, true));
+  }
+  if (instances.WikiPerp && deployed.WikiCircuitBreaker) {
+    await safeWire("WikiPerp.setCircuitBreaker", () => instances.WikiPerp.setCircuitBreaker(deployed.WikiCircuitBreaker));
+  }
+  if (instances.WikiPerp && deployed.WikiLiquidator) {
+    await safeWire("WikiPerp.setLiquidator", () => instances.WikiPerp.setLiquidator(deployed.WikiLiquidator));
+  }
+  if (instances.WikiPerp && deployed.WikiRevenueSplitter) {
+    await safeWire("WikiPerp.setRevenueSplitter", () => instances.WikiPerp.setRevenueSplitter(deployed.WikiRevenueSplitter));
+  }
+
+  if (instances.WikiRevenueSplitter && ethers.isAddress(opsWallet) && ethers.isAddress(reserveWallet)) {
+    await safeWire("WikiRevenueSplitter.setOpsWallet", () => instances.WikiRevenueSplitter.setOpsWallet(opsWallet));
+    await safeWire("WikiRevenueSplitter.setReserveWallet", () => instances.WikiRevenueSplitter.setReserveWallet(reserveWallet));
+  }
+
+  const safeOwner = process.env.GENESIS_SAFE_ADDRESS;
+  if (safeOwner && ethers.isAddress(safeOwner) && safeOwner.toLowerCase() !== deployer.toLowerCase()) {
+    console.log(`\n🔐 Transferring ownership to GENESIS_SAFE_ADDRESS ${safeOwner} ...`);
+    for (const [name, contract] of Object.entries(instances)) {
+      await safeWire(`${name}.transferOwnership`, () => contract.transferOwnership(safeOwner));
+    }
+  }
+}
+
 function getContractNames() {
   const srcDir = path.join(process.cwd(), "src");
   const files = fs.readdirSync(srcDir).filter((f) => f.endsWith(".sol"));
@@ -314,6 +367,7 @@ async function main() {
   const deployed = {};
   const failed = [];
   const details = {};
+  const instances = {};
   const hardhatSkips = new Set(["WikiBridge", "WikiCrossChainLending", "WikiCrossChainRouter"]);
 
   for (const name of names) {
@@ -324,6 +378,7 @@ async function main() {
     try {
       const { contract, address, args } = await deployContract(name, deployed, deployer, ext, signerPool);
       deployed[name] = address;
+      instances[name] = contract;
       details[name] = {
         address,
         args,
@@ -333,6 +388,12 @@ async function main() {
       console.log(`❌ ${name} failed`);
       failed.push({ name, reason: error.message });
     }
+  }
+
+  if ((process.env.ENABLE_POST_DEPLOY_WIRING || "true").toLowerCase() !== "false") {
+    await runPostDeploymentWiring(instances, deployed, deployer, process.env);
+  } else {
+    console.log("\n⏭️  Post-deployment wiring disabled (ENABLE_POST_DEPLOY_WIRING=false)");
   }
 
   const out = {

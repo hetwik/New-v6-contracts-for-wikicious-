@@ -17,8 +17,16 @@ const path = require('path');
 const TREASURY_ADDRESS = process.env.TREASURY_ADDRESS || '';
 
 function deploymentFileByNetwork(networkName) {
-  const alias = networkName === 'arbitrum_one' ? 'arbitrum' : networkName;
-  return `deployments.${alias}.json`;
+  const candidates = [
+    `deployments.${networkName}.auto.json`,
+    `deployments.${networkName}.json`,
+    `deployments.${networkName === 'arbitrum_one' ? 'arbitrum' : networkName}.json`,
+  ];
+  for (const f of candidates) {
+    const p = path.join(__dirname, `../${f}`);
+    if (fs.existsSync(p)) return f;
+  }
+  return candidates[0];
 }
 
 async function main() {
@@ -50,7 +58,7 @@ async function main() {
   }
 
   const deployments = JSON.parse(fs.readFileSync(deploymentsPath, 'utf8'));
-  const contracts   = deployments.contracts;
+  const contracts   = deployments.contracts || deployments.deployed || {};
   console.log(`📄 Loaded ${Object.keys(contracts).length} contract addresses from ${deploymentsFile}\n`);
 
   // Minimal Ownable2Step ABI — only what we need

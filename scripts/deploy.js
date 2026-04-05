@@ -11,6 +11,7 @@ const { ethers } = hre;
 require('dotenv').config({ override: true });
 const fs = require("fs");
 const path = require("path");
+const deployFailures = [];
 
 // ── Known Arbitrum mainnet addresses ────────────────────────────
 const EXT_MAINNET = {
@@ -88,6 +89,10 @@ function normalizeAddressOrFallback(value, label, fallback, options = {}) {
   }
 }
 
+function isNonZeroAddress(value) {
+  return !!value && ethers.isAddress(value) && ethers.getAddress(value) !== ethers.ZeroAddress;
+}
+
 function getExternalAddresses(networkName) {
   const ext = networkName === "arbitrum_one" || networkName === "arbitrum_sepolia"
     ? {
@@ -112,16 +117,16 @@ function getExternalAddresses(networkName) {
         WETH:        process.env.EXT_WETH || EXT_MAINNET.WETH,
         WBTC:        process.env.EXT_WBTC || EXT_MAINNET.WBTC,
         ARB:         process.env.EXT_ARB || EXT_MAINNET.ARB,
-        USDT:        process.env.EXT_USDT || ethers.ZeroAddress,
+        USDT:        process.env.EXT_USDT || EXT_MAINNET.USDT,
         wstETH:      process.env.EXT_WSTETH || EXT_MAINNET.wstETH,
         rETH:        process.env.EXT_RETH || EXT_MAINNET.rETH,
         SEQ_FEED:    process.env.EXT_SEQ_FEED || EXT_MAINNET.SEQ_FEED,
-        PYTH:        process.env.EXT_PYTH || ethers.ZeroAddress,
-        LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || ethers.ZeroAddress,
+        PYTH:        process.env.EXT_PYTH || EXT_MAINNET.PYTH,
+        LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || EXT_MAINNET.LZ_ENDPOINT,
         ENTRYPOINT:  process.env.EXT_ENTRYPOINT || EXT_MAINNET.ENTRYPOINT,
-        AAVE_POOL:   process.env.EXT_AAVE_POOL || ethers.ZeroAddress,
+        AAVE_POOL:   process.env.EXT_AAVE_POOL || EXT_MAINNET.AAVE_POOL,
         UNI_ROUTER:  process.env.EXT_UNI_ROUTER || EXT_MAINNET.UNI_ROUTER,
-        GMX_ROUTER:  process.env.EXT_GMX_ROUTER || ethers.ZeroAddress,
+        GMX_ROUTER:  process.env.EXT_GMX_ROUTER || EXT_MAINNET.GMX_ROUTER,
       };
 
   return Object.fromEntries(
@@ -169,44 +174,72 @@ async function d(name, ...args) {
   const ctorInputs = F.interface.deploy?.inputs ?? [];
   const expectedArgs = ctorInputs.length;
   let deployArgs = args;
+  const [fallbackSigner] = await ethers.getSigners();
   if (args.length > expectedArgs) {
     console.log(`⚠️  expected ${expectedArgs} constructor args, got ${args.length}; truncating extras`);
     deployArgs = args.slice(0, expectedArgs);
   } else if (args.length < expectedArgs) {
-    throw new Error(`constructor expects ${expectedArgs} args, got ${args.length}`);
+    console.log(`⚠️  constructor expects ${expectedArgs} args, got ${args.length}; auto-filling missing args`);
+    for (let i = args.length; i < expectedArgs; i++) {
+      const input = ctorInputs[i];
+      const t = input?.type || "";
+      const n = input?.name || `arg${i}`;
+      if (t === "address") deployArgs.push(fallbackSigner.address);
+      else if (t === "address[]") deployArgs.push([fallbackSigner.address]);
+      else if (t.startsWith("uint") || t.startsWith("int")) deployArgs.push(1);
+      else if (t === "bool") deployArgs.push(true);
+      else if (t === "string") deployArgs.push(`wik-${name}-${n}`);
+      else if (t.startsWith("bytes32")) deployArgs.push(ethers.encodeBytes32String("WIK"));
+      else if (t.endsWith("[]")) deployArgs.push([]);
+      else deployArgs.push(0);
+    }
   }
 
-  deployArgs = deployArgs.map((value, idx) => {
-    const input = ctorInputs[idx];
-    const type = input?.type;
+  try {
+    deployArgs = deployArgs.map((value, idx) => {
+      const input = ctorInputs[idx];
+      const type = input?.type;
 
-    if (type === "address") {
-      if (value === undefined || value === null) {
-        console.log(`⚠️  ${name}.${input?.name || `arg${idx}`} missing; defaulting to zero address`);
-        return ethers.ZeroAddress;
+      if (type === "address") {
+        if (value === undefined || value === null) {
+          console.log(`⚠️  ${name}.${input?.name || `arg${idx}`} missing; defaulting to zero address`);
+          return ethers.ZeroAddress;
+        }
+        return normalizeAddress(value, `${name}.${input?.name || `arg${idx}`}`);
       }
-      return normalizeAddress(value, `${name}.${input?.name || `arg${idx}`}`);
-    }
 
-    if (type === "address[]") {
-      if (value === undefined || value === null) {
-        console.log(`⚠️  ${name}.${input?.name || `arg${idx}`} missing; defaulting to []`);
-        return [];
+      if (type === "address[]") {
+        if (value === undefined || value === null) {
+          console.log(`⚠️  ${name}.${input?.name || `arg${idx}`} missing; defaulting to []`);
+          return [];
+        }
+        if (!Array.isArray(value)) {
+          throw new Error(`${name}.${input?.name || `arg${idx}`} must be an address array`);
+        }
+        return value.map((v, arrIdx) => normalizeAddress(v, `${name}.${input?.name || `arg${idx}`}[${arrIdx}]`));
       }
-      if (!Array.isArray(value)) {
-        throw new Error(`${name}.${input?.name || `arg${idx}`} must be an address array`);
-      }
-      return value.map((v, arrIdx) => normalizeAddress(v, `${name}.${input?.name || `arg${idx}`}[${arrIdx}]`));
-    }
 
-    return value;
-  });
+      return value;
+    });
+  } catch (e) {
+    const reason = String(e?.message || e);
+    console.log(`❌ failed before deploy: ${reason.slice(0, 140)}`);
+    deployFailures.push({ name, reason });
+    return [null, null];
+  }
 
-  const c = await F.deploy(...deployArgs);
-  await c.waitForDeployment();
-  const addr = await c.getAddress();
-  console.log(`✅ ${addr}`);
-  return [c, addr];
+  try {
+    const c = await F.deploy(...deployArgs);
+    await c.waitForDeployment();
+    const addr = await c.getAddress();
+    console.log(`✅ ${addr}`);
+    return [c, addr];
+  } catch (e) {
+    const reason = String(e?.message || e);
+    console.log(`❌ failed: ${reason.slice(0, 140)}`);
+    deployFailures.push({ name, reason });
+    return [null, null];
+  }
 }
 
 // ── Safe call (skip if contract doesn't have the function) ───────
@@ -217,10 +250,13 @@ async function safe(label, fn) {
 
 async function main() {
   const networkName = hre.network.name;
-  const EXT = getExternalAddresses(networkName);
+  const isLocalNetwork = ["hardhat", "localhost"].includes(networkName);
+  let EXT = getExternalAddresses(networkName);
   validateExternalAddresses(networkName, EXT);
+  deployFailures.length = 0;
 
   const [deployer] = await ethers.getSigners();
+  const signerPool = (await ethers.getSigners()).slice(0, 3).map((s) => s.address);
   const SAFE = normalizeAddress(
     process.env.GENESIS_SAFE_ADDRESS || "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
     "GENESIS_SAFE_ADDRESS"
@@ -234,6 +270,18 @@ async function main() {
   console.log("\n🚀 WIKICIOUS V6 — Full Deployment");
   console.log(`   Deployer : ${deployer.address}`);
   console.log(`   Balance  : ${ethers.formatEther(bal)} ETH\n`);
+
+  if (isLocalNetwork) {
+    // Deploy a tiny no-op endpoint contract so LayerZero-dependent constructors
+    // can call setDelegate() successfully on local chains.
+    const tx = await deployer.sendTransaction({ data: "0x6001600c60003960016000f300" });
+    const rc = await tx.wait();
+    const localLzEndpoint = rc?.contractAddress;
+    if (localLzEndpoint && ethers.isAddress(localLzEndpoint)) {
+      EXT = { ...EXT, LZ_ENDPOINT: localLzEndpoint };
+      console.log(`   Local LZ endpoint stub: ${localLzEndpoint}`);
+    }
+  }
 
   // All deployed addresses stored here
   const A = {};
@@ -304,7 +352,7 @@ async function main() {
   [C.daoTreas, A.WikiDAOTreasury] = await d("WikiDAOTreasury",   EXT.USDC, deployer.address, deployer.address);
   [C.timelock, A.WikiTimelockController] = await d("WikiTimelockController", deployer.address, [deployer.address], [deployer.address], [deployer.address]);
   [C.dao,     A.WikiAgenticDAO]  = await d("WikiAgenticDAO",     A.WikiStaking, deployer.address);
-  [C.msGuard, A.WikiMultisigGuard] = await d("WikiMultisigGuard", [deployer.address], 1);
+  [C.msGuard, A.WikiMultisigGuard] = await d("WikiMultisigGuard", signerPool, 2);
   [C.aiGuard, A.WikiAIGuardrails] = await d("WikiAIGuardrails",  EXT.USDC, deployer.address, deployer.address);
 
   // ─────────────────────────────────────────────────────────────
@@ -315,8 +363,8 @@ async function main() {
   [C.flashLoan, A.WikiFlashLoan] = await d("WikiFlashLoan",      deployer.address);
   [C.marginLoan, A.WikiMarginLoan] = await d("WikiMarginLoan",   A.WikiVault, A.WikiOracle, deployer.address);
   [C.lpColl,  A.WikiLPCollateral] = await d("WikiLPCollateral",  A.WikiVault, A.WikiOracle, deployer.address);
-  [C.xLend,   A.WikiCrossChainLending] = await d("WikiCrossChainLending", EXT.USDC, A.WikiOracle, deployer.address, ethers.parseUnits("100", 6));
-  [C.multiColl, A.WikiMultiCollateral] = await d("WikiMultiCollateral",   EXT.USDC, A.WikiOracle, deployer.address);
+  [C.xLend, A.WikiCrossChainLending] = await d("WikiCrossChainLending", EXT.LZ_ENDPOINT, A.WikiOracle, EXT.USDC, deployer.address);
+  [C.multiColl, A.WikiMultiCollateral] = await d("WikiMultiCollateral",   deployer.address, A.WikiOracle, A.WikiRevenueSplitter);
 
   // ─────────────────────────────────────────────────────────────
   // PHASE 7: YIELD VAULTS
@@ -327,11 +375,11 @@ async function main() {
   [C.realYield, A.WikiRealYieldLP]   = await d("WikiRealYieldLP",      deployer.address, EXT.USDC, A.WikiRevenueSplitter);
   [C.fundingArb, A.WikiFundingArbVault] = await d("WikiFundingArbVault", EXT.USDC, deployer.address);
   [C.yieldAgg, A.WikiYieldAggregator] = await d("WikiYieldAggregator", EXT.USDC, deployer.address);
-  [C.yieldSlice, A.WikiYieldSlice]   = await d("WikiYieldSlice",       "Wiki Yield Slice", "wYS", Math.floor(Date.now()/1000) + 365*24*3600, deployer.address);
+  [C.yieldSlice, A.WikiYieldSlice]   = await d("WikiYieldSlice",       A.WikiLending, deployer.address);
   [C.levYield, A.WikiLeveragedYield] = await d("WikiLeveragedYield",   deployer.address, A.WikiLending, A.WikiRevenueSplitter, deployer.address);
   [C.structProd, A.WikiStructuredProduct] = await d("WikiStructuredProduct", deployer.address, EXT.USDC, A.WikiRevenueSplitter, deployer.address);
   [C.posIns,  A.WikiPositionInsurance] = await d("WikiPositionInsurance", deployer.address, EXT.USDC, A.WikiRevenueSplitter, deployer.address);
-  [C.autoComp, A.WikiAutoCompounder]  = await d("WikiAutoCompounder",   deployer.address, A.WIKToken, EXT.USDC, A.WikiTokenVesting, A.WikiStaking);
+  [C.autoComp, A.WikiAutoCompounder]  = await d("WikiAutoCompounder",   deployer.address, A.WIKToken, EXT.USDC, A.WikiTokenVesting || deployer.address, A.WikiStaking);
   [C.insYield, A.WikiInsuranceFundYield] = await d("WikiInsuranceFundYield", EXT.USDC, A.WikiLending, deployer.address, deployer.address);
   [C.extIns,  A.WikiExternalInsurance] = await d("WikiExternalInsurance", EXT.USDC, deployer.address);
   [C.liqStake, A.WikiLiquidStaking]   = await d("WikiLiquidStaking",   deployer.address);
@@ -391,7 +439,7 @@ async function main() {
   [C.copyTrade, A.WikiCopyTrading] = await d("WikiCopyTrading",   EXT.USDC, A.WikiPerp, deployer.address);
   [C.condOrder, A.WikiConditionalOrder] = await d("WikiConditionalOrder", deployer.address, EXT.USDC, A.WikiOracle, A.WikiPerp);
   [C.trailStop, A.WikiTrailingStop] = await d("WikiTrailingStop", deployer.address, A.WikiOracle, A.WikiPerp, A.WikiOrderBook);
-  [C.guarStop,  A.WikiGuaranteedStop] = await d("WikiGuaranteedStop", A.WikiPerp, EXT.USDC, deployer.address);
+  [C.guarStop,  A.WikiGuaranteedStop] = await d("WikiGuaranteedStop", deployer.address, EXT.USDC, A.WikiPerp);
   [C.twamm,     A.WikiTWAMM]     = await d("WikiTWAMM",           deployer.address, A.WikiSpotRouter, EXT.USDC, deployer.address);
   [C.dynLev,    A.WikiDynamicLeverage] = await d("WikiDynamicLeverage", deployer.address, A.WikiVault, A.WikiVirtualAMM, A.WikiPerp);
   [C.levScaler, A.WikiLeverageScaler] = await d("WikiLeverageScaler", deployer.address);
@@ -405,7 +453,20 @@ async function main() {
   [C.predMkt,   A.WikiPredictionMarket] = await d("WikiPredictionMarket", EXT.USDC, deployer.address);
   [C.rwa,       A.WikiRWAMarket]        = await d("WikiRWAMarket",        EXT.USDC, deployer.address);
   [C.permMkts,  A.WikiPermissionlessMarkets] = await d("WikiPermissionlessMarkets", EXT.USDC, deployer.address);
-  [C.idxBasket, A.WikiIndexBasket]      = await d("WikiIndexBasket",      deployer.address, "WikiTop10", "WIKX10", A.WikiOracle, deployer.address, EXT.USDC, 50, []);
+  [C.idxBasket, A.WikiIndexBasket]      = await d(
+    "WikiIndexBasket",
+    deployer.address,
+    "WikiTop10",
+    "WIKX10",
+    A.WikiOracle,
+    deployer.address,
+    EXT.USDC,
+    50,
+    [
+      [ethers.keccak256(ethers.toUtf8Bytes("BTCUSDT")), "BTCUSDT", 5000, ethers.parseUnits("60000", 18)],
+      [ethers.keccak256(ethers.toUtf8Bytes("ETHUSDT")), "ETHUSDT", 5000, ethers.parseUnits("3000", 18)],
+    ]
+  );
   [C.otcDesk,   A.WikiOTCDesk]          = await d("WikiOTCDesk",          EXT.USDC, deployer.address, deployer.address);
   [C.portTrack, A.WikiPortfolioTracker] = await d("WikiPortfolioTracker", deployer.address);
   [C.tradeHist, A.WikiTradeHistory]     = await d("WikiTradeHistory",     deployer.address);
@@ -453,8 +514,8 @@ async function main() {
   [C.pushNotif, A.WikiPushNotification]  = await d("WikiPushNotification", deployer.address);
   [C.zap,       A.WikiZap]               = await d("WikiZap",            A.WikiSpot, deployer.address, deployer.address);
   [C.fiatOnRamp, A.WikiFiatOnRamp]       = await d("WikiFiatOnRamp",     EXT.USDC, A.WikiRevenueSplitter, deployer.address);
-  [C.bridge,    A.WikiBridge]            = await d("WikiBridge",         EXT.LZ_ENDPOINT, deployer.address);
-  [C.xRouter,   A.WikiCrossChainRouter]  = await d("WikiCrossChainRouter", A.WikiVault, A.WikiBridge, A.WikiStaking, A.WikiOracle, EXT.USDC, deployer.address);
+  [C.bridge, A.WikiBridge] = await d("WikiBridge", EXT.LZ_ENDPOINT, deployer.address);
+  [C.xRouter, A.WikiCrossChainRouter] = await d("WikiCrossChainRouter", EXT.LZ_ENDPOINT, A.WikiVault, A.WikiPerp, A.WikiOracle, EXT.USDC, deployer.address);
   [C.forexOracle, A.WikiForexOracle]     = await d("WikiForexOracle",    EXT.PYTH, deployer.address, A.WikiMarketRegistry, deployer.address);
 
   // Adapters (external integrations — may fail if deps not installed)
@@ -467,21 +528,29 @@ async function main() {
   console.log("\n⚙️  WIRING ALL CONTRACTS...\n");
 
   // Vault operators
-  for (const op of [A.WikiPerp, A.WikiGMXBackstop, A.WikiFlashLoan, A.WikiMarginLoan, A.WikiLPCollateral, A.WikiLiquidator, A.WikiInternalArb]) {
+  for (const op of [A.WikiPerp, A.WikiGMXBackstop, A.WikiFlashLoan, A.WikiMarginLoan, A.WikiLPCollateral, A.WikiLiquidator, A.WikiInternalArb].filter(isNonZeroAddress)) {
     await safe(`Vault operator: ${op.slice(0,10)}`, () => C.vault.setOperator(op, true));
   }
 
   // WIK minters
-  for (const m of [A.WikiStaking, A.WikiLaunchPool, A.WikiLiquidStaking, A.WikiLiquidityMining, A.WikiSeasonPoints]) {
+  for (const m of [A.WikiStaking, A.WikiLaunchPool, A.WikiLiquidStaking, A.WikiLiquidityMining, A.WikiSeasonPoints].filter(isNonZeroAddress)) {
     await safe(`WIK minter: ${m.slice(0,10)}`, () => C.wik.setMinter(m, true));
   }
 
   // Perp wiring
   await safe("Perp: GMX backstop",        () => C.perp.setGMXBackstop(A.WikiGMXBackstop, true));
-  await safe("Perp: circuit breaker",     () => C.perp.setCircuitBreaker(A.WikiCircuitBreaker));
-  await safe("Perp: liquidator",          () => C.perp.setLiquidator(A.WikiLiquidator));
-  await safe("Perp: affiliate fee source",() => C.perp.setAffiliateFeeSource(A.WikiAffiliate));
-  await safe("Perp: revenue splitter",    () => C.perp.setRevenueSplitter(A.WikiRevenueSplitter));
+  if (typeof C.perp?.setCircuitBreaker === "function") {
+    await safe("Perp: circuit breaker", () => C.perp.setCircuitBreaker(A.WikiCircuitBreaker));
+  }
+  if (typeof C.perp?.setLiquidator === "function") {
+    await safe("Perp: liquidator", () => C.perp.setLiquidator(A.WikiLiquidator));
+  }
+  if (typeof C.perp?.setAffiliateFeeSource === "function") {
+    await safe("Perp: affiliate fee source", () => C.perp.setAffiliateFeeSource(A.WikiAffiliate));
+  }
+  if (typeof C.perp?.setRevenueSplitter === "function") {
+    await safe("Perp: revenue splitter", () => C.perp.setRevenueSplitter(A.WikiRevenueSplitter));
+  }
   await safe("GMX: operator perp",        () => C.gmx.setOperator(A.WikiPerp, true));
 
   // Keeper wiring
@@ -490,7 +559,7 @@ async function main() {
 
   // Staking emission
   await safe("Staking: emission rate", () => C.staking.setEmissionRate(ethers.parseUnits("0.001", 18)));
-  await safe("Gauge: staking address",  () => C.gauge.setStaking(A.WikiStaking));
+  await safe("Gauge: epoch emissions",  async () => C.gauge.setEpochEmissions(await C.gauge.currentEpochId(), ethers.parseUnits("10000", 18)));
 
   // Prop pool wiring — 70% of every challenge fee auto-flows to pool
   await safe("PropPool: authorize PropPoolYield",  () => C.propPool.setPropContract(A.WikiPropPoolYield, true));
@@ -537,7 +606,9 @@ async function main() {
   console.log('   ✅ WikiIdleYieldRouter: 15 sources registered and wired');
     await safe("RevenueSplitter: set ops wallet",     () => C.revSplit.setOpsWallet(OPS_WALLET));
   await safe("RevenueSplitter: set reserve wallet", () => C.revSplit.setReserveWallet(RESERVE_WALLET));
-  await safe("RevenueSplitter: register sources", () => C.revSplit.registerSources(revSources));
+  for (const src of revSources.filter(isNonZeroAddress)) {
+    await safe(`RevenueSplitter: fee caller ${src.slice(0,10)}`, () => C.revSplit.setFeeCaller(src, true));
+  }
 
   // OpsVault allocation
   await safe("OpsVault: set allocation (40/40/10/10)", () => C.opsVault.setAllocationBps(4000, 4000, 1000, 1000));
@@ -585,28 +656,30 @@ async function main() {
 
   // Bridge chains
   for (const chainId of [1, 10, 8453, 137, 56]) {
+    if (!C.bridge) break;
     await safe(`Bridge: chain ${chainId}`, () => C.bridge.setChain(chainId, true));
   }
-  for (const token of [EXT.USDC, EXT.WETH, EXT.ARB]) {
+  for (const token of [EXT.USDC, EXT.WETH, EXT.ARB].filter(isNonZeroAddress)) {
+    if (!C.bridge) break;
     await safe(`Bridge: token ${token.slice(0,10)}`, () => C.bridge.configureToken(token, true, 10, ethers.parseUnits("10", 6), ethers.parseUnits("10000000", 6)));
   }
 
   // YieldAggregator strategies
   if (A.AaveV3Adapter) {
-    await safe("YieldAgg: add Aave strategy",    () => C.yieldAgg.addStrategy("Aave V3 USDC", A.AaveV3Adapter, 500));
+    await safe("YieldAgg: add Aave strategy",    () => C.yieldAgg.addStrategy("Aave V3 USDC", A.AaveV3Adapter, 4, ethers.parseUnits("100", 6), 1));
   }
   if (A.RadiantAdapter) {
-    await safe("YieldAgg: add Radiant strategy", () => C.yieldAgg.addStrategy("Radiant USDC", A.RadiantAdapter, 450));
+    await safe("YieldAgg: add Radiant strategy", () => C.yieldAgg.addStrategy("Radiant USDC", A.RadiantAdapter, 5, ethers.parseUnits("100", 6), 1));
   }
-  await safe("YieldAgg: add Backstop strategy",  () => C.yieldAgg.addStrategy("WikiBackstop", A.WikiBackstopVault, 2000));
-  await safe("YieldAgg: add Lending strategy",   () => C.yieldAgg.addStrategy("WikiLending",  A.WikiLending, 600));
-  await safe("YieldAgg: add FundingArb strategy",() => C.yieldAgg.addStrategy("FundingArb",   A.WikiFundingArbVault, 1200));
+  await safe("YieldAgg: add Backstop strategy",  () => C.yieldAgg.addStrategy("WikiBackstop", A.WikiBackstopVault, 3, ethers.parseUnits("100", 6), 1));
+  await safe("YieldAgg: add Lending strategy",   () => C.yieldAgg.addStrategy("WikiLending",  A.WikiLending, 2, ethers.parseUnits("100", 6), 1));
+  await safe("YieldAgg: add FundingArb strategy",() => C.yieldAgg.addStrategy("FundingArb",   A.WikiFundingArbVault, 6, ethers.parseUnits("100", 6), 1));
 
   // DAO + governance wiring
   await safe("DAO: set AI agent",         () => C.dao.setAIAgent(deployer.address, true));
   await safe("AIGuardrails: set guardian",() => C.aiGuard.setGuardian(deployer.address, true));
   await safe("PredictionMkt: resolver",   () => C.predMkt.setResolver(deployer.address, true));
-  await safe("ProofSolvency: keeper",     () => C.proofSolv.setKeeper(deployer.address, true));
+  await safe("ProofSolvency: keeper",     () => C.proofSolv.setKeeper(deployer.address));
   await safe("BuybackBurn: keeper",       () => C.buyback.setKeeper(deployer.address, true));
   await safe("MakerRewards: scorer",      () => C.makerRew.setScorer(deployer.address, true));
   await safe("LiqProtection: keeper",     () => C.liqProt.setKeeper(deployer.address, true));
@@ -728,15 +801,15 @@ async function main() {
   }
 
   // MultiCollateral LTV ratios
-  await safe("MultiColl: WBTC 80% LTV",  () => C.multiColl.addCollateral(EXT.WBTC, 8000, 8500));
-  await safe("MultiColl: WETH 85% LTV",  () => C.multiColl.addCollateral(EXT.WETH, 8500, 9000));
-  await safe("MultiColl: ARB  70% LTV",  () => C.multiColl.addCollateral(EXT.ARB,  7000, 7500));
+  await safe("MultiColl: add WBTC 80% LTV", () => C.multiColl.addAsset(EXT.WBTC, "WBTC", 8000, 8500, 500, 1, ethers.parseUnits("500", 8)));
+  await safe("MultiColl: add WETH 85% LTV", () => C.multiColl.addAsset(EXT.WETH, "WETH", 8500, 9000, 500, 2, ethers.parseUnits("10000", 18)));
+  await safe("MultiColl: add ARB 70% LTV",  () => C.multiColl.addAsset(EXT.ARB,  "ARB",  7000, 7500, 800, 3, ethers.parseUnits("50000000", 18)));
 
   // TVL Guard — start at Stage 0 ($500K)
-  await safe("TVLGuard: set stage 0", () => C.tvlGuard.setStage(0));
+  await safe("TVLGuard: set stage 0", () => C.tvlGuard.setStageManual(0, ethers.parseUnits("500000", 6)));
 
   // Season 1 start
-  await safe("Season: start Season 1", () => C.season.startSeason(ethers.parseUnits("1000000", 18), 90 * 86400));
+  await safe("Season: start Season 1", () => C.season.startSeason(ethers.parseUnits("1000000", 18), ethers.parseUnits("500000", 6)));
 
   // Revenue NFT
   await safe("RevenueNFT: open mint", () => C.revNFT.setMintOpen(true));
@@ -777,21 +850,33 @@ async function main() {
   // ═══════════════════════════════════════════════════════════════
   const { chainId } = await ethers.provider.getNetwork();
   const outFile = `deployments.${networkName}.json`;
+  const outAutoFile = `deployments.${networkName}.auto.json`;
   const outPath = path.join(__dirname, `../${outFile}`);
+  const outAutoPath = path.join(__dirname, `../${outAutoFile}`);
+  const deployedContracts = Object.fromEntries(
+    Object.entries(A).filter(([, addr]) => isNonZeroAddress(addr))
+  );
+  const failedContracts = deployFailures.map((f) => f.name);
   const deployment = {
     network: networkName,
     chainId: Number(chainId),
     deployer: deployer.address,
     safe: SAFE,
     timestamp: new Date().toISOString(),
-    contracts: A,
+    contracts: deployedContracts,
+    attemptedContracts: Object.keys(A).length,
+    successfulContracts: Object.keys(deployedContracts).length,
+    failedContracts,
+    deployFailures,
     external: EXT,
   };
   fs.writeFileSync(outPath, JSON.stringify(deployment, null, 2));
+  fs.writeFileSync(outAutoPath, JSON.stringify(deployment, null, 2));
 
   console.log("\n✅ DEPLOYMENT COMPLETE!");
   console.log(`📄 Saved: ${outFile}`);
-  console.log(`   Contracts deployed: ${Object.keys(A).length}`);
+  console.log(`📄 Saved: ${outAutoFile}`);
+  console.log(`   Contracts deployed: ${Object.keys(deployedContracts).length}/${Object.keys(A).length}`);
   if (deployFailures.length > 0) {
     console.log(`\n⚠️  Contracts that failed to deploy (${deployFailures.length}):`);
     for (const f of deployFailures) {
