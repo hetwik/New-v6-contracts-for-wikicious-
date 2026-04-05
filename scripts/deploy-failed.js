@@ -22,10 +22,34 @@ function loadDeploymentFile(networkName) {
   return { file, data: JSON.parse(fs.readFileSync(file, "utf8")) };
 }
 
-async function deployOne(name, args) {
+async function deployOne(name, args, txOverrides = {}) {
   process.stdout.write(`📦 ${name} ... `);
   const factory = await ethers.getContractFactory(name);
-  const contract = await factory.deploy(...args);
+  const { forceRawTx = false, ...deployOverrides } = txOverrides;
+
+  if (forceRawTx) {
+    const txReq = await factory.getDeployTransaction(...args);
+    Object.assign(txReq, deployOverrides);
+    const sent = await factory.runner.sendTransaction(txReq);
+    const receipt = await sent.wait();
+    const address = receipt?.contractAddress;
+    if (!address) throw new Error(`${name} deployment mined but contractAddress missing`);
+    console.log(`✅ ${address}`);
+    return { address, txHash: sent.hash, args };
+  }
+
+  let contract;
+  try {
+    contract = await factory.deploy(...args, deployOverrides);
+  } catch (e) {
+    const msg = String(e?.message || "");
+    if (!deployOverrides.gasLimit && msg.includes("gas required exceeds allowance")) {
+      console.log("⚠️  gas estimate failed, retrying with manual gasLimit=30000000");
+      contract = await factory.deploy(...args, { gasLimit: 30_000_000 });
+    } else {
+      throw e;
+    }
+  }
   await contract.waitForDeployment();
   const address = await contract.getAddress();
   console.log(`✅ ${address}`);
@@ -90,7 +114,7 @@ async function main() {
               initPrice: 1,
             },
           ],
-        ]);
+        ], { gasLimit: 30_000_000, forceRawTx: true });
       } else if (name === "WikiMultisigGuard") {
         result = await deployOne(name, [signerPool, 2]);
       } else if (name === "WikiStrategyVault") {
