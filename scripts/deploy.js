@@ -158,7 +158,7 @@ async function main() {
     deployer.address, // public sale
     deployer.address  // reserve
   );
-  [C.oracle, A.WikiOracle]       = await d("WikiOracle",         deployer.address, EXT.SEQ_FEED);
+  [C.oracle, A.WikiOracle]       = await d("WikiOracle",         deployer.address, EXT.SEQ_FEED, EXT.PYTH);
   [C.vault,  A.WikiVault]        = await d("WikiVault",          EXT.USDC, deployer.address);
   [C.mktReg, A.WikiMarketRegistry] = await d("WikiMarketRegistry", deployer.address);
   [C.tvlGuard, A.WikiTVLGuard]   = await d("WikiTVLGuard",       deployer.address);
@@ -168,9 +168,9 @@ async function main() {
   // PHASE 2: AMM & SPOT TRADING
   // ─────────────────────────────────────────────────────────────
   console.log("\n── PHASE 2: AMM & Spot Trading ──");
-  [C.amm,     A.WikiAMM]         = await d("WikiAMM",            deployer.address);
+  [C.amm,     A.WikiAMM]         = await d("WikiAMM",            EXT.USDC, A.WikiVault, A.WikiOracle, deployer.address);
   [C.vamm,    A.WikiVirtualAMM]  = await d("WikiVirtualAMM",     A.WikiOracle, A.WikiVault, EXT.USDC, deployer.address);
-  [C.spot,    A.WikiSpot]        = await d("WikiSpot",           A.WikiVault, A.WikiOracle, deployer.address);
+  [C.spot,    A.WikiSpot]        = await d("WikiSpot",           deployer.address, deployer.address);
   [C.spotRtr, A.WikiSpotRouter]  = await d("WikiSpotRouter",     deployer.address, deployer.address);
   [C.orderBook, A.WikiOrderBook] = await d("WikiOrderBook",      deployer.address);
   [C.sor,     A.WikiSmartOrderRouter] = await d("WikiSmartOrderRouter", A.WikiSpot, deployer.address, deployer.address);
@@ -182,9 +182,9 @@ async function main() {
   [C.perp,    A.WikiPerp]        = await d("WikiPerp",           A.WikiVault, A.WikiOracle, deployer.address);
   [C.gmx,     A.WikiGMXBackstop] = await d("WikiGMXBackstop",   A.WikiVault, A.WikiOracle, deployer.address, deployer.address);
   [C.circuitBreaker, A.WikiCircuitBreaker] = await d("WikiCircuitBreaker", deployer.address);
-  [C.partialLiq, A.WikiPartialLiquidation] = await d("WikiPartialLiquidation", deployer.address);
-  [C.volMargin, A.WikiVolatilityMargin] = await d("WikiVolatilityMargin", A.WikiOracle, deployer.address);
-  [C.darkPool, A.WikiDarkPool]   = await d("WikiDarkPool",       EXT.USDC, deployer.address);
+  [C.partialLiq, A.WikiPartialLiquidation] = await d("WikiPartialLiquidation", deployer.address, EXT.USDC, A.WikiPerp, A.WikiVolatilityMargin, A.WikiInsuranceFundYield);
+  [C.volMargin, A.WikiVolatilityMargin] = await d("WikiVolatilityMargin", deployer.address);
+  [C.darkPool, A.WikiDarkPool]   = await d("WikiDarkPool",       deployer.address, EXT.USDC, A.WikiRevenueSplitter, deployer.address);
   [C.indexPerp, A.WikiIndexPerp] = await d("WikiIndexPerp",      A.WikiOracle, deployer.address);
   [C.portfolioMargin, A.WikiPortfolioMargin] = await d("WikiPortfolioMargin", EXT.USDC, deployer.address);
 
@@ -196,7 +196,7 @@ async function main() {
   [C.keepSvc, A.WikiKeeperService]  = await d("WikiKeeperService",  EXT.USDC, deployer.address);
   [C.liquidator, A.WikiLiquidator]  = await d("WikiLiquidator",     A.WikiPerp, A.WikiVault, A.WikiKeeperRegistry, EXT.USDC, deployer.address);
   [C.adl,     A.WikiADL]            = await d("WikiADL",            deployer.address, A.WikiVirtualAMM, A.WikiVault, EXT.USDC);
-  [C.liqAuction, A.WikiLiqAuctionUI] = await d("WikiLiqAuctionUI",  EXT.USDC, A.WikiLiquidator, deployer.address);
+  [C.liqAuction, A.WikiLiqAuctionUI] = await d("WikiLiqAuctionUI",  deployer.address, A.WikiLiquidationMarket);
   [C.liqProt, A.WikiLiqProtection]   = await d("WikiLiqProtection", deployer.address, EXT.USDC, deployer.address);
 
   // ─────────────────────────────────────────────────────────────
@@ -206,9 +206,9 @@ async function main() {
   [C.staking, A.WikiStaking]     = await d("WikiStaking",        A.WIKToken, EXT.USDC, deployer.address);
   [C.gauge,   A.WikiGaugeVoting] = await d("WikiGaugeVoting",    deployer.address, A.WikiStaking, A.WIKToken, EXT.USDC, deployer.address);
   [C.daoTreas, A.WikiDAOTreasury] = await d("WikiDAOTreasury",   EXT.USDC, deployer.address, deployer.address);
-  [C.timelock, A.WikiTimelockController] = await d("WikiTimelockController", deployer.address);
+  [C.timelock, A.WikiTimelockController] = await d("WikiTimelockController", deployer.address, [deployer.address], [deployer.address], [deployer.address]);
   [C.dao,     A.WikiAgenticDAO]  = await d("WikiAgenticDAO",     A.WikiStaking, deployer.address);
-  [C.msGuard, A.WikiMultisigGuard] = await d("WikiMultisigGuard", deployer.address);
+  [C.msGuard, A.WikiMultisigGuard] = await d("WikiMultisigGuard", [deployer.address], 1);
   [C.aiGuard, A.WikiAIGuardrails] = await d("WikiAIGuardrails",  EXT.USDC, deployer.address, deployer.address);
 
   // ─────────────────────────────────────────────────────────────
@@ -227,20 +227,20 @@ async function main() {
   // ─────────────────────────────────────────────────────────────
   console.log("\n── PHASE 7: Yield Vaults ──");
   [C.backstop, A.WikiBackstopVault]  = await d("WikiBackstopVault",    deployer.address, EXT.USDC, deployer.address);
-  [C.deltaNeutral, A.WikiDeltaNeutralVault] = await d("WikiDeltaNeutralVault", deployer.address);
-  [C.realYield, A.WikiRealYieldLP]   = await d("WikiRealYieldLP",      EXT.USDC, deployer.address);
+  [C.deltaNeutral, A.WikiDeltaNeutralVault] = await d("WikiDeltaNeutralVault", deployer.address, EXT.USDC, A.WikiPerp, A.WikiLending, 1, 0);
+  [C.realYield, A.WikiRealYieldLP]   = await d("WikiRealYieldLP",      deployer.address, EXT.USDC, A.WikiRevenueSplitter);
   [C.fundingArb, A.WikiFundingArbVault] = await d("WikiFundingArbVault", EXT.USDC, deployer.address);
   [C.yieldAgg, A.WikiYieldAggregator] = await d("WikiYieldAggregator", EXT.USDC, deployer.address);
-  [C.yieldSlice, A.WikiYieldSlice]   = await d("WikiYieldSlice",       A.WikiLending, deployer.address);
-  [C.levYield, A.WikiLeveragedYield] = await d("WikiLeveragedYield",   EXT.USDC, A.WikiLending, deployer.address);
-  [C.structProd, A.WikiStructuredProduct] = await d("WikiStructuredProduct", EXT.USDC, deployer.address);
-  [C.posIns,  A.WikiPositionInsurance] = await d("WikiPositionInsurance", EXT.USDC, deployer.address);
-  [C.autoComp, A.WikiAutoCompounder]  = await d("WikiAutoCompounder",   A.WikiStaking, A.WIKToken, deployer.address);
+  [C.yieldSlice, A.WikiYieldSlice]   = await d("WikiYieldSlice",       "Wiki Yield Slice", "wYS", Math.floor(Date.now()/1000) + 365*24*3600, deployer.address);
+  [C.levYield, A.WikiLeveragedYield] = await d("WikiLeveragedYield",   deployer.address, A.WikiLending, A.WikiRevenueSplitter, deployer.address);
+  [C.structProd, A.WikiStructuredProduct] = await d("WikiStructuredProduct", deployer.address, EXT.USDC, A.WikiRevenueSplitter, deployer.address);
+  [C.posIns,  A.WikiPositionInsurance] = await d("WikiPositionInsurance", deployer.address, EXT.USDC, A.WikiRevenueSplitter, deployer.address);
+  [C.autoComp, A.WikiAutoCompounder]  = await d("WikiAutoCompounder",   deployer.address, A.WIKToken, EXT.USDC, A.WikiTokenVesting, A.WikiStaking);
   [C.insYield, A.WikiInsuranceFundYield] = await d("WikiInsuranceFundYield", EXT.USDC, A.WikiLending, deployer.address, deployer.address);
   [C.extIns,  A.WikiExternalInsurance] = await d("WikiExternalInsurance", EXT.USDC, deployer.address);
-  [C.liqStake, A.WikiLiquidStaking]   = await d("WikiLiquidStaking",   A.WIKToken, deployer.address, 500);
+  [C.liqStake, A.WikiLiquidStaking]   = await d("WikiLiquidStaking",   deployer.address);
   [C.liqRestake, A.WikiLiquidRestaking] = await d("WikiLiquidRestaking", EXT.wstETH, EXT.rETH, EXT.wstETH, deployer.address, ethers.ZeroAddress, deployer.address);
-  [C.vaultMkt, A.WikiVaultMarketplace] = await d("WikiVaultMarketplace", EXT.USDC, deployer.address);
+  [C.vaultMkt, A.WikiVaultMarketplace] = await d("WikiVaultMarketplace", deployer.address, EXT.USDC, deployer.address);
 
   // ─────────────────────────────────────────────────────────────
   // PHASE 8: LIQUIDITY
@@ -252,9 +252,9 @@ async function main() {
   [C.rebal,   A.WikiRebalancer]  = await d("WikiRebalancer",     EXT.USDC, A.WikiOracle, deployer.address);
   [C.hlm,     A.WikiHybridLiquidityManager] = await d("WikiHybridLiquidityManager", deployer.address, A.WikiVault, A.WikiBackstopVault, A.WikiVirtualAMM, deployer.address, EXT.USDC);
   [C.concLP,  A.WikiConcentratedLP] = await d("WikiConcentratedLP", EXT.USDC, deployer.address);
-  [C.lpBoost, A.WikiLPBoost]     = await d("WikiLPBoost",        A.WikiStaking, deployer.address);
-  [C.liqMining, A.WikiLiquidityMining] = await d("WikiLiquidityMining", A.WIKToken, deployer.address);
-  [C.mmAgreement, A.WikiMarketMakerAgreement] = await d("WikiMarketMakerAgreement", EXT.USDC, deployer.address);
+  [C.lpBoost, A.WikiLPBoost]     = await d("WikiLPBoost",        deployer.address, A.WikiStaking, A.WIKToken);
+  [C.liqMining, A.WikiLiquidityMining] = await d("WikiLiquidityMining", deployer.address, A.WIKToken, A.WikiLPBoost);
+  [C.mmAgreement, A.WikiMarketMakerAgreement] = await d("WikiMarketMakerAgreement", deployer.address, EXT.USDC, A.WIKToken);
   [C.mlv,     A.WikiManagedLiquidityVault] = await d("WikiManagedLiquidityVault", "Wiki ETH/USDC Vault", "MLV-ETH", A.WikiSpot, deployer.address, deployer.address, 1, EXT.WETH, EXT.USDC, ethers.parseUnits("3000", 18), ethers.parseUnits("4000", 18), deployer.address);
 
   // ─────────────────────────────────────────────────────────────
@@ -262,10 +262,10 @@ async function main() {
   // ─────────────────────────────────────────────────────────────
   console.log("\n── PHASE 9: Revenue ──");
   // WikiIdleYieldRouter — unified idle capital optimizer for all 15 contracts
-  [C.revSplit, A.WikiRevenueSplitter] = await d("WikiRevenueSplitter", EXT.USDC, A.WikiStaking, A.WikiPOL, A.WikiInsuranceFundYield, deployer.address, deployer.address);
+  [C.revSplit, A.WikiRevenueSplitter] = await d("WikiRevenueSplitter", deployer.address, EXT.USDC, A.WikiStaking, A.WikiPOL, A.WikiInsuranceFundYield, deployer.address, deployer.address);
   [C.idleRouter, A.WikiIdleYieldRouter] = await d("WikiIdleYieldRouter",
     EXT.USDC, EXT.AAVE_POOL, A.WikiLending, A.WikiRevenueSplitter, deployer.address);
-  [C.opsVault, A.WikiOpsVault]    = await d("WikiOpsVault",       EXT.USDC, A.WikiLending, A.WikiBackstopVault, deployer.address);
+  [C.opsVault, A.WikiOpsVault]    = await d("WikiOpsVault",       deployer.address, EXT.USDC);
   [C.feeDist,  A.WikiFeeDistributor] = await d("WikiFeeDistributor", EXT.USDC, A.WikiStaking, A.WikiVault, deployer.address, deployer.address);
   [C.buyback,  A.WikiBuybackBurn]  = await d("WikiBuybackBurn",    EXT.USDC, A.WIKToken, EXT.UNI_ROUTER, deployer.address);
   [C.volTiers, A.WikiVolumeTiers]  = await d("WikiVolumeTiers",    deployer.address);
@@ -274,7 +274,7 @@ async function main() {
   [C.gasRebate, A.WikiGasRebate]  = await d("WikiGasRebate",      A.WIKToken, A.WikiStaking, deployer.address);
   [C.makerRew, A.WikiMakerRewards] = await d("WikiMakerRewards",  A.WIKToken, deployer.address);
   [C.stakFeeDisc, A.WikiStakingFeeDiscount] = await d("WikiStakingFeeDiscount", A.WikiStaking, deployer.address);
-  [C.revDash,  A.WikiRevenueDashboard] = await d("WikiRevenueDashboard", deployer.address);
+  [C.revDash,  A.WikiRevenueDashboard] = await d("WikiRevenueDashboard", deployer.address, A.WikiOnChainAnalytics, A.WikiOpsVault);
 
   // ─────────────────────────────────────────────────────────────
   // PHASE 10: PROP TRADING
@@ -293,11 +293,11 @@ async function main() {
   [C.botVault, A.WikiBotVault]   = await d("WikiBotVault",        EXT.USDC, A.WikiPerp, A.WikiOracle, deployer.address);
   [C.userBotFactory, A.WikiUserBotFactory] = await d("WikiUserBotFactory", EXT.USDC, A.WikiPerp, A.WikiOracle, A.WikiRevenueSplitter, A.WikiKeeperRegistry, deployer.address);
   [C.copyTrade, A.WikiCopyTrading] = await d("WikiCopyTrading",   EXT.USDC, A.WikiPerp, deployer.address);
-  [C.condOrder, A.WikiConditionalOrder] = await d("WikiConditionalOrder", A.WikiPerp, A.WikiOracle, deployer.address);
-  [C.trailStop, A.WikiTrailingStop] = await d("WikiTrailingStop", A.WikiPerp, A.WikiOracle, deployer.address);
+  [C.condOrder, A.WikiConditionalOrder] = await d("WikiConditionalOrder", deployer.address, EXT.USDC, A.WikiOracle, A.WikiPerp);
+  [C.trailStop, A.WikiTrailingStop] = await d("WikiTrailingStop", deployer.address, A.WikiOracle, A.WikiPerp, A.WikiOrderBook);
   [C.guarStop,  A.WikiGuaranteedStop] = await d("WikiGuaranteedStop", A.WikiPerp, EXT.USDC, deployer.address);
-  [C.twamm,     A.WikiTWAMM]     = await d("WikiTWAMM",           A.WikiSpot, EXT.USDC, deployer.address);
-  [C.dynLev,    A.WikiDynamicLeverage] = await d("WikiDynamicLeverage", A.WikiOracle, deployer.address);
+  [C.twamm,     A.WikiTWAMM]     = await d("WikiTWAMM",           deployer.address, A.WikiSpotRouter, EXT.USDC, deployer.address);
+  [C.dynLev,    A.WikiDynamicLeverage] = await d("WikiDynamicLeverage", deployer.address, A.WikiVault, A.WikiVirtualAMM, A.WikiPerp);
   [C.levScaler, A.WikiLeverageScaler] = await d("WikiLeverageScaler", deployer.address);
   [C.internalArb, A.WikiInternalArb] = await d("WikiInternalArb", deployer.address, A.WikiFlashLoan, A.WikiVault, A.WikiSpot, A.WikiVirtualAMM, A.WikiOracle, A.WikiRevenueSplitter, EXT.USDC);
 
@@ -314,7 +314,7 @@ async function main() {
   [C.portTrack, A.WikiPortfolioTracker] = await d("WikiPortfolioTracker", deployer.address);
   [C.tradeHist, A.WikiTradeHistory]     = await d("WikiTradeHistory",     deployer.address);
   [C.instPool,  A.WikiInstitutionalPool] = await d("WikiInstitutionalPool", EXT.USDC, deployer.address, deployer.address);
-  [C.proofSolv, A.WikiProofOfSolvency]  = await d("WikiProofOfSolvency",  EXT.USDC, deployer.address);
+  [C.proofSolv, A.WikiProofOfSolvency]  = await d("WikiProofOfSolvency",  deployer.address);
   [C.analytics, A.WikiOnChainAnalytics] = await d("WikiOnChainAnalytics", deployer.address);
   [C.dynFee,    A.WikiDynamicFeeHook]   = [C.dfh, A.WikiDynamicFeeHook]; // already deployed
 
@@ -323,16 +323,16 @@ async function main() {
   // ─────────────────────────────────────────────────────────────
   console.log("\n── PHASE 13: Growth & Social ──");
   [C.affiliate, A.WikiAffiliate]         = await d("WikiAffiliate",       deployer.address, EXT.USDC);
-  [C.season,    A.WikiSeasonPoints]      = await d("WikiSeasonPoints",    A.WIKToken, deployer.address);
+  [C.season,    A.WikiSeasonPoints]      = await d("WikiSeasonPoints",    deployer.address, A.WIKToken, EXT.USDC);
   [C.leaderboard, A.WikiLeaderboard]     = await d("WikiLeaderboard",     deployer.address);
   [C.refLeader, A.WikiReferralLeaderboard] = await d("WikiReferralLeaderboard", EXT.USDC, deployer.address);
   [C.revNFT,    A.WikiRevenueShareNFT]   = await d("WikiRevenueShareNFT", deployer.address, EXT.USDC, "ipfs://wikicious/");
-  [C.refNFT,    A.WikiReferralNFT]       = await d("WikiReferralNFT",     deployer.address);
-  [C.vestMkt,   A.WikiVestingMarket]     = await d("WikiVestingMarket",   EXT.USDC, deployer.address);
+  [C.refNFT,    A.WikiReferralNFT]       = await d("WikiReferralNFT",     deployer.address, EXT.USDC, "https://nft.wikicious.io/referral/");
+  [C.vestMkt,   A.WikiVestingMarket]     = await d("WikiVestingMarket",   deployer.address, EXT.USDC, A.WIKToken, A.WikiTokenVesting, deployer.address);
   [C.traderPass, A.WikiTraderPass]       = await d("WikiTraderPass",      EXT.USDC, deployer.address, deployer.address);
   [C.traderSub,  A.WikiTraderSubscription] = await d("WikiTraderSubscription", EXT.USDC, deployer.address, deployer.address);
-  [C.subAccount, A.WikiSubAccount]       = await d("WikiSubAccount",      deployer.address);
-  [C.tokenVest,  A.WikiTokenVesting]     = await d("WikiTokenVesting",    deployer.address, EXT.USDC, A.WikiRevenueSplitter);
+  [C.subAccount, A.WikiSubAccount]       = await d("WikiSubAccount",      deployer.address, EXT.USDC);
+  [C.tokenVest,  A.WikiTokenVesting]     = await d("WikiTokenVesting",    deployer.address, A.WIKToken);
   [C.liqIns,    A.WikiLiquidationInsurance] = await d("WikiLiquidationInsurance", EXT.USDC, A.WikiLiquidator, deployer.address);
   [C.liqMkt,    A.WikiLiquidationMarket] = await d("WikiLiquidationMarket", deployer.address, A.WikiPerp, A.WikiVault, A.WikiRevenueSplitter, EXT.USDC);
   [C.ieo,       A.WikiIEOPlatform]       = await d("WikiIEOPlatform",     EXT.USDC, A.WIKToken, deployer.address, deployer.address);
@@ -352,17 +352,17 @@ async function main() {
   console.log("\n── PHASE 14: Wallet & Infra ──");
   [C.saFactory, A.WikiSmartAccountFactory] = await d("WikiSmartAccountFactory");
   [C.paymaster, A.WikiPaymaster]         = await d("WikiPaymaster",      EXT.ENTRYPOINT, deployer.address);
-  [C.apiGw,     A.WikiAPIGateway]        = await d("WikiAPIGateway",     deployer.address);
-  [C.tgGw,      A.WikiTelegramGateway]   = await d("WikiTelegramGateway", deployer.address);
+  [C.apiGw,     A.WikiAPIGateway]        = await d("WikiAPIGateway",     deployer.address, EXT.USDC, deployer.address);
+  [C.tgGw,      A.WikiTelegramGateway]   = await d("WikiTelegramGateway", deployer.address, deployer.address);
   [C.pushNotif, A.WikiPushNotification]  = await d("WikiPushNotification", deployer.address);
   [C.zap,       A.WikiZap]               = await d("WikiZap",            A.WikiSpot, deployer.address, deployer.address);
   [C.fiatOnRamp, A.WikiFiatOnRamp]       = await d("WikiFiatOnRamp",     EXT.USDC, A.WikiRevenueSplitter, deployer.address);
-  [C.bridge,    A.WikiBridge]            = await d("WikiBridge",         deployer.address);
+  [C.bridge,    A.WikiBridge]            = await d("WikiBridge",         EXT.LZ_ENDPOINT, deployer.address);
   [C.xRouter,   A.WikiCrossChainRouter]  = await d("WikiCrossChainRouter", A.WikiVault, A.WikiBridge, A.WikiStaking, A.WikiOracle, EXT.USDC, deployer.address);
-  [C.forexOracle, A.WikiForexOracle]     = await d("WikiForexOracle",    deployer.address);
+  [C.forexOracle, A.WikiForexOracle]     = await d("WikiForexOracle",    EXT.PYTH, deployer.address, A.WikiMarketRegistry, deployer.address);
 
   // Adapters (external integrations — may fail if deps not installed)
-  try { [C.aaveAdpt, A.AaveV3Adapter]   = await d("AaveV3Adapter",   EXT.AAVE_POOL, EXT.USDC, deployer.address); } catch(e) { console.log("  ⚠  AaveV3Adapter skipped"); }
+  try { [C.aaveAdpt, A.AaveV3Adapter]   = await d("AaveV3Adapter",   A.WikiYieldAggregator, deployer.address); } catch(e) { console.log("  ⚠  AaveV3Adapter skipped"); }
   try { [C.rdntAdpt, A.RadiantAdapter]  = await d("RadiantAdapter",  EXT.USDC, deployer.address); } catch(e) { console.log("  ⚠  RadiantAdapter skipped"); }
 
   // ═══════════════════════════════════════════════════════════════
