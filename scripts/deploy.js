@@ -30,19 +30,6 @@ const EXT_MAINNET = {
 };
 
 
-function describeAddressIssue(raw) {
-  const trimmed = raw.trim();
-  const noPrefix = trimmed.startsWith("0x") ? trimmed.slice(2) : trimmed;
-  const badChars = [...new Set(noPrefix.match(/[^0-9a-fA-F]/g) || [])];
-
-  const hints = [];
-  if (!trimmed.startsWith("0x")) hints.push("missing 0x prefix");
-  if (noPrefix.length !== 40) hints.push(`expected 40 hex chars, got ${noPrefix.length}`);
-  if (badChars.length > 0) hints.push(`contains non-hex chars: ${badChars.join("")}`);
-
-  return hints.length > 0 ? ` (${hints.join("; ")})` : "";
-}
-
 function normalizeAddress(value, label, { allowZero = true } = {}) {
   if (value === undefined || value === null) {
     throw new Error(`${label} is missing`);
@@ -54,9 +41,8 @@ function normalizeAddress(value, label, { allowZero = true } = {}) {
   }
 
   if (!ethers.isAddress(raw)) {
-    const details = describeAddressIssue(raw);
     throw new Error(
-      `${label} is not a valid hex address: "${raw}"${details}. ` +
+      `${label} is not a valid hex address: "${raw}". ` +
       `Use a 0x-prefixed 20-byte address, not an ENS/domain name.`
     );
   }
