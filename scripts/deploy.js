@@ -147,7 +147,17 @@ async function main() {
   // PHASE 1: CORE TOKENS & ORACLE
   // ─────────────────────────────────────────────────────────────
   console.log("── PHASE 1: Core Tokens & Oracle ──");
-  [C.wik,    A.WIKToken]         = await d("WIKToken",           deployer.address);
+  [C.wik,    A.WIKToken]         = await d(
+    "WIKToken",
+    deployer.address, // multisig
+    deployer.address, // community emitter
+    deployer.address, // pol vault
+    deployer.address, // team vesting
+    deployer.address, // investor vesting
+    deployer.address, // treasury
+    deployer.address, // public sale
+    deployer.address  // reserve
+  );
   [C.oracle, A.WikiOracle]       = await d("WikiOracle",         deployer.address, EXT.SEQ_FEED);
   [C.vault,  A.WikiVault]        = await d("WikiVault",          EXT.USDC, deployer.address);
   [C.mktReg, A.WikiMarketRegistry] = await d("WikiMarketRegistry", deployer.address);
