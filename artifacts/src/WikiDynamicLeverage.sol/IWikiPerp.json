@@ -1,0 +1,57 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IWikiPerp",
+  "sourceName": "src/WikiDynamicLeverage.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "marketsLength",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "marketIdx",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxLeverageBps",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxPositionSize",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxOILong",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxOIShort",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateMarketCaps",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
