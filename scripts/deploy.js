@@ -37,8 +37,6 @@ function requireEnv(name) {
   return value;
 }
 
-const FALLBACK_EXTERNAL = "0x000000000000000000000000000000000000dEaD";
-
 function getExternalAddresses(networkName) {
   if (networkName === "arbitrum_one") {
     return {
@@ -60,32 +58,46 @@ function getExternalAddresses(networkName) {
     };
   }
 
-  const getOrFallback = (key) => process.env[key] || FALLBACK_EXTERNAL;
-  const ext = {
-    USDC:        getOrFallback("EXT_USDC"),
-    WETH:        getOrFallback("EXT_WETH"),
-    WBTC:        getOrFallback("EXT_WBTC"),
-    ARB:         getOrFallback("EXT_ARB"),
-    USDT:        process.env.EXT_USDT || FALLBACK_EXTERNAL,
-    wstETH:      getOrFallback("EXT_WSTETH"),
-    rETH:        getOrFallback("EXT_RETH"),
-    SEQ_FEED:    getOrFallback("EXT_SEQ_FEED"),
-    PYTH:        process.env.EXT_PYTH || FALLBACK_EXTERNAL,
-    LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || FALLBACK_EXTERNAL,
-    ENTRYPOINT:  getOrFallback("EXT_ENTRYPOINT"),
-    AAVE_POOL:   process.env.EXT_AAVE_POOL || FALLBACK_EXTERNAL,
-    UNI_ROUTER:  getOrFallback("EXT_UNI_ROUTER"),
-    GMX_ROUTER:  process.env.EXT_GMX_ROUTER || FALLBACK_EXTERNAL,
+  return {
+    USDC:        requireEnv("EXT_USDC"),
+    WETH:        requireEnv("EXT_WETH"),
+    WBTC:        requireEnv("EXT_WBTC"),
+    ARB:         requireEnv("EXT_ARB"),
+    USDT:        process.env.EXT_USDT || ethers.ZeroAddress,
+    wstETH:      requireEnv("EXT_WSTETH"),
+    rETH:        requireEnv("EXT_RETH"),
+    SEQ_FEED:    requireEnv("EXT_SEQ_FEED"),
+    PYTH:        process.env.EXT_PYTH || ethers.ZeroAddress,
+    LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || ethers.ZeroAddress,
+    ENTRYPOINT:  requireEnv("EXT_ENTRYPOINT"),
+    AAVE_POOL:   process.env.EXT_AAVE_POOL || ethers.ZeroAddress,
+    UNI_ROUTER:  requireEnv("EXT_UNI_ROUTER"),
+    GMX_ROUTER:  process.env.EXT_GMX_ROUTER || ethers.ZeroAddress,
   };
+}
 
-  const missing = Object.entries(ext)
-    .filter(([key, val]) => !process.env[`EXT_${key.toUpperCase()}`] && val === FALLBACK_EXTERNAL)
-    .map(([key]) => `EXT_${key.toUpperCase()}`);
+function validateExternalAddresses(networkName, ext) {
+  if (networkName === "arbitrum_one") return;
 
+  const required = [
+    "USDC",
+    "WETH",
+    "WBTC",
+    "ARB",
+    "wstETH",
+    "rETH",
+    "SEQ_FEED",
+    "ENTRYPOINT",
+    "UNI_ROUTER",
+  ];
+
+  const missing = required.filter((k) => !ext[k] || ext[k] === ethers.ZeroAddress);
   if (missing.length > 0) {
-    console.log(`⚠  ${networkName}: using fallback address for unset externals: ${missing.join(", ")}`);
+    const keys = missing.map((k) => `EXT_${k.toUpperCase()}`);
+    throw new Error(
+      `Missing required env vars for ${networkName}: ${keys.join(", ")}`
+    );
   }
-  return ext;
 }
 
 // ── Deploy helper ────────────────────────────────────────────────
@@ -116,6 +128,7 @@ async function safe(label, fn) {
 async function main() {
   const networkName = hre.network.name;
   const EXT = getExternalAddresses(networkName);
+  validateExternalAddresses(networkName, EXT);
 
   const [deployer] = await ethers.getSigners();
   const SAFE           = process.env.GENESIS_SAFE_ADDRESS || "0xc01fAE37aE7a4051Eafea26e047f36394054779c";
