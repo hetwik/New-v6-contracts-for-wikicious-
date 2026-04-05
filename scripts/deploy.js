@@ -20,7 +20,7 @@ const EXT_MAINNET = {
   ARB:         "0x912CE59144191C1204E64559FE8253a0e49E6548",
   USDT:        "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
   wstETH:      "0x5979D7b546E38E414F7E9822514be443A4800529",
-  rETH:        "0xEC70Dcb4A1EFa46b8F2D97C310C9c4790ba5ffA",
+  rETH:        "0xEC70Dcb4A1EFa46b8F2D97C310C9c4790ba5ffA8",
   SEQ_FEED:    "0xFdB631F5EE196F0ed6FAa767959853A9F217697D",
   PYTH:        "0xff1a0f4744e8582DF1aE09D5611b887B6a12925C",
   LZ_ENDPOINT: "0x1a44076050125825900e736c501f859c50fE728c",
@@ -31,12 +31,26 @@ const EXT_MAINNET = {
 };
 
 
+function sanitizeAddressLike(value) {
+  let raw = String(value ?? "").trim();
+  if (!raw) return "";
+  raw = raw.replace(/['",;\s]/g, "");
+  if (/^0x[0-9a-fA-F]{40}$/.test(raw)) return raw.toLowerCase();
+  if (/^[0-9a-fA-F]{40}$/.test(raw)) return `0x${raw.toLowerCase()}`;
+  const m = raw.match(/0x[0-9a-fA-F]{40}|[0-9a-fA-F]{40}/);
+  if (m) {
+    const v = m[0].startsWith("0x") ? m[0] : `0x${m[0]}`;
+    return v.toLowerCase();
+  }
+  return raw;
+}
+
 function normalizeAddress(value, label, { allowZero = true } = {}) {
   if (value === undefined || value === null) {
     throw new Error(`${label} is missing`);
   }
 
-  const raw = String(value).trim();
+  const raw = sanitizeAddressLike(value);
   if (!raw) {
     throw new Error(`${label} is empty`);
   }
@@ -64,8 +78,18 @@ function requireEnv(name) {
   return value;
 }
 
+function normalizeAddressOrFallback(value, label, fallback, options = {}) {
+  try {
+    return normalizeAddress(value, label, options);
+  } catch (err) {
+    const fb = normalizeAddress(fallback, `${label}_FALLBACK`, options);
+    console.log(`⚠️  ${label} invalid, using fallback ${fb}`);
+    return fb;
+  }
+}
+
 function getExternalAddresses(networkName) {
-  const ext = networkName === "arbitrum_one"
+  const ext = networkName === "arbitrum_one" || networkName === "arbitrum_sepolia"
     ? {
         ...EXT_MAINNET,
         USDC:        process.env.EXT_USDC || EXT_MAINNET.USDC,
@@ -84,27 +108,32 @@ function getExternalAddresses(networkName) {
         GMX_ROUTER:  process.env.EXT_GMX_ROUTER || EXT_MAINNET.GMX_ROUTER,
       }
     : {
-        USDC:        requireEnv("EXT_USDC"),
-        WETH:        requireEnv("EXT_WETH"),
-        WBTC:        requireEnv("EXT_WBTC"),
-        ARB:         requireEnv("EXT_ARB"),
+        USDC:        process.env.EXT_USDC || EXT_MAINNET.USDC,
+        WETH:        process.env.EXT_WETH || EXT_MAINNET.WETH,
+        WBTC:        process.env.EXT_WBTC || EXT_MAINNET.WBTC,
+        ARB:         process.env.EXT_ARB || EXT_MAINNET.ARB,
         USDT:        process.env.EXT_USDT || ethers.ZeroAddress,
-        wstETH:      requireEnv("EXT_WSTETH"),
-        rETH:        requireEnv("EXT_RETH"),
-        SEQ_FEED:    requireEnv("EXT_SEQ_FEED"),
+        wstETH:      process.env.EXT_WSTETH || EXT_MAINNET.wstETH,
+        rETH:        process.env.EXT_RETH || EXT_MAINNET.rETH,
+        SEQ_FEED:    process.env.EXT_SEQ_FEED || EXT_MAINNET.SEQ_FEED,
         PYTH:        process.env.EXT_PYTH || ethers.ZeroAddress,
         LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || ethers.ZeroAddress,
-        ENTRYPOINT:  requireEnv("EXT_ENTRYPOINT"),
+        ENTRYPOINT:  process.env.EXT_ENTRYPOINT || EXT_MAINNET.ENTRYPOINT,
         AAVE_POOL:   process.env.EXT_AAVE_POOL || ethers.ZeroAddress,
-        UNI_ROUTER:  requireEnv("EXT_UNI_ROUTER"),
+        UNI_ROUTER:  process.env.EXT_UNI_ROUTER || EXT_MAINNET.UNI_ROUTER,
         GMX_ROUTER:  process.env.EXT_GMX_ROUTER || ethers.ZeroAddress,
       };
 
   return Object.fromEntries(
-    Object.entries(ext).map(([key, value]) => [
-      key,
-      normalizeAddress(value, `EXT_${key.toUpperCase()}`),
-    ])
+    Object.entries(ext).map(([key, value]) => {
+      const label = `EXT_${key.toUpperCase()}`;
+      const fallback =
+        EXT_MAINNET[key] ??
+        EXT_MAINNET[key.toLowerCase()] ??
+        ethers.ZeroAddress;
+
+      return [key, normalizeAddressOrFallback(value, label, fallback)];
+    })
   );
 }
 
