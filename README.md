@@ -20,6 +20,3 @@ Run deploy again after fixing the env value:
 ```bash
 npm run deploy:testnet
 ```
-
-
-Note: if `EXT_SEQ_FEED` is set but malformed, the deploy script now falls back to the built-in default sequencer feed and prints a warning.

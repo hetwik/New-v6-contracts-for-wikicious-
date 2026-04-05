@@ -30,19 +30,6 @@ const EXT_MAINNET = {
 };
 
 
-function describeAddressIssue(raw) {
-  const trimmed = raw.trim();
-  const noPrefix = trimmed.startsWith("0x") ? trimmed.slice(2) : trimmed;
-  const badChars = [...new Set(noPrefix.match(/[^0-9a-fA-F]/g) || [])];
-
-  const hints = [];
-  if (!trimmed.startsWith("0x")) hints.push("missing 0x prefix");
-  if (noPrefix.length !== 40) hints.push(`expected 40 hex chars, got ${noPrefix.length}`);
-  if (badChars.length > 0) hints.push(`contains non-hex chars: ${badChars.join("")}`);
-
-  return hints.length > 0 ? ` (${hints.join("; ")})` : "";
-}
-
 function normalizeAddress(value, label, { allowZero = true } = {}) {
   if (value === undefined || value === null) {
     throw new Error(`${label} is missing`);
@@ -54,9 +41,8 @@ function normalizeAddress(value, label, { allowZero = true } = {}) {
   }
 
   if (!ethers.isAddress(raw)) {
-    const details = describeAddressIssue(raw);
     throw new Error(
-      `${label} is not a valid hex address: "${raw}"${details}. ` +
+      `${label} is not a valid hex address: "${raw}". ` +
       `Use a 0x-prefixed 20-byte address, not an ENS/domain name.`
     );
   }
@@ -69,27 +55,6 @@ function normalizeAddress(value, label, { allowZero = true } = {}) {
   return normalized;
 }
 
-function resolveAddress(value, label) {
-  return normalizeAddress(value, label);
-}
-
-function envOrDefaultAddress(envValue, fallbackValue, label) {
-  if (envValue === undefined || envValue === null || String(envValue).trim() === "") {
-    return resolveAddress(fallbackValue, label);
-  }
-
-  try {
-    return resolveAddress(envValue, label);
-  } catch (error) {
-    if (fallbackValue !== undefined && fallbackValue !== null) {
-      const fallback = resolveAddress(fallbackValue, label);
-      console.warn(`⚠️  ${label} is invalid in env; using default ${fallback} instead.`);
-      return fallback;
-    }
-    throw error;
-  }
-}
-
 function requireEnv(name) {
   const value = process.env[name];
   if (!value) {
@@ -99,41 +64,47 @@ function requireEnv(name) {
 }
 
 function getExternalAddresses(networkName) {
-  if (networkName === "arbitrum_one") {
-    return {
-      USDC:        envOrDefaultAddress(process.env.EXT_USDC, EXT_MAINNET.USDC, "EXT_USDC"),
-      WETH:        envOrDefaultAddress(process.env.EXT_WETH, EXT_MAINNET.WETH, "EXT_WETH"),
-      WBTC:        envOrDefaultAddress(process.env.EXT_WBTC, EXT_MAINNET.WBTC, "EXT_WBTC"),
-      ARB:         envOrDefaultAddress(process.env.EXT_ARB, EXT_MAINNET.ARB, "EXT_ARB"),
-      USDT:        envOrDefaultAddress(process.env.EXT_USDT, EXT_MAINNET.USDT, "EXT_USDT"),
-      wstETH:      envOrDefaultAddress(process.env.EXT_WSTETH, EXT_MAINNET.wstETH, "EXT_WSTETH"),
-      rETH:        envOrDefaultAddress(process.env.EXT_RETH, EXT_MAINNET.rETH, "EXT_RETH"),
-      SEQ_FEED:    envOrDefaultAddress(process.env.EXT_SEQ_FEED, EXT_MAINNET.SEQ_FEED, "EXT_SEQ_FEED"),
-      PYTH:        envOrDefaultAddress(process.env.EXT_PYTH, EXT_MAINNET.PYTH, "EXT_PYTH"),
-      LZ_ENDPOINT: envOrDefaultAddress(process.env.EXT_LZ_ENDPOINT, EXT_MAINNET.LZ_ENDPOINT, "EXT_LZ_ENDPOINT"),
-      ENTRYPOINT:  envOrDefaultAddress(process.env.EXT_ENTRYPOINT, EXT_MAINNET.ENTRYPOINT, "EXT_ENTRYPOINT"),
-      AAVE_POOL:   envOrDefaultAddress(process.env.EXT_AAVE_POOL, EXT_MAINNET.AAVE_POOL, "EXT_AAVE_POOL"),
-      UNI_ROUTER:  envOrDefaultAddress(process.env.EXT_UNI_ROUTER, EXT_MAINNET.UNI_ROUTER, "EXT_UNI_ROUTER"),
-      GMX_ROUTER:  envOrDefaultAddress(process.env.EXT_GMX_ROUTER, EXT_MAINNET.GMX_ROUTER, "EXT_GMX_ROUTER"),
-    };
-  }
+  const ext = networkName === "arbitrum_one"
+    ? {
+        ...EXT_MAINNET,
+        USDC:        process.env.EXT_USDC || EXT_MAINNET.USDC,
+        WETH:        process.env.EXT_WETH || EXT_MAINNET.WETH,
+        WBTC:        process.env.EXT_WBTC || EXT_MAINNET.WBTC,
+        ARB:         process.env.EXT_ARB || EXT_MAINNET.ARB,
+        USDT:        process.env.EXT_USDT || EXT_MAINNET.USDT,
+        wstETH:      process.env.EXT_WSTETH || EXT_MAINNET.wstETH,
+        rETH:        process.env.EXT_RETH || EXT_MAINNET.rETH,
+        SEQ_FEED:    process.env.EXT_SEQ_FEED || EXT_MAINNET.SEQ_FEED,
+        PYTH:        process.env.EXT_PYTH || EXT_MAINNET.PYTH,
+        LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || EXT_MAINNET.LZ_ENDPOINT,
+        ENTRYPOINT:  process.env.EXT_ENTRYPOINT || EXT_MAINNET.ENTRYPOINT,
+        AAVE_POOL:   process.env.EXT_AAVE_POOL || EXT_MAINNET.AAVE_POOL,
+        UNI_ROUTER:  process.env.EXT_UNI_ROUTER || EXT_MAINNET.UNI_ROUTER,
+        GMX_ROUTER:  process.env.EXT_GMX_ROUTER || EXT_MAINNET.GMX_ROUTER,
+      }
+    : {
+        USDC:        requireEnv("EXT_USDC"),
+        WETH:        requireEnv("EXT_WETH"),
+        WBTC:        requireEnv("EXT_WBTC"),
+        ARB:         requireEnv("EXT_ARB"),
+        USDT:        process.env.EXT_USDT || ethers.ZeroAddress,
+        wstETH:      requireEnv("EXT_WSTETH"),
+        rETH:        requireEnv("EXT_RETH"),
+        SEQ_FEED:    requireEnv("EXT_SEQ_FEED"),
+        PYTH:        process.env.EXT_PYTH || ethers.ZeroAddress,
+        LZ_ENDPOINT: process.env.EXT_LZ_ENDPOINT || ethers.ZeroAddress,
+        ENTRYPOINT:  requireEnv("EXT_ENTRYPOINT"),
+        AAVE_POOL:   process.env.EXT_AAVE_POOL || ethers.ZeroAddress,
+        UNI_ROUTER:  requireEnv("EXT_UNI_ROUTER"),
+        GMX_ROUTER:  process.env.EXT_GMX_ROUTER || ethers.ZeroAddress,
+      };
 
-  return {
-    USDC:        resolveAddress(requireEnv("EXT_USDC"), "EXT_USDC"),
-    WETH:        resolveAddress(requireEnv("EXT_WETH"), "EXT_WETH"),
-    WBTC:        resolveAddress(requireEnv("EXT_WBTC"), "EXT_WBTC"),
-    ARB:         resolveAddress(requireEnv("EXT_ARB"), "EXT_ARB"),
-    USDT:        envOrDefaultAddress(process.env.EXT_USDT, ethers.ZeroAddress, "EXT_USDT"),
-    wstETH:      resolveAddress(requireEnv("EXT_WSTETH"), "EXT_WSTETH"),
-    rETH:        resolveAddress(requireEnv("EXT_RETH"), "EXT_RETH"),
-    SEQ_FEED:    envOrDefaultAddress(process.env.EXT_SEQ_FEED, EXT_MAINNET.SEQ_FEED, "EXT_SEQ_FEED"),
-    PYTH:        envOrDefaultAddress(process.env.EXT_PYTH, ethers.ZeroAddress, "EXT_PYTH"),
-    LZ_ENDPOINT: envOrDefaultAddress(process.env.EXT_LZ_ENDPOINT, ethers.ZeroAddress, "EXT_LZ_ENDPOINT"),
-    ENTRYPOINT:  resolveAddress(requireEnv("EXT_ENTRYPOINT"), "EXT_ENTRYPOINT"),
-    AAVE_POOL:   envOrDefaultAddress(process.env.EXT_AAVE_POOL, ethers.ZeroAddress, "EXT_AAVE_POOL"),
-    UNI_ROUTER:  resolveAddress(requireEnv("EXT_UNI_ROUTER"), "EXT_UNI_ROUTER"),
-    GMX_ROUTER:  envOrDefaultAddress(process.env.EXT_GMX_ROUTER, ethers.ZeroAddress, "EXT_GMX_ROUTER"),
-  };
+  return Object.fromEntries(
+    Object.entries(ext).map(([key, value]) => [
+      key,
+      normalizeAddress(value, `EXT_${key.toUpperCase()}`),
+    ])
+  );
 }
 
 
