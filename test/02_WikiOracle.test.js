@@ -49,7 +49,11 @@ describe('WikiOracle', () => {
 
     // Deploy WikiOracle
     const WikiOracle = await ethers.getContractFactory('WikiOracle');
-    oracle = await WikiOracle.deploy(owner.address, await seqFeed.getAddress());
+    oracle = await WikiOracle.deploy(
+      owner.address,
+      await seqFeed.getAddress(),
+      await seqFeed.getAddress() // dummy Pyth address for constructor compatibility
+    );
     await oracle.waitForDeployment();
   });
 
