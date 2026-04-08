@@ -20,18 +20,51 @@ Run deploy again after fixing the env value:
 ```bash
 npm run deploy:testnet
 ```
+
 ## Mainnet Deployment (Arbitrum One)
 
-1. Fill `.env` with all required values (`DEPLOYER_PRIVATE_KEY`, `ALCHEMY_ARBITRUM_URL`, and all `EXT_*` addresses).
-2. Run preflight:
-   ```bash
-   npm run deploy:mainnet:check
-   ```
-3. If preflight passes, deploy:
-   ```bash
-   npm run deploy:mainnet
-   ```
-   This runs `scripts/deploy.js` (full phase-by-phase parity: deploy + full wiring + setup).
+### 1) Fill `.env`
+Provide all required values:
+- `DEPLOYER_PRIVATE_KEY`
+- `ALCHEMY_ARBITRUM_URL`
+- `ETHERSCAN_API_KEY`
+- all `EXT_*` integration addresses
+- `GENESIS_SAFE_ADDRESS`
+
+Use `wikicious-v6-mainnet.env.txt` as the template source.
+
+### 2) Run static readiness checks
+```bash
+npm run mainnet:readiness
+```
+This verifies:
+- no skipped/focused tests (`.skip` / `.only`)
+- no TODO/FIXME/HACK markers in contracts and scripts
+- optimizer/viaIR + chainId mainnet settings in Hardhat config
+- mainnet review/docs files are present
+
+### 3) Run RPC/env preflight
+```bash
+npm run deploy:mainnet:check
+```
+This verifies:
+- required env vars exist
+- address format and zero-address protection
+- no duplicate integration addresses
+- RPC is Arbitrum One (`chainId=42161`)
+- external integration addresses have bytecode on-chain
+- deployer nonce/balance are visible
+
+### 4) Execute gated deployment
+```bash
+npm run deploy:mainnet
+```
+This now runs readiness + preflight automatically before executing `scripts/deploy.js` on `arbitrum_one`.
+
+If you want just the gates without deploying:
+```bash
+npm run deploy:mainnet:ready
+```
 
 If you want heuristic auto-deploy mode instead (faster iteration):
 ```bash

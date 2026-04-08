@@ -1,6 +1,24 @@
 require('@nomicfoundation/hardhat-toolbox');
 require('dotenv').config({ override: true });
 
+const { subtask } = require('hardhat/config');
+const { TASK_COMPILE_SOLIDITY_GET_SOLC_BUILD } = require('hardhat/builtin-tasks/task-names');
+const solc = require('solc');
+
+subtask(TASK_COMPILE_SOLIDITY_GET_SOLC_BUILD, async (args, _hre, runSuper) => {
+  if (args.solcVersion === '0.8.26') {
+    return {
+      compilerPath: require.resolve('solc/soljson.js'),
+      isSolcJs: true,
+      version: args.solcVersion,
+      longVersion: solc.version(),
+    };
+  }
+
+  return runSuper(args);
+});
+
+
 if (process.env.HARDHAT_HTTPS_PROXY && !process.env.HTTPS_PROXY) {
   process.env.HTTPS_PROXY = process.env.HARDHAT_HTTPS_PROXY;
 }
