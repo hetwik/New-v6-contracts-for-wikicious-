@@ -48,7 +48,7 @@ describe('WikiPropEval', () => {
     await clFeed.setPrice(5_000_000_000_000n); // $50,000 in 8 dec
 
     const WikiOracle = await ethers.getContractFactory('WikiOracle');
-    oracle = await WikiOracle.deploy(owner.address, await seqFeed.getAddress());
+    oracle = await WikiOracle.deploy(owner.address, await seqFeed.getAddress(), await seqFeed.getAddress());
     await oracle.setFeed(BTC_ID, await clFeed.getAddress(), 86400, 8, D18(1000), D18(500000));
     await oracle.setGuardian(keeper.address, true);
     await oracle.connect(keeper).submitGuardianPrice(BTC_ID, BTC_PRICE);
@@ -218,7 +218,7 @@ describe('WikiPropFunded', () => {
     await clFeed.setPrice(5_000_000_000_000n);
 
     const WikiOracle = await ethers.getContractFactory('WikiOracle');
-    oracle = await WikiOracle.deploy(owner.address, await seqFeed.getAddress());
+    oracle = await WikiOracle.deploy(owner.address, await seqFeed.getAddress(), await seqFeed.getAddress());
     await oracle.setFeed(BTC_ID, await clFeed.getAddress(), 86400, 8, D18(1000), D18(500000));
 
     const WikiVault = await ethers.getContractFactory('WikiVault');

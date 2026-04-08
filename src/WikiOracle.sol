@@ -76,6 +76,7 @@ contract WikiOracle is Ownable2Step, Pausable {
     uint256 public constant PRECISION         = 1e18;
 
     event ChainlinkFeedSet(bytes32 indexed id, address feed);
+    event FeedConfigured(bytes32 indexed id, address feed);
     event PythFeedSet(bytes32 indexed id, bytes32 pythId);
     event GuardianPriceSet(bytes32 indexed id, uint256 price, address by);
     event GuardianUpdated(address indexed g, bool active);
@@ -97,7 +98,7 @@ contract WikiOracle is Ownable2Step, Pausable {
     function setChainlinkFeed(
         bytes32 id, address feed, uint32 heartbeat, uint8 decimals,
         uint256 minPrice, uint256 maxPrice
-    ) external onlyOwner {
+    ) public onlyOwner {
         chainlinkFeeds[id] = ChainlinkFeed({
             feed: AggregatorV3Interface(feed), heartbeat: heartbeat,
             decimals: decimals, minPrice: minPrice, maxPrice: maxPrice, active: true
@@ -119,8 +120,13 @@ contract WikiOracle is Ownable2Step, Pausable {
         }
     }
 
-    function submitGuardianPrice(bytes32 id, uint256 price) external onlyGuardian {
+    function submitGuardianPrice(bytes32 id, uint256 price) external whenNotPaused onlyGuardian {
         require(price > 0, "Oracle: zero price");
+        ChainlinkFeed storage cf = chainlinkFeeds[id];
+        if (cf.active && cf.minPrice > 0 && cf.maxPrice > 0) {
+            require(price >= cf.minPrice, "Oracle: below floor");
+            require(price <= cf.maxPrice, "Oracle: above ceiling");
+        }
         uint256 twapPrice = _getTWAP(id);
         if (twapPrice > 0) {
             uint256 delta = price > twapPrice ? price - twapPrice : twapPrice - price;
@@ -248,7 +254,26 @@ contract WikiOracle is Ownable2Step, Pausable {
     }
 
     function setGuardian(address g, bool active) external onlyOwner { guardians[g] = active; emit GuardianUpdated(g, active); }
-    function setMarketPaused(bytes32 id, bool paused) external onlyOwner { marketPaused[id] = paused; emit MarketPausedSet(id, paused); }
+    function setMarketPaused(bytes32 id, bool paused) public onlyOwner { marketPaused[id] = paused; emit MarketPausedSet(id, paused); }
+    // Backward-compatible helpers used by legacy tests
+    function setFeed(
+        bytes32 id, address feed, uint32 heartbeat, uint8 decimals,
+        uint256 minPrice, uint256 maxPrice
+    ) external onlyOwner {
+        require(heartbeat > 0, "Oracle: bad heartbeat");
+        require(minPrice > 0 && minPrice < maxPrice, "Oracle: bad bounds");
+        setChainlinkFeed(id, feed, heartbeat, decimals, minPrice, maxPrice);
+        emit FeedConfigured(id, feed);
+    }
+    function pauseMarket(bytes32 id, bool paused) external onlyOwner { setMarketPaused(id, paused); }
+    function getPriceSafe(bytes32 id) external view returns (uint256 price, bool valid) {
+        try this.getPrice(id) returns (uint256 p, uint256) {
+            return (p, true);
+        } catch {
+            return (0, false);
+        }
+    }
+    function getTWAP(bytes32 id) external view returns (uint256) { return _getTWAP(id); }
     function pause()   external onlyOwner { _pause(); }
     function unpause() external onlyOwner { _unpause(); }
     receive() external payable {}

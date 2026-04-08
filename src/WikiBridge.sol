@@ -87,10 +87,9 @@ contract WikiBridge is Ownable2Step, ReentrancyGuard {
     // (48h delay). Deployer sets this address after deployment.
     address public timelock;
     modifier onlyTimelocked() {
-        require(
-            msg.sender == owner() && (timelock == address(0) || msg.sender == timelock),
-            "Wiki: must go through timelock"
-        );
+        bool ok = (timelock == address(0) && msg.sender == owner())
+            || (timelock != address(0) && msg.sender == timelock);
+        require(ok, "Wiki: must go through timelock");
         _;
     }
     function setTimelock(address _tl) external onlyOwner {
@@ -159,12 +158,12 @@ contract WikiBridge is Ownable2Step, ReentrancyGuard {
     }
 
     // ── Peer management (whitelist which contracts can message us) ─────────
-    function setPeer(uint32 eid, bytes32 peer) external onlyOwner {
+    function setPeer(uint32 eid, bytes32 peer) external onlyTimelocked {
         peers[eid] = peer;
         emit PeerSet(eid, peer);
     }
 
-    function setPeers(uint32[] calldata eids, bytes32[] calldata _peers) external onlyOwner {
+    function setPeers(uint32[] calldata eids, bytes32[] calldata _peers) external onlyTimelocked {
         require(eids.length == _peers.length, "Bridge: mismatch");
         for (uint i; i < eids.length; i++) {
             peers[eids[i]] = _peers[i];
@@ -173,7 +172,7 @@ contract WikiBridge is Ownable2Step, ReentrancyGuard {
     }
 
     // ── Token + chain config ───────────────────────────────────────────────
-    function configureToken(address token, bool enabled, uint256 feeBps, uint256 minAmount, uint256 dailyLimit) external onlyOwner {
+    function configureToken(address token, bool enabled, uint256 feeBps, uint256 minAmount, uint256 dailyLimit) external onlyTimelocked {
         require(feeBps <= MAX_FEE_BPS, "Bridge: fee too high");
         TokenConfig storage tc = tokens[token];
         tc.enabled = enabled; tc.feeBps = feeBps;
@@ -181,7 +180,7 @@ contract WikiBridge is Ownable2Step, ReentrancyGuard {
         emit TokenConfigured(token, feeBps, dailyLimit);
     }
 
-    function withdrawFees(address token, address to) external onlyOwner nonReentrant {
+    function withdrawFees(address token, address to) external onlyTimelocked nonReentrant {
         uint256 amt = tokens[token].totalFees;
         require(amt > 0, "Bridge: no fees");
         tokens[token].totalFees = 0;
@@ -274,11 +273,11 @@ contract WikiBridge is Ownable2Step, ReentrancyGuard {
     }
 
     // ── Liquidity management (owner adds liquidity on each chain) ─────────
-    function addLiquidity(address token, uint256 amount) external onlyOwner {
+    function addLiquidity(address token, uint256 amount) external onlyTimelocked {
         IERC20(token).safeTransferFrom(msg.sender, address(this), amount);
     }
 
-    function removeLiquidity(address token, uint256 amount, address to) external onlyOwner nonReentrant {
+    function removeLiquidity(address token, uint256 amount, address to) external onlyTimelocked nonReentrant {
         IERC20(token).safeTransfer(to, amount);
     }
 
@@ -299,6 +298,6 @@ contract WikiBridge is Ownable2Step, ReentrancyGuard {
         return abi.encodePacked(uint16(1), uint256(200000));
     }
 
-    function setPaused(bool _paused) external onlyOwner { paused = _paused; }
+    function setPaused(bool _paused) external onlyTimelocked { paused = _paused; }
     receive() external payable {}
 }

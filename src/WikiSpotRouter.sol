@@ -19,6 +19,21 @@ interface IUniswapV3Router {
         uint256 amountOutMinimum;
         uint160 sqrtPriceLimitX96;
     }
+    struct ExactOutputSingleParams {
+        address tokenIn;
+        address tokenOut;
+        uint24  fee;
+        address recipient;
+        uint256 amountOut;
+        uint256 amountInMaximum;
+        uint160 sqrtPriceLimitX96;
+    }
+    struct ExactOutputParams {
+        bytes   path; // reversed path for exactOutput: tokenOut -> ... -> tokenIn
+        address recipient;
+        uint256 amountOut;
+        uint256 amountInMaximum;
+    }
     struct ExactInputParams {
         bytes   path;
         address recipient;
@@ -27,6 +42,8 @@ interface IUniswapV3Router {
     }
     function exactInputSingle(ExactInputSingleParams calldata params) external payable returns (uint256 amountOut);
     function exactInput(ExactInputParams calldata params) external payable returns (uint256 amountOut);
+    function exactOutputSingle(ExactOutputSingleParams calldata params) external payable returns (uint256 amountIn);
+    function exactOutput(ExactOutputParams calldata params) external payable returns (uint256 amountIn);
 }
 
 // Uniswap V3 Quoter for price discovery
@@ -65,10 +82,9 @@ contract WikiSpotRouter is Ownable2Step, ReentrancyGuard {
     // (48h delay). Deployer sets this address after deployment.
     address public timelock;
     modifier onlyTimelocked() {
-        require(
-            msg.sender == owner() && (timelock == address(0) || msg.sender == timelock),
-            "Wiki: must go through timelock"
-        );
+        bool ok = (timelock == address(0) && msg.sender == owner())
+            || (timelock != address(0) && msg.sender == timelock);
+        require(ok, "Wiki: must go through timelock");
         _;
     }
     function setTimelock(address _tl) external onlyOwner {
@@ -184,6 +200,9 @@ contract WikiSpotRouter is Ownable2Step, ReentrancyGuard {
         uint256 maxAmountIn,
         address recipient
     ) external nonReentrant returns (uint256 amountIn) {
+        require(amountOut > 0, "Router: zero output");
+        require(maxAmountIn > 0, "Router: zero max input");
+        require(recipient != address(0), "Router: zero recipient");
         PoolConfig memory cfg = pools[tokenIn][tokenOut];
         require(cfg.active, "Router: pool not configured");
 
@@ -195,7 +214,7 @@ contract WikiSpotRouter is Ownable2Step, ReentrancyGuard {
         IERC20(tokenIn).safeTransferFrom(msg.sender, address(this), maxAmountIn);
         IERC20(tokenIn).forceApprove(UNISWAP_ROUTER, maxAmountIn);
 
-        // Tell Uniswap we need grossOut
+        // Tell Uniswap we need exact grossOut and cap max input spend
         amountIn = _executeSwapExactOut(tokenIn, tokenOut, grossOut, maxAmountIn, cfg);
         require(amountIn <= maxAmountIn, "Router: too much input");
 
@@ -244,7 +263,7 @@ contract WikiSpotRouter is Ownable2Step, ReentrancyGuard {
     function setPool(
         address tokenIn, address tokenOut,
         uint24 fee, address hopToken, uint24 hopFee, bool active
-    ) external onlyOwner {
+    ) external onlyTimelocked {
         pools[tokenIn][tokenOut] = PoolConfig(fee, hopToken, hopFee, active);
         // Also set reverse direction
         if (hopToken == address(0)) {
@@ -252,16 +271,19 @@ contract WikiSpotRouter is Ownable2Step, ReentrancyGuard {
         }
     }
 
-    function setSpread(uint256 bps) external onlyOwner {
+    function setSpread(uint256 bps) external onlyTimelocked {
         require(bps <= maxSpreadBps, "Router: spread too high");
         spreadBps = bps;
         emit SpreadUpdated(bps);
     }
 
-    function setFeeRecipient(address r) external onlyOwner { feeRecipient = r; }
+    function setFeeRecipient(address r) external onlyTimelocked {
+        require(r != address(0), "Router: zero recipient");
+        feeRecipient = r;
+    }
 
     // ── Fee Withdrawal ────────────────────────────────────────
-    function withdrawFees(address token) external nonReentrant onlyOwner {
+    function withdrawFees(address token) external nonReentrant onlyTimelocked {
         uint256 bal = IERC20(token).balanceOf(address(this));
         require(bal > 0, "Router: no fees");
         IERC20(token).safeTransfer(feeRecipient, bal);
@@ -269,7 +291,7 @@ contract WikiSpotRouter is Ownable2Step, ReentrancyGuard {
         emit FeeWithdrawn(token, bal);
     }
 
-    function withdrawAllFees(address[] calldata tokens) external nonReentrant onlyOwner {
+    function withdrawAllFees(address[] calldata tokens) external nonReentrant onlyTimelocked {
         for (uint i = 0; i < tokens.length; i++) {
             uint256 bal = IERC20(tokens[i]).balanceOf(address(this));
             if (bal > 0) {
@@ -330,10 +352,34 @@ contract WikiSpotRouter is Ownable2Step, ReentrancyGuard {
     function _executeSwapExactOut(
         address tokenIn, address tokenOut, uint256 amountOut, uint256 maxIn, PoolConfig memory cfg
     ) internal returns (uint256 amountIn) {
+        // Fast-fail guard for obviously insufficient input budgets.
         uint256 estOut = _estimateOutput(tokenIn, tokenOut, maxIn, cfg);
         require(estOut >= amountOut, "Spot: insufficient maxIn");
-        // Simplified: use exactInput with a buffer
-        amountIn = _executeSwap(tokenIn, tokenOut, maxIn, cfg);
+
+        if (cfg.hopToken == address(0)) {
+            amountIn = IUniswapV3Router(UNISWAP_ROUTER).exactOutputSingle(
+                IUniswapV3Router.ExactOutputSingleParams({
+                    tokenIn: tokenIn,
+                    tokenOut: tokenOut,
+                    fee: cfg.fee,
+                    recipient: address(this),
+                    amountOut: amountOut,
+                    amountInMaximum: maxIn,
+                    sqrtPriceLimitX96: 0
+                })
+            );
+        } else {
+            // exactOutput uses reversed path: tokenOut -> hopToken -> tokenIn
+            bytes memory path = abi.encodePacked(tokenOut, cfg.hopFee, cfg.hopToken, cfg.fee, tokenIn);
+            amountIn = IUniswapV3Router(UNISWAP_ROUTER).exactOutput(
+                IUniswapV3Router.ExactOutputParams({
+                    path: path,
+                    recipient: address(this),
+                    amountOut: amountOut,
+                    amountInMaximum: maxIn
+                })
+            );
+        }
     }
 
     function _estimateOutput(

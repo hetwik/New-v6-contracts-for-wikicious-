@@ -19,11 +19,18 @@ const { parseEther, formatEther } = ethers;
 describe('WIKToken', () => {
   let wik, owner, minter, alice, bob;
 
+  const deployWik = async (ownerAddr) => {
+    const WIKToken = await ethers.getContractFactory('WIKToken');
+    return WIKToken.deploy(
+      ownerAddr, ownerAddr, ownerAddr, ownerAddr,
+      ownerAddr, ownerAddr, ownerAddr, ownerAddr
+    );
+  };
+
   // ── Deploy fresh contract before each test ────────────────────
   beforeEach(async () => {
     [owner, minter, alice, bob] = await ethers.getSigners();
-    const WIKToken = await ethers.getContractFactory('WIKToken');
-    wik = await WIKToken.deploy(owner.address);
+    wik = await deployWik(owner.address);
     await wik.waitForDeployment();
   });
 
@@ -34,9 +41,9 @@ describe('WIKToken', () => {
       expect(await wik.symbol()).to.equal('WIK');
     });
 
-    it('mints 200M tokens to owner on deploy', async () => {
+    it('mints full 1B supply across configured recipients on deploy', async () => {
       const balance = await wik.balanceOf(owner.address);
-      expect(balance).to.equal(parseEther('200000000')); // 200M
+      expect(balance).to.equal(parseEther('1000000000')); // 1B
     });
 
     it('has MAX_SUPPLY of 1 billion', async () => {
@@ -55,7 +62,8 @@ describe('WIKToken', () => {
       await wik.connect(owner).setMinter(minter.address, true);
     });
 
-    it('allows authorised minter to mint', async () => {
+    it('allows authorised minter to mint after supply headroom is created by burn', async () => {
+      await wik.connect(owner).burn(parseEther('1000'));
       await wik.connect(minter).mint(alice.address, parseEther('1000'));
       expect(await wik.balanceOf(alice.address)).to.equal(parseEther('1000'));
     });

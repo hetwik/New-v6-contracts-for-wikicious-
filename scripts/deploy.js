@@ -174,11 +174,24 @@ async function d(name, ...args) {
   const ctorInputs = F.interface.deploy?.inputs ?? [];
   const expectedArgs = ctorInputs.length;
   let deployArgs = args;
+  const strictMainnet = hre.network.name === "arbitrum_one";
   const [fallbackSigner] = await ethers.getSigners();
   if (args.length > expectedArgs) {
+    if (strictMainnet) {
+      const reason = `${name} constructor arg mismatch: expected ${expectedArgs}, got ${args.length}`;
+      console.log(`❌ ${reason}`);
+      deployFailures.push({ name, reason });
+      return [null, null];
+    }
     console.log(`⚠️  expected ${expectedArgs} constructor args, got ${args.length}; truncating extras`);
     deployArgs = args.slice(0, expectedArgs);
   } else if (args.length < expectedArgs) {
+    if (strictMainnet) {
+      const reason = `${name} constructor arg mismatch: expected ${expectedArgs}, got ${args.length}`;
+      console.log(`❌ ${reason}`);
+      deployFailures.push({ name, reason });
+      return [null, null];
+    }
     console.log(`⚠️  constructor expects ${expectedArgs} args, got ${args.length}; auto-filling missing args`);
     for (let i = args.length; i < expectedArgs; i++) {
       const input = ctorInputs[i];
@@ -202,6 +215,9 @@ async function d(name, ...args) {
 
       if (type === "address") {
         if (value === undefined || value === null) {
+          if (strictMainnet) {
+            throw new Error(`${name}.${input?.name || `arg${idx}`} missing address in strict mainnet mode`);
+          }
           console.log(`⚠️  ${name}.${input?.name || `arg${idx}`} missing; defaulting to zero address`);
           return ethers.ZeroAddress;
         }
@@ -248,6 +264,15 @@ async function safe(label, fn) {
   catch(e) { console.log(`   ⚠  ${label} — skipped: ${e.message?.slice(0,60)}`); }
 }
 
+function hasFunction(contract, signature) {
+  try {
+    contract.interface.getFunction(signature);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 async function main() {
   const networkName = hre.network.name;
   const isLocalNetwork = ["hardhat", "localhost"].includes(networkName);
@@ -257,10 +282,11 @@ async function main() {
 
   const [deployer] = await ethers.getSigners();
   const signerPool = (await ethers.getSigners()).slice(0, 3).map((s) => s.address);
-  const SAFE = normalizeAddress(
-    process.env.GENESIS_SAFE_ADDRESS || "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-    "GENESIS_SAFE_ADDRESS"
-  );
+  const safeInput =
+    networkName === "arbitrum_one"
+      ? requireEnv("GENESIS_SAFE_ADDRESS")
+      : (process.env.GENESIS_SAFE_ADDRESS || deployer.address);
+  const SAFE = normalizeAddress(safeInput, "GENESIS_SAFE_ADDRESS");
   const OPS_WALLET = normalizeAddress(process.env.OPS_WALLET || deployer.address, "OPS_WALLET");
   const RESERVE_WALLET = normalizeAddress(
     process.env.RESERVE_WALLET || deployer.address,
@@ -374,7 +400,7 @@ async function main() {
   [C.deltaNeutral, A.WikiDeltaNeutralVault] = await d("WikiDeltaNeutralVault", deployer.address, EXT.USDC, A.WikiPerp, A.WikiLending, 1, 0);
   [C.realYield, A.WikiRealYieldLP]   = await d("WikiRealYieldLP",      deployer.address, EXT.USDC, A.WikiRevenueSplitter);
   [C.fundingArb, A.WikiFundingArbVault] = await d("WikiFundingArbVault", EXT.USDC, deployer.address);
-  [C.yieldAgg, A.WikiYieldAggregator] = await d("WikiYieldAggregator", EXT.USDC, deployer.address);
+  [C.yieldAgg, A.WikiYieldAggregator] = await d("WikiYieldAggregator", deployer.address, EXT.USDC);
   [C.yieldSlice, A.WikiYieldSlice]   = await d("WikiYieldSlice",       A.WikiLending, deployer.address);
   [C.levYield, A.WikiLeveragedYield] = await d("WikiLeveragedYield",   deployer.address, A.WikiLending, A.WikiRevenueSplitter, deployer.address);
   [C.structProd, A.WikiStructuredProduct] = await d("WikiStructuredProduct", deployer.address, EXT.USDC, A.WikiRevenueSplitter, deployer.address);
@@ -654,10 +680,18 @@ async function main() {
   // PortfolioMargin: whitelist perp
   await safe("PortfolioMargin: whitelist perp", () => C.portfolioMargin.setAllowedContract(A.WikiPerp, true));
 
-  // Bridge chains
-  for (const chainId of [1, 10, 8453, 137, 56]) {
-    if (!C.bridge) break;
-    await safe(`Bridge: chain ${chainId}`, () => C.bridge.setChain(chainId, true));
+  // Bridge peers (LayerZero EIDs) — set only when peer addresses are provided.
+  // Expected env keys:
+  //   BRIDGE_PEER_30101, BRIDGE_PEER_30111, BRIDGE_PEER_30184, BRIDGE_PEER_30109, BRIDGE_PEER_30102
+  const bridgeEids = [30101, 30111, 30184, 30109, 30102];
+  if (C.bridge && hasFunction(C.bridge, "setPeer(uint32,bytes32)")) {
+    for (const eid of bridgeEids) {
+      const envKey = `BRIDGE_PEER_${eid}`;
+      const peerAddr = process.env[envKey];
+      if (!peerAddr || !ethers.isAddress(peerAddr)) continue;
+      const peerBytes32 = ethers.zeroPadValue(peerAddr, 32);
+      await safe(`Bridge: peer ${eid}`, () => C.bridge.setPeer(eid, peerBytes32));
+    }
   }
   for (const token of [EXT.USDC, EXT.WETH, EXT.ARB].filter(isNonZeroAddress)) {
     if (!C.bridge) break;
