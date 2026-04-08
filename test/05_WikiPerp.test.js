@@ -93,7 +93,7 @@ describe('WikiPerp', () => {
     await clFeed.setPrice(5_000_000_000_000n); // $50,000
 
     const WikiOracle = await ethers.getContractFactory('WikiOracle');
-    oracle = await WikiOracle.deploy(owner.address, await seqFeed.getAddress());
+    oracle = await WikiOracle.deploy(owner.address, await seqFeed.getAddress(), await seqFeed.getAddress());
     await oracle.setFeed(
       BTC_ID, await clFeed.getAddress(), 86400, 8,
       D18(1000), D18(500000)

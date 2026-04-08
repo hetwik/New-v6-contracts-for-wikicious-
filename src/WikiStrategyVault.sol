@@ -33,7 +33,7 @@ contract WikiStrategyVault is ERC20, Ownable2Step, ReentrancyGuard, Pausable {
     address public timelock;
     modifier onlyTimelocked() {
         require(
-            msg.sender == owner() && (timelock == address(0) || msg.sender == timelock),
+            (timelock == address(0) && msg.sender == owner()) || (timelock != address(0) && msg.sender == timelock),
             "Wiki: must go through timelock"
         );
         _;

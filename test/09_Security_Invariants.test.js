@@ -27,6 +27,7 @@
 const { expect }        = require('chai');
 const { ethers }        = require('hardhat');
 const { time }          = require('@nomicfoundation/hardhat-network-helpers');
+const fs                = require('fs');
 
 describe('Security Invariants', () => {
   let vault, oracle, tvlGuard, rateLimiter, multisig, token;
@@ -104,10 +105,10 @@ describe('Security Invariants', () => {
   // ── [ATK-02] Oracle manipulation ────────────────────────────────────────────
   describe('[ATK-02] Oracle Staleness Protection', () => {
     it('should reject stale Chainlink prices (heartbeat exceeded)', async () => {
-      // Verified in WikiOracle: if block.timestamp - updatedAt > heartbeat -> returns (0,0)
-      // And getPrice() falls back and eventually reverts if no valid source
-      // This invariant is tested in 02_WikiOracle.test.js
-      expect(true).to.equal(true); // placeholder — see 02_WikiOracle.test.js
+      // Ensure dedicated oracle test suite exists and stale-check logic is present in source.
+      expect(fs.existsSync('test/02_WikiOracle.test.js')).to.equal(true);
+      const oracleSrc = fs.readFileSync('src/WikiOracle.sol', 'utf8');
+      expect(oracleSrc).to.include('block.timestamp - updatedAt > f.heartbeat');
     });
   });
 
@@ -226,9 +227,8 @@ describe('Security Invariants', () => {
   // ── [ATK-07] Liquidation Manipulation ───────────────────────────────────────
   describe('[ATK-07] Self-Liquidation Prevention', () => {
     it('position owner cannot liquidate own position', async () => {
-      // WikiPerp enforces: require(trader != msg.sender, "Perp: self-liquidation")
-      // This is a code-level check verified in 05_WikiPerp.test.js
-      expect(true).to.equal(true);
+      const perpSrc = fs.readFileSync('src/WikiPerp.sol', 'utf8');
+      expect(perpSrc).to.include('self-liquidation forbidden');
     });
   });
 
@@ -288,8 +288,15 @@ describe('Security Invariants', () => {
     });
 
     it('executed proposals cannot be re-executed', async () => {
-      // This is checked by the 'already executed' guard in execute()
-      expect(true).to.equal(true);
+      const callData = vault.interface.encodeFunctionData('pause');
+      const id = await multisig.connect(owner).propose.staticCall(0, await vault.getAddress(), callData, 0, 'Pause once');
+      await multisig.connect(owner).propose(0, await vault.getAddress(), callData, 0, 'Pause once');
+      await multisig.connect(owner).approve(id);
+      await multisig.connect(alice).approve(id);
+      await multisig.connect(owner).execute(id);
+      await expect(
+        multisig.connect(owner).execute(id)
+      ).to.be.revertedWith('Multisig: already executed');
     });
   });
 
@@ -309,9 +316,11 @@ describe('Security Invariants', () => {
     });
 
     it('daily withdrawal limit should be enforced', async () => {
-      // This requires multiple withdrawals totaling > $100K/day
-      // Verified in 03_WikiVault.test.js in detail
-      expect(true).to.equal(true);
+      await vault.setWithdrawalLimits(D(1500), D(1000));
+      await vault.connect(alice).withdraw(D(1000));
+      await expect(
+        vault.connect(alice).withdraw(D(600))
+      ).to.be.revertedWith('Vault: daily limit exceeded');
     });
   });
 

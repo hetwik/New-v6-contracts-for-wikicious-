@@ -12,7 +12,10 @@ async function deployAll() {
   const [owner, keeper1, keeper2, keeper3, trader, rando] = await ethers.getSigners();
 
   // WIK token
-  const WIK = await (await ethers.getContractFactory('WIKToken')).deploy(owner.address);
+  const WIK = await (await ethers.getContractFactory('WIKToken')).deploy(
+    owner.address, owner.address, owner.address, owner.address,
+    owner.address, owner.address, owner.address, owner.address
+  );
 
   // USDC mock
   const MockERC20 = await ethers.getContractFactory('MockERC20');

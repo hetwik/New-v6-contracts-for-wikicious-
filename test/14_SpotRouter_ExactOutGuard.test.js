@@ -21,8 +21,7 @@ describe('WikiSpotRouter exactOut guard', () => {
       500,                // 0.05%
       ethers.ZeroAddress, // no hop
       0,
-      true,
-      false
+      true
     );
 
     await tokenA.mint(alice.address, U18(1_000));
