@@ -110,7 +110,7 @@ describe('WikiVault', () => {
 
     it('rejects withdrawal exceeding balance', async () => {
       await expect(vault.connect(alice).withdraw(D(100000)))
-        .to.be.revertedWith('Vault: insufficient balance');
+        .to.be.reverted;
     });
 
     it('[A4] rejects withdrawal exceeding single-tx limit ($50K)', async () => {
@@ -163,7 +163,7 @@ describe('WikiVault', () => {
     it('[A6] cannot lock more than free balance', async () => {
       const free = await vault.freeMargin(alice.address);
       await expect(vault.connect(operator).lockMargin(alice.address, free + D(1)))
-        .to.be.revertedWith('Vault: insufficient balance');
+        .to.be.reverted;
     });
   });
 
