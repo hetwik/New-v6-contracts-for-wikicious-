@@ -1,0 +1,119 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "MockGMXBackstop",
+  "sourceName": "src/MockGMXBackstop.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "marketId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "isMarketSupported",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "minGMXRouteSize",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "marketId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "routeToGMX",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "marketId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bool",
+          "name": "ok",
+          "type": "bool"
+        }
+      ],
+      "name": "setSupported",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "supported",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608080604052346018575f80556101f9908161001d8239f35b5f80fdfe6080806040526004361015610012575f80fd5b5f3560e01c908163282cc2011461019b575080637193f2f01461016c57806378f504f91461016c5780639c3dfd3e1461012f5763b9adb2f014610053575f80fd5b3461012b5760a036600319011261012b576004356001600160a01b0381160361012b576024356100816101b4565b50805f52600160205260ff60405f205416156100e657604051906020820190815243604083015260408252606082019082821067ffffffffffffffff8311176100d257602092826040525190208152f35b634e487b7160e01b5f52604160045260245ffd5b60405162461bcd60e51b815260206004820152601760248201527f474d583a206d61726b657420756e737570706f727465640000000000000000006044820152606490fd5b5f80fd5b3461012b57604036600319011261012b5760243580151580910361012b576004355f52600160205260405f209060ff801983541691161790555f80f35b3461012b57602036600319011261012b576004355f526001602052602060ff60405f2054166040519015158152f35b3461012b575f36600319011261012b576020905f548152f35b60443590811515820361012b5756fea26469706673582212206a2687916a95979b9729d8d7a0ae39b45cf7e352671e16a7367ff20e318da31864736f6c634300081a0033",
+  "deployedBytecode": "0x6080806040526004361015610012575f80fd5b5f3560e01c908163282cc2011461019b575080637193f2f01461016c57806378f504f91461016c5780639c3dfd3e1461012f5763b9adb2f014610053575f80fd5b3461012b5760a036600319011261012b576004356001600160a01b0381160361012b576024356100816101b4565b50805f52600160205260ff60405f205416156100e657604051906020820190815243604083015260408252606082019082821067ffffffffffffffff8311176100d257602092826040525190208152f35b634e487b7160e01b5f52604160045260245ffd5b60405162461bcd60e51b815260206004820152601760248201527f474d583a206d61726b657420756e737570706f727465640000000000000000006044820152606490fd5b5f80fd5b3461012b57604036600319011261012b5760243580151580910361012b576004355f52600160205260405f209060ff801983541691161790555f80f35b3461012b57602036600319011261012b576004355f526001602052602060ff60405f2054166040519015158152f35b3461012b575f36600319011261012b576020905f548152f35b60443590811515820361012b5756fea26469706673582212206a2687916a95979b9729d8d7a0ae39b45cf7e352671e16a7367ff20e318da31864736f6c634300081a0033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

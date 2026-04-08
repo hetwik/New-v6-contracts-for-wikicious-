@@ -1,0 +1,88 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "MockSequencerFeed",
+  "sourceName": "src/MockSequencerFeed.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "answer",
+      "outputs": [
+        {
+          "internalType": "int256",
+          "name": "",
+          "type": "int256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "latestRoundData",
+      "outputs": [
+        {
+          "internalType": "uint80",
+          "name": "",
+          "type": "uint80"
+        },
+        {
+          "internalType": "int256",
+          "name": "",
+          "type": "int256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint80",
+          "name": "",
+          "type": "uint80"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "int256",
+          "name": "_answer",
+          "type": "int256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_startedAt",
+          "type": "uint256"
+        }
+      ],
+      "name": "setStatus",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "startedAt",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x60808060405234601c575f80554260015561010190816100218239f35b5f80fdfe60808060405260043610156011575f80fd5b5f3560e01c90816385bb7d691460b457508063d8cf4a9e146098578063f21f537d14607d5763feaf968c146043575f80fd5b346079575f36600319011260795760a05f5460015460405191600183526020830152604082015242606082015260016080820152f35b5f80fd5b346079575f3660031901126079576020600154604051908152f35b3460795760403660031901126079576004355f55602435600155005b346079575f3660031901126079576020905f548152f3fea26469706673582212203171fc3992edba0365b421b38ca39a9863bc4d70d1b26b16cff654dbf928f64764736f6c634300081a0033",
+  "deployedBytecode": "0x60808060405260043610156011575f80fd5b5f3560e01c90816385bb7d691460b457508063d8cf4a9e146098578063f21f537d14607d5763feaf968c146043575f80fd5b346079575f36600319011260795760a05f5460015460405191600183526020830152604082015242606082015260016080820152f35b5f80fd5b346079575f3660031901126079576020600154604051908152f35b3460795760403660031901126079576004355f55602435600155005b346079575f3660031901126079576020905f548152f3fea26469706673582212203171fc3992edba0365b421b38ca39a9863bc4d70d1b26b16cff654dbf928f64764736f6c634300081a0033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
