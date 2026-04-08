@@ -123,6 +123,7 @@ contract WikiMarketRegistry is Ownable2Step {
 
     // â”€â”€ Internal registration â€” takes a struct to avoid stack-too-deep â”€â”€â”€â”€â”€
     function _add(MarketInput memory inp) internal {
+        require(symbolToId[inp.symbol] == 0, "Registry: symbol exists");
         uint256 id = ++totalMarkets;
         Market storage m = markets[id];
         m.id                  = id;
@@ -156,6 +157,53 @@ contract WikiMarketRegistry is Ownable2Step {
     // â”€â”€ Admin: add one market â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     function addMarket(MarketInput calldata inp) external onlyOwner {
         _add(inp);
+    }
+
+    /// @notice Backward-compatible overload used by legacy tests and scripts.
+    function addMarket(
+        string calldata symbol,
+        string calldata baseAsset,
+        string calldata quoteAsset,
+        uint8 category,
+        uint8 oracleSource,
+        address oracleFeed,
+        bytes32 pythPriceId,
+        uint256 baseMarketId,
+        uint256 quoteMarketId,
+        uint256 maxLeverageBps,
+        uint256 maintenanceMarginBps,
+        uint256 takerFeeBps,
+        uint256 makerFeeBps,
+        uint256 maxOILong,
+        uint256 maxOIShort,
+        uint256 minPositionSize,
+        uint256 maxPositionSize,
+        uint256 spreadBps,
+        uint256 offHoursSpreadBps,
+        uint256 pricePrecision
+    ) external onlyOwner {
+        _add(MarketInput({
+            symbol: symbol,
+            base: baseAsset,
+            quote: quoteAsset,
+            category: category,
+            oracleSrc: oracleSource,
+            feed: oracleFeed,
+            pythId: pythPriceId,
+            baseM: baseMarketId,
+            quoteM: quoteMarketId,
+            maxLev: maxLeverageBps,
+            maint: maintenanceMarginBps,
+            taker: takerFeeBps,
+            maker: makerFeeBps,
+            oiL: maxOILong,
+            oiS: maxOIShort,
+            minP: minPositionSize,
+            maxP: maxPositionSize,
+            spread: spreadBps,
+            offH: offHoursSpreadBps,
+            prec: pricePrecision
+        }));
     }
 
     // â”€â”€ Admin: add up to MAX_BATCH_ADD markets in one tx â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -196,10 +244,12 @@ contract WikiMarketRegistry is Ownable2Step {
 
     // â”€â”€ Admin: update market params â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     function pauseMarket(uint256 id) external onlyOwner {
+        markets[id].active = false;
         markets[id].reduceOnly = true;
         emit MarketPaused(id, markets[id].symbol);
     }
     function resumeMarket(uint256 id) external onlyOwner {
+        markets[id].active = true;
         markets[id].reduceOnly = false;
         emit MarketResumed(id, markets[id].symbol);
     }

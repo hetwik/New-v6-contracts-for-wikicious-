@@ -65,9 +65,9 @@ async function deployAll() {
   // Create a BTC market
   const mktId = ethers.keccak256(ethers.toUtf8Bytes('BTC/USD'));
   await Perp.createMarket(
-    mktId, 'BTCUSDT',
+    'BTCUSDT', mktId,
     50n, 5n, 10n, 500n,         // maxLev=50, maker=5bps, taker=10bps, mm=500bps
-    E6(10_000_000), E6(10_000_000),  // maxOI long/short
+    E6(10_000_000), E6(0),  // maxOI (single field), legacy minPos placeholder
     E6(1_000_000)                    // maxPosPerUser
   );
 

@@ -171,10 +171,10 @@ contract WikiVault is Ownable2Step, ReentrancyGuard, Pausable {
     /// @dev    [A1][A4] Reentrancy guard + daily limit
     function withdraw(uint256 amount) external nonReentrant whenNotPaused {
         require(amount >= minWithdrawal, "Vault: below minimum"); // [A9]
-        require(amount <= maxSingleWithdrawal, "Vault: exceeds single limit"); // [A4]
 
         Account storage acc = _accounts[msg.sender];
         require(acc.balance >= amount, "Vault: insufficient balance"); // [A6]
+        require(amount <= maxSingleWithdrawal, "Vault: exceeds single limit"); // [A4]
 
         // [A4] Daily withdrawal limit
         uint256 today = block.timestamp / 86400;
