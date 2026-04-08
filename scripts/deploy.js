@@ -276,6 +276,12 @@ function hasFunction(contract, signature) {
 async function main() {
   const networkName = hre.network.name;
   const isLocalNetwork = ["hardhat", "localhost"].includes(networkName);
+  if (networkName === "arbitrum_one") {
+    const confirm = String(process.env.DEPLOY_CONFIRM_MAINNET || "").trim();
+    if (confirm !== "YES") {
+      throw new Error('Refusing mainnet deploy: set DEPLOY_CONFIRM_MAINNET=YES after running preflight checks');
+    }
+  }
   let EXT = getExternalAddresses(networkName);
   validateExternalAddresses(networkName, EXT);
   deployFailures.length = 0;
@@ -875,6 +881,9 @@ async function main() {
     }
     console.log(`   ✅ Transferred ${transferred}/${allContracts.length} contracts to Safe`);
   } else {
+    if (networkName === "arbitrum_one") {
+      throw new Error("Refusing mainnet completion with SAFE == deployer. Set GENESIS_SAFE_ADDRESS to your multisig safe.");
+    }
     console.log("\n⚠  GENESIS_SAFE_ADDRESS not set — ownership stays with deployer");
     console.log("   Run: scripts/transfer-ownership.js after setting GENESIS_SAFE_ADDRESS");
   }

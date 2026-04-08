@@ -33,7 +33,7 @@ function normalizePk(v) {
 }
 
 function assertAddress(name, value) {
-  if (!value || !ethers.isAddress(value.trim())) {
+  if (!value || !ethers.isAddress(String(value).trim())) {
     throw new Error(`${name} must be a valid 42-char address`);
   }
   if (value.toLowerCase() === ethers.ZeroAddress) {
@@ -70,6 +70,10 @@ async function main() {
     }
   }
 
+  if ((process.env.DEPLOY_CONFIRM_MAINNET || '').trim() !== 'YES') {
+    problems.push('DEPLOY_CONFIRM_MAINNET must be exactly YES');
+  }
+
   if (!isPkValid(process.env.DEPLOYER_PRIVATE_KEY)) {
     problems.push('DEPLOYER_PRIVATE_KEY must be 64 hex chars (with or without 0x)');
   }
@@ -79,6 +83,10 @@ async function main() {
   for (const key of CONTRACT_ADDR_KEYS) {
     try {
       assertAddress(key, process.env[key]);
+      const actual = normalizeAddr(process.env[key]);
+      if (process.env.ALLOW_NON_CANONICAL_EXT !== '1' && actual !== CANONICAL[key]) {
+        problems.push(`${key} does not match canonical Arbitrum One address`);
+      }
     } catch (e) {
       problems.push(e.message);
     }
@@ -111,6 +119,9 @@ async function main() {
   if (Number(network.chainId) !== 42161) {
     throw new Error(`Wrong chainId ${network.chainId}. Expected 42161 (Arbitrum One).`);
   }
+  if (safe === wallet.address) {
+    throw new Error('GENESIS_SAFE_ADDRESS must not equal deployer address');
+  }
 
   for (const key of CONTRACT_ADDR_KEYS.filter((k) => k !== 'GENESIS_SAFE_ADDRESS')) {
     await assertHasCode(provider, key, process.env[key]);
@@ -121,6 +132,7 @@ async function main() {
   console.log(`   Deployer: ${wallet.address}`);
   console.log(`   Nonce   : ${nonce}`);
   console.log(`   Balance : ${ethers.formatEther(bal)} ETH`);
+  console.log(`   Base fee: ${feeData.gasPrice ? ethers.formatUnits(feeData.gasPrice, 'gwei') : 'n/a'} gwei`);
 
   const min = ethers.parseEther('0.03');
   if (bal < min) {
