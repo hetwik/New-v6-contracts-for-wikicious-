@@ -37,7 +37,7 @@ describe('WikiAMM', () => {
     seqFeed = await MockSeq.deploy();
 
     const WikiOracle = await ethers.getContractFactory('WikiOracle');
-    oracle = await WikiOracle.deploy(owner.address, await seqFeed.getAddress());
+    oracle = await WikiOracle.deploy(owner.address, await seqFeed.getAddress(), await seqFeed.getAddress());
 
     const WikiVault = await ethers.getContractFactory('WikiVault');
     vault = await WikiVault.deploy(await usdc.getAddress(), owner.address);
@@ -442,7 +442,10 @@ describe('WikiSocialRewards', () => {
     [owner, alice, bob] = await ethers.getSigners();
 
     const WIKToken = await ethers.getContractFactory('WIKToken');
-    wik = await WIKToken.deploy(owner.address);
+    wik = await WIKToken.deploy(
+      owner.address, owner.address, owner.address, owner.address,
+      owner.address, owner.address, owner.address, owner.address
+    );
 
     const WikiSocial = await ethers.getContractFactory('WikiSocial');
     social = await WikiSocial.deploy(owner.address);
@@ -755,7 +758,7 @@ describe('WikiGMXBackstop', () => {
     seqFeed = await MockSeq.deploy();
 
     const WikiOracle = await ethers.getContractFactory('WikiOracle');
-    oracle = await WikiOracle.deploy(owner.address, await seqFeed.getAddress());
+    oracle = await WikiOracle.deploy(owner.address, await seqFeed.getAddress(), await seqFeed.getAddress());
 
     const WikiVault = await ethers.getContractFactory('WikiVault');
     vault = await WikiVault.deploy(await usdc.getAddress(), owner.address);

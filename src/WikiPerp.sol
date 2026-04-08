@@ -172,9 +172,14 @@ contract WikiPerp is Ownable2Step, ReentrancyGuard, Pausable {
 
     // ── Market management ──────────────────────────────────────────────────
     function createMarket(
-        bytes32 marketId, string calldata symbol,
-        uint256 maxLev, uint256 makerFee, uint256 takerFee,
-        uint256 mmBps, uint256 maxOILong, uint256 maxOIShort,
+        string calldata symbol,
+        bytes32 marketId,
+        uint256 maxLev,
+        uint256 makerFee,
+        uint256 takerFee,
+        uint256 mmBps,
+        uint256 maxOI,
+        uint256, // minPosPerUser (legacy, unused in current core)
         uint256 maxPosPerUser
     ) external onlyOwner returns (uint256 idx) {
         require(makerFee <= 50 && takerFee <= 100, "Perp: fee too high");
@@ -184,7 +189,7 @@ contract WikiPerp is Ownable2Step, ReentrancyGuard, Pausable {
             marketId: marketId, symbol: symbol, maxLeverage: maxLev,
             makerFeeBps: makerFee, takerFeeBps: takerFee,
             maintenanceMarginBps: mmBps,
-            maxOpenInterestLong: maxOILong, maxOpenInterestShort: maxOIShort,
+            maxOpenInterestLong: maxOI, maxOpenInterestShort: maxOI,
             openInterestLong: 0, openInterestShort: 0,
             maxPositionSizePerUser: maxPosPerUser,
             fundingRate: 0, lastFundingTime: block.timestamp,
@@ -204,6 +209,36 @@ contract WikiPerp is Ownable2Step, ReentrancyGuard, Pausable {
             0, minPrice, maxPrice, takeProfit, stopLoss, false, 0);
     }
 
+    /// @notice Backward-compatible overload: no TP/SL arguments.
+    function placeMarketOrder(
+        uint256 marketIdx,
+        bool isLong,
+        uint256 collateral,
+        uint256 leverage,
+        uint256 minPrice,
+        uint256 maxPrice
+    ) external nonReentrant whenNotPaused returns (uint256) {
+        return _place(
+            marketIdx,
+            isLong,
+            false,
+            collateral,
+            leverage,
+            0,
+            minPrice,
+            maxPrice,
+            0,
+            0,
+            false,
+            0
+        );
+    }
+
+    /// @notice Legacy helper expected by tests.
+    function nextPositionId() external view returns (uint256) {
+        return positions.length + 1;
+    }
+
     function placeLimitOrder(
         uint256 marketIdx, bool isLong, uint256 collateral, uint256 leverage,
         uint256 limitPrice, uint256 expiry,
@@ -213,6 +248,32 @@ contract WikiPerp is Ownable2Step, ReentrancyGuard, Pausable {
         return _place(marketIdx, isLong, true, collateral, leverage,
             limitPrice, 0, 0, takeProfit, stopLoss, false,
             expiry == 0 ? block.timestamp + DEFAULT_ORDER_EXPIRY : expiry);
+    }
+
+    /// @notice Backward-compatible overload: no expiry argument.
+    function placeLimitOrder(
+        uint256 marketIdx,
+        bool isLong,
+        uint256 collateral,
+        uint256 leverage,
+        uint256 limitPrice,
+        uint256 takeProfit,
+        uint256 stopLoss
+    ) external nonReentrant whenNotPaused returns (uint256) {
+        return _place(
+            marketIdx,
+            isLong,
+            true,
+            collateral,
+            leverage,
+            limitPrice,
+            0,
+            0,
+            takeProfit,
+            stopLoss,
+            false,
+            block.timestamp + DEFAULT_ORDER_EXPIRY
+        );
     }
 
     function _place(

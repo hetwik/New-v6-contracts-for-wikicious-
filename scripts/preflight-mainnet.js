@@ -15,6 +15,7 @@ const REQUIRED = [
   "EXT_ENTRYPOINT",
   "EXT_UNI_ROUTER",
   "EXT_SEQ_FEED",
+  "GENESIS_SAFE_ADDRESS",
 ];
 
 function isPkValid(v) {
@@ -53,6 +54,11 @@ async function main() {
     } catch (e) {
       problems.push(e.message);
     }
+  }
+  try {
+    assertAddress("GENESIS_SAFE_ADDRESS", process.env.GENESIS_SAFE_ADDRESS);
+  } catch (e) {
+    problems.push(e.message);
   }
 
   if (problems.length > 0) {

@@ -131,23 +131,16 @@ describe('WikiDynamicLeverage', () => {
 
   // ── Tier reduces if fund drops ────────────────────────────────────────────
   describe('Tier REDUCTION — fund drops below threshold', () => {
-    it('maxLeverageFor() drops back to 10 when fund falls to $150', async () => {
-      // Simulate fund being consumed (e.g. liquidation shortfall)
-      // In tests we can't directly drain insuranceFund without an operator,
-      // so we verify the computation directly
+    it('maxLeverageFor() remains 20 while fund is still >= $500', async () => {
       const fund = await vault.insuranceFund();
       expect(fund).to.be.gte(D(500)); // confirm we're at tier 2
-
-      // The _computeTierIdx logic: if fund drops to $150 → tier 1
-      // We test this by checking the tier at a hypothetical lower fund
-      // (Integration test — full drain test is in security invariants)
-      expect(true).to.equal(true);
+      expect(await dynLev.maxLeverageFor(alice.address)).to.equal(20);
     });
 
-    it('updateLeverageCaps() emits TierReduced when fund drops', async () => {
-      // This would fire if vault.insuranceFund() returned < $500
-      // Verified by the contract logic — keeper triggers it automatically
-      expect(true).to.equal(true);
+    it('updateLeverageCaps() does not emit TierReduced while fund has not dropped', async () => {
+      await time.increase(301);
+      await expect(dynLev.connect(keeper).updateLeverageCaps())
+        .to.not.emit(dynLev, 'TierReduced');
     });
   });
 

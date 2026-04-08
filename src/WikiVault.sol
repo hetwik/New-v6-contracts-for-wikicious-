@@ -89,6 +89,13 @@ contract WikiVault is Ownable2Step, ReentrancyGuard, Pausable {
         _;
     }
 
+    modifier onlyTimelockedOwner() {
+        bool ok = (timelock == address(0) && msg.sender == owner())
+            || (timelock != address(0) && msg.sender == timelock);
+        require(ok, "Vault: must go through timelock");
+        _;
+    }
+
     constructor(address usdc, address owner) Ownable(owner) {
         require(usdc != address(0), "Wiki: zero usdc");
         require(owner != address(0), "Wiki: zero owner");
@@ -164,10 +171,10 @@ contract WikiVault is Ownable2Step, ReentrancyGuard, Pausable {
     /// @dev    [A1][A4] Reentrancy guard + daily limit
     function withdraw(uint256 amount) external nonReentrant whenNotPaused {
         require(amount >= minWithdrawal, "Vault: below minimum"); // [A9]
-        require(amount <= maxSingleWithdrawal, "Vault: exceeds single limit"); // [A4]
 
         Account storage acc = _accounts[msg.sender];
         require(acc.balance >= amount, "Vault: insufficient balance"); // [A6]
+        require(amount <= maxSingleWithdrawal, "Vault: exceeds single limit"); // [A4]
 
         // [A4] Daily withdrawal limit
         uint256 today = block.timestamp / 86400;
@@ -281,7 +288,7 @@ contract WikiVault is Ownable2Step, ReentrancyGuard, Pausable {
 
     // ── Owner: fee withdrawal ──────────────────────────────────────────────
     /// @notice Withdraw accumulated protocol fees — only to owner [A10]
-    function withdrawProtocolFees(address to) external onlyOwner nonReentrant {
+    function withdrawProtocolFees(address to) external onlyTimelockedOwner nonReentrant {
         require(to != address(0), "Vault: zero address");
         uint256 amt = protocolFees;
         require(amt > 0, "Vault: no fees");
