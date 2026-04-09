@@ -9,7 +9,7 @@ describe('WikiPerp', () => {
     const seq = await (await ethers.getContractFactory('MockSequencerFeed')).deploy();
     const oracle = await (await ethers.getContractFactory('WikiOracle')).deploy(owner.address, await seq.getAddress(), await seq.getAddress());
     const perp = await (await ethers.getContractFactory('WikiPerp')).deploy(await vault.getAddress(), await oracle.getAddress(), owner.address);
-    await perp.createMarket(ethers.id('BTCUSDT'), 'BTCUSDT', 125, 2, 5, 40, 10_000_000_000n, 10_000_000_000n, 1_000_000_000n);
+    await perp.createMarket('BTCUSDT', ethers.id('BTCUSDT'), 125, 2, 5, 40, 10_000_000_000n, 10_000_000_000n, 1_000_000_000n);
     expect(await perp.marketCount()).to.equal(1n);
   });
 });

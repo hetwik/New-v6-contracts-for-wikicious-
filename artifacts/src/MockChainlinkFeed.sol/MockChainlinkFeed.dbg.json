@@ -1,6 +1,4 @@
 {
   "_format": "hh-sol-dbg-1",
-  "buildInfo": "",
-  "sourceName": "src/MockChainlinkFeed.sol",
-  "contractName": "MockChainlinkFeed"
+  "buildInfo": "../../build-info/03ef31732c85cadf6e8b22c8f3c21aab.json"
 }

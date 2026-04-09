@@ -1,23 +1,5 @@
-require('@nomicfoundation/hardhat-toolbox');
-require('dotenv').config({ override: true });
-
-const { subtask } = require('hardhat/config');
-const { TASK_COMPILE_SOLIDITY_GET_SOLC_BUILD } = require('hardhat/builtin-tasks/task-names');
-const solc = require('solc');
-
-subtask(TASK_COMPILE_SOLIDITY_GET_SOLC_BUILD, async (args, _hre, runSuper) => {
-  if (args.solcVersion === '0.8.26') {
-    return {
-      compilerPath: require.resolve('solc/soljson.js'),
-      isSolcJs: true,
-      version: args.solcVersion,
-      longVersion: solc.version(),
-    };
-  }
-
-  return runSuper(args);
-});
-
+require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config({ override: true });
 
 if (process.env.HARDHAT_HTTPS_PROXY && !process.env.HTTPS_PROXY) {
   process.env.HTTPS_PROXY = process.env.HARDHAT_HTTPS_PROXY;
@@ -30,46 +12,58 @@ if (process.env.HARDHAT_NO_PROXY && !process.env.NO_PROXY) {
 }
 
 function normalizePrivateKey(value) {
-  if (!value) return { key: `0x${'0'.repeat(64)}`, valid: false, reason: 'missing' };
+  if (!value)
+    return { key: `0x${"0".repeat(64)}`, valid: false, reason: "missing" };
   const v = value.trim();
   if (/^0x[0-9a-fA-F]{64}$/.test(v)) return { key: v, valid: true };
   if (/^[0-9a-fA-F]{64}$/.test(v)) return { key: `0x${v}`, valid: true };
-  return { key: `0x${'0'.repeat(64)}`, valid: false, reason: `invalid format (${v.length} chars)` };
+  return {
+    key: `0x${"0".repeat(64)}`,
+    valid: false,
+    reason: `invalid format (${v.length} chars)`,
+  };
 }
 
 const DEPLOYER_KEY_INFO = normalizePrivateKey(process.env.DEPLOYER_PRIVATE_KEY);
-const DEPLOYER_KEY     = DEPLOYER_KEY_INFO.key;
+const DEPLOYER_KEY = DEPLOYER_KEY_INFO.key;
 const ALCHEMY_ARBITRUM = process.env.ALCHEMY_ARBITRUM_URL;
-const ALCHEMY_SEPOLIA  = process.env.ALCHEMY_SEPOLIA_URL;
-const TENDERLY_RPC     = process.env.TENDERLY_RPC_URL;
-const ETHERSCAN_KEY    = process.env.ETHERSCAN_API_KEY;
-const SOURCE_DIR       = process.env.CONTRACT_SOURCES_DIR || './src';
+const ALCHEMY_SEPOLIA = process.env.ALCHEMY_SEPOLIA_URL;
+const TENDERLY_RPC = process.env.TENDERLY_RPC_URL;
+const ETHERSCAN_KEY = process.env.ETHERSCAN_API_KEY;
+const SOURCE_DIR = process.env.CONTRACT_SOURCES_DIR || "./src";
 
-if (!ALCHEMY_ARBITRUM && process.env.HARDHAT_NETWORK === 'arbitrum_one') {
-  throw new Error('ALCHEMY_ARBITRUM_URL is required in .env for mainnet deployment');
+if (!ALCHEMY_ARBITRUM && process.env.HARDHAT_NETWORK === "arbitrum_one") {
+  throw new Error(
+    "ALCHEMY_ARBITRUM_URL is required in .env for mainnet deployment"
+  );
 }
 if (
-  (process.env.HARDHAT_NETWORK === 'arbitrum_one' || process.env.HARDHAT_NETWORK === 'arbitrum_sepolia' || process.env.HARDHAT_NETWORK === 'tenderly') &&
+  (process.env.HARDHAT_NETWORK === "arbitrum_one" ||
+    process.env.HARDHAT_NETWORK === "arbitrum_sepolia" ||
+    process.env.HARDHAT_NETWORK === "tenderly") &&
   !DEPLOYER_KEY_INFO.valid
 ) {
   throw new Error(
-    `DEPLOYER_PRIVATE_KEY is invalid (${DEPLOYER_KEY_INFO.reason || 'unknown reason'}). ` +
-    `Expected 64 hex chars with or without 0x prefix.`
+    `DEPLOYER_PRIVATE_KEY is invalid (${
+      DEPLOYER_KEY_INFO.reason || "unknown reason"
+    }). ` + `Expected 64 hex chars with or without 0x prefix.`
   );
 }
 if (!DEPLOYER_KEY_INFO.valid) {
-  console.warn('⚠️ DEPLOYER_PRIVATE_KEY missing/invalid; using zero key fallback for local compile only.');
+  console.warn(
+    "⚠️ DEPLOYER_PRIVATE_KEY missing/invalid; using zero key fallback for local compile only."
+  );
 }
 
 module.exports = {
   solidity: {
     compilers: [
       {
-        version: '0.8.26',
+        version: "0.8.26",
         settings: {
           optimizer: { enabled: true, runs: 200 },
           viaIR: true,
-          evmVersion: 'cancun',
+          evmVersion: "cancun",
         },
       },
     ],
@@ -81,35 +75,38 @@ module.exports = {
 
   networks: {
     arbitrum_one: {
-      url:      ALCHEMY_ARBITRUM || 'https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY_HERE',
+      url:
+        ALCHEMY_ARBITRUM ||
+        "https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY_HERE",
       accounts: [DEPLOYER_KEY],
-      chainId:  42161,
-      gasPrice: 'auto',
+      chainId: 42161,
+      gasPrice: "auto",
     },
     arbitrum_sepolia: {
-      url:      ALCHEMY_SEPOLIA || 'https://arb-sepolia.g.alchemy.com/v2/YOUR_KEY_HERE',
+      url:
+        ALCHEMY_SEPOLIA || "https://arb-sepolia.g.alchemy.com/v2/YOUR_KEY_HERE",
       accounts: [DEPLOYER_KEY],
-      chainId:  421614,
+      chainId: 421614,
     },
     tenderly: {
-      url:      TENDERLY_RPC || 'https://arbitrum.gateway.tenderly.co/YOUR_KEY_HERE',
+      url: TENDERLY_RPC || "https://arbitrum.gateway.tenderly.co/YOUR_KEY_HERE",
       accounts: [DEPLOYER_KEY],
-      chainId:  42161,
+      chainId: 42161,
     },
   },
 
   etherscan: {
     apiKey: {
-      arbitrumOne:     ETHERSCAN_KEY || 'YOUR_ARBISCAN_KEY_HERE',
-      arbitrumSepolia: ETHERSCAN_KEY || 'YOUR_ARBISCAN_KEY_HERE',
+      arbitrumOne: ETHERSCAN_KEY || "YOUR_ARBISCAN_KEY_HERE",
+      arbitrumSepolia: ETHERSCAN_KEY || "YOUR_ARBISCAN_KEY_HERE",
     },
     customChains: [
       {
-        network: 'arbitrumSepolia',
+        network: "arbitrumSepolia",
         chainId: 421614,
         urls: {
-          apiURL:     'https://api-sepolia.arbiscan.io/api',
-          browserURL: 'https://sepolia.arbiscan.io',
+          apiURL: "https://api-sepolia.arbiscan.io/api",
+          browserURL: "https://sepolia.arbiscan.io",
         },
       },
     ],
