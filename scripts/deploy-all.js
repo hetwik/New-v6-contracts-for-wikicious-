@@ -43,6 +43,14 @@ const CONTRACTS_TO_SKIP = new Set([
   "IRadiantPool",
   "IRWAToken",
   "IKeeperRegistry",
+  // Mocks & non-Ownable — skip deployment and ownership transfer
+  "MockChainlinkFeed",
+  "MockERC20",
+  "MockGMXBackstop",
+  "MockOracle",
+  "MockSequencerFeed",
+  "WikiSmartAccount",
+  "WikiSmartAccountFactory",
 ]);
 
 function sanitizeAddressLike(value) {
@@ -320,13 +328,15 @@ async function runPostDeploymentWiring(instances, deployed, deployer, env) {
     await safeWire("WikiPerp.setGMXBackstop", () => instances.WikiPerp.setGMXBackstop(deployed.WikiGMXBackstop, true));
   }
   if (instances.WikiPerp && deployed.WikiCircuitBreaker) {
-    await safeWire("WikiPerp.setCircuitBreaker", () => instances.WikiPerp.setCircuitBreaker(deployed.WikiCircuitBreaker));
+    await safeWire("WikiCircuitBreaker.setMonitor(WikiPerp)", () => instances.WikiCircuitBreaker.setMonitor(deployed.WikiPerp, true));
+    await safeWire("WikiCircuitBreaker.setMonitor(WikiVault)", () => instances.WikiCircuitBreaker.setMonitor(deployed.WikiVault, true));
+    await safeWire("WikiCircuitBreaker.setMonitor(WikiLiquidator)", () => instances.WikiCircuitBreaker.setMonitor(deployed.WikiLiquidator, true));
   }
   if (instances.WikiPerp && deployed.WikiLiquidator) {
-    await safeWire("WikiPerp.setLiquidator", () => instances.WikiPerp.setLiquidator(deployed.WikiLiquidator));
+    // WikiLiquidator receives perp address in its constructor — no setter needed on WikiPerp
   }
   if (instances.WikiPerp && deployed.WikiRevenueSplitter) {
-    await safeWire("WikiPerp.setRevenueSplitter", () => instances.WikiPerp.setRevenueSplitter(deployed.WikiRevenueSplitter));
+    // WikiPerp has no setRevenueSplitter — revenue flows via vault operators
   }
 
   if (instances.WikiRevenueSplitter && ethers.isAddress(opsWallet) && ethers.isAddress(reserveWallet)) {
@@ -371,8 +381,8 @@ async function main() {
   const hardhatSkips = new Set(["WikiBridge", "WikiCrossChainLending", "WikiCrossChainRouter"]);
 
   for (const name of names) {
-    if ((networkName === "hardhat" || networkName === "localhost") && hardhatSkips.has(name)) {
-      console.log(`⏭️  ${name} skipped on ${networkName} (requires live LayerZero endpoint)`);
+    if ((networkName === "hardhat" || networkName === "localhost" || networkName === "arbitrum_sepolia") && hardhatSkips.has(name)) {
+      console.log(`⏭️  ${name} skipped on ${networkName} (LayerZero cross-chain — deploy separately with correct EID)`);
       continue;
     }
     try {
