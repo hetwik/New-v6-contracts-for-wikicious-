@@ -14,12 +14,38 @@ function normalizeAddress(value, label) {
   return ethers.getAddress(raw);
 }
 
+function getDeploymentCandidates(networkName) {
+  return [
+    `deployments.${networkName}.auto.json`,
+    `deployments.${networkName}.json`,
+    `deployments.${networkName === "arbitrum_one" ? "arbitrum" : networkName}.json`,
+  ];
+}
+
 function loadDeploymentFile(networkName) {
-  const file = path.join(process.cwd(), `deployments.${networkName}.auto.json`);
-  if (!fs.existsSync(file)) {
-    throw new Error(`Missing ${file}. Run deploy:testnet once first.`);
+  for (const fileName of getDeploymentCandidates(networkName)) {
+    const filePath = path.join(process.cwd(), fileName);
+    if (fs.existsSync(filePath)) {
+      const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
+      return { filePath, fileName, data };
+    }
   }
-  return { file, data: JSON.parse(fs.readFileSync(file, "utf8")) };
+
+  throw new Error(
+    `Missing deployment file for ${networkName}. Expected one of: ${getDeploymentCandidates(networkName).join(", ")}`
+  );
+}
+
+function getFailedContractNames(data) {
+  const fromNames = Array.isArray(data.failedContracts) ? data.failedContracts : [];
+  const fromFailures = Array.isArray(data.deployFailures)
+    ? data.deployFailures.map((item) => item?.name).filter(Boolean)
+    : [];
+  const fromLegacy = Array.isArray(data.failed)
+    ? data.failed.map((item) => (typeof item === "string" ? item : item?.name)).filter(Boolean)
+    : [];
+
+  return [...new Set([...fromNames, ...fromFailures, ...fromLegacy])];
 }
 
 async function deployOne(name, args, txOverrides = {}) {
@@ -50,6 +76,7 @@ async function deployOne(name, args, txOverrides = {}) {
       throw e;
     }
   }
+
   await contract.waitForDeployment();
   const address = await contract.getAddress();
   console.log(`✅ ${address}`);
@@ -59,40 +86,32 @@ async function deployOne(name, args, txOverrides = {}) {
 async function main() {
   const networkName = hre.network.name;
   const [deployer] = await ethers.getSigners();
-  const { file, data } = loadDeploymentFile(networkName);
+  const { filePath, fileName, data } = loadDeploymentFile(networkName);
 
-  const deployed = data.deployed || {};
+  const contracts = data.contracts || data.deployed || {};
   const details = data.details || {};
-  const failed = data.failed || [];
+  const failedContracts = getFailedContractNames(data);
+
+  if (failedContracts.length === 0) {
+    console.log(`✅ No failed contracts recorded in ${fileName}`);
+    return;
+  }
 
   const extUSDC = normalizeAddress(process.env.EXT_USDC || EXT_DEFAULTS.USDC, "EXT_USDC");
-
   const signerPool = [deployer.address, ethers.Wallet.createRandom().address, ethers.Wallet.createRandom().address];
 
-  const oracle = deployed.WikiOracle;
-  const splitter = deployed.WikiRevenueSplitter;
+  const oracle = contracts.WikiOracle;
+  const splitter = contracts.WikiRevenueSplitter;
 
-  const toRetry = ["WikiIndexBasket", "WikiMultisigGuard", "WikiStrategyVault"];
-  console.log(`\n🔁 Retrying failed contracts on ${networkName} ...`);
+  const handlers = {
+    WikiIndexBasket: async () => {
+      if (!oracle || !splitter) {
+        throw new Error("WikiIndexBasket needs WikiOracle and WikiRevenueSplitter in deployment file");
+      }
 
-  for (const name of toRetry) {
-    if (deployed[name]) {
-      console.log(`⏭️  ${name} already deployed at ${deployed[name]}`);
-      continue;
-    }
-
-    if (!failed.find((f) => f.name === name)) {
-      console.log(`⏭️  ${name} not in failed list, skipping`);
-      continue;
-    }
-
-    try {
-      let result;
-      if (name === "WikiIndexBasket") {
-        if (!oracle || !splitter) {
-          throw new Error("WikiIndexBasket needs WikiOracle and WikiRevenueSplitter in deployment file");
-        }
-        result = await deployOne(name, [
+      return deployOne(
+        "WikiIndexBasket",
+        [
           deployer.address,
           "Wiki Top 2",
           "WIKX2",
@@ -114,35 +133,68 @@ async function main() {
               initPrice: 1,
             },
           ],
-        ], { gasLimit: 30_000_000, forceRawTx: true });
-      } else if (name === "WikiMultisigGuard") {
-        result = await deployOne(name, [signerPool, 2]);
-      } else if (name === "WikiStrategyVault") {
-        result = await deployOne(name, [extUSDC, 0, 50, 1000, "Wiki Strategy Vault", "wSV", deployer.address]);
-      }
+        ],
+        { gasLimit: 30_000_000, forceRawTx: true }
+      );
+    },
+    WikiMultisigGuard: async () => deployOne("WikiMultisigGuard", [signerPool, 2]),
+    WikiStrategyVault: async () =>
+      deployOne("WikiStrategyVault", [extUSDC, 0, 50, 1000, "Wiki Strategy Vault", "wSV", deployer.address]),
+  };
 
-      deployed[name] = result.address;
+  console.log(`\n🔁 Retrying failed contracts on ${networkName} from ${fileName} ...`);
+
+  const retried = [];
+  const skipped = [];
+  const stillFailed = [];
+
+  for (const name of failedContracts) {
+    if (contracts[name]) {
+      console.log(`⏭️  ${name} already deployed at ${contracts[name]}`);
+      retried.push(name);
+      continue;
+    }
+
+    const handler = handlers[name];
+    if (!handler) {
+      console.log(`⚠️  ${name} has no auto-retry recipe yet; skipping`);
+      skipped.push(name);
+      continue;
+    }
+
+    try {
+      const result = await handler();
+      contracts[name] = result.address;
       details[name] = {
         address: result.address,
         args: result.args,
         txHash: result.txHash,
+        retryNetwork: networkName,
+        retryTimestamp: new Date().toISOString(),
       };
-    } catch (e) {
-      console.log(`❌ ${name} failed again: ${e.message}`);
+      retried.push(name);
+    } catch (error) {
+      console.log(`❌ ${name} failed again: ${error.message}`);
+      stillFailed.push({ name, reason: error.message });
     }
   }
 
-  data.deployed = deployed;
+  data.contracts = contracts;
+  data.deployed = contracts;
   data.details = details;
-  data.failed = (data.failed || []).filter((f) => !deployed[f.name]);
+  data.failedContracts = [...new Set([...skipped, ...stillFailed.map((item) => item.name)])];
+  data.deployFailures = stillFailed;
   data.retryTimestamp = new Date().toISOString();
 
-  fs.writeFileSync(file, JSON.stringify(data, null, 2));
-  console.log(`\n✅ Updated ${path.basename(file)}`);
-  console.log(`Remaining failed: ${data.failed.length}`);
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+
+  console.log(`\n✅ Updated ${fileName}`);
+  console.log(`✅ Retried successfully/already-present: ${retried.length}`);
+  console.log(`⚠️  Skipped (no recipe): ${skipped.length}`);
+  console.log(`❌ Still failed: ${stillFailed.length}`);
 }
 
-main().catch((e) => {
-  console.error(e);
+main().catch((error) => {
+  console.error(error);
   process.exit(1);
 });
