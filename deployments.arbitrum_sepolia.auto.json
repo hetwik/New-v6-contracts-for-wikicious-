@@ -69,7 +69,7 @@
     "WikiGuaranteedStop": "0x581ACb608a8dB2d370D3D9083d494db9C26dcA91",
     "WikiHybridLiquidityManager": "0x49A1724a0a6661602BAdEFf8b29481013d3B67bC",
     "WikiIEOPlatform": "0x8756D7955FbC266Ec0364d4330522Be6c23d4420",
-    "WikiIndexBasket": "0x1C8403D6e097CB9FE0b9Aa48C8EeefB4929729d7",
+    "WikiIndexBasket": "0x9D7880FB2C84b0B1AA07c80E5eA0becF1e053Ff9",
     "WikiIndexPerp": "0x4c9CAc9bA6663751510ED438f4e4A0E741551998",
     "WikiInstitutionalPool": "0x2a45B8B933376c65Eb294250287F4cc9bd08e5b2",
     "WikiInsuranceFundYield": "0xA378fbFd7E5E7F21313489b97696426DC56a921D",
@@ -615,8 +615,8 @@
       "txHash": "0x725d4dcfd9535920b1d3a48d939e62b5733f4e0a954ada95274c7dd0b1fbc755"
     },
     "WikiIndexBasket": {
-      "address": "0x1C8403D6e097CB9FE0b9Aa48C8EeefB4929729d7",
-      "txHash": "0xd07e5318f0632b4feaaf60a5419150c2c6d2bda9bb37266b1d302fa958abe18a",
+      "address": "0x9D7880FB2C84b0B1AA07c80E5eA0becF1e053Ff9",
+      "txHash": "0xeddd56d8f3a4ca17b15c2d5818968446e00ab876662fca30ce656c85eb1a26cc",
       "args": [
         "0x79698a8D914016b770AF796D8F08D660d64C0997",
         "Wiki Top 2",
@@ -1373,5 +1373,5 @@
       "txHash": "0xba98633be730278556fea8adac7b9896f708634481a20573be377c342de03145"
     }
   },
-  "retryTimestamp": "2026-04-10T05:40:22.528Z"
+  "retryTimestamp": "2026-04-10T08:54:11.737Z"
 }
