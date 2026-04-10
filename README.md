@@ -71,6 +71,47 @@ If you want heuristic auto-deploy mode instead (faster iteration):
 npm run deploy:all
 ```
 
+
+## Keeper bot setup (automated)
+
+After deploy/post-wiring, set your keeper wallet in `.env`:
+
+```env
+KEEPER_BOT_WALLET=0xYourKeeperWallet
+```
+
+Run:
+
+```bash
+npm run keeper:testnet
+# or
+npm run keeper:mainnet
+```
+
+What it does:
+- auto-loads the right deployment file for the target network
+- scans deployed contracts and tries keeper setter methods (`setKeeper(address,bool)`, `setKeeper(address)`, `setKeeperBot(address)`)
+- skips contracts that don't expose keeper setters
+- writes a full report to `keeper-setup.json`
+
+## Mainnet retry helpers
+
+If some contracts failed to deploy during mainnet deploy, retry known failed deployments from the latest `deployments.arbitrum_one*.json` file:
+
+```bash
+npm run deploy:retry:mainnet
+```
+
+If post-wiring keeper setup needs a retry on mainnet:
+
+```bash
+npm run wiring:retry:mainnet
+```
+
+Notes:
+- `deploy:retry:mainnet` auto-loads the mainnet deployment file and retries contracts listed in `failedContracts`/`deployFailures` for supported recipes.
+- Unsupported failed contracts are kept in `failedContracts` so you can handle them manually later.
+
 Optional post-deploy env vars used by `deploy-all.js` wiring:
 - `ENABLE_POST_DEPLOY_WIRING` (`true` by default, set `false` to skip)
 - `OPS_WALLET` (defaults to deployer)
