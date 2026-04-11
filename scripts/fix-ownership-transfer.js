@@ -5,9 +5,9 @@ const { ethers } = require("hardhat");
 
 const SAFE = "0xc01fAE37aE7a4051Eafea26e047f36394054779c";
 const ABI = [
-  "function pendingOwner() view returns (address)",
-  "function owner() view returns (address)",
-  "function transferOwnership(address) external",
+  "function owner() public view returns (address)",
+  "function pendingOwner() public view returns (address)", // Only if using Ownable2Step
+  "function transferOwnership(address newOwner) public",
 ];
 
 const CONTRACTS = {

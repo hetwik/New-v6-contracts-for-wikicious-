@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1775876167082,
+  "meta": {
+    "name": "Accept Ownership — 4 Fresh Contracts",
+    "description": "Call acceptOwnership() on WikiCopyTrading, WikiDAOTreasury, WikiLiquidStaking. WikiMultisigGuard has no Ownable."
+  },
+  "transactions": [
+    {
+      "to": "0x9e09dF7E84aBf818882a259Ef897a55f25CE1163",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "inputs": [],
+        "name": "acceptOwnership",
+        "payable": false
+      },
+      "contractInputsValues": {}
+    },
+    {
+      "to": "0x00b13b0D1E9b18cfeF2C998027Ed7291CC163A3f",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "inputs": [],
+        "name": "acceptOwnership",
+        "payable": false
+      },
+      "contractInputsValues": {}
+    },
+    {
+      "to": "0x6ac54F360315E0B3Dae455ad371A06d154b410B2",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "inputs": [],
+        "name": "acceptOwnership",
+        "payable": false
+      },
+      "contractInputsValues": {}
+    }
+  ]
+}

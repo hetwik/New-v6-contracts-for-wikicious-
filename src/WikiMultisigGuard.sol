@@ -76,7 +76,7 @@ contract WikiMultisigGuard is ReentrancyGuard {
 
     uint256 public constant TIMELOCK_DELAY  = 48 hours;
     uint256 public constant MAX_SIGNERS     = 10;
-    uint256 public constant MIN_THRESHOLD   = 2;
+    uint256 public constant MIN_THRESHOLD   = 1;
 
     event ProposalCreated(uint256 indexed id, ActionType actionType, address proposer, string description);
     event ProposalApproved(uint256 indexed id, address approver, uint256 approvalsCount);

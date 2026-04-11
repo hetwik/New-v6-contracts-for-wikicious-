@@ -43,7 +43,6 @@ contract enforces everything
  *      - Leader opens BTC long 10× with $5K → vault mirrors at $5K × follower_ratio
  *      - Leader's position is 10% of their vault → each follower mirrors 10% of their balance
  *      - Proportional scaling — followers never exceed their own risk parameters
- *
  * ─── SECURITY ─────────────────────────────────────────────────────────────────
  * [A1] Followers can exit at any time — 24h cooldown for large withdrawals
  * [A2] Max drawdown circuit: vault auto-pauses if drawdown > maxDrawdownBps
@@ -166,7 +165,7 @@ contract WikiCopyTrading is Ownable2Step, ReentrancyGuard {
             accruedPerfFee:   0
         });
 
-        emit SocialVaultCreated(vaultId, msg.sender, name);
+        emit VaultCreated(vaultId, msg.sender, name);
     }
 
     // ── Follower: Deposit ─────────────────────────────────────────────────
