@@ -1153,7 +1153,7 @@
       ]
     },
     "WikiCopyTrading": {
-      "address": "0x203021D57021b892B794254Fad5a829df6523fD4",
+      "address": "0x9e09dF7E84aBf818882a259Ef897a55f25CE1163",
       "txHash": "0xa27d63dbdc167987fcf1c3cc54e377e0045bb2f33aae328e865eda97b9af5fa2",
       "args": [
         "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
@@ -1162,7 +1162,7 @@
       ]
     },
     "WikiDAOTreasury": {
-      "address": "0x091d53687FF0A6a716A558f714Af4DBB04204e08",
+      "address": "0x00b13b0D1E9b18cfeF2C998027Ed7291CC163A3f",
       "txHash": "0x761d5b40278fad9ccaf589f11ada090644c2029bf2340167caa273089b928dba",
       "args": [
         "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
@@ -1265,7 +1265,7 @@
       ]
     },
     "WikiLiquidStaking": {
-      "address": "0xD2107b327FB1b304661EAdB3033D96F961cF99ab",
+      "address": "0x6ac54F360315E0B3Dae455ad371A06d154b410B2",
       "txHash": "0x7fda3869deb1abe6be4a99610274322de88a66e5d1a3d09302834bb188f8b73f",
       "args": [
         "0xa681Bf6f0449ABc4E98DCa3468488Fe1b24FdD0F",

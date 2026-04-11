@@ -96,21 +96,20 @@ module.exports = {
   },
 
   etherscan: {
-    apiKey: {
-      arbitrumOne: ETHERSCAN_KEY || "YOUR_ARBISCAN_KEY_HERE",
-      arbitrumSepolia: ETHERSCAN_KEY || "YOUR_ARBISCAN_KEY_HERE",
-    },
-    customChains: [
-      {
-        network: "arbitrumSepolia",
-        chainId: 421614,
-        urls: {
-          apiURL: "https://api-sepolia.arbiscan.io/api",
-          browserURL: "https://sepolia.arbiscan.io",
-        },
-      },
-    ],
-  },
+      apiKey: {
+          arbitrum_one: process.env.ETHERSCAN_API_KEY,
+            },
+              customChains: [
+                  {
+                        network: "arbitrum_one",       // must match --network flag in your script
+                              chainId: 42161,
+                                    urls: {
+                                            apiURL: "https://api.etherscan.io/v2/api?chainid=42161",
+                                                    browserURL: "https://arbiscan.io",
+                                                          },
+                                                              },
+                                                                ],
+                                                                },
 
   sourcify: { enabled: false },
 };
