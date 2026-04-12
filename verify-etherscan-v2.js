@@ -1,16 +1,16 @@
 /**
  * Wikicious V6 — Arbitrum One source verification via Etherscan V2 API.
  *
- * Reads canonical contract addresses + constructor args from
- * wikicious_v6_mainnet_all.json and verifies each contract through Hardhat.
+ * Uses Hardhat verify task directly (no shell quoting issues) and loads
+ * contracts/constructor args from wikicious_v6_mainnet_all.json.
  *
  * Run:
  *   node verify-etherscan-v2.js
  */
 require('dotenv').config();
-const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const hre = require('hardhat');
 
 const DEPLOY_PATH = path.join(process.cwd(), 'wikicious_v6_mainnet_all.json');
 
@@ -26,21 +26,24 @@ function loadContracts() {
   }));
 }
 
-function verifyOne(contract) {
-  const argsStr = contract.args.map((a) => JSON.stringify(a)).join(' ');
-  const cmd = `npx hardhat verify --network arbitrum_one ${contract.address} ${argsStr}`;
+function normalizeError(e) {
+  const msg = String(e?.message || e || 'unknown error');
+  if (/Already Verified|already verified/i.test(msg)) return { status: 'already_verified', reason: msg };
+  if (/Invalid API Key|Missing or invalid Action name|NOTOK/i.test(msg)) return { status: 'failed', reason: `API issue: ${msg}` };
+  if (/constructor/i.test(msg) && /argument/i.test(msg)) return { status: 'failed', reason: `Constructor mismatch: ${msg}` };
+  if (/does not have bytecode|No bytecode/i.test(msg)) return { status: 'failed', reason: `No bytecode at address: ${msg}` };
+  return { status: 'failed', reason: msg };
+}
+
+async function verifyOne(contract) {
   try {
-    const out = execSync(cmd, { stdio: 'pipe', timeout: 120000 }).toString();
-    return {
-      status: out.includes('Already Verified') ? 'already_verified' : 'verified',
-      output: out.trim(),
-    };
+    await hre.run('verify:verify', {
+      address: contract.address,
+      constructorArguments: contract.args,
+    });
+    return { status: 'verified', reason: 'Successfully verified' };
   } catch (e) {
-    const msg = `${e.stdout?.toString() || ''}${e.stderr?.toString() || ''}`;
-    if (msg.match(/Already Verified|already verified/i)) {
-      return { status: 'already_verified', output: msg.trim() };
-    }
-    return { status: 'failed', output: msg.trim() };
+    return normalizeError(e);
   }
 }
 
@@ -56,18 +59,36 @@ async function main() {
   for (let i = 0; i < contracts.length; i++) {
     const c = contracts[i];
     process.stdout.write(`  [${i + 1}/${contracts.length}] ${c.name}...`);
-    const res = verifyOne(c);
-    results[res.status].push({ name: c.name, address: c.address, output: res.output });
-    console.log(res.status === 'failed' ? ' ❌ failed' : ` ✅ ${res.status}`);
+    const res = await verifyOne(c);
+    results[res.status].push({ name: c.name, address: c.address, reason: res.reason });
+
+    if (res.status === 'failed') {
+      const short = res.reason.replace(/\s+/g, ' ').slice(0, 180);
+      console.log(` ❌ failed — ${short}`);
+    } else {
+      console.log(` ✅ ${res.status}`);
+    }
+
     if (i < contracts.length - 1) {
-      await new Promise((r) => setTimeout(r, 250));
+      await new Promise((r) => setTimeout(r, 1200));
     }
   }
 
-  fs.writeFileSync(
-    'verification-report.json',
-    `${JSON.stringify({ timestamp: new Date().toISOString(), source: path.basename(DEPLOY_PATH), ...results }, null, 2)}\n`
-  );
+  const report = {
+    timestamp: new Date().toISOString(),
+    network: hre.network.name,
+    chainId: 42161,
+    source: path.basename(DEPLOY_PATH),
+    summary: {
+      total: contracts.length,
+      verified: results.verified.length,
+      already_verified: results.already_verified.length,
+      failed: results.failed.length,
+    },
+    ...results,
+  };
+
+  fs.writeFileSync('verification-report.json', `${JSON.stringify(report, null, 2)}\n`);
 
   console.log('\nSummary');
   console.log(`  ✅ verified         : ${results.verified.length}`);
@@ -76,6 +97,10 @@ async function main() {
   console.log('  📄 report           : verification-report.json');
 
   if (results.failed.length > 0) {
+    console.log('\nTop failure reasons:');
+    results.failed.slice(0, 10).forEach((f) => {
+      console.log(`  - ${f.name}: ${String(f.reason).replace(/\s+/g, ' ').slice(0, 220)}`);
+    });
     process.exitCode = 1;
   }
 }

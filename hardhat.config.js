@@ -112,7 +112,23 @@ module.exports = {
         },
       },
       {
+        network: "arbitrum_one",
+        chainId: 42161,
+        urls: {
+          apiURL: "https://api.etherscan.io/v2/api",
+          browserURL: "https://arbiscan.io",
+        },
+      },
+      {
         network: "arbitrumSepolia",
+        chainId: 421614,
+        urls: {
+          apiURL: "https://api.etherscan.io/v2/api",
+          browserURL: "https://sepolia.arbiscan.io",
+        },
+      },
+      {
+        network: "arbitrum_sepolia",
         chainId: 421614,
         urls: {
           apiURL: "https://api.etherscan.io/v2/api",
