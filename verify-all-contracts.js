@@ -12,12 +12,14 @@ const path = require('path');
 const { ethers } = require('ethers');
 
 const DEPLOY_PATH = path.join(process.cwd(), 'wikicious_v6_mainnet_all.json');
-const RPC_URL = process.env.ALCHEMY_ARBITRUM_URL;
+const RPC_CANDIDATES = [
+  process.env.ALCHEMY_ARBITRUM_URL,
+  process.env.ARBITRUM_RPC_URL,
+  'https://arb1.arbitrum.io/rpc',
+  'https://arbitrum.llamarpc.com',
+  'https://rpc.ankr.com/arbitrum',
+].filter(Boolean);
 
-if (!RPC_URL) {
-  console.error('❌ ALCHEMY_ARBITRUM_URL not set in .env');
-  process.exit(1);
-}
 if (!fs.existsSync(DEPLOY_PATH)) {
   console.error(`❌ Missing ${DEPLOY_PATH}`);
   process.exit(1);
@@ -29,11 +31,25 @@ const CONTRACTS = Object.fromEntries(
   Object.entries(deployment.contracts || {}).map(([name, info]) => [name, info.address])
 );
 
-const provider = new ethers.JsonRpcProvider(RPC_URL);
 const OWNER_ABI = ['function owner() view returns (address)'];
 const PENDING_OWNER_ABI = ['function pendingOwner() view returns (address)'];
 
-async function check(name, address) {
+async function getProvider() {
+  for (const url of RPC_CANDIDATES) {
+    const provider = new ethers.JsonRpcProvider(url, undefined, { staticNetwork: true });
+    try {
+      const net = await provider.getNetwork();
+      if (Number(net.chainId) === 42161) {
+        return { provider, url };
+      }
+    } catch {
+      // try next RPC
+    }
+  }
+  return null;
+}
+
+async function check(provider, name, address) {
   const out = { name, address, bytecode: false, owner: null, pendingOwner: null, issues: [] };
   const code = await provider.getCode(address);
   if (!code || code === '0x') {
@@ -66,14 +82,24 @@ async function check(name, address) {
 }
 
 async function main() {
+  const conn = await getProvider();
+  if (!conn) {
+    console.error('❌ Unable to connect to Arbitrum RPC. Tried candidates:');
+    RPC_CANDIDATES.forEach((u) => console.error(`   - ${u}`));
+    console.error('Set ALCHEMY_ARBITRUM_URL in .env and re-run.');
+    process.exit(2);
+  }
+
+  const { provider, url } = conn;
   const names = Object.keys(CONTRACTS);
   const results = [];
 
   console.log(`🔍 Verifying ${names.length} deployed contracts against Safe ${SAFE}`);
+  console.log(`🌐 RPC: ${url}`);
 
   for (let i = 0; i < names.length; i++) {
     const name = names[i];
-    const res = await check(name, CONTRACTS[name]);
+    const res = await check(provider, name, CONTRACTS[name]);
     results.push(res);
     process.stdout.write(`  checked ${i + 1}/${names.length}\r`);
     if (i < names.length - 1) await new Promise((r) => setTimeout(r, 120));
@@ -95,7 +121,7 @@ async function main() {
 
   fs.writeFileSync(
     'verification-report.json',
-    `${JSON.stringify({ timestamp: new Date().toISOString(), source: path.basename(DEPLOY_PATH), safe: SAFE, total: results.length, results }, null, 2)}\n`
+    `${JSON.stringify({ timestamp: new Date().toISOString(), source: path.basename(DEPLOY_PATH), rpc: url, safe: SAFE, total: results.length, results }, null, 2)}\n`
   );
   console.log('\n📄 Wrote verification-report.json');
 
