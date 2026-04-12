@@ -12,6 +12,27 @@ const fs = require('fs');
 const path = require('path');
 const hre = require('hardhat');
 
+const { spawnSync } = require('child_process');
+
+if (hre.network.name === 'hardhat' && !process.env.VERIFY_V2_BOOTSTRAPPED) {
+  const targetNetwork = process.env.VERIFY_NETWORK || 'arbitrum_one';
+  console.log(`ℹ️  Re-running verifier on network: ${targetNetwork}`);
+  const rerun = spawnSync(
+    'npx',
+    ['hardhat', 'run', 'verify-etherscan-v2.js', '--network', targetNetwork],
+    {
+      stdio: 'inherit',
+      env: { ...process.env, VERIFY_V2_BOOTSTRAPPED: '1' },
+    }
+  );
+  process.exit(rerun.status ?? 1);
+}
+
+
+if (hre.network.name === 'hardhat' && process.env.VERIFY_V2_BOOTSTRAPPED) {
+  throw new Error('Hardhat network selected for verification. Run `npm run verify` or set HARDHAT_NETWORK=arbitrum_one.');
+}
+
 const DEPLOY_PATH = path.join(process.cwd(), 'wikicious_v6_mainnet_all.json');
 
 function loadContracts() {
