@@ -1,7 +1,7 @@
 {
   "name": "wikicious-v6-contracts",
   "version": "6.0.0",
-  "description": "Wikicious V6 — Smart Contracts on Arbitrum One",
+  "description": "Wikicious V6 \u2014 Smart Contracts on Arbitrum One",
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",
@@ -9,16 +9,20 @@
     "deploy:testnet": "hardhat run scripts/deploy-all.js --network arbitrum_sepolia",
     "deploy:all": "hardhat run scripts/deploy-all.js --network arbitrum_one",
     "deploy:mainnet:check": "node scripts/preflight-mainnet.js",
-    "deploy:mainnet": "npm run deploy:mainnet:check && hardhat run scripts/deploy.js --network arbitrum_one",
+    "deploy:mainnet": "npm run deploy:mainnet:ready && hardhat run scripts/deploy.js --network arbitrum_one",
     "deploy:mainnet:parity": "npm run deploy:mainnet:check && hardhat run scripts/deploy.js --network arbitrum_one",
     "deploy:retry": "hardhat run scripts/deploy-failed.js --network arbitrum_sepolia",
     "deploy:retry:index": "hardhat run scripts/deploy-indexbasket-only.js --network arbitrum_sepolia",
-    "verify": "hardhat run scripts/verify.js --network arbitrum_one",
+    "verify": "node verify-etherscan-v2.js",
     "transfer": "hardhat run scripts/transfer-ownership.js --network arbitrum_one",
     "keeper:testnet": "hardhat run scripts/set-keeper-bot.js --network arbitrum_sepolia",
     "keeper:mainnet": "hardhat run scripts/set-keeper-bot.js --network arbitrum_one",
     "deploy:retry:mainnet": "hardhat run scripts/deploy-failed.js --network arbitrum_one",
-    "wiring:retry:mainnet": "hardhat run scripts/set-keeper-bot.js --network arbitrum_one"
+    "wiring:retry:mainnet": "hardhat run scripts/set-keeper-bot.js --network arbitrum_one",
+    "mainnet:readiness": "node scripts/mainnet-readiness-check.js",
+    "deploy:mainnet:ready": "npm run mainnet:readiness && npm run deploy:mainnet:check",
+    "verify:ownership": "node verify-all-contracts.js",
+    "sync:mainnet:artifacts": "node scripts/sync-mainnet-artifacts.js"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
