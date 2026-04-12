@@ -96,20 +96,47 @@ module.exports = {
   },
 
   etherscan: {
-      apiKey: {
-          arbitrum_one: process.env.ETHERSCAN_API_KEY,
-            },
-              customChains: [
-                  {
-                        network: "arbitrum_one",       // must match --network flag in your script
-                              chainId: 42161,
-                                    urls: {
-                                            apiURL: "https://api.etherscan.io/v2/api?chainid=42161",
-                                                    browserURL: "https://arbiscan.io",
-                                                          },
-                                                              },
-                                                                ],
-                                                                },
+    apiKey: {
+      arbitrumOne: ETHERSCAN_KEY,
+      arbitrumSepolia: ETHERSCAN_KEY,
+      arbitrum_one: ETHERSCAN_KEY,
+      arbitrum_sepolia: ETHERSCAN_KEY,
+    },
+    customChains: [
+      {
+        network: "arbitrumOne",
+        chainId: 42161,
+        urls: {
+          apiURL: "https://api.etherscan.io/v2/api",
+          browserURL: "https://arbiscan.io",
+        },
+      },
+      {
+        network: "arbitrum_one",
+        chainId: 42161,
+        urls: {
+          apiURL: "https://api.etherscan.io/v2/api",
+          browserURL: "https://arbiscan.io",
+        },
+      },
+      {
+        network: "arbitrumSepolia",
+        chainId: 421614,
+        urls: {
+          apiURL: "https://api.etherscan.io/v2/api",
+          browserURL: "https://sepolia.arbiscan.io",
+        },
+      },
+      {
+        network: "arbitrum_sepolia",
+        chainId: 421614,
+        urls: {
+          apiURL: "https://api.etherscan.io/v2/api",
+          browserURL: "https://sepolia.arbiscan.io",
+        },
+      },
+    ],
+  },
 
   sourcify: { enabled: false },
 };
