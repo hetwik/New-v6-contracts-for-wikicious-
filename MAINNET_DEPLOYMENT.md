@@ -52,5 +52,11 @@ The deployment script has additional guards and will refuse mainnet deploy if:
 npm run verify
 ```
 
+- For ownership + bytecode reconciliation report:
+
+```bash
+npm run verify:ownership
+```
+
 - Confirm ownership transferred to `GENESIS_SAFE_ADDRESS`.
 - Archive deployment artifacts and tx hashes in release notes.
