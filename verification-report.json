@@ -1,1080 +1,682 @@
 {
-  "timestamp": "2026-04-11T04:59:24.876Z",
-  "safe": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-  "total": 133,
-  "clean": 130,
-  "issues": 3,
-  "details": [
+  "timestamp": "2026-04-13T08:49:09.979Z",
+  "network": "arbitrum_one",
+  "chainId": 42161,
+  "source": "wikicious_v6_mainnet_all.json",
+  "summary": {
+    "total": 133,
+    "verified": 0,
+    "already_verified": 9,
+    "failed": 124
+  },
+  "verified": [],
+  "already_verified": [
     {
       "name": "WIKToken",
       "address": "0xa681Bf6f0449ABc4E98DCa3468488Fe1b24FdD0F",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The block explorer's API responded that the contract src/WIKToken.sol:WIKToken at 0xa681Bf6f0449ABc4E98DCa3468488Fe1b24FdD0F is already verified.\nThis can happen if you used the '--force' flag. However, re-verification of contracts might not be supported\nby the explorer (e.g., Etherscan), or the contract may have already been verified with a full match."
     },
     {
       "name": "WikiOracle",
       "address": "0xA99583D3cd272F95b8f08b32297f072f5164D0DC",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The block explorer's API responded that the contract src/WikiOracle.sol:WikiOracle at 0xA99583D3cd272F95b8f08b32297f072f5164D0DC is already verified.\nThis can happen if you used the '--force' flag. However, re-verification of contracts might not be supported\nby the explorer (e.g., Etherscan), or the contract may have already been verified with a full match."
     },
     {
       "name": "WikiVault",
       "address": "0x4533E181FdF5b0C66e0816992F38c23d57e42Df8",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The block explorer's API responded that the contract src/WikiVault.sol:WikiVault at 0x4533E181FdF5b0C66e0816992F38c23d57e42Df8 is already verified.\nThis can happen if you used the '--force' flag. However, re-verification of contracts might not be supported\nby the explorer (e.g., Etherscan), or the contract may have already been verified with a full match."
     },
     {
       "name": "WikiPerp",
       "address": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The block explorer's API responded that the contract src/WikiPerp.sol:WikiPerp at 0x723f653a3DEFC45FB934BBF81f1411883a977468 is already verified.\nThis can happen if you used the '--force' flag. However, re-verification of contracts might not be supported\nby the explorer (e.g., Etherscan), or the contract may have already been verified with a full match."
     },
     {
       "name": "WikiRevenueSplitter",
       "address": "0xAaDDf07470A4749F51A374Cdeb7889f99f222937",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The block explorer's API responded that the contract src/WikiRevenueSplitter.sol:WikiRevenueSplitter at 0xAaDDf07470A4749F51A374Cdeb7889f99f222937 is already verified.\nThis can happen if you used the '--force' flag. However, re-verification of contracts might not be supported\nby the explorer (e.g., Etherscan), or the contract may have already been verified with a full match."
     },
     {
       "name": "WikiFlashLoan",
       "address": "0xAF8Dfefc70595BE1ACAd711722e67f9894345d8e",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The block explorer's API responded that the contract src/WikiFlashLoan.sol:WikiFlashLoan at 0xAF8Dfefc70595BE1ACAd711722e67f9894345d8e is already verified.\nThis can happen if you used the '--force' flag. However, re-verification of contracts might not be supported\nby the explorer (e.g., Etherscan), or the contract may have already been verified with a full match."
     },
     {
       "name": "WikiVirtualAMM",
       "address": "0x9C63c27B8A73A990a2D89141622A639a2363b88A",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The block explorer's API responded that the contract src/WikiVirtualAMM.sol:WikiVirtualAMM at 0x9C63c27B8A73A990a2D89141622A639a2363b88A is already verified.\nThis can happen if you used the '--force' flag. However, re-verification of contracts might not be supported\nby the explorer (e.g., Etherscan), or the contract may have already been verified with a full match."
     },
     {
       "name": "WikiYieldAggregator",
       "address": "0x95F3Cf765b479478c44D0EE932f17444ADA6A9a1",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The block explorer's API responded that the contract src/WikiYieldAggregator.sol:WikiYieldAggregator at 0x95F3Cf765b479478c44D0EE932f17444ADA6A9a1 is already verified.\nThis can happen if you used the '--force' flag. However, re-verification of contracts might not be supported\nby the explorer (e.g., Etherscan), or the contract may have already been verified with a full match."
     },
     {
       "name": "WikiInsuranceFundYield",
       "address": "0x1376a071B84006489DeE4bDEF68eB8fA9854e758",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
-    },
+      "reason": "The block explorer's API responded that the contract src/WikiInsuranceFundYield.sol:WikiInsuranceFundYield at 0x1376a071B84006489DeE4bDEF68eB8fA9854e758 is already verified.\nThis can happen if you used the '--force' flag. However, re-verification of contracts might not be supported\nby the explorer (e.g., Etherscan), or the contract may have already been verified with a full match."
+    }
+  ],
+  "failed": [
     {
       "name": "WikiPOL",
       "address": "0xEfbfEd647213c78316CDB8418026Cba6515BC7FB",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiTokenVesting",
       "address": "0x39ef6574b791164E32C9E8bd432637AB0EB3EbBd",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiMarketRegistry",
       "address": "0xe3Ef2Ff843770a2966B703672c515386b53ada33",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiTVLGuard",
       "address": "0xAA3109DEe3F45d2834e703AaA6c90Db3009f4b11",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiRateLimiter",
       "address": "0xE622aEEAaB8a678A059703BA21455f93e7D108f1",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiAMM",
       "address": "0x5e73fa11c2Fa157dbE59E7B8F7f1b3101c5c6004",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiSpotRouter",
       "address": "0x0181EC165A4f2C0cf79Be65f1DDa6C0b85D87aa8",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLending",
       "address": "0x74635CFa33EEAe220367fF10C598e098a29e9246",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiIdleYieldRouter",
       "address": "0x53b6A9bE66C68090c26d4BE74f6eB916578F3A0B",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "RadiantAdapter",
       "address": "0xd4BB2B6df614e37f65a7A6bAd1734BC3decB2c47",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiADL",
       "address": "0x3b891953845DB86Cf7Aca3fe14451adFAa8C377c",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiAgenticDAO",
       "address": "0x8d451ADbea9F109b5F072C477a8AA03896931074",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiAIGuardrails",
       "address": "0xf41e465d8cd2741cf9aCa2b7f988ccAB5B8d03E7",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiAutoCompounder",
       "address": "0xD03C8cd8E3E847eD2063800f8f4Bc44512867b05",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiBondingPOL",
       "address": "0xE12761B6C704eF78f55883C440E3aD1fb8449f09",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiBotVault",
       "address": "0x0DCD4d1Df8f2779935E7bB4eFA384f13ea265206",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiBridge",
       "address": "0x00BdF1d85812285014818deF495FD9435efd8659",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiBuybackBurn",
       "address": "0xdEe2A2e8Ff5a66788dd1E0D5AFEd2B44D6f1B46C",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiCircuitBreaker",
       "address": "0xa24D3Dc833566A59e7130bf42a8C4f1908A0b4ae",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiConcentratedLP",
       "address": "0x804795174B8b689DC8ab4332dC5b52cD0D1a1566",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiConditionalOrder",
       "address": "0xCBed48F05dAF5db381503e43EB04d62D7ca40Ba7",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiCrossChainLending",
       "address": "0xBA0B6E48B5325164EE48865101bFaDF8F5130FA7",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiCrossChainRouter",
       "address": "0x7CFE0F5af7801039E58bDccA0233B5198fF63384",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiDarkPool",
       "address": "0x1ec621494B30CaBb5043320Ad83D8ADc2b199064",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiDeltaNeutralVault",
       "address": "0x8551cF1BBbd3429dDD62037D583340Ed33904C30",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiDynamicFeeHook",
       "address": "0x4801B2f021255B8636B9F8aA88A90152Cc88e53f",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiDynamicLeverage",
       "address": "0x3389316F7e67002a7fA046A3a01bE58cb432F8Ca",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiExternalInsurance",
       "address": "0x7FB9Aa53BF4A7B9585910e30C89e61353Ed9868C",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiFeeDistributor",
       "address": "0x0ad3f8523279102f39Cc60350567dA8b84B7A68C",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiForexOracle",
       "address": "0xFa105a76bc33F009E8DE675Edd80F9f3FE8F7a65",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiGasRebate",
       "address": "0x88C326816E5bc56764fF9a5a7CCdEa10a253c252",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiGMXBackstop",
       "address": "0xf3785092A8077C861BF1cCf2B56ba35524A73Fc4",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiGuaranteedStop",
       "address": "0x54Cac724Fe57eAeef52C2eeAB3A48FDf4c609a42",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiHybridLiquidityManager",
       "address": "0x4A73f367cD326092f75c8BE8056C5091F6096D48",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiIEOPlatform",
       "address": "0xc2c5d7218D906912FCE5d5D6675808695D3263C7",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiIndexPerp",
       "address": "0x39A76915f9Df7004fDC31308C4892Ea3e7103Da5",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiInstitutionalPool",
       "address": "0xFd2752832060495204D581Fda9a74b86A9976b80",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiInternalArb",
       "address": "0x153BB399704bee6287AA9DDA03349b2E13A80150",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiKeeperRegistry",
       "address": "0x27F57e95cca2b4c88a50490212a2cCDDb3168e34",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiKeeperService",
       "address": "0xFdD18D26980Ee49C1f33588C381d90E6bD9846c2",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLaunchPool",
       "address": "0xD2b9d006744dE5d9821b0062bFbc5A1c6e6B80d4",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLeaderboard",
       "address": "0x214448E0bB0f30ec817d8d58EF5F51fC360c47d2",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLeveragedYield",
       "address": "0x0686921ae93c5043dd04303412E1408fBb82ceb5",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLeverageScaler",
       "address": "0x01f8a097D8d1C81C0C65f080EB6C026804B4557a",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLiqAuctionUI",
       "address": "0xf9253F3f56369017983449254E5d2Ca14d0A4FA2",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLiquidationInsurance",
       "address": "0x68C2d90Fe211535C1Cb09329bB095137b45988D9",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLiquidationMarket",
       "address": "0x8bf80d7FBbBe2cD367308cCB08c16Dc80ABee94e",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLiquidator",
       "address": "0x1fCe4e7c16386af492b6275DDDEcA747f6559a65",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLiquidityMining",
       "address": "0x0F93d97280a410934d847C80a0E36befa0aC8683",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLiquidRestaking",
       "address": "0x9EE6BaeE6a2952a31B0bd66ddD3Bf49e4e176F86",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLP",
       "address": "0x471351b73906aeA58E1FD4dA99122Ee04De62c8d",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLPBoost",
       "address": "0x799267ffDF32a5e514442D8d4D81410F866B6d4c",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLPCollateral",
       "address": "0x7df715CaFaf7a5604B3eD2519AEBF6D7611b633A",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiManagedLiquidityVault",
       "address": "0x40db8a2fc66be9bd2F22Aa22056055FcF829e414",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiMarginLoan",
       "address": "0x892DcAAF9e22AEdFE449cb8244AfcA10b1822942",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiMEVHook",
       "address": "0x36e66D87822E73Df3daC202d8635e95A9BeD297d",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiMultiCollateral",
       "address": "0xB2F18Fa5463088618222d7431663cAEBdCB2A982",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiMultisigGuard",
       "address": "0x54E70D534f1904eda2Ec36C2f597463Fa7e871d5",
-      "bytecode": true,
-      "owner": null,
-      "pendingOwner": null,
-      "issues": []
+      "reason": "The address provided as argument contains a contract, but its bytecode doesn't match any of your local contracts.\n\nPossible causes are:\n  - The artifact for that contract is outdated or missing. You can try compiling the project again with the --force flag before re-running the verification.\n  - The contract's code changed after the deployment was executed. Sometimes this happens by changes in seemingly unrelated contracts.\n  - The solidity compiler settings were modified after the deployment was executed (like the optimizer, target EVM, etc.)\n  - The given address is wrong.\n  - The selected network (arbitrum_one) is wrong."
     },
     {
       "name": "WikiOnChainAnalytics",
       "address": "0x376E30fd99CBF35B7486FCC1b183cD22271099fc",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiOpsVault",
       "address": "0x697610bb41F4002827fecE3Faeb576c6B2967506",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiOTCDesk",
       "address": "0x999b964f0B104FaD6830A000f9653c87674Aad4b",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiPartialLiquidation",
       "address": "0xdb8208Ed6fFc7689aAfB81A3990FCc84E2D912f3",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiPaymaster",
       "address": "0x4f9f87a9A4788aD4Dfd309Be835323968E4516cf",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiPermissionlessMarkets",
       "address": "0x6e92a3d25c332B1E2778E987df106DDFfCEF8BA8",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiPortfolioMargin",
       "address": "0x40590a03Af72E57CB2A764596AcbFFD68C498ffB",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiPortfolioTracker",
       "address": "0xB65CBE69651C0a6Dc872a1955992766b02EBA273",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiPositionInsurance",
       "address": "0x9Fb0221Be4c21282A1f8F389BEFA92444019c9ba",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiPredictionMarket",
       "address": "0x650ea9441d228F03D52179AB5BA35A446b8BF01B",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiProofOfSolvency",
       "address": "0x40A6D061F614debEC8dFD8F0C975Cf0A3F8cfe28",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiPropChallenge",
       "address": "0x632Ea757CAF386785CD69Bc8bbAad39DFBC1C1Bb",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiPropEval",
       "address": "0x1dc3Ec0A86C14d63a5d1CF604B43792214E16397",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiPropFunded",
       "address": "0xB011Fa88034B9bD51347290914681957eaADbeCC",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiPropPool",
       "address": "0xCd03F2aA9aBd6EdCF1f0DeEfDBc8eE66d5eC76EA",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiPropPoolYield",
       "address": "0xD9182cb9b1d6b26d28C5e8CcE648bC7F868855B8",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiPushNotification",
       "address": "0x56947773D025707819aAa5BA82e1345e01060114",
-      "bytecode": true,
-      "owner": null,
-      "pendingOwner": null,
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiRealYieldLP",
       "address": "0x158768ae7292D46BfF975507f5Bc92eA10853479",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiRebalancer",
       "address": "0x7aC6EeE5Dd01C0573e98b573a3F32A78A3CDa523",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiReferralLeaderboard",
       "address": "0x1e9f247dc542613686754B0d1486392cF8dFE963",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiReferralNFT",
       "address": "0x5163036c6006D5b4c70fE0b4B408607dAcd16395",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiRevenueDashboard",
       "address": "0xBd6F07402005C1046142203d1079c973985209A7",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiRevenueShareNFT",
       "address": "0x304ce66bFAe0285e4f7fC1F8068F916294F17025",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiRWAMarket",
       "address": "0x50C5d54A42B0E79dAf87e19B643c498B4f85eFcF",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiSeasonPoints",
       "address": "0xFFEd31195072422D62f4CC050F28cA55eAA84912",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiSmartOrderRouter",
       "address": "0x9e3a971253e59941cC9400295D52F5338819a426",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiSocial",
       "address": "0xa7D88ea0C6Ac7A854c65346593C814A601EACCc4",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiStakingFeeDiscount",
       "address": "0xd0246c7089ff6B3F0275628436B366Ca0Cd119c7",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiStrategyVault",
       "address": "0xB81E1b0f2f1ad7263156412523be440245A17849",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiStructuredProduct",
       "address": "0x7505c13c6668cc6cAF57575577c151cA9c58ef78",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiSubAccount",
       "address": "0x081B5E6f60E0AA5bF79A25b1F6Fb332191924729",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiTimelockController",
       "address": "0xAda19c1BEb7bbFdf8264b784C3005b0d4B667cd0",
-      "bytecode": true,
-      "owner": null,
-      "pendingOwner": null,
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiTraderPass",
       "address": "0xdf6411F088867182c9A69FBF12A589012bF3D766",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiTraderSubscription",
       "address": "0x2b9928F648BEBF30Ec256054aeA6362310973c2a",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiTrailingStop",
       "address": "0x60968f8440267899a74C3eec539e56D0B756c5c6",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiTWAMM",
       "address": "0x3FaE518227D07a56b4F9a739c3bdf7D4A70Cd92B",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiUserBotFactory",
       "address": "0xcD8d7E0C09aF930902586C4f9114463f6fe1C4C5",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiVaultMarketplace",
       "address": "0x83350187cc08db1A7449Fe01dAb2FDb6e2e0B0ca",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiVestingMarket",
       "address": "0xE61D5dc7EF1e5d411C9a42aba8f32F249A52Dd34",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiVolatilityMargin",
       "address": "0xB8b7f8d215Dd4B3B86621bE93632AbF045c68802",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiVolumeTiers",
       "address": "0x1d0f8B3ad72A6f9c7a63137b2B761E16BEa1B0DB",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiYieldSlice",
       "address": "0x17DC41e6ADaad3D4AC0963d8C588F924a04E9fd6",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiZap",
       "address": "0x19025FC121f94AcD382963E441945ce256e2d090",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiIndexBasket",
       "address": "0x4543Ee57dC7cb1894E4402C06B99fe5B2a851d2C",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiSpot",
       "address": "0x08FC8f870Df09A7265D1D06a7A95C41cEf98d9E6",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiOrderBook",
       "address": "0x57B30eB5ed84B4E1Ce652f00848b554aAF63664f",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiStaking",
       "address": "0xDD551D705fAbD4380D2C95F7345b671cE3310bd2",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "AaveV3Adapter",
       "address": "0x23e0bBC0Cd957a44797431C4A7EA2fba510094f8",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiAffiliate",
       "address": "0x5568DE39D9c09B632877Bb76771Af8933B7748e8",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiAPIGateway",
       "address": "0xbDe2De0701580886dDef86dfe044faF5437985c4",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiBackstopVault",
       "address": "0xf2cD47C16CCA38aC77e6ab344E04e7E97C400748",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiBonus",
       "address": "0xDc7A581482e46baD2508347a28fd4CD090C3Cace",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiCopyTrading",
-      "address": "0x203021D57021b892B794254Fad5a829df6523fD4",
-      "bytecode": true,
-      "owner": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": [
-        "owner is 0xaf88d065e77c8cC2239327C5EDb3A432268e5831 (NOT Safe)"
-      ]
+      "address": "0x9e09dF7E84aBf818882a259Ef897a55f25CE1163",
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiDAOTreasury",
-      "address": "0x091d53687FF0A6a716A558f714Af4DBB04204e08",
-      "bytecode": true,
-      "owner": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": [
-        "owner is 0xaf88d065e77c8cC2239327C5EDb3A432268e5831 (NOT Safe)"
-      ]
+      "address": "0x00b13b0D1E9b18cfeF2C998027Ed7291CC163A3f",
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiFiatOnRamp",
       "address": "0x4ddFECEA202d4b7ff68D25d701712d89A668F3AF",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiFundingArbVault",
       "address": "0x8897A8Ae133b0DD71ef6E28B1A8efB42f1Ef78d4",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiGaugeVoting",
       "address": "0x016886FF6fdab890Dd03aE7a1D6535ef57f06F92",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLaunchpad",
       "address": "0x42DB4776FFB45f2cc5663407e7953935f63fd40E",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiMakerRewards",
       "address": "0xa4A90477028e207eC2676E85D0259BcDdB908242",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiMarketMakerAgreement",
       "address": "0x739df0A0CA647A89d172eD050b04aE4F4935106b",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiSocialRewards",
       "address": "0xe50a21CcfF67bE03A18cF0cB760D2f8a568A1d4F",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiTelegramGateway",
       "address": "0xB81534b67E7Ff28fC17D9bdB3F4A3453Bc200A4e",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiTradeHistory",
       "address": "0x2cEF54860f530F57e3d8eab658F83033bbcbB665",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLiqProtection",
       "address": "0x0e112cEa07E4CB3257fd8e16130ef321777e41d2",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiOptionsVault",
       "address": "0xE019e13abdd7160f8467D55E3e190022295dEdc1",
-      "bytecode": true,
-      "owner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "pendingOwner": "0x0000000000000000000000000000000000000000",
-      "issues": []
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     },
     {
       "name": "WikiLiquidStaking",
-      "address": "0xD2107b327FB1b304661EAdB3033D96F961cF99ab",
-      "bytecode": true,
-      "owner": "0x79698a8D914016b770AF796D8F08D660d64C0997",
-      "pendingOwner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-      "issues": [
-        "owner is 0x79698a8D914016b770AF796D8F08D660d64C0997 (NOT Safe)",
-        "pendingOwner still set: 0xc01fAE37aE7a4051Eafea26e047f36394054779c"
-      ]
+      "address": "0x6ac54F360315E0B3Dae455ad371A06d154b410B2",
+      "reason": "The Etherscan API responded with a failure status.\nThe verification may still succeed but should be checked manually.\nReason: Missing chainid parameter (required for v2 api), please see https://api.etherscan.io/v2/chainlist for the list of supported chainids"
     }
   ]
 }

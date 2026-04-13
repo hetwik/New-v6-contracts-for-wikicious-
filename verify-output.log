@@ -1,0 +1,6 @@
+nohup: ignoring input
+ℹ️  Re-running verifier on network: arbitrum_one
+🔍 Verifying 133 contracts using Etherscan V2 (Arbitrum chainId 42161)...
+  [1/133] WIKToken...[WARNING] Network and explorer-specific api keys are deprecated in favour of the new Etherscan v2 api. Support for v1 is expected to end by May 31st, 2025. To migrate, please specify a single Etherscan.io api key the apiKey config value.
+ ✅ already_verified
+  [2/133] WikiOracle...[WARNING] Network and explorer-specific api keys are deprecated in favour of the new Etherscan v2 api. Support for v1 is expected to end by May 31st, 2025. To migrate, please specify a single Etherscan.io api key the apiKey config value.
