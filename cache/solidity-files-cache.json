@@ -4290,8 +4290,8 @@
       ]
     },
     "/project/workspace/src/WikiMultisigGuard.sol": {
-      "lastModificationDate": 1775875102290,
-      "contentHash": "e0212fd69fb2fd6520d95a698caf3885",
+      "lastModificationDate": 1776080912211,
+      "contentHash": "e5f1e9e0dbff40563867d547c014beec",
       "sourceName": "src/WikiMultisigGuard.sol",
       "solcConfig": {
         "version": "0.8.26",
@@ -6102,8 +6102,8 @@
       ]
     },
     "/project/workspace/src/WikiCopyTrading.sol": {
-      "lastModificationDate": 1775875510129,
-      "contentHash": "021b85ef0b831b3309b916ce8638caf2",
+      "lastModificationDate": 1776080912211,
+      "contentHash": "2644083f753f527a3f957a208570d9bb",
       "sourceName": "src/WikiCopyTrading.sol",
       "solcConfig": {
         "version": "0.8.26",
