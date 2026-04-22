@@ -1,15 +1,22 @@
 #!/usr/bin/env node
-require('dotenv').config();
+const dotenv = require('dotenv');
 const fs = require('fs');
 const path = require('path');
+['.env', '.env.local', 'wikicious-v6-mainnet.env.txt'].forEach((file) => {
+  const full = path.resolve(process.cwd(), file);
+  if (fs.existsSync(full)) dotenv.config({ path: full });
+});
 const { ethers } = require('ethers');
 
 function loadJson(p) { return JSON.parse(fs.readFileSync(path.resolve(p), 'utf8')); }
 
 async function main() {
-  const rpc = process.env.ALCHEMY_ARBITRUM_URL || process.env.ARBITRUM_RPC_URL;
-  if (!rpc) throw new Error('Missing RPC URL. Set ALCHEMY_ARBITRUM_URL or ARBITRUM_RPC_URL');
+  const rpcCandidates = [process.env.ALCHEMY_ARBITRUM_URL, process.env.ARBITRUM_RPC_URL, process.env.RPC_URL, 'https://arb1.arbitrum.io/rpc']
+    .filter(Boolean)
+    .filter((u) => !String(u).includes('YOUR_ALCHEMY_KEY'));
+  const rpc = rpcCandidates[0];
 
+  console.log(`Using RPC: ${rpc}`);
   const provider = new ethers.JsonRpcProvider(rpc);
   const net = await provider.getNetwork();
   if (Number(net.chainId) !== 42161) throw new Error(`Expected chainId 42161, got ${net.chainId}`);
