@@ -15,6 +15,10 @@ function keyFor(a, b, fee) {
 }
 
 async function main() {
+  const args = process.argv.slice(2);
+  const yieldOnly = args.includes('--yield-only');
+  const liquidityOnly = args.includes('--liquidity-only');
+  if (yieldOnly && liquidityOnly) throw new Error('Use only one flag: --yield-only or --liquidity-only');
   const rpc = [process.env.ALCHEMY_ARBITRUM_URL, process.env.ARBITRUM_RPC_URL, process.env.RPC_URL, 'https://arb1.arbitrum.io/rpc']
     .filter(Boolean)
     .filter((u) => !String(u).includes('YOUR_ALCHEMY_KEY'))[0];
@@ -30,13 +34,23 @@ async function main() {
   const lp = new ethers.Contract(lpAddr, ['function pairToPool(bytes32) view returns (uint256)'], provider);
 
   const poolChecks = [];
-  for (const tx of lpBatch.transactions.filter(t => t.contractMethod?.name === 'createPool')) {
-    const v = tx.contractInputsValues;
-    const key = keyFor(v.tokenA, v.tokenB, v.feeBps);
-    const idx = await lp.pairToPool(key);
-    poolChecks.push({ pair: `${v.tokenA}/${v.tokenB}@${v.feeBps}`, exists: Number(idx) > 0, poolRef: String(idx) });
+  if (!yieldOnly) {
+    for (const tx of lpBatch.transactions.filter(t => t.contractMethod?.name === 'createPool')) {
+      const v = tx.contractInputsValues;
+      const key = keyFor(v.tokenA, v.tokenB, v.feeBps);
+      const idx = await lp.pairToPool(key);
+      poolChecks.push({ pair: `${v.tokenA}/${v.tokenB}@${v.feeBps}`, exists: Number(idx) > 0, poolRef: String(idx) });
+    }
   }
 
+  let summaryYield = {
+    managedLiquidityVault: null,
+    realYieldLP: null,
+    strategyVault: null,
+    yieldAggregatorStrategies: []
+  };
+
+  if (!liquidityOnly) {
   const mAddr = yBatch.transactions.find(t => t.to.toLowerCase() === yBatch.transactions[0].to.toLowerCase())?.to;
   const managed = new ethers.Contract(mAddr, ['function keeper() view returns (address)', 'function treasury() view returns (address)'], provider);
   const realAddr = yBatch.transactions.find(t => t.contractMethod?.name === 'setRevenueSplitter')?.to;
@@ -73,36 +87,46 @@ async function main() {
     }
   }
 
+
+    summaryYield = {
+      managedLiquidityVault: {
+        keeperExpected: expectedKeeper,
+        keeperOnchain: keeper,
+        treasuryExpected: expectedTreasury,
+        treasuryOnchain: treasury,
+        ok: keeper.toLowerCase() === expectedKeeper.toLowerCase() && treasury.toLowerCase() === expectedTreasury.toLowerCase()
+      },
+      realYieldLP: {
+        revenueSplitterExpected: expectedSplitter,
+        revenueSplitterOnchain: splitter,
+        feeSplitBpsExpected: String(expectedFeeSplit),
+        feeSplitBpsOnchain: String(feeSplit),
+        ok: splitter.toLowerCase() === expectedSplitter.toLowerCase() && String(feeSplit) === String(expectedFeeSplit)
+      },
+      strategyVault: {
+        harvester: expectedHarvester,
+        enabled: harvesterEnabled,
+        ok: !!harvesterEnabled
+      },
+      yieldAggregatorStrategies: foundStrats
+    };
+  }
+
   const summary = {
     block: await provider.getBlockNumber(),
+    mode: yieldOnly ? 'yield-only' : (liquidityOnly ? 'liquidity-only' : 'full'),
     pools: poolChecks,
-    managedLiquidityVault: {
-      keeperExpected: expectedKeeper,
-      keeperOnchain: keeper,
-      treasuryExpected: expectedTreasury,
-      treasuryOnchain: treasury,
-      ok: keeper.toLowerCase() === expectedKeeper.toLowerCase() && treasury.toLowerCase() === expectedTreasury.toLowerCase()
-    },
-    realYieldLP: {
-      revenueSplitterExpected: expectedSplitter,
-      revenueSplitterOnchain: splitter,
-      feeSplitBpsExpected: String(expectedFeeSplit),
-      feeSplitBpsOnchain: String(feeSplit),
-      ok: splitter.toLowerCase() === expectedSplitter.toLowerCase() && String(feeSplit) === String(expectedFeeSplit)
-    },
-    strategyVault: {
-      harvester: expectedHarvester,
-      enabled: harvesterEnabled,
-      ok: !!harvesterEnabled
-    },
-    yieldAggregatorStrategies: foundStrats
+    ...summaryYield
   };
 
-  const failed = poolChecks.some(p => !p.exists)
-    || !summary.managedLiquidityVault.ok
+  const failedPools = !yieldOnly && poolChecks.some(p => !p.exists);
+  const failedYield = !liquidityOnly && (
+    !summary.managedLiquidityVault.ok
     || !summary.realYieldLP.ok
     || !summary.strategyVault.ok
-    || foundStrats.some(s => !s.found);
+    || summary.yieldAggregatorStrategies.some(s => !s.found)
+  );
+  const failed = failedPools || failedYield;
 
   console.log(JSON.stringify(summary, null, 2));
   if (failed) process.exitCode = 1;

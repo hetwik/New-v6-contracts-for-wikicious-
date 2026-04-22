@@ -26,3 +26,6 @@ This release adds:
 - Run:
   - `npm run prepare:liquidity:pools -- <YOUR_SAFE_ADDRESS> safe-postdeploy-liquidity-pools-major-mainnet.json retry`
 - The script checks existing pools, recalculates required fee, and outputs a filtered retry file.
+
+- If only yield-vault txs are executed (before LP creation), run:
+  - `npm run check:liquidity:yield:mainnet -- --yield-only`
