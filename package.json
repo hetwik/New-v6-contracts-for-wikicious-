@@ -24,7 +24,9 @@
     "verify:ownership": "node verify-all-contracts.js",
     "sync:mainnet:artifacts": "node scripts/sync-mainnet-artifacts.js",
     "check:spotrouter:mainnet": "node scripts/check-spotrouter-mainnet.js",
-    "build:gmx:batch": "node scripts/build-gmx-routing-batch.js"
+    "build:gmx:batch": "node scripts/build-gmx-routing-batch.js",
+    "prepare:perp:batch": "node scripts/prepare-perp-market-batch.js",
+    "prepare:lending:wiring": "node scripts/prepare-lending-wiring-batch.js"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",

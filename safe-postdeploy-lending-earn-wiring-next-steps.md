@@ -19,3 +19,9 @@ This repo now includes `safe-postdeploy-lending-earn-wiring-mainnet.json` for co
 
 4. **Keepers / operators**
    - Run keeper setup scripts (`npm run keeper:mainnet`) and then verify any contract-specific keeper/operator lists.
+
+## GS013 / estimateGas revert troubleshooting
+
+- `setTimelock` and most admin wiring calls are `onlyOwner`; if ownership has already moved to timelock, direct Safe execution will revert.
+- Run `npm run prepare:lending:wiring -- <YOUR_SAFE_ADDRESS> safe-postdeploy-lending-earn-wiring-mainnet.json retry` to generate a filtered retry bundle.
+- If owner is timelock contract, queue transactions through timelock instead of direct Safe execution.
