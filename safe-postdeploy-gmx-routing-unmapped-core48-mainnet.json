@@ -1,0 +1,156 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1776841275859,
+  "meta": {
+    "name": "GMX mapping gaps from core 48 perp markets",
+    "description": "Report-only artifact listing core-48 markets that currently have no GMX market mapping in safe-postdeploy-gmx-routing-expand-13-mainnet.json."
+  },
+  "stats": {
+    "coreMarkets": 48,
+    "mappedInExpand13": 13,
+    "unmapped": 35
+  },
+  "unmappedMarkets": [
+    {
+      "symbol": "ADAUSDT",
+      "marketId": "0x5989664cfeb3c3e42fd2d4324df495528c199beb9d57cc5238628e8cb6831f93"
+    },
+    {
+      "symbol": "DOTUSDT",
+      "marketId": "0xb091137ce24b6cc1a176ff1c47ee784a62b93fe8cca125b8975b84c9b3c407ea"
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "marketId": "0x4f4cea1b88693a8acfaec144a46aea2fa3b995f3e97e4f7237210cf8f1036f29"
+    },
+    {
+      "symbol": "SUIUSDT",
+      "marketId": "0x232d02eb5265c07c90f3dfc16a26ddcd609ba4fa8adffffd82b22b3e3244ad24"
+    },
+    {
+      "symbol": "APTUSDT",
+      "marketId": "0x3f5b1623a7d3e113f4052463364534b4de2ca26de0c61f65f1e0485ab9f18cc4"
+    },
+    {
+      "symbol": "NEARUSDT",
+      "marketId": "0x58afd6460bc9bf300ebf02bfbe524904d86ebf4c3a97d4f8eda638fe58062757"
+    },
+    {
+      "symbol": "ATOMUSDT",
+      "marketId": "0xf32579dc4ab332d7511110da5df87a1a1fee9d56aa47eb7c82ea87e1c1079f39"
+    },
+    {
+      "symbol": "INJUSDT",
+      "marketId": "0x380500b683aadee4eb10b26a015df5a3b23ff4bc0d0559133d59967613255598"
+    },
+    {
+      "symbol": "TIAUSDT",
+      "marketId": "0xd980c8ae4f36084df3d035264be198f861b69a0b96938ae60bc4458ebd268c55"
+    },
+    {
+      "symbol": "SEIUSDT",
+      "marketId": "0x87c1794467c0955e48bcad17dee3774ac33ac619dae6eb63624c1bfff571a95b"
+    },
+    {
+      "symbol": "PEPEUSDT",
+      "marketId": "0xa3950c5952b1c092266aab5cf562b7ee17ae059e7844205bef27dd26c861b92c"
+    },
+    {
+      "symbol": "WIFUSDT",
+      "marketId": "0x4866457f6791c14104bdc66af7f9d73356c1b0413eff9a5f342d02a9d2b3e8d5"
+    },
+    {
+      "symbol": "BONKUSDT",
+      "marketId": "0xe7e18b9e527021f0ae00030f88149c98fbe0d8275b2dad8e6294fb6b4056d4ef"
+    },
+    {
+      "symbol": "GMXUSDT",
+      "marketId": "0x7d44836c80d5e223a2437211294d4f256ec791ac57662d665abb6a51b85781d2"
+    },
+    {
+      "symbol": "FETUSDT",
+      "marketId": "0xb86e12c63c1bd9ac65b7208b5a38d2590999453ab4eb3a5b32eb007e6274c2b9"
+    },
+    {
+      "symbol": "WLDUSDT",
+      "marketId": "0xf4c8f0cfc6e3c4b28a143de6bd85301c897fcb5bbcfbf124415fb49fe3f05552"
+    },
+    {
+      "symbol": "AXSUSDT",
+      "marketId": "0xccd5f35e7e7d8cd3ac846557a1f342a999573c9c4b43722a060cdcecdceeec8f"
+    },
+    {
+      "symbol": "EURUSD",
+      "marketId": "0x0730076c3c0f5da594eb635c5d5a22116233bdb2a9c2977279cc348b8b8ce917"
+    },
+    {
+      "symbol": "GBPUSD",
+      "marketId": "0xd30842147b60fe333c2700bcae5eee6815b8529847955d19522858806bca8217"
+    },
+    {
+      "symbol": "USDJPY",
+      "marketId": "0x3d6c40e9d821c10e442cb3fc6cb1c589ffd8b906e734a1ab3b3f7d213ac395d6"
+    },
+    {
+      "symbol": "USDCHF",
+      "marketId": "0xd85af9ebd6fec6b317a7ac07f6d6455c4fc915cc8e1cfe19471faca002582907"
+    },
+    {
+      "symbol": "AUDUSD",
+      "marketId": "0x5577fa17b1be8ae0f1517fe1864ea534d6992f3721000cdb6585b11e7046d5ec"
+    },
+    {
+      "symbol": "USDCAD",
+      "marketId": "0xa36f6cf3195abb4e93bf276660acee423f78878e6cfdbad0eab36e455afca97e"
+    },
+    {
+      "symbol": "NZDUSD",
+      "marketId": "0x5c83ff2c5c301789d772187c9178d16ea59290f8db90b5ee5a640c330cdaf110"
+    },
+    {
+      "symbol": "EURGBP",
+      "marketId": "0xeaff3420d70d388655273db9b4f3000962445a6f0ea23ec1f04d843e4dbae4b0"
+    },
+    {
+      "symbol": "EURJPY",
+      "marketId": "0xcdb4b9d56d6e70cc33a8cee7c9820b2b64e51d7c10e9c3db1a89c02441da67a9"
+    },
+    {
+      "symbol": "GBPJPY",
+      "marketId": "0xc8c98dcb17c45c1412f79679bf872cf60601c2b6c3a27010509f4552e96c2719"
+    },
+    {
+      "symbol": "XAUUSD",
+      "marketId": "0xe21c86d8b6a127bfef214d88fdb0c279e55d27dd8c443733e46c8d3de3c98cd6"
+    },
+    {
+      "symbol": "XAGUSD",
+      "marketId": "0x67107df7f0e95594d9bf8ad8840bbb2ff95617123c227e10aab4d161dd6959b6"
+    },
+    {
+      "symbol": "WTIUSD",
+      "marketId": "0x4ed5d3ef84179009c9002eb4ad0e91b95fabc0140b44f7ee5efeccc9a6b88ae4"
+    },
+    {
+      "symbol": "BRENTUSD",
+      "marketId": "0x9451876444bc30750941772b4c0d36b7749781da930400cdc7efe897567762ef"
+    },
+    {
+      "symbol": "SPX500",
+      "marketId": "0x67ed6ec0efd594e971a888131c6b08f1bf1817265ed14f3b44a62f9d62a27992"
+    },
+    {
+      "symbol": "NAS100",
+      "marketId": "0x677a4e6d6b6d080befb9ddd28561a7ab6c45f1d9e149db792a38551737d97c58"
+    },
+    {
+      "symbol": "DJI30",
+      "marketId": "0x6670747932b7ae81524347c937bcf0b12343e1eb03f414557992d16f86e62d81"
+    },
+    {
+      "symbol": "GER40",
+      "marketId": "0x64135ee7d8038fff8832ec6f22a0c03baad1656c664744d47e9c170ae60f30ae"
+    }
+  ]
+}
