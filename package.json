@@ -26,7 +26,8 @@
     "check:spotrouter:mainnet": "node scripts/check-spotrouter-mainnet.js",
     "build:gmx:batch": "node scripts/build-gmx-routing-batch.js",
     "prepare:perp:batch": "node scripts/prepare-perp-market-batch.js",
-    "prepare:lending:wiring": "node scripts/prepare-lending-wiring-batch.js"
+    "prepare:lending:wiring": "node scripts/prepare-lending-wiring-batch.js",
+    "check:lending:major:mainnet": "node scripts/check-lending-flash-margin-mainnet.js"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
