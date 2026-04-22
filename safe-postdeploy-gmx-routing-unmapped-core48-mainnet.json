@@ -4,7 +4,7 @@
   "createdAt": 1776841275859,
   "meta": {
     "name": "GMX mapping gaps from core 48 perp markets",
-    "description": "Report-only artifact listing core-48 markets that currently have no GMX market mapping in safe-postdeploy-gmx-routing-expand-13-mainnet.json."
+    "description": "Report-only artifact listing core-48 markets with no GMX mapping after the expand-13 Safe transaction was executed."
   },
   "stats": {
     "coreMarkets": 48,
@@ -152,5 +152,11 @@
       "symbol": "GER40",
       "marketId": "0x64135ee7d8038fff8832ec6f22a0c03baad1656c664744d47e9c170ae60f30ae"
     }
-  ]
+  ],
+  "reference": {
+    "executedExpand13Tx": "0x28b7b35aad20869b0af94aa478c199547b363f64379b1757759bb374e1eddd9a",
+    "executedAtUtc": "2026-04-22T07:17:41Z",
+    "executedBlock": 455084486,
+    "note": "Derived against safe-postdeploy-gmx-routing-expand-13-mainnet.json coverage (13 mapped of 48 core markets)."
+  }
 }
