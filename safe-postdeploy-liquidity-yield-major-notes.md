@@ -19,3 +19,10 @@ This release adds:
 
 4. **Strategy compatibility**
    - Added YieldAggregator strategies assume target vaults expose expected deposit/APY interfaces.
+
+## If Safe shows GS013 on this batch
+
+- Most common cause here: insufficient USDC in Safe for pool creation fees and/or trying to recreate an existing pool.
+- Run:
+  - `npm run prepare:liquidity:pools -- <YOUR_SAFE_ADDRESS> safe-postdeploy-liquidity-pools-major-mainnet.json retry`
+- The script checks existing pools, recalculates required fee, and outputs a filtered retry file.

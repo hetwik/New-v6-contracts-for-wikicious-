@@ -28,7 +28,8 @@
     "prepare:perp:batch": "node scripts/prepare-perp-market-batch.js",
     "prepare:lending:wiring": "node scripts/prepare-lending-wiring-batch.js",
     "check:lending:major:mainnet": "node scripts/check-lending-flash-margin-mainnet.js",
-    "check:liquidity:yield:mainnet": "node scripts/check-liquidity-yield-major-mainnet.js"
+    "check:liquidity:yield:mainnet": "node scripts/check-liquidity-yield-major-mainnet.js",
+    "prepare:liquidity:pools": "node scripts/prepare-liquidity-pools-batch.js"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
