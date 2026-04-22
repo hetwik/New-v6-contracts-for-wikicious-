@@ -1,7 +1,7 @@
 {
   "name": "wikicious-v6-contracts",
   "version": "6.0.0",
-  "description": "Wikicious V6 \u2014 Smart Contracts on Arbitrum One",
+  "description": "Wikicious V6 — Smart Contracts on Arbitrum One",
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",
@@ -22,7 +22,14 @@
     "mainnet:readiness": "node scripts/mainnet-readiness-check.js",
     "deploy:mainnet:ready": "npm run mainnet:readiness && npm run deploy:mainnet:check",
     "verify:ownership": "node verify-all-contracts.js",
-    "sync:mainnet:artifacts": "node scripts/sync-mainnet-artifacts.js"
+    "sync:mainnet:artifacts": "node scripts/sync-mainnet-artifacts.js",
+    "check:spotrouter:mainnet": "node scripts/check-spotrouter-mainnet.js",
+    "build:gmx:batch": "node scripts/build-gmx-routing-batch.js",
+    "prepare:perp:batch": "node scripts/prepare-perp-market-batch.js",
+    "prepare:lending:wiring": "node scripts/prepare-lending-wiring-batch.js",
+    "check:lending:major:mainnet": "node scripts/check-lending-flash-margin-mainnet.js",
+    "check:liquidity:yield:mainnet": "node scripts/check-liquidity-yield-major-mainnet.js",
+    "prepare:liquidity:pools": "node scripts/prepare-liquidity-pools-batch.js"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",

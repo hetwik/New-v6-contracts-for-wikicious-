@@ -1,0 +1,241 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1776889201196,
+  "meta": {
+    "name": "Post-deploy: yield vaults major setup",
+    "description": "Configures keeper/treasury/splitter for major yield vault contracts and adds 3 strategies to WikiYieldAggregator."
+  },
+  "transactions": [
+    {
+      "to": "0x40db8a2fc66be9bd2F22Aa22056055FcF829e414",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setTreasury",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "t",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "t": "0x00b13b0D1E9b18cfeF2C998027Ed7291CC163A3f"
+      }
+    },
+    {
+      "to": "0x40db8a2fc66be9bd2F22Aa22056055FcF829e414",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setKeeper",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "k",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "k": "0xFdD18D26980Ee49C1f33588C381d90E6bD9846c2"
+      }
+    },
+    {
+      "to": "0x158768ae7292D46BfF975507f5Bc92eA10853479",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setRevenueSplitter",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "r",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "r": "0xAaDDf07470A4749F51A374Cdeb7889f99f222937"
+      }
+    },
+    {
+      "to": "0x158768ae7292D46BfF975507f5Bc92eA10853479",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setFeeSplitBps",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "bps",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "bps": "2500"
+      }
+    },
+    {
+      "to": "0xB81E1b0f2f1ad7263156412523be440245A17849",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setHarvester",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "h",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "enabled",
+            "type": "bool"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "h": "0xFdD18D26980Ee49C1f33588C381d90E6bD9846c2",
+        "enabled": "true"
+      }
+    },
+    {
+      "to": "0x95F3Cf765b479478c44D0EE932f17444ADA6A9a1",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "addStrategy",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "vault",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "risk",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minDep",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "exitDays",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "name": "Idle Yield Router USDC",
+        "vault": "0x53b6A9bE66C68090c26d4BE74f6eB916578F3A0B",
+        "risk": "1",
+        "minDep": "100000000",
+        "exitDays": "0"
+      }
+    },
+    {
+      "to": "0x95F3Cf765b479478c44D0EE932f17444ADA6A9a1",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "addStrategy",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "vault",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "risk",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minDep",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "exitDays",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "name": "Strategy Vault USDC",
+        "vault": "0xB81E1b0f2f1ad7263156412523be440245A17849",
+        "risk": "2",
+        "minDep": "100000000",
+        "exitDays": "1"
+      }
+    },
+    {
+      "to": "0x95F3Cf765b479478c44D0EE932f17444ADA6A9a1",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "addStrategy",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "vault",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "risk",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minDep",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "exitDays",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "name": "RealYield LP",
+        "vault": "0x158768ae7292D46BfF975507f5Bc92eA10853479",
+        "risk": "3",
+        "minDep": "100000000",
+        "exitDays": "3"
+      }
+    }
+  ]
+}
