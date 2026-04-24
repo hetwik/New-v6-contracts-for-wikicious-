@@ -25,3 +25,15 @@ Files:
 - Reconfirm `pricePerToken` unit expectations against your frontend/SDK before executing on mainnet.
 - Ensure project owner address and sale token inventory are correct.
 - After createSale, project owner must call `depositSaleTokens(saleId)` before users can commit.
+
+## Funding prerequisite for `depositSaleTokens(saleId)`
+- `depositSaleTokens` pulls `totalTokens` from `projectOwner` via `transferFrom`.
+- This means `projectOwner` must hold enough WIK and approve Launchpad first.
+- If tokens are locked in other contracts, they are **not** usable until transferred/unlocked to `projectOwner`.
+- Run funding check:
+  - `npm run check:launchpad:funding:mainnet`
+
+Typical sequence after `createSale`:
+1. Move sale tokens to `projectOwner` wallet/Safe (if currently in vesting/treasury/other contract).
+2. From `projectOwner`, call `WIK.approve(<WikiLaunchpad>, <totalTokens>)`.
+3. Call `WikiLaunchpad.depositSaleTokens(saleId)`.
