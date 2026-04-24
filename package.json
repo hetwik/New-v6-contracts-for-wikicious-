@@ -33,7 +33,8 @@
     "check:staking:options:mainnet": "node scripts/check-staking-options-major-mainnet.js",
     "check:launchpad:funding:mainnet": "node scripts/check-launchpad-sale-funding.js safe-launchpad-wik-25m-mainnet.json",
     "check:packagejson": "node scripts/check-package-json.js",
-    "restore:packagejson": "node scripts/restore-package-json.js"
+    "restore:packagejson": "node scripts/restore-package-json.js",
+    "check:owners:mainnet": "node scripts/check-owners-mainnet.js"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
