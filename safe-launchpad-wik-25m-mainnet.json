@@ -1,0 +1,149 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1776996293082,
+  "meta": {
+    "name": "Launchpad: WIK public raise (25M USDC cap)",
+    "description": "Sets Launchpad timelock/router and creates WIK sale with 25,000,000 USDC hardcap."
+  },
+  "transactions": [
+    {
+      "to": "0x42DB4776FFB45f2cc5663407e7953935f63fd40E",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setTimelock",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_tl",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "_tl": "0xAda19c1BEb7bbFdf8264b784C3005b0d4B667cd0"
+      }
+    },
+    {
+      "to": "0x42DB4776FFB45f2cc5663407e7953935f63fd40E",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setIdleYieldRouter",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "router",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "router": "0x53b6A9bE66C68090c26d4BE74f6eB916578F3A0B"
+      }
+    },
+    {
+      "to": "0x42DB4776FFB45f2cc5663407e7953935f63fd40E",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createSale",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "projectOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "saleToken",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "metaURI",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pricePerToken",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "hardcap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "softcap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalTokens",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[4]",
+            "name": "allocations",
+            "type": "uint256[4]"
+          },
+          {
+            "internalType": "uint256[3]",
+            "name": "timeline",
+            "type": "uint256[3]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "cliffDuration",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "vestDuration",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "launchFeeBps",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "projectOwner": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
+        "saleToken": "0xa681Bf6f0449ABc4E98DCa3468488Fe1b24FdD0F",
+        "name": "WIK Public Launch 2026",
+        "metaURI": "ipfs://REPLACE_WITH_WIK_LAUNCH_METADATA_CID",
+        "pricePerToken": "500000",
+        "hardcap": "25000000000000",
+        "softcap": "5000000000000",
+        "totalTokens": "50000000000000000000000000",
+        "allocations": [
+          "7500000000000",
+          "6250000000000",
+          "5000000000000",
+          "6250000000000"
+        ],
+        "timeline": [
+          "1778371200",
+          "1988150399",
+          "1988150400"
+        ],
+        "cliffDuration": "2592000",
+        "vestDuration": "15552000",
+        "launchFeeBps": "300"
+      }
+    }
+  ]
+}
