@@ -1,7 +1,7 @@
 {
   "name": "wikicious-v6-contracts",
   "version": "6.0.0",
-  "description": "Wikicious V6 — Smart Contracts on Arbitrum One",
+  "description": "Wikicious V6 \u2014 Smart Contracts on Arbitrum One",
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",

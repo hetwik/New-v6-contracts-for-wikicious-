@@ -37,3 +37,5 @@ Typical sequence after `createSale`:
 1. Move sale tokens to `projectOwner` wallet/Safe (if currently in vesting/treasury/other contract).
 2. From `projectOwner`, call `WIK.approve(<WikiLaunchpad>, <totalTokens>)`.
 3. Call `WikiLaunchpad.depositSaleTokens(saleId)`.
+
+If npm shows `EJSONPARSE`, run `node scripts/restore-package-json.js` first, then rerun your npm command.
