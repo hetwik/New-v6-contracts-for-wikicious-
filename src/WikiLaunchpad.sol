@@ -291,12 +291,14 @@ contract WikiLaunchpad is Ownable2Step, ReentrancyGuard {
     }
 
     // ─────────────────────────────────────────────────────────────────────
-    //  Finalize Sale (after endTime)
+    //  Finalize Sale (after endTime OR once hardcap is filled)
     // ─────────────────────────────────────────────────────────────────────
 
     function finalizeSale(uint256 saleId) external nonReentrant {
         Sale storage s = sales[saleId];
-        require(block.timestamp >= s.endTime,                       "LP: not ended");
+        bool ended = block.timestamp >= s.endTime;
+        bool hardcapFilled = (s.status == SaleStatus.Filled) || (s.totalRaised >= s.hardcap);
+        require(ended || hardcapFilled,                             "LP: not ended/filled");
         require(s.status == SaleStatus.Active || s.status == SaleStatus.Filled ||
                 s.status == SaleStatus.Pending,                     "LP: already finalized");
 
