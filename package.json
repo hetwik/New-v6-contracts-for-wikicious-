@@ -30,8 +30,7 @@
     "check:lending:major:mainnet": "node scripts/check-lending-flash-margin-mainnet.js",
     "check:liquidity:yield:mainnet": "node scripts/check-liquidity-yield-major-mainnet.js",
     "prepare:liquidity:pools": "node scripts/prepare-liquidity-pools-batch.js",
-    "check:staking:options:mainnet": "node scripts/check-staking-options-major-mainnet.js",
-    "check:stacking:options:mainnet": "node scripts/check-staking-options-major-mainnet.js"
+    "check:staking:options:mainnet": "node scripts/check-staking-options-major-mainnet.js"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
