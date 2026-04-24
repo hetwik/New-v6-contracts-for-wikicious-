@@ -1,0 +1,327 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1776891259746,
+  "meta": {
+    "name": "Post-deploy: staking + options vault setup (major)",
+    "description": "Configures staking emissions/pools and initializes core options vault setup with managers and 3 major vaults."
+  },
+  "transactions": [
+    {
+      "to": "0xDD551D705fAbD4380D2C95F7345b671cE3310bd2",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setTimelock",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_tl",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "_tl": "0xAda19c1BEb7bbFdf8264b784C3005b0d4B667cd0"
+      }
+    },
+    {
+      "to": "0xDD551D705fAbD4380D2C95F7345b671cE3310bd2",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setEmissionRate",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_wikPerSecond",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "_wikPerSecond": "5000000000000000"
+      }
+    },
+    {
+      "to": "0xDD551D705fAbD4380D2C95F7345b671cE3310bd2",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "addPool",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "lpToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "allocPoint",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "lpToken": "0xa681Bf6f0449ABc4E98DCa3468488Fe1b24FdD0F",
+        "allocPoint": "1000"
+      }
+    },
+    {
+      "to": "0xDD551D705fAbD4380D2C95F7345b671cE3310bd2",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "addPool",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "lpToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "allocPoint",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "lpToken": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+        "allocPoint": "500"
+      }
+    },
+    {
+      "to": "0xE019e13abdd7160f8467D55E3e190022295dEdc1",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setTimelock",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_tl",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "_tl": "0xAda19c1BEb7bbFdf8264b784C3005b0d4B667cd0"
+      }
+    },
+    {
+      "to": "0xE019e13abdd7160f8467D55E3e190022295dEdc1",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setIdleYieldRouter",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "router",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "router": "0x53b6A9bE66C68090c26d4BE74f6eB916578F3A0B"
+      }
+    },
+    {
+      "to": "0xE019e13abdd7160f8467D55E3e190022295dEdc1",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setManager",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "manager",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "enabled",
+            "type": "bool"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "manager": "0xFdD18D26980Ee49C1f33588C381d90E6bD9846c2",
+        "enabled": "true"
+      }
+    },
+    {
+      "to": "0xE019e13abdd7160f8467D55E3e190022295dEdc1",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createVault",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "uint8",
+            "name": "vaultType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "address",
+            "name": "asset",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "underlying",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "managementFeeBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "performanceFeeBps",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "name": "ETH Covered Call Vault",
+        "symbol": "wCC-ETH",
+        "vaultType": "0",
+        "asset": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+        "underlying": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+        "managementFeeBps": "200",
+        "performanceFeeBps": "2000"
+      }
+    },
+    {
+      "to": "0xE019e13abdd7160f8467D55E3e190022295dEdc1",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createVault",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "uint8",
+            "name": "vaultType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "address",
+            "name": "asset",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "underlying",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "managementFeeBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "performanceFeeBps",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "name": "ETH Cash-Secured Put Vault",
+        "symbol": "wCSP-ETH",
+        "vaultType": "1",
+        "asset": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+        "underlying": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+        "managementFeeBps": "200",
+        "performanceFeeBps": "2000"
+      }
+    },
+    {
+      "to": "0xE019e13abdd7160f8467D55E3e190022295dEdc1",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createVault",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "uint8",
+            "name": "vaultType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "address",
+            "name": "asset",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "underlying",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "managementFeeBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "performanceFeeBps",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "name": "Theta Decay USDC Vault",
+        "symbol": "wTH-USDC",
+        "vaultType": "2",
+        "asset": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+        "underlying": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+        "managementFeeBps": "150",
+        "performanceFeeBps": "1500"
+      }
+    }
+  ]
+}
