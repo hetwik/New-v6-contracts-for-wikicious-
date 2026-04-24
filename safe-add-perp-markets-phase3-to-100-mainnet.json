@@ -1,0 +1,3495 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1776836023378,
+  "meta": {
+    "name": "Add 52 perp markets (phase3) to reach 100 total",
+    "description": "Adds 52 additional perp markets on WikiPerp with conservative risk params so total listed reaches 100."
+  },
+  "transactions": [
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "TRXUSDT",
+        "marketId": "0x36ac4128fada383e89bd90f3b080bfd6837c9d6552e22748775786289a5da4bb",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "SHIBUSDT",
+        "marketId": "0x0c5eba1afaea317bd3994c932ff8027d56c2c03920e4acc162a96de171d0a7ce",
+        "maxLev": "10",
+        "makerFee": "0",
+        "takerFee": "10",
+        "mmBps": "400",
+        "maxOI": "400000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "TONUSDT",
+        "marketId": "0x6b00bd2a921b9d062fd2bc667c7ff2092d7b0c28ba800f9652bf58748aaded25",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "BCHUSDT",
+        "marketId": "0x190e342901a9ff65df4afae7005b607a9fb16d45e06f4741e80c85ded430ae05",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "XLMUSDT",
+        "marketId": "0xa4e356454375b1565f18fc04ac7c12fb4f1d88e2b6496ef6f867fc1d8f505fcc",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "ETCUSDT",
+        "marketId": "0xa99f39bb38d8e9a095ef630926bfcb81be85391460d36ebbf990a9d561d68a5a",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "ENAUSDT",
+        "marketId": "0xd7320ff95c593eb5deff028489ee31a1860abcf2bd2ac3a39020cd1feb1e2fde",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "CRVUSDT",
+        "marketId": "0x551865641fe3e1d279904b43b75b44b15344031e786a553beb87ecfbca9e182e",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "MKRUSDT",
+        "marketId": "0x4dcf18f45992f2d41e6db588cabfe255e1ac13bc332c7f772563d46ce6da2657",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "300",
+        "maxOI": "800000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "SNXUSDT",
+        "marketId": "0x20cdd05e3389efeb33fed8ff42b76d720126ca966dc62a3e6757cbbdfd1632b0",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "COMPUSDT",
+        "marketId": "0x290a3af5939ca09aa1b9d40b7ad03b038b50af9408099034558af4e032e4b4bb",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "BALUSDT",
+        "marketId": "0x4f859bc78643be4749a5828ad165df6625105ccf9da18e979ba50b20c819d762",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "LDOUSDT",
+        "marketId": "0xc410b7af0138bf2fe5e855b4187d342a9132b0476d8ebfa44f6db284875beb27",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "PENDLEUSDT",
+        "marketId": "0x2f78906d899cd30677ca06dd5ee1720ce98dd16178f3a1458e54ce407f40a068",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "SUSHIUSDT",
+        "marketId": "0x627272fcde9dd26d0cd952f2faedeecf9c1cf6265e52eeaec488bb95f72f7997",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "GRTUSDT",
+        "marketId": "0xa3e6943eef484dd042ed68a94046803946274102970af535151601cfcb40392a",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "DYDXUSDT",
+        "marketId": "0x627ce4d5f4d11a0be557b23775a32fe97aa5ed2f2d66e1a3b74de11ba7677eeb",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "RNDRUSDT",
+        "marketId": "0x8c3b64f00ddde67389ca51eab2bd20e6bb4df633ec17fa84f6ee9bff0b039220",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "1INCHUSDT",
+        "marketId": "0x5fdb5b3722d57be49339b1d700a1a38cfe136812f8fb54eb25ef0e4819c20afd",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "YFIUSDT",
+        "marketId": "0x11a81d91f2c0fd48bb5fa2d95b1057e86005ced6a2fe7993879283dd4c78ddfc",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "300",
+        "maxOI": "800000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "ENSUSDT",
+        "marketId": "0x20a53830fdb4c1d031bd33fa18b503feb58578d1a3714740b4ab9e6d20f88b61",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "ZRXUSDT",
+        "marketId": "0x0df67c9a735b1dcdb1a68cf4cbef37214d7a832f09a4d45b813f2783b32288b2",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "BATUSDT",
+        "marketId": "0xd52808c9ea7a9108cf989de0afc773d7cb73267116863822114b4947f8e94cf7",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "ZROUSDT",
+        "marketId": "0xc3577ccbd394245714df6cba629af8e83b3a9039dcb75428d44dd298cd836dc1",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "WOOUSDT",
+        "marketId": "0xb1c33b0437aa7416f437b87f97c36a036367153f33564d0302c85adc583dc09e",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "MASKUSDT",
+        "marketId": "0x00bb6894e31f4aac088fdbf4816ab9062e9d7cdd88ae5589f4e15ee70bbe0ec1",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "APEUSDT",
+        "marketId": "0xf50f4566b7f185ebe3aa8cbe86193b28bffea10bfd9f3724127248ac8c046fbf",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "AUDIOUSDT",
+        "marketId": "0xef6359aefbc0d771e305861a48a5fa6a7757eac7a860c0e7ae9064ab596c8da7",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "LQTYUSDT",
+        "marketId": "0x9c0e6c4a134688fd09572313e9f8b08f946bc5c1755a54dc1a905414a0d99ebd",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "SPELLUSDT",
+        "marketId": "0x9261a5e89f6b711fc7d78b4524b80cded00375c9f34abde932b4387d7cc754b9",
+        "maxLev": "10",
+        "makerFee": "0",
+        "takerFee": "10",
+        "mmBps": "400",
+        "maxOI": "400000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "PERPUSDT",
+        "marketId": "0x1384c331e2cb37a5712264639eea9eb8c48d077f639ec6214f481bfac7fe5465",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "BADGERUSDT",
+        "marketId": "0xf3e75e32a290fa6bc14861889efbdc002d336cbc886861832fa1146e730ca876",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "DODOUSDT",
+        "marketId": "0xc729082fd545e8b963ec325a2ec7fee9ac9049ddb73da979639350a955789728",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "AEVOUSDT",
+        "marketId": "0x3707d5933eb9bbdebaa523bf3d30d0490bc1bfa71f3a4204d28fb3755eb40fe2",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "RUNEUSDT",
+        "marketId": "0xe8ea0302f83ab08b5e600f43cbd67b2593cec550bdc1ef59ae4e316908a9d521",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "KASUSDT",
+        "marketId": "0xc4ebdfaa876c70f2145df2cef82c9b1b452d8191de73fd6a39a53d15c592538d",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "EGLDUSDT",
+        "marketId": "0xb7eb5cbd94f50405081fcdfabc0b5f07b3097b69cb8296416f78c7c7f4425c04",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "QTUMUSDT",
+        "marketId": "0xbe24d5dc7d0d28d3737d8f139db44a10358e73cff49ca7c5cbfeca948b6eee5a",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "ONTUSDT",
+        "marketId": "0x44ea727380716b8b660848dc11df1d25a9d4b68ddb2d004403b23d18634b2918",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "VETUSDT",
+        "marketId": "0xa4fedbb50c3300f87df9b068679f1e19153933e74eab009196277d96150ec665",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "THETAUSDT",
+        "marketId": "0x1383db7fbf6e525d501fef9bb16b152f159ef67a42887862bdf377cdf760db85",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "ZENUSDT",
+        "marketId": "0x6254d94af199814ef480696ec3ae110ff28d47e944fa603b9c963cf8691c925c",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "DASHUSDT",
+        "marketId": "0x0d828d02cb97cd7136c6e95d27c8269310f995e41d7ed3cc91816dd966c98ee9",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "ZECUSDT",
+        "marketId": "0x93b45d0c49b9cdfcbe758dddcd8e9f48fa49b702674df2519a2abaa4d008dc7d",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "XMRUSDT",
+        "marketId": "0xf4b0a85c9be635513808450c199acc2b544f25aa8ab58ce91459f8616441df7d",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "KAVAUSDT",
+        "marketId": "0x03d6d0068d6b42593d30312fab984d28b44decc658df515d4124c2c040a2b408",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "ONEUSDT",
+        "marketId": "0x4bebd90e2416670f6b0447b219332bf39447aa835534472010e31291022a66ed",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "IOTXUSDT",
+        "marketId": "0xd60f287a47a10983c501ddc5cc0457369e2b441c8b0309bbfda046af5d4154d3",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "CELRUSDT",
+        "marketId": "0x352f381fdd75265b3e527738ec27251e1ff61cd51b179b36b5ba3cd40efb98ac",
+        "maxLev": "10",
+        "makerFee": "0",
+        "takerFee": "10",
+        "mmBps": "400",
+        "maxOI": "400000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "ZETAUSDT",
+        "marketId": "0x3bb2eb69a285d0f96fc93eebf0902c23a8aaff7d33ffb3f55af9e1aeb25b5072",
+        "maxLev": "15",
+        "makerFee": "0",
+        "takerFee": "9",
+        "mmBps": "300",
+        "maxOI": "700000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "FLOWUSDT",
+        "marketId": "0xfbc35fa700c00749ecd1726adaefb46484d53288603618640a5809d68a02339c",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "MINAUSDT",
+        "marketId": "0x3e20e54aebd424451b99d0cc3611e5b5f695be6a0a0e2bf85c0cece2f96dfe81",
+        "maxLev": "20",
+        "makerFee": "0",
+        "takerFee": "8",
+        "mmBps": "250",
+        "maxOI": "1000000000000",
+        "arg7": "0",
+        "maxPosPerUser": "1000000000000"
+      }
+    }
+  ]
+}
