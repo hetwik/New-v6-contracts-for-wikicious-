@@ -14,13 +14,25 @@ function load(p) {
 }
 
 async function main() {
-  const manifestPath = process.argv[2] || 'safe-launchpad-wik-25m-mainnet.json';
+  const args = process.argv.slice(2);
+  const manifestPath = args.find((a) => !a.startsWith('--')) || 'safe-launchpad-wik-25m-mainnet.json';
+  const rpcFromArg = (() => {
+    const i = args.indexOf('--rpc');
+    return i >= 0 ? args[i + 1] : null;
+  })();
+
   const rpc = [
+    rpcFromArg,
     process.env.ALCHEMY_ARBITRUM_URL,
     process.env.ARBITRUM_RPC_URL,
     process.env.RPC_URL,
     'https://arb1.arbitrum.io/rpc'
-  ].filter(Boolean)[0];
+  ]
+    .filter(Boolean)
+    .filter((u) => !String(u).includes('YOUR_ALCHEMY_KEY'))[0];
+
+  if (!rpc) throw new Error('Missing usable RPC URL. Set ALCHEMY_ARBITRUM_URL / ARBITRUM_RPC_URL / RPC_URL (without placeholder key) or pass --rpc <URL>.');
+  console.log(`Using RPC: ${rpc}`);
 
   const provider = new ethers.JsonRpcProvider(rpc);
   const net = await provider.getNetwork();

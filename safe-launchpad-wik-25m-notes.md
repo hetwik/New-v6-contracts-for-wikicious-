@@ -39,3 +39,5 @@ Typical sequence after `createSale`:
 3. Call `WikiLaunchpad.depositSaleTokens(saleId)`.
 
 If npm shows `EJSONPARSE`, run `node scripts/restore-package-json.js` first, then rerun your npm command.
+- If you see `401 Unauthorized` from Alchemy, your env still has a placeholder/invalid key; set a valid key or use a different RPC URL.
+- You can force a specific RPC at runtime: `node scripts/check-launchpad-sale-funding.js safe-launchpad-wik-25m-mainnet.json --rpc https://arb1.arbitrum.io/rpc`
