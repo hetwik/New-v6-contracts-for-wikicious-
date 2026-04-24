@@ -125,10 +125,10 @@
         "saleToken": "0xa681Bf6f0449ABc4E98DCa3468488Fe1b24FdD0F",
         "name": "WIK Public Launch 2026",
         "metaURI": "ipfs://REPLACE_WITH_WIK_LAUNCH_METADATA_CID",
-        "pricePerToken": "100000",
+        "pricePerToken": "500000",
         "hardcap": "25000000000000",
         "softcap": "5000000000000",
-        "totalTokens": "250000000000000000000000000",
+        "totalTokens": "50000000000000000000000000",
         "allocations": [
           "7500000000000",
           "6250000000000",
@@ -137,8 +137,8 @@
         ],
         "timeline": [
           "1778371200",
-          "1779580800",
-          "1779667200"
+          "1988150399",
+          "1988150400"
         ],
         "cliffDuration": "2592000",
         "vestDuration": "15552000",
