@@ -1,0 +1,305 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1776827815964,
+  "meta": {
+    "name": "Post-deploy: configure SpotRouter pools (core)",
+    "description": "Enables core spot/swap routes on WikiSpotRouter by calling setPool for major pairs."
+  },
+  "transactions": [
+    {
+      "to": "0x0181EC165A4f2C0cf79Be65f1DDa6C0b85D87aa8",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setPool",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenOut",
+            "type": "address"
+          },
+          {
+            "internalType": "uint24",
+            "name": "fee",
+            "type": "uint24"
+          },
+          {
+            "internalType": "address",
+            "name": "hopToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint24",
+            "name": "hopFee",
+            "type": "uint24"
+          },
+          {
+            "internalType": "bool",
+            "name": "active",
+            "type": "bool"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+        "tokenOut": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+        "fee": "500",
+        "hopToken": "0x0000000000000000000000000000000000000000",
+        "hopFee": "0",
+        "active": "true"
+      }
+    },
+    {
+      "to": "0x0181EC165A4f2C0cf79Be65f1DDa6C0b85D87aa8",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setPool",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenOut",
+            "type": "address"
+          },
+          {
+            "internalType": "uint24",
+            "name": "fee",
+            "type": "uint24"
+          },
+          {
+            "internalType": "address",
+            "name": "hopToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint24",
+            "name": "hopFee",
+            "type": "uint24"
+          },
+          {
+            "internalType": "bool",
+            "name": "active",
+            "type": "bool"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
+        "tokenOut": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+        "fee": "500",
+        "hopToken": "0x0000000000000000000000000000000000000000",
+        "hopFee": "0",
+        "active": "true"
+      }
+    },
+    {
+      "to": "0x0181EC165A4f2C0cf79Be65f1DDa6C0b85D87aa8",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setPool",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenOut",
+            "type": "address"
+          },
+          {
+            "internalType": "uint24",
+            "name": "fee",
+            "type": "uint24"
+          },
+          {
+            "internalType": "address",
+            "name": "hopToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint24",
+            "name": "hopFee",
+            "type": "uint24"
+          },
+          {
+            "internalType": "bool",
+            "name": "active",
+            "type": "bool"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "tokenOut": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+        "fee": "500",
+        "hopToken": "0x0000000000000000000000000000000000000000",
+        "hopFee": "0",
+        "active": "true"
+      }
+    },
+    {
+      "to": "0x0181EC165A4f2C0cf79Be65f1DDa6C0b85D87aa8",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setPool",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenOut",
+            "type": "address"
+          },
+          {
+            "internalType": "uint24",
+            "name": "fee",
+            "type": "uint24"
+          },
+          {
+            "internalType": "address",
+            "name": "hopToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint24",
+            "name": "hopFee",
+            "type": "uint24"
+          },
+          {
+            "internalType": "bool",
+            "name": "active",
+            "type": "bool"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "tokenIn": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+        "tokenOut": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+        "fee": "100",
+        "hopToken": "0x0000000000000000000000000000000000000000",
+        "hopFee": "0",
+        "active": "true"
+      }
+    },
+    {
+      "to": "0x0181EC165A4f2C0cf79Be65f1DDa6C0b85D87aa8",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setPool",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenOut",
+            "type": "address"
+          },
+          {
+            "internalType": "uint24",
+            "name": "fee",
+            "type": "uint24"
+          },
+          {
+            "internalType": "address",
+            "name": "hopToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint24",
+            "name": "hopFee",
+            "type": "uint24"
+          },
+          {
+            "internalType": "bool",
+            "name": "active",
+            "type": "bool"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+        "tokenOut": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+        "fee": "500",
+        "hopToken": "0x0000000000000000000000000000000000000000",
+        "hopFee": "0",
+        "active": "true"
+      }
+    },
+    {
+      "to": "0x0181EC165A4f2C0cf79Be65f1DDa6C0b85D87aa8",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setPool",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenIn",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenOut",
+            "type": "address"
+          },
+          {
+            "internalType": "uint24",
+            "name": "fee",
+            "type": "uint24"
+          },
+          {
+            "internalType": "address",
+            "name": "hopToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint24",
+            "name": "hopFee",
+            "type": "uint24"
+          },
+          {
+            "internalType": "bool",
+            "name": "active",
+            "type": "bool"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "tokenIn": "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
+        "tokenOut": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+        "fee": "500",
+        "hopToken": "0x0000000000000000000000000000000000000000",
+        "hopFee": "0",
+        "active": "true"
+      }
+    }
+  ]
+}
