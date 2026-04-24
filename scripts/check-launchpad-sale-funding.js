@@ -59,12 +59,13 @@ async function main() {
     provider
   );
 
-  const [balance, allowance, symbol, decimals] = await Promise.all([
+  const [balance, allowance, symbol, decimalsRaw] = await Promise.all([
     erc20.balanceOf(projectOwner),
     erc20.allowance(projectOwner, launchpad),
     erc20.symbol().catch(() => 'TOKEN'),
     erc20.decimals().catch(() => 18)
   ]);
+  const decimals = Number(decimalsRaw);
 
   const enoughBalance = balance >= totalTokens;
   const enoughAllowance = allowance >= totalTokens;
