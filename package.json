@@ -1,7 +1,7 @@
 {
   "name": "wikicious-v6-contracts",
   "version": "6.0.0",
-  "description": "Wikicious V6 \u2014 Smart Contracts on Arbitrum One",
+  "description": "Wikicious V6 — Smart Contracts on Arbitrum One",
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",
@@ -33,6 +33,8 @@
     "check:staking:options:mainnet": "node scripts/check-staking-options-major-mainnet.js",
     "check:launchpad:funding:mainnet": "node scripts/check-launchpad-sale-funding.js safe-launchpad-wik-25m-mainnet.json",
     "check:packagejson": "node scripts/check-package-json.js"
+    "check:staking:options:mainnet": "node scripts/check-staking-options-major-mainnet.js",
+    "check:launchpad:funding:mainnet": "node scripts/check-launchpad-sale-funding.js safe-launchpad-wik-25m-mainnet.json"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
