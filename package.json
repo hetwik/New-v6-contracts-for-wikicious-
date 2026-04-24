@@ -30,12 +30,11 @@
     "check:lending:major:mainnet": "node scripts/check-lending-flash-margin-mainnet.js",
     "check:liquidity:yield:mainnet": "node scripts/check-liquidity-yield-major-mainnet.js",
     "prepare:liquidity:pools": "node scripts/prepare-liquidity-pools-batch.js",
-<<<<<<< codex/count-markets-in-deployment-and-mainnet-dc5o15
+    "check:staking:options:mainnet": "node scripts/check-staking-options-major-mainnet.js",
+    "check:launchpad:funding:mainnet": "node scripts/check-launchpad-sale-funding.js safe-launchpad-wik-25m-mainnet.json",
+    "check:packagejson": "node scripts/check-package-json.js"
     "check:staking:options:mainnet": "node scripts/check-staking-options-major-mainnet.js",
     "check:launchpad:funding:mainnet": "node scripts/check-launchpad-sale-funding.js safe-launchpad-wik-25m-mainnet.json"
-=======
-    "check:staking:options:mainnet": "node scripts/check-staking-options-major-mainnet.js"
->>>>>>> main
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
