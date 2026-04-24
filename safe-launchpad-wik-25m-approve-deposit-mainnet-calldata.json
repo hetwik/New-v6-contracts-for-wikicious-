@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1777017354930,
+  "meta": {
+    "name": "Launchpad: WIK 50M approve + deposit (pre-encoded calldata)",
+    "description": "Pre-encoded calldata for projectOwner approve and depositSaleTokens(saleId=0)."
+  },
+  "transactions": [
+    {
+      "to": "0xa681Bf6f0449ABc4E98DCa3468488Fe1b24FdD0F",
+      "value": "0",
+      "data": "0x095ea7b300000000000000000000000042db4776ffb45f2cc5663407e7953935f63fd40e000000000000000000000000000000000000000000295be96e64066972000000"
+    },
+    {
+      "to": "0x42DB4776FFB45f2cc5663407e7953935f63fd40E",
+      "value": "0",
+      "data": "0x71ca45f10000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ]
+}
