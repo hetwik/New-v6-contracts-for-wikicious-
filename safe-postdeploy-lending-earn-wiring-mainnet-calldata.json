@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1776885427673,
+  "meta": {
+    "name": "Post-deploy: lending/flash/margin/earn wiring (core) (pre-encoded calldata)",
+    "description": "Pre-encoded calldata for timelock and core contract wiring across lending/earn modules."
+  },
+  "transactions": [
+    {
+      "to": "0x4533E181FdF5b0C66e0816992F38c23d57e42Df8",
+      "value": "0",
+      "data": "0xbdacb303000000000000000000000000ada19c1beb7bbfdf8264b784c3005b0d4b667cd0"
+    },
+    {
+      "to": "0x74635CFa33EEAe220367fF10C598e098a29e9246",
+      "value": "0",
+      "data": "0xbdacb303000000000000000000000000ada19c1beb7bbfdf8264b784c3005b0d4b667cd0"
+    },
+    {
+      "to": "0xAF8Dfefc70595BE1ACAd711722e67f9894345d8e",
+      "value": "0",
+      "data": "0xbdacb303000000000000000000000000ada19c1beb7bbfdf8264b784c3005b0d4b667cd0"
+    },
+    {
+      "to": "0x892DcAAF9e22AEdFE449cb8244AfcA10b1822942",
+      "value": "0",
+      "data": "0xbdacb303000000000000000000000000ada19c1beb7bbfdf8264b784c3005b0d4b667cd0"
+    },
+    {
+      "to": "0xB81E1b0f2f1ad7263156412523be440245A17849",
+      "value": "0",
+      "data": "0xbdacb303000000000000000000000000ada19c1beb7bbfdf8264b784c3005b0d4b667cd0"
+    },
+    {
+      "to": "0xBA0B6E48B5325164EE48865101bFaDF8F5130FA7",
+      "value": "0",
+      "data": "0xbdacb303000000000000000000000000ada19c1beb7bbfdf8264b784c3005b0d4b667cd0"
+    },
+    {
+      "to": "0x53b6A9bE66C68090c26d4BE74f6eB916578F3A0B",
+      "value": "0",
+      "data": "0xb3066d49000000000000000000000000794a61358d6845594f94dc1db02a252b5b4814ad00000000000000000000000074635cfa33eeae220367ff10c598e098a29e9246000000000000000000000000aaddf07470a4749f51a374cdeb7889f99f222937"
+    },
+    {
+      "to": "0xD03C8cd8E3E847eD2063800f8f4Bc44512867b05",
+      "value": "0",
+      "data": "0xd8952a4900000000000000000000000039ef6574b791164e32c9e8bd432637ab0eb3ebbd000000000000000000000000dd551d705fabd4380d2c95f7345b671ce3310bd2"
+    },
+    {
+      "to": "0xD03C8cd8E3E847eD2063800f8f4Bc44512867b05",
+      "value": "0",
+      "data": "0xf0f4426000000000000000000000000000b13b0d1e9b18cfef2c998027ed7291cc163a3f"
+    }
+  ]
+}
