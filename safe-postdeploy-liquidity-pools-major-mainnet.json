@@ -1,0 +1,222 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1776889201179,
+  "meta": {
+    "name": "Post-deploy: major liquidity pools setup",
+    "description": "Approves WikiLP pool creation fee budget and creates 6 major pools (USDC/WETH/WBTC/ARB)."
+  },
+  "transactions": [
+    {
+      "to": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "approve",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "spender": "0x471351b73906aeA58E1FD4dA99122Ee04De62c8d",
+        "amount": "3000000000"
+      }
+    },
+    {
+      "to": "0x471351b73906aeA58E1FD4dA99122Ee04De62c8d",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createPool",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenA",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenB",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feeBps",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "tokenA": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+        "tokenB": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+        "feeBps": "5"
+      }
+    },
+    {
+      "to": "0x471351b73906aeA58E1FD4dA99122Ee04De62c8d",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createPool",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenA",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenB",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feeBps",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "tokenA": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+        "tokenB": "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
+        "feeBps": "5"
+      }
+    },
+    {
+      "to": "0x471351b73906aeA58E1FD4dA99122Ee04De62c8d",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createPool",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenA",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenB",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feeBps",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "tokenA": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+        "tokenB": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "feeBps": "5"
+      }
+    },
+    {
+      "to": "0x471351b73906aeA58E1FD4dA99122Ee04De62c8d",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createPool",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenA",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenB",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feeBps",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "tokenA": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+        "tokenB": "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
+        "feeBps": "30"
+      }
+    },
+    {
+      "to": "0x471351b73906aeA58E1FD4dA99122Ee04De62c8d",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createPool",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenA",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenB",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feeBps",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "tokenA": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+        "tokenB": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "feeBps": "30"
+      }
+    },
+    {
+      "to": "0x471351b73906aeA58E1FD4dA99122Ee04De62c8d",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createPool",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenA",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenB",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feeBps",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "tokenA": "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
+        "tokenB": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "feeBps": "30"
+      }
+    }
+  ]
+}
