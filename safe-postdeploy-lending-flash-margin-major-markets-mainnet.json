@@ -1,0 +1,613 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1776886943078,
+  "meta": {
+    "name": "Post-deploy: lending/flash/margin markets & risk params (major set)",
+    "description": "Adds major lending markets, configures flash supported tokens, and sets margin IRM/reserve defaults. Review risk/caps before execution."
+  },
+  "transactions": [
+    {
+      "to": "0x74635CFa33EEAe220367fF10C598e098a29e9246",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "addMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "underlying",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "oracleId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "colFactor",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "liqThreshold",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "reserveFactor",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "supplyCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "borrowCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[4]",
+            "name": "irm",
+            "type": "uint256[4]"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "underlying": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+        "oracleId": "0x59102b37de83bdda9f38ac8254e596f0d9ac61d2035c07936675e87342817160",
+        "symbol": "WETH",
+        "colFactor": "800000000000000000",
+        "liqThreshold": "850000000000000000",
+        "reserveFactor": "1000",
+        "supplyCap": "2000000000000000000000",
+        "borrowCap": "1000000000000000000000",
+        "irm": [
+          "634195840",
+          "2536783360",
+          "44407599360",
+          "800000000000000000"
+        ]
+      }
+    },
+    {
+      "to": "0x74635CFa33EEAe220367fF10C598e098a29e9246",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "addMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "underlying",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "oracleId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "colFactor",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "liqThreshold",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "reserveFactor",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "supplyCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "borrowCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[4]",
+            "name": "irm",
+            "type": "uint256[4]"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "underlying": "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
+        "oracleId": "0x7404e3d104ea7841c3d9e6fd20adfe99b4ad586bc08d8f3bd3afef894cf184de",
+        "symbol": "WBTC",
+        "colFactor": "750000000000000000",
+        "liqThreshold": "820000000000000000",
+        "reserveFactor": "1000",
+        "supplyCap": "20000000000",
+        "borrowCap": "10000000000",
+        "irm": [
+          "634195840",
+          "2536783360",
+          "44407599360",
+          "800000000000000000"
+        ]
+      }
+    },
+    {
+      "to": "0x74635CFa33EEAe220367fF10C598e098a29e9246",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "addMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "underlying",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "oracleId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "colFactor",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "liqThreshold",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "reserveFactor",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "supplyCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "borrowCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[4]",
+            "name": "irm",
+            "type": "uint256[4]"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "underlying": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "0x365f8b30df22d80f2e0b406679ef53f75e49d6cad9c1c9e6bc1df7b092658a20",
+        "symbol": "ARB",
+        "colFactor": "650000000000000000",
+        "liqThreshold": "750000000000000000",
+        "reserveFactor": "1000",
+        "supplyCap": "5000000000000000000000000",
+        "borrowCap": "2000000000000000000000000",
+        "irm": [
+          "634195840",
+          "2536783360",
+          "44407599360",
+          "800000000000000000"
+        ]
+      }
+    },
+    {
+      "to": "0x74635CFa33EEAe220367fF10C598e098a29e9246",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "addMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "underlying",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "oracleId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "colFactor",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "liqThreshold",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "reserveFactor",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "supplyCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "borrowCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[4]",
+            "name": "irm",
+            "type": "uint256[4]"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "underlying": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+        "oracleId": "0x6dcd0a8fb0460d4f0f98c524e06c10c63377cd098b589c0b90314bfb55751558",
+        "symbol": "USDT",
+        "colFactor": "900000000000000000",
+        "liqThreshold": "930000000000000000",
+        "reserveFactor": "1000",
+        "supplyCap": "5000000000000",
+        "borrowCap": "3000000000000",
+        "irm": [
+          "634195840",
+          "2536783360",
+          "44407599360",
+          "800000000000000000"
+        ]
+      }
+    },
+    {
+      "to": "0x74635CFa33EEAe220367fF10C598e098a29e9246",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "addMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "underlying",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "oracleId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "colFactor",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "liqThreshold",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "reserveFactor",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "supplyCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "borrowCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[4]",
+            "name": "irm",
+            "type": "uint256[4]"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "underlying": "0x5979D7b546E38E414F7E9822514be443A4800529",
+        "oracleId": "0x2197db989f6756bf2c6253d35f240a1d7460bfb5df4cd7ef0a47e3ef4416b959",
+        "symbol": "WSTETH",
+        "colFactor": "780000000000000000",
+        "liqThreshold": "840000000000000000",
+        "reserveFactor": "1000",
+        "supplyCap": "1000000000000000000000",
+        "borrowCap": "500000000000000000000",
+        "irm": [
+          "634195840",
+          "2536783360",
+          "44407599360",
+          "800000000000000000"
+        ]
+      }
+    },
+    {
+      "to": "0xAF8Dfefc70595BE1ACAd711722e67f9894345d8e",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "configureToken",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feeBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxDailyBorrow",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "token": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+        "feeBps": "8",
+        "maxDailyBorrow": "10000000000000"
+      }
+    },
+    {
+      "to": "0xAF8Dfefc70595BE1ACAd711722e67f9894345d8e",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "configureToken",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feeBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxDailyBorrow",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "token": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+        "feeBps": "8",
+        "maxDailyBorrow": "10000000000000"
+      }
+    },
+    {
+      "to": "0xAF8Dfefc70595BE1ACAd711722e67f9894345d8e",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "configureToken",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feeBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxDailyBorrow",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "token": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+        "feeBps": "8",
+        "maxDailyBorrow": "5000000000000000000000"
+      }
+    },
+    {
+      "to": "0xAF8Dfefc70595BE1ACAd711722e67f9894345d8e",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "configureToken",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feeBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxDailyBorrow",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "token": "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
+        "feeBps": "8",
+        "maxDailyBorrow": "50000000000"
+      }
+    },
+    {
+      "to": "0xAF8Dfefc70595BE1ACAd711722e67f9894345d8e",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "configureToken",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feeBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxDailyBorrow",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "feeBps": "8",
+        "maxDailyBorrow": "10000000000000000000000000"
+      }
+    },
+    {
+      "to": "0xAF8Dfefc70595BE1ACAd711722e67f9894345d8e",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "configureToken",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "feeBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxDailyBorrow",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "token": "0x5979D7b546E38E414F7E9822514be443A4800529",
+        "feeBps": "8",
+        "maxDailyBorrow": "2000000000000000000000"
+      }
+    },
+    {
+      "to": "0x892DcAAF9e22AEdFE449cb8244AfcA10b1822942",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setIRM",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "base",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "s1",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "s2",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "kink",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "base": "634195840",
+        "s1": "2536783360",
+        "s2": "44407599360",
+        "kink": "800000000000000000"
+      }
+    },
+    {
+      "to": "0x892DcAAF9e22AEdFE449cb8244AfcA10b1822942",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setReserveFactor",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "bps",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "bps": "1000"
+      }
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "network": "arbitrum_one",
+  "chainId": 42161,
+  "generatedAt": "2026-04-24T05:13:31.912Z",
+  "mode": "safe",
+  "token": "0xa681Bf6f0449ABc4E98DCa3468488Fe1b24FdD0F",
+  "deployer": "0x79698a8D914016b770AF796D8F08D660d64C0997",
+  "safe": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
+  "tokenConstructorArgsDistinct": [
+    "0x79698a8d914016b770af796d8f08d660d64c0997"
+  ],
+  "looksMisallocatedToDeployer": true,
+  "steps": [
+    {
+      "bucket": "community",
+      "to": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
+      "amount": "400000000000000000000000000",
+      "amountWIK": "400000000.0"
+    },
+    {
+      "bucket": "pol",
+      "to": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
+      "amount": "150000000000000000000000000",
+      "amountWIK": "150000000.0"
+    },
+    {
+      "bucket": "team",
+      "to": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
+      "amount": "150000000000000000000000000",
+      "amountWIK": "150000000.0"
+    },
+    {
+      "bucket": "investor",
+      "to": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
+      "amount": "100000000000000000000000000",
+      "amountWIK": "100000000.0"
+    },
+    {
+      "bucket": "treasury",
+      "to": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
+      "amount": "100000000000000000000000000",
+      "amountWIK": "100000000.0"
+    },
+    {
+      "bucket": "publicSale",
+      "to": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
+      "amount": "50000000000000000000000000",
+      "amountWIK": "50000000.0"
+    },
+    {
+      "bucket": "reserve",
+      "to": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
+      "amount": "50000000000000000000000000",
+      "amountWIK": "50000000.0"
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1777030400000,
+  "meta": {
+    "name": "Post-deploy: configure YieldAggregator with Aave + Radiant",
+    "description": "Sets aggregator on adapters and adds Aave/Radiant strategies in WikiYieldAggregator."
+  },
+  "transactions": [
+    {
+      "to": "0x23e0bBC0Cd957a44797431C4A7EA2fba510094f8",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setAggregator",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_aggregator",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "_aggregator": "0x95F3Cf765b479478c44D0EE932f17444ADA6A9a1"
+      }
+    },
+    {
+      "to": "0xd4BB2B6df614e37f65a7A6bAd1734BC3decB2c47",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setAggregator",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "a",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "a": "0x95F3Cf765b479478c44D0EE932f17444ADA6A9a1"
+      }
+    },
+    {
+      "to": "0x95F3Cf765b479478c44D0EE932f17444ADA6A9a1",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "addStrategy",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "vault",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "risk",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minDep",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "exitDays",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "name": "Aave V3 USDC",
+        "vault": "0x23e0bBC0Cd957a44797431C4A7EA2fba510094f8",
+        "risk": "4",
+        "minDep": "100000000",
+        "exitDays": "1"
+      }
+    },
+    {
+      "to": "0x95F3Cf765b479478c44D0EE932f17444ADA6A9a1",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "addStrategy",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "vault",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "risk",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minDep",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "exitDays",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "name": "Radiant USDC",
+        "vault": "0xd4BB2B6df614e37f65a7A6bAd1734BC3decB2c47",
+        "risk": "5",
+        "minDep": "100000000",
+        "exitDays": "1"
+      }
+    }
+  ]
+}

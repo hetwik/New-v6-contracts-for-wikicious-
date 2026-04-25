@@ -1,0 +1,80 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1776884983699,
+  "meta": {
+    "name": "GMX routing next batch candidates (13)",
+    "description": "Next 13 unmapped core markets to map after expand-13. Fill verified gmxMarket addresses, then generate Safe batch via scripts/build-gmx-routing-batch.js."
+  },
+  "targets": {
+    "hlm": "0x4A73f367cD326092f75c8BE8056C5091F6096D48",
+    "backstop": "0xf3785092A8077C861BF1cCf2B56ba35524A73Fc4"
+  },
+  "candidates": [
+    {
+      "symbol": "ADAUSDT",
+      "marketId": "0x5989664cfeb3c3e42fd2d4324df495528c199beb9d57cc5238628e8cb6831f93",
+      "gmxMarket": null
+    },
+    {
+      "symbol": "DOTUSDT",
+      "marketId": "0xb091137ce24b6cc1a176ff1c47ee784a62b93fe8cca125b8975b84c9b3c407ea",
+      "gmxMarket": null
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "marketId": "0x4f4cea1b88693a8acfaec144a46aea2fa3b995f3e97e4f7237210cf8f1036f29",
+      "gmxMarket": null
+    },
+    {
+      "symbol": "SUIUSDT",
+      "marketId": "0x232d02eb5265c07c90f3dfc16a26ddcd609ba4fa8adffffd82b22b3e3244ad24",
+      "gmxMarket": null
+    },
+    {
+      "symbol": "APTUSDT",
+      "marketId": "0x3f5b1623a7d3e113f4052463364534b4de2ca26de0c61f65f1e0485ab9f18cc4",
+      "gmxMarket": null
+    },
+    {
+      "symbol": "NEARUSDT",
+      "marketId": "0x58afd6460bc9bf300ebf02bfbe524904d86ebf4c3a97d4f8eda638fe58062757",
+      "gmxMarket": null
+    },
+    {
+      "symbol": "ATOMUSDT",
+      "marketId": "0xf32579dc4ab332d7511110da5df87a1a1fee9d56aa47eb7c82ea87e1c1079f39",
+      "gmxMarket": null
+    },
+    {
+      "symbol": "INJUSDT",
+      "marketId": "0x380500b683aadee4eb10b26a015df5a3b23ff4bc0d0559133d59967613255598",
+      "gmxMarket": null
+    },
+    {
+      "symbol": "TIAUSDT",
+      "marketId": "0xd980c8ae4f36084df3d035264be198f861b69a0b96938ae60bc4458ebd268c55",
+      "gmxMarket": null
+    },
+    {
+      "symbol": "SEIUSDT",
+      "marketId": "0x87c1794467c0955e48bcad17dee3774ac33ac619dae6eb63624c1bfff571a95b",
+      "gmxMarket": null
+    },
+    {
+      "symbol": "PEPEUSDT",
+      "marketId": "0xa3950c5952b1c092266aab5cf562b7ee17ae059e7844205bef27dd26c861b92c",
+      "gmxMarket": null
+    },
+    {
+      "symbol": "WIFUSDT",
+      "marketId": "0x4866457f6791c14104bdc66af7f9d73356c1b0413eff9a5f342d02a9d2b3e8d5",
+      "gmxMarket": null
+    },
+    {
+      "symbol": "BONKUSDT",
+      "marketId": "0xe7e18b9e527021f0ae00030f88149c98fbe0d8275b2dad8e6294fb6b4056d4ef",
+      "gmxMarket": null
+    }
+  ]
+}
