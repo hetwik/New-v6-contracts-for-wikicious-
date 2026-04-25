@@ -1,0 +1,336 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1776838934929,
+  "meta": {
+    "name": "Post-deploy: GMX routing wiring (core 4 markets)",
+    "description": "Configures HLM + Perp + GMXBackstop so low-liquidity routing can fallback to GMX for BTC/ETH/SOL/ARB."
+  },
+  "transactions": [
+    {
+      "to": "0x4A73f367cD326092f75c8BE8056C5091F6096D48",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setRouteCaller",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "caller",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "allowed",
+            "type": "bool"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "caller": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+        "allowed": "true"
+      }
+    },
+    {
+      "to": "0x4A73f367cD326092f75c8BE8056C5091F6096D48",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setRouteCaller",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "caller",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "allowed",
+            "type": "bool"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "caller": "0x9C63c27B8A73A990a2D89141622A639a2363b88A",
+        "allowed": "true"
+      }
+    },
+    {
+      "to": "0x4A73f367cD326092f75c8BE8056C5091F6096D48",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setGMXRouter",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "router",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "referralCode",
+            "type": "bytes32"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "router": "0x7C68C7866A64FA2160F78EEaE12217FFbf871fa8",
+        "referralCode": "0x57494b4943494f55530000000000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "to": "0x4A73f367cD326092f75c8BE8056C5091F6096D48",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setGMXMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "gmxMkt",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "marketId": "0xcd423b16b64109a0492eab881d06ef1d6470d25f8e3d6f04f5acc111f176939c",
+        "gmxMkt": "0x47c031236e19d024b42f8AE6780E44A573170703"
+      }
+    },
+    {
+      "to": "0x4A73f367cD326092f75c8BE8056C5091F6096D48",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setGMXMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "gmxMkt",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "marketId": "0xaeb17180ec6df0d643751cbbe82ac67166a910f4092c23f781cd39e46582ec9c",
+        "gmxMkt": "0x70d95587d40A2caf56bd97485aB3Eec10Bee6336"
+      }
+    },
+    {
+      "to": "0x4A73f367cD326092f75c8BE8056C5091F6096D48",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setGMXMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "gmxMkt",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "marketId": "0x3db5e9fb22b6f66ce6550ab2b9d3872f875f575780c6abb9c95f9ce03845a83e",
+        "gmxMkt": "0x09400D9DB990D5ed3f35D7be61DfAEB900Af03C9"
+      }
+    },
+    {
+      "to": "0x4A73f367cD326092f75c8BE8056C5091F6096D48",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setGMXMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "gmxMkt",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "marketId": "0xf5908fd2bf6cb9f75ee15e75a8da76bead67adf7c7f87afbfbd8d926a17eaa4a",
+        "gmxMkt": "0xC25cEf6061Cf5dE5eb761b50E4743c1F5D7E5407"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setGMXBackstop",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "b",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "enabled",
+            "type": "bool"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "b": "0xf3785092A8077C861BF1cCf2B56ba35524A73Fc4",
+        "enabled": "true"
+      }
+    },
+    {
+      "to": "0xf3785092A8077C861BF1cCf2B56ba35524A73Fc4",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setOperator",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "op",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "enabled",
+            "type": "bool"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "op": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+        "enabled": "true"
+      }
+    },
+    {
+      "to": "0xf3785092A8077C861BF1cCf2B56ba35524A73Fc4",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setGMXMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "gmxMarket",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "marketId": "0xcd423b16b64109a0492eab881d06ef1d6470d25f8e3d6f04f5acc111f176939c",
+        "gmxMarket": "0x47c031236e19d024b42f8AE6780E44A573170703"
+      }
+    },
+    {
+      "to": "0xf3785092A8077C861BF1cCf2B56ba35524A73Fc4",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setGMXMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "gmxMarket",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "marketId": "0xaeb17180ec6df0d643751cbbe82ac67166a910f4092c23f781cd39e46582ec9c",
+        "gmxMarket": "0x70d95587d40A2caf56bd97485aB3Eec10Bee6336"
+      }
+    },
+    {
+      "to": "0xf3785092A8077C861BF1cCf2B56ba35524A73Fc4",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setGMXMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "gmxMarket",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "marketId": "0x3db5e9fb22b6f66ce6550ab2b9d3872f875f575780c6abb9c95f9ce03845a83e",
+        "gmxMarket": "0x09400D9DB990D5ed3f35D7be61DfAEB900Af03C9"
+      }
+    },
+    {
+      "to": "0xf3785092A8077C861BF1cCf2B56ba35524A73Fc4",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "setGMXMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "gmxMarket",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "marketId": "0xf5908fd2bf6cb9f75ee15e75a8da76bead67adf7c7f87afbfbd8d926a17eaa4a",
+        "gmxMarket": "0xC25cEf6061Cf5dE5eb761b50E4743c1F5D7E5407"
+      }
+    }
+  ]
+}
