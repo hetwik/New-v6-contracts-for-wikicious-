@@ -1,7 +1,7 @@
 {
   "network": "arbitrum_one",
   "chainId": 42161,
-  "generatedAt": "2026-04-24T05:13:31.622Z",
+  "generatedAt": "2026-04-24T05:31:35.697Z",
   "mode": "holders",
   "token": "0xa681Bf6f0449ABc4E98DCa3468488Fe1b24FdD0F",
   "deployer": "0x79698a8D914016b770AF796D8F08D660d64C0997",
