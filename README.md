@@ -71,6 +71,90 @@ If you want heuristic auto-deploy mode instead (faster iteration):
 npm run deploy:all
 ```
 
+
+## Keeper bot setup (automated)
+
+After deploy/post-wiring, set your keeper wallet in `.env`:
+
+```env
+KEEPER_BOT_WALLET=0xYourKeeperWallet
+```
+
+Run:
+
+```bash
+npm run keeper:testnet
+# or
+npm run keeper:mainnet
+```
+
+What it does:
+- auto-loads the right deployment file for the target network
+- scans deployed contracts and tries keeper setter methods (`setKeeper(address,bool)`, `setKeeper(address)`, `setKeeperBot(address)`)
+- skips contracts that don't expose keeper setters
+- writes a full report to `keeper-setup.json`
+
+## Oracle live addresses (Arbitrum)
+
+For `WikiOracle`, this repo uses live Arbitrum addresses:
+- Pyth contract: `0xff1a0f4744e8582DF1aE09D5611b887B6a12925C`
+- Arbitrum sequencer uptime feed: `0xFdB631F5EE196F0ed6FAa767959853A9F217697D`
+
+To set core Chainlink feeds (BTC/ETH/ARB/BNB/forex/metals) on your deployed `WikiOracle`:
+
+```bash
+npm run oracle:live:testnet
+# or
+npm run oracle:live:mainnet
+```
+
+Optional: set Pyth feed IDs for your symbols by providing `PYTH_FEED_MAP_JSON` in `.env`:
+
+```env
+PYTH_FEED_MAP_JSON={"BTCUSDT":"0x...64hex...","ETHUSDT":"0x...64hex..."}
+```
+
+Notes:
+- Chainlink does **not** cover all 295 pairs in this system; use Pyth IDs for broader market coverage.
+- Sequencer feed + Pyth contract are constructor-level in `WikiOracle` and already part of deploy config.
+
+
+### Generate Safe batch calldata for oracle feed wiring
+
+If you already deployed and want pre-encoded Safe batch calldata:
+
+```bash
+# if WikiOracle is missing in deployment json, pass it explicitly
+WIKI_ORACLE_ADDRESS=0xYourOracle npm run safe:oracle:batch:mainnet
+```
+
+This creates `safe-oracle-batch.arbitrum_one.json` that you can import in Safe Transaction Builder.
+
+You can do full per-symbol batches by passing JSON maps:
+
+```env
+CHAINLINK_FEEDS_JSON={"BTCUSDT":["0x...",86400,8],"ETHUSDT":["0x...",86400,8]}
+PYTH_FEED_MAP_JSON={"BTCUSDT":"0x...64hex...","ETHUSDT":"0x...64hex..."}
+```
+
+## Mainnet retry helpers
+
+If some contracts failed to deploy during mainnet deploy, retry known failed deployments from the latest `deployments.arbitrum_one*.json` file:
+
+```bash
+npm run deploy:retry:mainnet
+```
+
+If post-wiring keeper setup needs a retry on mainnet:
+
+```bash
+npm run wiring:retry:mainnet
+```
+
+Notes:
+- `deploy:retry:mainnet` auto-loads the mainnet deployment file and retries contracts listed in `failedContracts`/`deployFailures` for supported recipes.
+- Unsupported failed contracts are kept in `failedContracts` so you can handle them manually later.
+
 Optional post-deploy env vars used by `deploy-all.js` wiring:
 - `ENABLE_POST_DEPLOY_WIRING` (`true` by default, set `false` to skip)
 - `OPS_WALLET` (defaults to deployer)
