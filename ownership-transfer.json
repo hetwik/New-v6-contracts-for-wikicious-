@@ -1,0 +1,23 @@
+{
+  "from": "0x79698a8D914016b770AF796D8F08D660d64C0997",
+  "to": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
+  "timestamp": "2026-04-10T15:54:44.248Z",
+  "results": [
+    {
+      "name": "WikiCopyTrading",
+      "status": "skipped",
+      "reason": "not owner"
+    },
+    {
+      "name": "WikiDAOTreasury",
+      "status": "skipped",
+      "reason": "not owner"
+    },
+    {
+      "name": "WikiLiquidStaking",
+      "status": "transferred",
+      "txHash": "0xe96d47ccf797346b0bcdf1c7bef4972b3134728a5c7f316e953ad3669bad927b",
+      "address": "0x46c49B0b2b0dCE2d06245c3699148A03631399A9"
+    }
+  ]
+}

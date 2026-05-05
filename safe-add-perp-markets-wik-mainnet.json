@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1777028919797,
+  "meta": {
+    "name": "Perp: add WIK market",
+    "description": "Adds WIKUSDT perp market on WikiPerp with conservative initial limits."
+  },
+  "transactions": [
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0x",
+      "contractMethod": {
+        "name": "createMarket",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "marketId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxLev",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "makerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "takerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mmBps",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxOI",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "arg7",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPosPerUser",
+            "type": "uint256"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "symbol": "WIKUSDT",
+        "marketId": "0xed0a51b456013dc018dff8976556940b05f27a27092e6b4995e8c6fedacb4182",
+        "maxLev": "30",
+        "makerFee": "1",
+        "takerFee": "8",
+        "mmBps": "80",
+        "maxOI": "500000000000",
+        "arg7": "500000000000",
+        "maxPosPerUser": "50000000000"
+      }
+    }
+  ]
+}

@@ -160,3 +160,12 @@ Optional post-deploy env vars used by `deploy-all.js` wiring:
 - `OPS_WALLET` (defaults to deployer)
 - `RESERVE_WALLET` (defaults to deployer)
 - `GENESIS_SAFE_ADDRESS` (if set, ownership transfer is attempted)
+
+
+## Canonical mainnet artifact sync
+
+If retry deployments polluted local JSON files, rebuild them from `wikicious_v6_mainnet_all.json`:
+
+```bash
+npm run sync:mainnet:artifacts
+```

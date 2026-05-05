@@ -97,15 +97,41 @@ module.exports = {
 
   etherscan: {
     apiKey: {
-      arbitrumOne: ETHERSCAN_KEY || "YOUR_ARBISCAN_KEY_HERE",
-      arbitrumSepolia: ETHERSCAN_KEY || "YOUR_ARBISCAN_KEY_HERE",
+      arbitrumOne: ETHERSCAN_KEY,
+      arbitrumSepolia: ETHERSCAN_KEY,
+      arbitrum_one: ETHERSCAN_KEY,
+      arbitrum_sepolia: ETHERSCAN_KEY,
     },
     customChains: [
+      {
+        network: "arbitrumOne",
+        chainId: 42161,
+        urls: {
+          apiURL: "https://api.etherscan.io/v2/api?chainid=42161",
+          browserURL: "https://arbiscan.io",
+        },
+      },
+      {
+        network: "arbitrum_one",
+        chainId: 42161,
+        urls: {
+          apiURL: "https://api.etherscan.io/v2/api?chainid=42161",
+          browserURL: "https://arbiscan.io",
+        },
+      },
       {
         network: "arbitrumSepolia",
         chainId: 421614,
         urls: {
-          apiURL: "https://api-sepolia.arbiscan.io/api",
+          apiURL: "https://api.etherscan.io/v2/api?chainid=421614",
+          browserURL: "https://sepolia.arbiscan.io",
+        },
+      },
+      {
+        network: "arbitrum_sepolia",
+        chainId: 421614,
+        urls: {
+          apiURL: "https://api.etherscan.io/v2/api?chainid=421614",
           browserURL: "https://sepolia.arbiscan.io",
         },
       },

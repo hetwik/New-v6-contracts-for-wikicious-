@@ -3,7 +3,7 @@
   "chainId": 42161,
   "deployer": "0x79698a8D914016b770AF796D8F08D660d64C0997",
   "safe": "0xc01fAE37aE7a4051Eafea26e047f36394054779c",
-  "timestamp": "2026-04-07T03:31:46.298Z",
+  "timestamp": "2026-04-12T04:57:51.029Z",
   "contracts": {},
   "attemptedContracts": 134,
   "successfulContracts": 0,
@@ -146,539 +146,539 @@
   "deployFailures": [
     {
       "name": "WIKToken",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 83692150126830"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 83512316250000"
     },
     {
       "name": "WikiOracle",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 43488533493704"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 49624083692032"
     },
     {
       "name": "WikiVault",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 43483415374140"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 44306738836352"
     },
     {
       "name": "WikiMarketRegistry",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 39204257142780"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 42257467894848"
     },
     {
       "name": "WikiTVLGuard",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 29103705000000"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 29428851549104"
     },
     {
       "name": "WikiRateLimiter",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 30834770313580"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 31157707871262"
     },
     {
       "name": "WikiAMM",
-      "reason": "execution reverted: Wiki: zero _vault"
+      "reason": "WikiAMM._vault missing address in strict mainnet mode"
     },
     {
       "name": "WikiVirtualAMM",
-      "reason": "execution reverted: Wiki: zero _oracle"
+      "reason": "WikiVirtualAMM._oracle missing address in strict mainnet mode"
     },
     {
       "name": "WikiSpot",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 31641348641084"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 31942682217358"
     },
     {
       "name": "WikiSpotRouter",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 51036256982802"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 57703792500000"
     },
     {
       "name": "WikiOrderBook",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 60961078912500"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 61133831240812"
     },
     {
       "name": "WikiSmartOrderRouter",
-      "reason": "execution reverted: Wiki: zero _wikiSpot"
+      "reason": "WikiSmartOrderRouter._wikiSpot missing address in strict mainnet mode"
     },
     {
       "name": "WikiPerp",
-      "reason": "execution reverted: Wiki: zero _vault"
+      "reason": "WikiPerp._vault missing address in strict mainnet mode"
     },
     {
       "name": "WikiGMXBackstop",
-      "reason": "execution reverted: Wiki: zero _vault"
+      "reason": "WikiGMXBackstop._vault missing address in strict mainnet mode"
     },
     {
       "name": "WikiCircuitBreaker",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 49399976250000"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 49681976364608"
     },
     {
       "name": "WikiPartialLiquidation",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 33806882942910"
+      "reason": "WikiPartialLiquidation._perp missing address in strict mainnet mode"
     },
     {
       "name": "WikiVolatilityMargin",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 24649190439378"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 24635169135428"
     },
     {
       "name": "WikiDarkPool",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 40643048373215"
+      "reason": "WikiDarkPool._revenueSplitter missing address in strict mainnet mode"
     },
     {
       "name": "WikiIndexPerp",
-      "reason": "execution reverted: Wiki: zero _oracle"
+      "reason": "WikiIndexPerp._oracle missing address in strict mainnet mode"
     },
     {
       "name": "WikiPortfolioMargin",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 46644461893792"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 46473513859442"
     },
     {
       "name": "WikiKeeperRegistry",
-      "reason": "execution reverted: Wiki: zero _wik"
+      "reason": "WikiKeeperRegistry._wik missing address in strict mainnet mode"
     },
     {
       "name": "WikiKeeperService",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 41744565000000"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 42037003302390"
     },
     {
       "name": "WikiLiquidator",
-      "reason": "execution reverted: Wiki: zero _perp"
+      "reason": "WikiLiquidator._perp missing address in strict mainnet mode"
     },
     {
       "name": "WikiADL",
-      "reason": "execution reverted: ADL: zero vamm"
+      "reason": "WikiADL._vamm missing address in strict mainnet mode"
     },
     {
       "name": "WikiLiqAuctionUI",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 21432524062500"
+      "reason": "WikiLiqAuctionUI._liqMarket missing address in strict mainnet mode"
     },
     {
       "name": "WikiLiqProtection",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 44648634423393"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 44899456047732"
     },
     {
       "name": "WikiStaking",
-      "reason": "execution reverted: Wiki: zero wik"
+      "reason": "WikiStaking.wik missing address in strict mainnet mode"
     },
     {
       "name": "WikiGaugeVoting",
-      "reason": "execution reverted: Gauge: zero staking"
+      "reason": "WikiGaugeVoting._staking missing address in strict mainnet mode"
     },
     {
       "name": "WikiDAOTreasury",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 71195153715000"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 71539477004424"
     },
     {
       "name": "WikiTimelockController",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 44860422186164"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 44993626875000"
     },
     {
       "name": "WikiAgenticDAO",
-      "reason": "execution reverted: Wiki: zero _staking"
+      "reason": "WikiAgenticDAO._staking missing address in strict mainnet mode"
     },
     {
       "name": "WikiMultisigGuard",
-      "reason": "execution reverted: Multisig: too few signers"
+      "reason": "execution reverted: Multisig: threshold > signers"
     },
     {
       "name": "WikiAIGuardrails",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 56911355207283"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 57102671310750"
     },
     {
       "name": "WikiLending",
-      "reason": "execution reverted: Wiki: zero _oracle"
+      "reason": "WikiLending._oracle missing address in strict mainnet mode"
     },
     {
       "name": "WikiFlashLoan",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 48783819375000"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 49075524259740"
     },
     {
       "name": "WikiMarginLoan",
-      "reason": "execution reverted: Wiki: zero usdc"
+      "reason": "WikiMarginLoan.usdc missing address in strict mainnet mode"
     },
     {
       "name": "WikiLPCollateral",
-      "reason": "execution reverted: Wiki: zero usdc"
+      "reason": "WikiLPCollateral.usdc missing address in strict mainnet mode"
     },
     {
       "name": "WikiCrossChainLending",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 48712972849506"
+      "reason": "WikiCrossChainLending._oracle missing address in strict mainnet mode"
     },
     {
       "name": "WikiMultiCollateral",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 59419777365708"
+      "reason": "WikiMultiCollateral._oracle missing address in strict mainnet mode"
     },
     {
       "name": "WikiBackstopVault",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 49666168689984"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 50025671327093"
     },
     {
       "name": "WikiDeltaNeutralVault",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 54773364375000"
+      "reason": "WikiDeltaNeutralVault._perp missing address in strict mainnet mode"
     },
     {
       "name": "WikiRealYieldLP",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 26506364062500"
+      "reason": "WikiRealYieldLP._revenueSplitter missing address in strict mainnet mode"
     },
     {
       "name": "WikiFundingArbVault",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 47825189547576"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 48307023442722"
     },
     {
       "name": "WikiYieldAggregator",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 30542342901750"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 30749614652250"
     },
     {
       "name": "WikiYieldSlice",
-      "reason": "execution reverted: Wiki: zero _lending"
+      "reason": "WikiYieldSlice._lending missing address in strict mainnet mode"
     },
     {
       "name": "WikiLeveragedYield",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 44953863144750"
+      "reason": "WikiLeveragedYield._lending missing address in strict mainnet mode"
     },
     {
       "name": "WikiStructuredProduct",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 37295996401456"
+      "reason": "WikiStructuredProduct._revenueSplitter missing address in strict mainnet mode"
     },
     {
       "name": "WikiPositionInsurance",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 39029799375000"
+      "reason": "WikiPositionInsurance._revenueSplitter missing address in strict mainnet mode"
     },
     {
       "name": "WikiAutoCompounder",
-      "reason": "execution reverted: AC: zero WIK"
+      "reason": "WikiAutoCompounder._wik missing address in strict mainnet mode"
     },
     {
       "name": "WikiInsuranceFundYield",
-      "reason": "execution reverted: Wiki: zero _lending"
+      "reason": "WikiInsuranceFundYield._lending missing address in strict mainnet mode"
     },
     {
       "name": "WikiExternalInsurance",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 33635993023125"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 33765508125000"
     },
     {
       "name": "WikiLiquidStaking",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 59667233199462"
+      "reason": "WikiLiquidStaking constructor arg mismatch: expected 3, got 1"
     },
     {
       "name": "WikiLiquidRestaking",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 37675261277533"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 37637282812500"
     },
     {
       "name": "WikiVaultMarketplace",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 56904403469625"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 56949725294763"
     },
     {
       "name": "WikiLP",
-      "reason": "execution reverted: Wiki: zero wik"
+      "reason": "WikiLP.wik missing address in strict mainnet mode"
     },
     {
       "name": "WikiPOL",
-      "reason": "execution reverted: Wiki: zero _wik"
+      "reason": "WikiPOL._wik missing address in strict mainnet mode"
     },
     {
       "name": "WikiBondingPOL",
-      "reason": "execution reverted: Wiki: zero _oracle"
+      "reason": "WikiBondingPOL._oracle missing address in strict mainnet mode"
     },
     {
       "name": "WikiRebalancer",
-      "reason": "execution reverted: Wiki: zero _oracle"
+      "reason": "WikiRebalancer._oracle missing address in strict mainnet mode"
     },
     {
       "name": "WikiHybridLiquidityManager",
-      "reason": "execution reverted: HLM: zero vault"
+      "reason": "WikiHybridLiquidityManager._vault missing address in strict mainnet mode"
     },
     {
       "name": "WikiConcentratedLP",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 30640857187500"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 30869863506000"
     },
     {
       "name": "WikiLPBoost",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 21153660929622"
+      "reason": "WikiLPBoost._veWIK missing address in strict mainnet mode"
     },
     {
       "name": "WikiLiquidityMining",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 29998488695651"
+      "reason": "WikiLiquidityMining._wik missing address in strict mainnet mode"
     },
     {
       "name": "WikiMarketMakerAgreement",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 44123278128237"
+      "reason": "WikiMarketMakerAgreement._wik missing address in strict mainnet mode"
     },
     {
       "name": "WikiManagedLiquidityVault",
-      "reason": "execution reverted: Wiki: zero _spot"
+      "reason": "WikiManagedLiquidityVault._spot missing address in strict mainnet mode"
     },
     {
       "name": "WikiRevenueSplitter",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 46254832467940"
+      "reason": "WikiRevenueSplitter._staking missing address in strict mainnet mode"
     },
     {
       "name": "WikiIdleYieldRouter",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 50118269062500"
+      "reason": "WikiIdleYieldRouter._lending missing address in strict mainnet mode"
     },
     {
       "name": "WikiOpsVault",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 51871716562500"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 52205478807966"
     },
     {
       "name": "WikiFeeDistributor",
-      "reason": "execution reverted: Wiki: zero _staking"
+      "reason": "WikiFeeDistributor._staking missing address in strict mainnet mode"
     },
     {
       "name": "WikiBuybackBurn",
-      "reason": "execution reverted: Wiki: zero _wik"
+      "reason": "WikiBuybackBurn._wik missing address in strict mainnet mode"
     },
     {
       "name": "WikiVolumeTiers",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 33091114146036"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 33361973353851"
     },
     {
       "name": "WikiDynamicFeeHook",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 16396272631678"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 16495550221805"
     },
     {
       "name": "WikiMEVHook",
-      "reason": "execution reverted: Wiki: zero _staking"
+      "reason": "WikiMEVHook._staking missing address in strict mainnet mode"
     },
     {
       "name": "WikiGasRebate",
-      "reason": "execution reverted: Wiki: zero _wik"
+      "reason": "WikiGasRebate._wik missing address in strict mainnet mode"
     },
     {
       "name": "WikiMakerRewards",
-      "reason": "execution reverted: Wiki: zero _wik"
+      "reason": "WikiMakerRewards._wik missing address in strict mainnet mode"
     },
     {
       "name": "WikiStakingFeeDiscount",
-      "reason": "execution reverted"
+      "reason": "WikiStakingFeeDiscount._owner missing address in strict mainnet mode"
     },
     {
       "name": "WikiRevenueDashboard",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 21869263398616"
+      "reason": "WikiRevenueDashboard._analytics missing address in strict mainnet mode"
     },
     {
       "name": "WikiPropPool",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 56515358868100"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 56612165625000"
     },
     {
       "name": "WikiPropEval",
-      "reason": "execution reverted: Wiki: zero _oracle"
+      "reason": "WikiPropEval._oracle missing address in strict mainnet mode"
     },
     {
       "name": "WikiPropFunded",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 96627659062500"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 97143882187500"
     },
     {
       "name": "WikiPropPoolYield",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 38558891672184"
+      "reason": "WikiPropPoolYield._lending missing address in strict mainnet mode"
     },
     {
       "name": "WikiPropChallenge",
-      "reason": "execution reverted: Wiki: zero _propEval"
+      "reason": "WikiPropChallenge._propEval missing address in strict mainnet mode"
     },
     {
       "name": "WikiBotVault",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 105961237783836"
+      "reason": "WikiBotVault._usdc missing address in strict mainnet mode"
     },
     {
       "name": "WikiUserBotFactory",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 78371805007650"
+      "reason": "WikiUserBotFactory._perp missing address in strict mainnet mode"
     },
     {
       "name": "WikiCopyTrading",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 68257049221830"
+      "reason": "WikiCopyTrading._usdc missing address in strict mainnet mode"
     },
     {
       "name": "WikiConditionalOrder",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 43771260937500"
+      "reason": "WikiConditionalOrder._oracle missing address in strict mainnet mode"
     },
     {
       "name": "WikiTrailingStop",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 43393978125000"
+      "reason": "WikiTrailingStop._oracle missing address in strict mainnet mode"
     },
     {
       "name": "WikiGuaranteedStop",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 49188493789647"
+      "reason": "WikiGuaranteedStop._perp missing address in strict mainnet mode"
     },
     {
       "name": "WikiTWAMM",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 48454859252010"
+      "reason": "WikiTWAMM._spotRouter missing address in strict mainnet mode"
     },
     {
       "name": "WikiDynamicLeverage",
-      "reason": "execution reverted: DynLev: zero vault"
+      "reason": "WikiDynamicLeverage._vault missing address in strict mainnet mode"
     },
     {
       "name": "WikiLeverageScaler",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 42505216770072"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 42603271732021"
     },
     {
       "name": "WikiInternalArb",
-      "reason": "execution reverted: InternalArb: zero flashLoan"
+      "reason": "WikiInternalArb._flashLoan missing address in strict mainnet mode"
     },
     {
       "name": "WikiOptionsVault",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 58007415937500"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 58436131629770"
     },
     {
       "name": "WikiPredictionMarket",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 49524766875000"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 49937462845264"
     },
     {
       "name": "WikiRWAMarket",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 42062171290548"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 42360158718176"
     },
     {
       "name": "WikiPermissionlessMarkets",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 44079817680584"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 44310880993500"
     },
     {
       "name": "WikiIndexBasket",
-      "reason": "execution reverted: Index: zero oracle"
+      "reason": "WikiIndexBasket._oracle missing address in strict mainnet mode"
     },
     {
       "name": "WikiOTCDesk",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 37931201786954"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 38127788437500"
     },
     {
       "name": "WikiPortfolioTracker",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 36440434367194"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 36161791875000"
     },
     {
       "name": "WikiTradeHistory",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 31176570937500"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 31403399244360"
     },
     {
       "name": "WikiInstitutionalPool",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 56740051937516"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 56991827812500"
     },
     {
       "name": "WikiProofOfSolvency",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 25264737750192"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 25398750903336"
     },
     {
       "name": "WikiOnChainAnalytics",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 25419178456034"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 25511855304234"
     },
     {
       "name": "WikiAffiliate",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 47821052681052"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 48003694645500"
     },
     {
       "name": "WikiSeasonPoints",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 37423753029804"
+      "reason": "WikiSeasonPoints._wik missing address in strict mainnet mode"
     },
     {
       "name": "WikiLeaderboard",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 32643202500000"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 32829300000000"
     },
     {
       "name": "WikiReferralLeaderboard",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 34045995937500"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 34237282500000"
     },
     {
       "name": "WikiRevenueShareNFT",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 49883259461805"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 50205480898340"
     },
     {
       "name": "WikiReferralNFT",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 48844343068752"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 49162348516112"
     },
     {
       "name": "WikiVestingMarket",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 31456660516134"
+      "reason": "WikiVestingMarket._wik missing address in strict mainnet mode"
     },
     {
       "name": "WikiTraderPass",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 65229795639000"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 65721414281670"
     },
     {
       "name": "WikiTraderSubscription",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 22321769967000"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 22437620700668"
     },
     {
       "name": "WikiSubAccount",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 32604195937500"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 32848436979000"
     },
     {
       "name": "WikiTokenVesting",
-      "reason": "execution reverted: Vest: zero WIK"
+      "reason": "WikiTokenVesting._wik missing address in strict mainnet mode"
     },
     {
       "name": "WikiLiquidationInsurance",
-      "reason": "execution reverted: Wiki: zero _liquidator"
+      "reason": "WikiLiquidationInsurance._liquidator missing address in strict mainnet mode"
     },
     {
       "name": "WikiLiquidationMarket",
-      "reason": "execution reverted: LiqMkt: zero perp"
+      "reason": "WikiLiquidationMarket._perp missing address in strict mainnet mode"
     },
     {
       "name": "WikiIEOPlatform",
-      "reason": "execution reverted: Wiki: zero _wik"
+      "reason": "WikiIEOPlatform._wik missing address in strict mainnet mode"
     },
     {
       "name": "WikiLaunchpad",
-      "reason": "execution reverted: Wiki: zero _staking"
+      "reason": "WikiLaunchpad._staking missing address in strict mainnet mode"
     },
     {
       "name": "WikiLaunchPool",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 55234041552984"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 55791284893848"
     },
     {
       "name": "WikiStrategyVault",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 41168047722750"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 41260792500000"
     },
     {
       "name": "WikiStrategyVault",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 41168403373500"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 41261248125000"
     },
     {
       "name": "WikiStrategyVault",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 41224559630364"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 41556901405500"
     },
     {
       "name": "WikiStrategyVault",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 41019159375000"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 41391405000000"
     },
     {
       "name": "WikiSmartAccountFactory",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 42722538750000"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 43012206221625"
     },
     {
       "name": "WikiPaymaster",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 27683972376984"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 27867684264750"
     },
     {
       "name": "WikiAPIGateway",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 38086914569242"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 38320222851000"
     },
     {
       "name": "WikiTelegramGateway",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 27193501035000"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 27350562870000"
     },
     {
       "name": "WikiPushNotification",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 20080700952480"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 20136068437500"
     },
     {
       "name": "WikiZap",
-      "reason": "execution reverted: Wiki: zero _spot"
+      "reason": "WikiZap._spot missing address in strict mainnet mode"
     },
     {
       "name": "WikiFiatOnRamp",
-      "reason": "execution reverted: Wiki: zero _revenueSplitter"
+      "reason": "WikiFiatOnRamp._revenueSplitter missing address in strict mainnet mode"
     },
     {
       "name": "WikiBridge",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 39580460186466"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 42416206746736"
     },
     {
       "name": "WikiCrossChainRouter",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 54093825000000"
+      "reason": "WikiCrossChainRouter._vault missing address in strict mainnet mode"
     },
     {
       "name": "WikiForexOracle",
-      "reason": "execution reverted: Wiki: zero _registry"
+      "reason": "WikiForexOracle._registry missing address in strict mainnet mode"
     },
     {
       "name": "AaveV3Adapter",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 21200109832671"
+      "reason": "AaveV3Adapter._aggregator missing address in strict mainnet mode"
     },
     {
       "name": "RadiantAdapter",
-      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 5000000000000 want 19698594863453"
+      "reason": "insufficient funds for gas * price + value: address 0x79698a8D914016b770AF796D8F08D660d64C0997 have 267487837000 want 19639151270850"
     }
   ],
   "external": {
