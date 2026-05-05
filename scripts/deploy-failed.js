@@ -34,9 +34,7 @@ function getDeploymentCandidates(networkName) {
   return [
     `deployments.${networkName}.auto.json`,
     `deployments.${networkName}.json`,
-    `deployments.${
-      networkName === "arbitrum_one" ? "arbitrum" : networkName
-    }.json`,
+    `deployments.${networkName === "arbitrum_one" ? "arbitrum" : networkName}.json`,
   ];
 }
 
@@ -48,25 +46,21 @@ function loadDeploymentFile(networkName) {
       return { filePath, fileName, data };
     }
   }
+
   throw new Error(
-    `Missing deployment file for ${networkName}. Expected one of: ${getDeploymentCandidates(
-      networkName
-    ).join(", ")}`
+    `Missing deployment file for ${networkName}. Expected one of: ${getDeploymentCandidates(networkName).join(", ")}`
   );
 }
 
 function getFailedContractNames(data) {
-  const fromNames = Array.isArray(data.failedContracts)
-    ? data.failedContracts
-    : [];
+  const fromNames = Array.isArray(data.failedContracts) ? data.failedContracts : [];
   const fromFailures = Array.isArray(data.deployFailures)
     ? data.deployFailures.map((item) => item?.name).filter(Boolean)
     : [];
   const fromLegacy = Array.isArray(data.failed)
-    ? data.failed
-        .map((item) => (typeof item === "string" ? item : item?.name))
-        .filter(Boolean)
+    ? data.failed.map((item) => (typeof item === "string" ? item : item?.name)).filter(Boolean)
     : [];
+
   return [...new Set([...fromNames, ...fromFailures, ...fromLegacy])];
 }
 
@@ -120,7 +114,7 @@ async function main() {
   const [deployer] = await ethers.getSigners();
   const { filePath, fileName, data } = loadDeploymentFile(networkName);
 
-  const contracts = { ...DEPLOYED, ...(data.contracts || data.deployed || {}) };
+  const contracts = data.contracts || data.deployed || {};
   const details = data.details || {};
   const failedContracts = getFailedContractNames(data);
 
@@ -129,28 +123,18 @@ async function main() {
     return;
   }
 
-  const extUSDC = normalizeAddress(
-    process.env.EXT_USDC || EXT_DEFAULTS.USDC,
-    "EXT_USDC"
-  );
-  const signerPool = [
-    deployer.address,
-    ethers.Wallet.createRandom().address,
-    ethers.Wallet.createRandom().address,
-  ];
+  const extUSDC = normalizeAddress(process.env.EXT_USDC || EXT_DEFAULTS.USDC, "EXT_USDC");
+  const signerPool = [deployer.address, ethers.Wallet.createRandom().address, ethers.Wallet.createRandom().address];
 
-  // ── Helper: get address from live contracts map or DEPLOYED fallback ──
-  const addr = (key) => contracts[key] || DEPLOYED[key];
+  const oracle = contracts.WikiOracle;
+  const splitter = contracts.WikiRevenueSplitter;
 
   const handlers = {
-    // ── Original handlers ──────────────────────────────────────────
     WikiIndexBasket: async () => {
-      const oracle = addr("WikiOracle");
-      const splitter = addr("WikiRevenueSplitter");
-      if (!oracle || !splitter)
-        throw new Error(
-          "WikiIndexBasket needs WikiOracle + WikiRevenueSplitter"
-        );
+      if (!oracle || !splitter) {
+        throw new Error("WikiIndexBasket needs WikiOracle and WikiRevenueSplitter in deployment file");
+      }
+
       return deployOne(
         "WikiIndexBasket",
         [
@@ -179,168 +163,20 @@ async function main() {
         { gasLimit: 30_000_000, forceRawTx: true }
       );
     },
-    WikiMultisigGuard: async () =>
-      deployOne("WikiMultisigGuard", [signerPool, 2]),
+    WikiMultisigGuard: async () => deployOne("WikiMultisigGuard", [signerPool, 2]),
     WikiStrategyVault: async () =>
-      deployOne("WikiStrategyVault", [
-        extUSDC,
-        0,
-        50,
-        1000,
-        "Wiki Strategy Vault",
-        "wSV",
-        deployer.address,
-      ]),
-
-    // ── New handlers for the 22 remaining failed contracts ─────────
-
-    WikiSpot: async () =>
-      deployOne("WikiSpot", [deployer.address, deployer.address]),
-
-    WikiOrderBook: async () => deployOne("WikiOrderBook", [deployer.address]),
-
-    WikiStaking: async () =>
-      deployOne("WikiStaking", [addr("WIKToken"), extUSDC, deployer.address]),
-
-    AaveV3Adapter: async () =>
-      deployOne("AaveV3Adapter", [
-        addr("WikiYieldAggregator"),
-        deployer.address,
-      ]),
-
-    WikiAffiliate: async () =>
-      deployOne("WikiAffiliate", [deployer.address, extUSDC]),
-
-    WikiAPIGateway: async () =>
-      deployOne("WikiAPIGateway", [
-        deployer.address,
-        extUSDC,
-        deployer.address,
-      ]),
-
-    WikiBackstopVault: async () =>
-      deployOne("WikiBackstopVault", [
-        deployer.address,
-        extUSDC,
-        deployer.address,
-      ]),
-
-    // first constructor arg is unused/unnamed in WikiBonus
-    WikiBonus: async () =>
-      deployOne("WikiBonus", [
-        deployer.address,
-        deployer.address,
-        deployer.address,
-      ]),
-
-    WikiCopyTrading: async () =>
-      deployOne("WikiCopyTrading", [
-        extUSDC,
-        addr("WikiPerp"),
-        deployer.address,
-      ]),
-
-    WikiDAOTreasury: async () =>
-      deployOne("WikiDAOTreasury", [
-        extUSDC,
-        deployer.address,
-        deployer.address,
-      ]),
-
-    WikiFiatOnRamp: async () =>
-      deployOne("WikiFiatOnRamp", [
-        extUSDC,
-        addr("WikiRevenueSplitter"),
-        deployer.address,
-      ]),
-
-    WikiFundingArbVault: async () =>
-      deployOne("WikiFundingArbVault", [extUSDC, deployer.address]),
-
-    // Depends on WikiStaking — will use freshly-deployed address if staking was just deployed above
-    WikiGaugeVoting: async () => {
-      const staking = addr("WikiStaking");
-      if (!staking)
-        throw new Error(
-          "WikiGaugeVoting requires WikiStaking — deploy WikiStaking first"
-        );
-      return deployOne("WikiGaugeVoting", [
-        deployer.address,
-        staking,
-        addr("WIKToken"),
-        extUSDC,
-        deployer.address,
-      ]);
-    },
-
-    WikiLaunchpad: async () => {
-      const staking = addr("WikiStaking");
-      if (!staking)
-        throw new Error(
-          "WikiLaunchpad requires WikiStaking — deploy WikiStaking first"
-        );
-      return deployOne("WikiLaunchpad", [extUSDC, staking, deployer.address]);
-    },
-
-    WikiLiqProtection: async () =>
-      deployOne("WikiLiqProtection", [
-        deployer.address,
-        extUSDC,
-        deployer.address,
-      ]),
-    WikiLiquidStaking: async () =>
-      deployOne("WikiLiquidStaking", [
-        addr("WIKToken"), // wik token address
-        deployer.address, // owner
-        100, // protocolFeeBps = 1%
-      ]),
-
-    WikiMakerRewards: async () =>
-      deployOne("WikiMakerRewards", [addr("WIKToken"), deployer.address]),
-
-    WikiMarketMakerAgreement: async () =>
-      deployOne("WikiMarketMakerAgreement", [
-        deployer.address,
-        extUSDC,
-        addr("WIKToken"),
-      ]),
-
-    WikiOptionsVault: async () =>
-      deployOne("WikiOptionsVault", [deployer.address]),
-
-    WikiSocialRewards: async () =>
-      deployOne("WikiSocialRewards", [
-        addr("WIKToken"),
-        deployer.address,
-        deployer.address,
-      ]),
-
-    WikiTelegramGateway: async () =>
-      deployOne("WikiTelegramGateway", [deployer.address, deployer.address]),
-
-    WikiTradeHistory: async () =>
-      deployOne("WikiTradeHistory", [deployer.address]),
+      deployOne("WikiStrategyVault", [extUSDC, 0, 50, 1000, "Wiki Strategy Vault", "wSV", deployer.address]),
   };
 
-  console.log(
-    `\n🔁 Retrying failed contracts on ${networkName} from ${fileName} ...`
-  );
+  console.log(`\n🔁 Retrying failed contracts on ${networkName} from ${fileName} ...`);
 
   const retried = [];
   const skipped = [];
   const stillFailed = [];
 
   for (const name of failedContracts) {
-    if (contracts[name] && !DEPLOYED[name]) {
-      // already deployed in a previous run (not just a DEPLOYED constant)
+    if (contracts[name]) {
       console.log(`⏭️  ${name} already deployed at ${contracts[name]}`);
-      retried.push(name);
-      continue;
-    }
-    // Check file contracts (not DEPLOYED fallback) to avoid re-deploying
-    const fileContracts = data.contracts || data.deployed || {};
-    if (fileContracts[name]) {
-      console.log(`⏭️  ${name} already deployed at ${fileContracts[name]}`);
       retried.push(name);
       continue;
     }
@@ -354,8 +190,7 @@ async function main() {
 
     try {
       const result = await handler();
-      contracts[name] = result.address; // update live map for dependent handlers
-      (data.contracts || (data.contracts = {}))[name] = result.address;
+      contracts[name] = result.address;
       details[name] = {
         address: result.address,
         args: result.args,
@@ -373,9 +208,7 @@ async function main() {
   data.contracts = contracts;
   data.deployed = contracts;
   data.details = details;
-  data.failedContracts = [
-    ...new Set([...skipped, ...stillFailed.map((item) => item.name)]),
-  ];
+  data.failedContracts = [...new Set([...skipped, ...stillFailed.map((item) => item.name)])];
   data.deployFailures = stillFailed;
   data.retryTimestamp = new Date().toISOString();
 
@@ -383,10 +216,8 @@ async function main() {
 
   console.log(`\n✅ Updated ${fileName}`);
   console.log(`✅ Retried successfully/already-present: ${retried.length}`);
-  console.log(`⚠️  Skipped (no recipe):                  ${skipped.length}`);
-  console.log(
-    `❌ Still failed:                           ${stillFailed.length}`
-  );
+  console.log(`⚠️  Skipped (no recipe): ${skipped.length}`);
+  console.log(`❌ Still failed: ${stillFailed.length}`);
 }
 
 main().catch((error) => {

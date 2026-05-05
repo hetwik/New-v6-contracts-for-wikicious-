@@ -94,6 +94,49 @@ What it does:
 - skips contracts that don't expose keeper setters
 - writes a full report to `keeper-setup.json`
 
+## Oracle live addresses (Arbitrum)
+
+For `WikiOracle`, this repo uses live Arbitrum addresses:
+- Pyth contract: `0xff1a0f4744e8582DF1aE09D5611b887B6a12925C`
+- Arbitrum sequencer uptime feed: `0xFdB631F5EE196F0ed6FAa767959853A9F217697D`
+
+To set core Chainlink feeds (BTC/ETH/ARB/BNB/forex/metals) on your deployed `WikiOracle`:
+
+```bash
+npm run oracle:live:testnet
+# or
+npm run oracle:live:mainnet
+```
+
+Optional: set Pyth feed IDs for your symbols by providing `PYTH_FEED_MAP_JSON` in `.env`:
+
+```env
+PYTH_FEED_MAP_JSON={"BTCUSDT":"0x...64hex...","ETHUSDT":"0x...64hex..."}
+```
+
+Notes:
+- Chainlink does **not** cover all 295 pairs in this system; use Pyth IDs for broader market coverage.
+- Sequencer feed + Pyth contract are constructor-level in `WikiOracle` and already part of deploy config.
+
+
+### Generate Safe batch calldata for oracle feed wiring
+
+If you already deployed and want pre-encoded Safe batch calldata:
+
+```bash
+# if WikiOracle is missing in deployment json, pass it explicitly
+WIKI_ORACLE_ADDRESS=0xYourOracle npm run safe:oracle:batch:mainnet
+```
+
+This creates `safe-oracle-batch.arbitrum_one.json` that you can import in Safe Transaction Builder.
+
+You can do full per-symbol batches by passing JSON maps:
+
+```env
+CHAINLINK_FEEDS_JSON={"BTCUSDT":["0x...",86400,8],"ETHUSDT":["0x...",86400,8]}
+PYTH_FEED_MAP_JSON={"BTCUSDT":"0x...64hex...","ETHUSDT":"0x...64hex..."}
+```
+
 ## Mainnet retry helpers
 
 If some contracts failed to deploy during mainnet deploy, retry known failed deployments from the latest `deployments.arbitrum_one*.json` file:
