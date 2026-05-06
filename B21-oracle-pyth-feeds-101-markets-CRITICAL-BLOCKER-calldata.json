@@ -3,7 +3,7 @@
   "chainId": "42161",
   "createdAt": 1746460800000,
   "meta": {
-    "name": "B21 \u2014 WikiOracle: Register Pyth Feeds for All 101 Markets (CRITICAL BLOCKER)",
+    "name": "B21 — WikiOracle: Register Pyth Feeds for All 101 Markets (CRITICAL BLOCKER)",
     "description": "Registers Pyth price feed IDs for all 101 perp markets. Without these, oracle.getPrice() reverts on every trade. Each setPythFeed maps the WikiPerp marketId to the official Pyth Network price feed ID.",
     "txBuilderVersion": "1.16.5",
     "createdFromSafeAddress": "0xc01fAE37aE7a4051Eafea26e047f36394054779c"
@@ -382,7 +382,7 @@
     {
       "to": "0xA99583D3cd272F95b8f08b32297f072f5164D0DC",
       "value": "0",
-      "data": "0xa263210ef50f4566b7f185ebe3aa8cbe86193b28bffea10bfd9f3724127248ac8c046fbfcb1703d2cc4abb02adcc a45c1e79c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c"
+      "data": "0xa263210ef50f4566b7f185ebe3aa8cbe86193b28bffea10bfd9f3724127248ac8c046fbfcb1703d2cc4abb02adcca45c1e79c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9"
     },
     {
       "to": "0xA99583D3cd272F95b8f08b32297f072f5164D0DC",
