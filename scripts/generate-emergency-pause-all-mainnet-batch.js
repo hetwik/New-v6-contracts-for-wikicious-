@@ -2,6 +2,23 @@
 const fs = require('fs');
 const { ethers } = require('ethers');
 
+<<<<<<< codex/generate-safe-batch-transaction-json-jg8i0n
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+async function withRetry(label, fn, retries = 5, delayMs = 1500) {
+  let lastErr;
+  for (let i = 0; i < retries; i++) {
+    try { return await fn(); } catch (e) {
+      lastErr = e;
+      const msg = (e && (e.shortMessage || e.message)) ? (e.shortMessage || e.message) : String(e);
+      if (!/initializing|timeout|429|rate|temporar|missing revert data|CALL_EXCEPTION/i.test(msg)) break;
+      await sleep(delayMs * (i + 1));
+    }
+  }
+  throw new Error(`${label} failed after retries: ${lastErr?.shortMessage || lastErr?.message || lastErr}`);
+}
+
+=======
+>>>>>>> main
 async function main() {
   const rpc = process.env.RPC_URL || process.env.ARBITRUM_RPC_URL || process.env.ALCHEMY_ARBITRUM_URL || process.env.TENDERLY_RPC_URL;
   if (!rpc) throw new Error('Missing RPC URL. Set one of: RPC_URL, ARBITRUM_RPC_URL, ALCHEMY_ARBITRUM_URL, TENDERLY_RPC_URL.');
@@ -42,14 +59,22 @@ async function main() {
     ];
     const perp = new ethers.Contract(addr.perp, perpAbi, provider);
     const iface = new ethers.Interface(perpAbi);
+<<<<<<< codex/generate-safe-batch-transaction-json-jg8i0n
+    const count = Number(await withRetry('perp.marketCount', () => perp.marketCount()));
+    for (let i = 0; i < count; i++) {
+      const m = await withRetry(`perp.getMarket(${i})`, () => perp.getMarket(i));
+=======
     const count = Number(await perp.marketCount());
     for (let i = 0; i < count; i++) {
       const m = await perp.getMarket(i);
+>>>>>>> main
       if (m.active) {
         pushTx(addr.perp, iface.encodeFunctionData('pauseMarket', [i]), 'pauseMarket',
           [{ internalType: 'uint256', name: 'idx', type: 'uint256' }], { idx: String(i) });
       }
     }
+<<<<<<< codex/generate-safe-batch-transaction-json-jg8i0n
+=======
     pushTx(addr.perp, iface.encodeFunctionData('pause', []), 'pause');
   }
 
@@ -59,6 +84,7 @@ async function main() {
   for (const [name, a] of [['WikiVirtualAMM', addr.vamm], ['WikiSpot', addr.spot], ['WikiLending', addr.lending], ['WikiStaking', addr.staking]]) {
     if (!a) continue;
     pushTx(a, pauseIface.encodeFunctionData('pause', []), 'pause');
+>>>>>>> main
   }
 
   const out = {
@@ -66,8 +92,13 @@ async function main() {
     chainId,
     createdAt: Date.now(),
     meta: {
+<<<<<<< codex/generate-safe-batch-transaction-json-jg8i0n
+      name: 'EMERGENCY: pause active Perp markets only (mainnet)',
+      description: 'Auto-generated emergency batch: pauses only active Perp markets via pauseMarket(idx).'
+=======
       name: 'EMERGENCY: pause all active markets/modules (mainnet)',
       description: 'Auto-generated emergency freeze batch: pauses all active Perp markets and globally pauses Perp/vAMM/Spot/Lending/Staking where available.'
+>>>>>>> main
     },
     transactions: txs,
   };

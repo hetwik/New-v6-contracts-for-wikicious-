@@ -2,6 +2,20 @@
 const fs = require('fs');
 const { ethers } = require('ethers');
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+async function withRetry(label, fn, retries = 5, delayMs = 1500) {
+  let lastErr;
+  for (let i = 0; i < retries; i++) {
+    try { return await fn(); } catch (e) {
+      lastErr = e;
+      const msg = (e && (e.shortMessage || e.message)) ? (e.shortMessage || e.message) : String(e);
+      if (!/initializing|timeout|429|rate|temporar|missing revert data|CALL_EXCEPTION/i.test(msg)) break;
+      await sleep(delayMs * (i + 1));
+    }
+  }
+  throw new Error(`${label} failed after retries: ${lastErr?.shortMessage || lastErr?.message || lastErr}`);
+}
+
 async function main() {
   const rpc = process.env.RPC_URL || process.env.ARBITRUM_RPC_URL || process.env.ALCHEMY_ARBITRUM_URL || process.env.TENDERLY_RPC_URL;
   const perp = process.env.PERP_ADDRESS || '0x723f653a3DEFC45FB934BBF81f1411883a977468';
@@ -15,12 +29,12 @@ async function main() {
   ];
   const c = new ethers.Contract(perp, abi, provider);
 
-  const n = Number(await c.marketCount());
+  const n = Number(await withRetry('perp.marketCount', () => c.marketCount()));
   const byId = new Map();
   const dupes = [];
 
   for (let i = 0; i < n; i++) {
-    const m = await c.getMarket(i);
+    const m = await withRetry(`perp.getMarket(${i})`, () => c.getMarket(i));
     const key = m.marketId.toLowerCase();
     if (!byId.has(key)) {
       byId.set(key, { first: i, symbol: m.symbol, active: m.active });
