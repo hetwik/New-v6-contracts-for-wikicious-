@@ -3,9 +3,9 @@ const fs = require('fs');
 const { ethers } = require('ethers');
 
 async function main() {
-  const rpc = process.env.RPC_URL || process.env.ARBITRUM_RPC_URL;
+  const rpc = process.env.RPC_URL || process.env.ARBITRUM_RPC_URL || process.env.ALCHEMY_ARBITRUM_URL || process.env.TENDERLY_RPC_URL;
   const perp = process.env.PERP_ADDRESS || '0x723f653a3DEFC45FB934BBF81f1411883a977468';
-  if (!rpc) throw new Error('Set RPC_URL (or ARBITRUM_RPC_URL).');
+  if (!rpc) throw new Error('Missing RPC URL. Set one of: RPC_URL, ARBITRUM_RPC_URL, ALCHEMY_ARBITRUM_URL, TENDERLY_RPC_URL.');
 
   const provider = new ethers.JsonRpcProvider(rpc);
   const abi = [
