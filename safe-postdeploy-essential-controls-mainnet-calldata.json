@@ -1,0 +1,150 @@
+{
+  "version": "1.0",
+  "chainId": "42161",
+  "createdAt": 1777996856809,
+  "meta": {
+    "name": "Post-wiring only: Vault + Perp + AutoCompounder (pre-encoded calldata)",
+    "description": "Safe batch with only post-wiring actions (no risk parameter tuning)."
+  },
+  "transactions": [
+    {
+      "to": "0x4533E181FdF5b0C66e0816992F38c23d57e42Df8",
+      "value": "0",
+      "data": "0x8f6b52a7000000000000000000000000aa3109dee3f45d2834e703aaa6c90db3009f4b11",
+      "contractMethod": {
+        "name": "setTVLGuard",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_tvlGuard",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "_tvlGuard": "0xAA3109DEe3F45d2834e703AaA6c90Db3009f4b11"
+      }
+    },
+    {
+      "to": "0x4533E181FdF5b0C66e0816992F38c23d57e42Df8",
+      "value": "0",
+      "data": "0xf018d7c0000000000000000000000000e622aeeaab8a678a059703ba21455f93e7d108f1",
+      "contractMethod": {
+        "name": "setRateLimiter",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_rateLimiter",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "_rateLimiter": "0xE622aEEAaB8a678A059703BA21455f93e7D108f1"
+      }
+    },
+    {
+      "to": "0xD03C8cd8E3E847eD2063800f8f4Bc44512867b05",
+      "value": "0",
+      "data": "0xd8952a4900000000000000000000000039ef6574b791164e32c9e8bd432637ab0eb3ebbd000000000000000000000000dd551d705fabd4380d2c95f7345b671ce3310bd2",
+      "contractMethod": {
+        "name": "setContracts",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_vesting",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "_staking",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "_vesting": "0x39ef6574b791164E32C9E8bd432637AB0EB3EbBd",
+        "_staking": "0xDD551D705fAbD4380D2C95F7345b671cE3310bd2"
+      }
+    },
+    {
+      "to": "0xD03C8cd8E3E847eD2063800f8f4Bc44512867b05",
+      "value": "0",
+      "data": "0xf0f4426000000000000000000000000000b13b0d1e9b18cfef2c998027ed7291cc163a3f",
+      "contractMethod": {
+        "name": "setTreasury",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_treasury",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "_treasury": "0x00b13b0D1E9b18cfeF2C998027Ed7291CC163A3f"
+      }
+    },
+    {
+      "to": "0x4533E181FdF5b0C66e0816992F38c23d57e42Df8",
+      "value": "0",
+      "data": "0xbdacb303000000000000000000000000ada19c1beb7bbfdf8264b784c3005b0d4b667cd0",
+      "contractMethod": {
+        "name": "setTimelock",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_tl",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "_tl": "0xAda19c1BEb7bbFdf8264b784C3005b0d4B667cd0"
+      }
+    },
+    {
+      "to": "0x723f653a3DEFC45FB934BBF81f1411883a977468",
+      "value": "0",
+      "data": "0xbdacb303000000000000000000000000ada19c1beb7bbfdf8264b784c3005b0d4b667cd0",
+      "contractMethod": {
+        "name": "setTimelock",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_tl",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "_tl": "0xAda19c1BEb7bbFdf8264b784C3005b0d4B667cd0"
+      }
+    },
+    {
+      "to": "0xD03C8cd8E3E847eD2063800f8f4Bc44512867b05",
+      "value": "0",
+      "data": "0xbdacb303000000000000000000000000ada19c1beb7bbfdf8264b784c3005b0d4b667cd0",
+      "contractMethod": {
+        "name": "setTimelock",
+        "payable": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_tl",
+            "type": "address"
+          }
+        ]
+      },
+      "contractInputsValues": {
+        "_tl": "0xAda19c1BEb7bbFdf8264b784C3005b0d4B667cd0"
+      }
+    }
+  ]
+}
