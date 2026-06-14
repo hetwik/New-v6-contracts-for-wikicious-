@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <radialGradient id="bg" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#2a1a00"/>
+      <stop offset="60%" stop-color="#1a1000"/>
+      <stop offset="100%" stop-color="#0a0800"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F5B300" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#F5B300" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Dark circular background -->
+  <circle cx="16" cy="16" r="16" fill="url(#bg)"/>
+
+  <!-- Glow -->
+  <circle cx="16" cy="16" r="16" fill="url(#glow)"/>
+
+  <!-- Outer gold ring -->
+  <circle cx="16" cy="16" r="15" fill="none" stroke="#F5B300" stroke-width="1"/>
+  <circle cx="16" cy="16" r="13.5" fill="none" stroke="#cc8800" stroke-width="0.4"/>
+
+  <!-- Globe outer circle -->
+  <circle cx="16" cy="16" r="10" fill="none" stroke="#F5B300" stroke-width="1.5"/>
+
+  <!-- Vertical center line -->
+  <line x1="16" y1="6" x2="16" y2="26" stroke="#F5B300" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- Horizontal center line -->
+  <line x1="6" y1="16" x2="26" y2="16" stroke="#F5B300" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- Inner vertical ellipse -->
+  <ellipse cx="16" cy="16" rx="4.5" ry="10" fill="none" stroke="#F5B300" stroke-width="1.1"/>
+
+  <!-- Top latitude arc -->
+  <path d="M8.5 12 Q16 15 23.5 12" fill="none" stroke="#F5B300" stroke-width="1.1" stroke-linecap="round"/>
+
+  <!-- Bottom latitude arc -->
+  <path d="M8.5 20 Q16 17 23.5 20" fill="none" stroke="#F5B300" stroke-width="1.1" stroke-linecap="round"/>
+</svg>
